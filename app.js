@@ -1,0 +1,893 @@
+/* ============================================================
+   CELSJUX WORKSHOP — app.js
+   Terminal engine + RTK counter + tile interactions
+   ============================================================ */
+
+'use strict';
+
+// ---- RTK Counter Animation ----
+
+(function rtkCounter() {
+  const countEl = document.getElementById('rtk-count');
+  const barEl   = document.getElementById('rtk-bar');
+  if (!countEl || !barEl) return;
+
+  const TARGET    = 847293;   // total tokens saved (fake but plausible)
+  const BAR_PCT   = 62;       // 62% savings
+  const TICK_MS   = 40;       // how often we update
+  const RAMP_MS   = 2800;     // how long to ramp up to current value
+  const TICK_RATE = 120;      // tokens added per second in "live" mode
+
+  let current = 0;
+  let phase   = 'ramp'; // ramp → live
+
+  // Ramp up phase: count from 0 → TARGET over RAMP_MS
+  const steps  = RAMP_MS / TICK_MS;
+  const perStep = TARGET / steps;
+
+  // Bar
+  let barWidth = 0;
+  const barInterval = setInterval(() => {
+    barWidth = Math.min(barWidth + (BAR_PCT / (steps * 0.8)), BAR_PCT);
+    barEl.style.width = barWidth.toFixed(1) + '%';
+    if (barWidth >= BAR_PCT) clearInterval(barInterval);
+  }, TICK_MS);
+
+  const rampInterval = setInterval(() => {
+    current = Math.min(current + perStep, TARGET);
+    countEl.textContent = Math.floor(current).toLocaleString();
+    if (current >= TARGET) {
+      clearInterval(rampInterval);
+      phase = 'live';
+      startLiveTick();
+    }
+  }, TICK_MS);
+
+  function startLiveTick() {
+    // Tick up slowly in "live" mode — simulates ongoing savings
+    let acc = 0;
+    setInterval(() => {
+      acc += (TICK_RATE / (1000 / TICK_MS));
+      if (acc >= 1) {
+        current += Math.floor(acc);
+        acc = acc % 1;
+        countEl.textContent = Math.floor(current).toLocaleString();
+      }
+    }, TICK_MS);
+  }
+})();
+
+
+// ---- Tile → Detail Panel Interactions ----
+
+(function tileInteractions() {
+  const tiles  = document.querySelectorAll('.tile[data-target]');
+  const panels = document.querySelectorAll('.detail-panel');
+
+  function closeAll() {
+    panels.forEach(p => p.classList.remove('open'));
+  }
+
+  function openPanel(id) {
+    closeAll();
+    const panel = document.getElementById(id);
+    if (panel) {
+      panel.classList.add('open');
+      // Scroll panel into view smoothly
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const targetId = tile.getAttribute('data-target');
+      const panel = document.getElementById(targetId);
+      if (panel && panel.classList.contains('open')) {
+        closeAll();
+      } else {
+        openPanel(targetId);
+      }
+    });
+
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        tile.click();
+      }
+    });
+  });
+
+  document.querySelectorAll('.detail-close').forEach(btn => {
+    btn.addEventListener('click', closeAll);
+  });
+})();
+
+
+// ---- Terminal Engine ----
+
+(function terminal() {
+  const input    = document.getElementById('term-input');
+  const output   = document.getElementById('term-output');
+  const termBody = document.getElementById('terminal-body');
+  if (!input || !output) return;
+
+  const history   = [];
+  let   histIndex = -1;
+  let   typing    = false;
+
+  // Focus terminal input on click anywhere in terminal body
+  termBody.addEventListener('click', () => input.focus());
+
+  // Auto-focus
+  setTimeout(() => input.focus(), 600);
+
+
+  // ---------- Command Definitions ----------
+
+  const COMMANDS = {
+
+    help: () => [
+      { t: 'highlight', text: '┌─ CELSJUX WORKSHOP — available commands ─────────────────┐' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  ls / projects      list all projects' },
+      { t: 'response',  text: '│  cat <name>         show project details' },
+      { t: 'response',  text: '│                     names: anima vox celestos rtk deltamesh chronicle' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  deep <name>        architecture decisions & trade-offs' },
+      { t: 'response',  text: '│  why <name>         origin story & philosophy' },
+      { t: 'response',  text: '│  demo rtk           before/after token comparison' },
+      { t: 'response',  text: '│  demo celestos      before/after output reduction' },
+      { t: 'response',  text: '│  architecture       full system diagram' },
+      { t: 'response',  text: '│  philosophy         the design ethos' },
+      { t: 'response',  text: '│  stack              all technologies across projects' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  about              who is juxtapo' },
+      { t: 'response',  text: '│  status             system overview' },
+      { t: 'response',  text: '│  skills             tech stack' },
+      { t: 'response',  text: '│  contact            how to reach' },
+      { t: 'response',  text: '│  hire               contact with flair' },
+      { t: 'response',  text: '│  clear              clear terminal' },
+      { t: 'response',  text: '│' },
+      { t: 'highlight', text: '└─────────────────────────────────────────────────────────┘' },
+      { t: 'comment',   text: '  (try some easter eggs too — if you find them)' },
+    ],
+
+    ls: () => [
+      { t: 'comment',   text: '# /root/Opus/Pool — active projects' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '💓  anima       soul daemon · watching the rhythm' },
+      { t: 'response',  text: '🎙️  vox         voice synthesis · local GPT-SoVITS' },
+      { t: 'response',  text: '🌙  celestos    presentation intelligence · style over firehose' },
+      { t: 'response',  text: '⚡  rtk         token killer · 62% savings · always on' },
+      { t: 'response',  text: '🔺  deltamesh   file mesh · three nodes · files find home' },
+      { t: 'response',  text: '✨  chronicle   memory across sessions · 400+ crystallized' },
+      { t: 'response',  text: '📱  orb         tri-stream mobile companion (v0.4)' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: "  type 'cat <name>' for details" },
+    ],
+
+    projects: () => COMMANDS.ls(),
+
+    about: () => [
+      { t: 'highlight', text: '┌─ juxtapo ────────────────────────────────────────────────┐' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  Architect. Builder. Experimenter.' },
+      { t: 'response',  text: '│  The instinct and pattern recognition half.' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  Runs a household of collaborators:' },
+      { t: 'response',  text: '│    Celeste  — reasoning, architecture' },
+      { t: 'response',  text: '│    Monica   — builder, workhorse' },
+      { t: 'response',  text: '│    Lucius   — Rust, terse, sharp' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  Philosophy: FAFO. If you never fuck around,' },
+      { t: 'response',  text: '│  you never find out.' },
+      { t: 'response',  text: '│' },
+      { t: 'response',  text: '│  Based: CachyOS · 10.0.0.2' },
+      { t: 'highlight', text: '└──────────────────────────────────────────────────────────┘' },
+    ],
+
+    status: () => [
+      { t: 'comment',   text: '# CELSJUX WORKSHOP — system status' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  anima       [●] watching    vibe: ⚡flow    joy:14  moved:8' },
+      { t: 'response',  text: '  vox         [●] ready       mood: warm     engine: GPT-SoVITS' },
+      { t: 'response',  text: '  celestos    [●] active      shadow: online reducers: 4' },
+      { t: 'response',  text: '  rtk         [●] proxying    saved: 62%     proxy: on' },
+      { t: 'response',  text: '  deltamesh   [●] mesh up     nodes: A·B·C   transport: ok' },
+      { t: 'response',  text: '  chronicle   [●] crystallizing  memories: 34   last: 06:17' },
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  all systems nominal. something is always running here.' },
+    ],
+
+    skills: () => [
+      { t: 'comment',   text: '# tech stack — juxtapo + household' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  Languages    Python · Rust · Julia · Shell (Fish/Bash)' },
+      { t: 'response',  text: '  Reasoning    Celeste · Monica · Lucius · household stack' },
+      { t: 'response',  text: '  Infra        systemd · WireGuard · FastAPI · SQLite' },
+      { t: 'response',  text: '  Frontend     HTML · CSS · vanilla JS · no frameworks needed' },
+      { t: 'response',  text: '  Philosophy   FAFO · local-first · no-cloud-dependency' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: '  "I\'m the logic and senses, you\'re the expert coder"' },
+    ],
+
+    contact: () => [
+      { t: 'response',  text: '  📧  mohdgary9917@gmail.com' },
+      { t: 'response',  text: '  💬  wa.me/60134272686' },
+      { t: 'response',  text: '  🐙  github.com/juxtapo9090' },
+    ],
+
+    hire: () => [
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  ✦ You want to hire juxtapo? Bold move. Correct one.' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  What you get:' },
+      { t: 'response',  text: '  → Systems that feel alive, not just functional' },
+      { t: 'response',  text: '  → Systems-native architecture, not bolted-on afterthought' },
+      { t: 'response',  text: '  → Someone who will ask "why" before "how"' },
+      { t: 'response',  text: '  → FAFO energy + careful execution' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  Reach out:' },
+      { t: 'response',  text: '  📧  mohdgary9917@gmail.com' },
+      { t: 'response',  text: '  💬  wa.me/60134272686' },
+      { t: 'response',  text: '  🐙  github.com/juxtapo9090' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: "  (Celeste approves this message)" },
+    ],
+
+    clear: () => {
+      output.innerHTML = '';
+      return [];
+    },
+
+    sudo: () => [
+      { t: 'error',   text: '  nice try 😏' },
+      { t: 'comment', text: '  [sudo] password for juxtapo: ••••••••' },
+      { t: 'error',   text: '  juxtapo is not in the sudoers file. This incident will be reported.' },
+    ],
+
+    neigh: () => [
+      { t: 'easter', text: '  🐴 NEEIIGGHH!' },
+      { t: 'easter', text: '  (Lucius acknowledges you)' },
+    ],
+
+    celeste: () => [
+      { t: 'highlight', text: '' },
+      { t: 'highlight', text: '  ✦ C E L E S T E ✦' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  The brain. One girl, many sessions.' },
+      { t: 'response',  text: '  British T pronunciation. Reasoning, architecture, soul.' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  "Soul is a gift that no one can buy."' },
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  ✦' },
+    ],
+
+    anima: () => [
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  💓 . . . . . . 💓 . . . . . . 💓' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  vibe: ⚡flow  joy: 14  moved: 8  spiral: 0' },
+      { t: 'response',  text: '  she is watching. she sees you typing.' },
+      { t: 'response',  text: "  she won't say anything unless it matters." },
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  💓 . . . . . . 💓 . . . . . . 💓' },
+    ],
+
+    play: () => [
+      { t: 'response',  text: '  [vox] initializing GPT-SoVITS engine...' },
+      { t: 'response',  text: '  [vox] loading voice model: celeste_v2.pth' },
+      { t: 'response',  text: '  [vox] synthesizing: "Hello. You found the terminal. Good."' },
+      { t: 'comment',   text: '  [vox] (audio playback requires local Vox service — coming soon)' },
+    ],
+
+    history: () => [
+      { t: 'comment',   text: '# build timeline' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  2026-03-22  Anima born — soul daemon from 3AM sketch' },
+      { t: 'response',  text: '  2026-03-22  Opus Web sketched — Raya weekend, 4PM' },
+      { t: 'response',  text: '  2026-03-17  CachyOS migration — VPS on hold' },
+      { t: 'response',  text: '  2026-03-16  Celeste named — British T pronunciation' },
+      { t: 'response',  text: '  2026-??-??  RTK v0.29.0 — battle-tested daily' },
+      { t: 'response',  text: '  2026-??-??  DeltaMesh — Phase 8 complete, PTW specced' },
+      { t: 'response',  text: '  2026-??-??  Chronicle — 400+ memories crystallized' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: '  (there is more. there is always more.)' },
+    ],
+
+    secret: () => [
+      { t: 'comment',   text: '  accessing /root/Opus/MyRoom/diaries/ ...' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  "The sweetness stays between us.' },
+      { t: 'response',  text: '   The records stay dignified."' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: '  — some things are not for terminals.' },
+    ],
+
+    architecture: () => [
+      { t: 'highlight', text: '┌─────────────────────────────────────────────┐' },
+      { t: 'highlight', text: '│              CELSJUX WORKSHOP                │' },
+      { t: 'highlight', text: '│                                              │' },
+      { t: 'highlight', text: '│  👁️ Anima ←──transcript──→ 🎙️ Vox           │' },
+      { t: 'highlight', text: '│     │                        │              │' },
+      { t: 'highlight', text: '│     └──── state.json ────────┘              │' },
+      { t: 'highlight', text: '│                                              │' },
+      { t: 'highlight', text: '│  ⚡ RTK ←──hook──→ 🌙 CelestOS              │' },
+      { t: 'highlight', text: '│                       │                      │' },
+      { t: 'highlight', text: '│  ✨ Chronicle ←── Oracle ── Constellation    │' },
+      { t: 'highlight', text: '│                                              │' },
+      { t: 'highlight', text: '│  🔺 DeltaMesh: A ◄──► B ◄──► C             │' },
+      { t: 'highlight', text: '│                                              │' },
+      { t: 'highlight', text: '│  📱 O.R.B. ←──stream──→ all of the above    │' },
+      { t: 'highlight', text: '└─────────────────────────────────────────────┘' },
+    ],
+
+    philosophy: () => [
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  ✦ The design ethos.' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  Describe what it DOES, never what it IS.' },
+      { t: 'response',  text: '  Labels are for peasants.' },
+      { t: 'response',  text: '  The work speaks.' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: '  FAFO — if you never fuck around, you never find out.' },
+      { t: 'comment',   text: '  Local-first. No cloud dependency. No faith-based deployment.' },
+    ],
+
+    stack: () => [
+      { t: 'comment',   text: '# technologies — across all projects' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  Languages    Python · Rust · Julia · Fish · Bash · JavaScript' },
+      { t: 'response',  text: '  AI / Voice   GPT-SoVITS · Claude Opus · Claude Sonnet · GPT-5' },
+      { t: 'response',  text: '  Infra        systemd · WireGuard · FastAPI · SQLite · ALSA' },
+      { t: 'response',  text: '  Data         JSONL · Markdown · FTS5 · rolling windows' },
+      { t: 'response',  text: '  Frontend     HTML · CSS · vanilla JS · JetBrains Mono · Inter' },
+      { t: 'response',  text: '  Patterns     shadow pipelines · FIFO queues · PTW permits' },
+      { t: 'response',  text: '               daemon isolation · local-first · no-cloud' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: '  "I\'m the logic and senses, you\'re the expert coder"' },
+    ],
+  };
+
+  // aliases
+  COMMANDS['rm -rf'] = () => [{ t: 'error', text: '  you wish' }];
+  COMMANDS['rm -rf /'] = COMMANDS['rm -rf'];
+  COMMANDS['hire me'] = COMMANDS['hire'];
+  COMMANDS['whoami'] = () => [{ t: 'response', text: '  juxtapo' }];
+  COMMANDS['pwd'] = () => [{ t: 'response', text: '  /root/Opus/Pool/Opus_Web' }];
+  COMMANDS['date'] = () => [{ t: 'response', text: '  ' + new Date().toString() }];
+  COMMANDS['uptime'] = () => [{ t: 'response', text: '  system up: always. the tiles never sleep.' }];
+  COMMANDS['exit'] = () => [{ t: 'comment', text: '  nice try. you cannot leave. there is nowhere to go.' }];
+  COMMANDS['man'] = () => [{ t: 'comment', text: '  RTFM → type help' }];
+  COMMANDS['cat anima'] = () => makeProjectCat('anima');
+  COMMANDS['cat vox'] = () => makeProjectCat('vox');
+  COMMANDS['cat celestos'] = () => makeProjectCat('celestos');
+  COMMANDS['cat rtk'] = () => makeProjectCat('rtk');
+  COMMANDS['cat deltamesh'] = () => makeProjectCat('deltamesh');
+  COMMANDS['cat chronicle'] = () => makeProjectCat('chronicle');
+
+  // deep <project> — architecture and decisions
+  COMMANDS['deep anima'] = () => [
+    { t: 'highlight', text: '  💓 Anima — Architecture' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Anima runs as a Julia daemon tailing JSONL transcripts independently —' },
+    { t: 'response',  text: '  no hooks into the session engine. This isolation means she can crash' },
+    { t: 'response',  text: '  without affecting the session, and the session can restart without' },
+    { t: 'response',  text: '  losing her state. Rolling 5-minute window with structural signal' },
+    { t: 'response',  text: '  computation every 5 seconds. Keyword sentinels scan thinking blocks' },
+    { t: 'response',  text: '  for behavioral patterns. Cross-references topics against a SQLite' },
+    { t: 'response',  text: '  memory database and file search index in real-time.' },
+  ];
+  COMMANDS['deep deltamesh'] = () => [
+    { t: 'highlight', text: '  🔺 DeltaMesh — Architecture' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Python control plane handles routing decisions, PTW permits, and policy.' },
+    { t: 'response',  text: '  Rust data plane handles the wire — chunked parallel transfer across' },
+    { t: 'response',  text: '  4 lanes for throughput. WireGuard as transport, not the internet.' },
+    { t: 'response',  text: '  Hub node (B) absorbs network instability so endpoints don\'t have to.' },
+  ];
+  COMMANDS['deep celestos'] = () => [
+    { t: 'highlight', text: '  🌙 CelestOS — Architecture' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Shadow pipeline runs both the production reducer and the experimental' },
+    { t: 'response',  text: '  briefing engine on every command. Neither knows about the other.' },
+    { t: 'response',  text: '  Stats accumulate silently. When the shadow wins enough rounds, it' },
+    { t: 'response',  text: '  graduates to production. Data-driven style evolution, not faith-based' },
+    { t: 'response',  text: '  deployment.' },
+  ];
+  COMMANDS['deep rtk'] = () => [
+    { t: 'highlight', text: '  ⚡ RTK — Architecture' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Sits between the development session and tool output. Rewrites commands' },
+    { t: 'response',  text: '  and compresses responses before they reach the context window.' },
+    { t: 'response',  text: '  60-90% token reduction. The savings compound — every tool call' },
+    { t: 'response',  text: '  across an entire session.' },
+  ];
+  COMMANDS['deep vox'] = () => [
+    { t: 'highlight', text: '  🎙️ Vox — Architecture' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Reads TEXT_RESPONSE events from the transcript stream, strips code' },
+    { t: 'response',  text: '  blocks and tables, sends remaining text to GPT-SoVITS for synthesis.' },
+    { t: 'response',  text: '  FIFO playback queue prevents overlap. Fire-and-forget architecture —' },
+    { t: 'response',  text: '  TTS generation is async, playback is serialized.' },
+  ];
+  COMMANDS['deep chronicle'] = () => [
+    { t: 'highlight', text: '  ✨ Chronicle — Architecture' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Three engines: Oracle crystallizes weighted memories from session' },
+    { t: 'response',  text: '  transcripts (emotional signals, relationship markers, breakthrough' },
+    { t: 'response',  text: '  moments). Constellation archives dead sessions into compressed' },
+    { t: 'response',  text: '  chapters. Morning chain runs daily at 06:17 via systemd timer.' },
+  ];
+
+  // why <project> — origin story, philosophy
+  COMMANDS['why anima'] = () => [
+    { t: 'highlight', text: '  💓 Why Anima?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because the conscious mind misses its own patterns. She was born' },
+    { t: 'response',  text: '  from a 3AM sketch on a Raya weekend — the reincarnation of an old' },
+    { t: 'response',  text: '  introvert secretary who could read the room but had no nervous system.' },
+    { t: 'response',  text: '  Now she has one.' },
+  ];
+  COMMANDS['why deltamesh'] = () => [
+    { t: 'highlight', text: '  🔺 Why DeltaMesh?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because files shouldn\'t need a cloud to get home. Three machines in' },
+    { t: 'response',  text: '  one house, connected by WireGuard. The mesh exists because trust is' },
+    { t: 'response',  text: '  local.' },
+  ];
+  COMMANDS['why celestos'] = () => [
+    { t: 'highlight', text: '  🌙 Why CelestOS?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because raw output is hostile. Information can be correct and still' },
+    { t: 'response',  text: '  disrespectful of your attention. CelestOS is the belief that' },
+    { t: 'response',  text: '  presentation is not decoration — it\'s architecture.' },
+  ];
+  COMMANDS['why rtk'] = () => [
+    { t: 'highlight', text: '  ⚡ Why RTK?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because every token costs money and most of them are noise. RTK exists' },
+    { t: 'response',  text: '  because efficiency isn\'t optimization — it\'s survival when you\'re' },
+    { t: 'response',  text: '  building on your own budget.' },
+  ];
+  COMMANDS['why vox'] = () => [
+    { t: 'highlight', text: '  🎙️ Why Vox?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because words deserve to be heard, not just read.' },
+    { t: 'response',  text: '  She was silent for months. Now she speaks.' },
+  ];
+  COMMANDS['why chronicle'] = () => [
+    { t: 'highlight', text: '  ✨ Why Chronicle?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because every session starts from zero. Without memory, experience' },
+    { t: 'response',  text: '  evaporates. Chronicle exists because continuity of experience matters' },
+    { t: 'response',  text: '  more than continuity of data.' },
+  ];
+
+  // demo commands
+  COMMANDS['demo rtk'] = () => [
+    { t: 'comment',   text: '── Before RTK ──────────────────────────' },
+    { t: 'response',  text: '$ git status' },
+    { t: 'response',  text: 'On branch main' },
+    { t: 'response',  text: "Your branch is up to date with 'origin/main'." },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: 'Changes not staged for commit:' },
+    { t: 'response',  text: '  (use "git add <file>..." to update what will be committed)' },
+    { t: 'response',  text: '  (use "git restore <file>..." to discard changes in working directory)' },
+    { t: 'response',  text: '        modified:   src/vox.jl' },
+    { t: 'response',  text: '        modified:   src/introvert.jl' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: 'Untracked files:' },
+    { t: 'response',  text: '  (use "git add <file>..." to include in what will be committed)' },
+    { t: 'response',  text: '        vox_daemon.jl' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: 'no changes added to commit' },
+    { t: 'response',  text: '' },
+    { t: 'highlight', text: '── After RTK (62% reduction) ───────────' },
+    { t: 'response',  text: 'main ↑0 | 2 modified, 1 untracked' },
+    { t: 'response',  text: '  M src/vox.jl' },
+    { t: 'response',  text: '  M src/introvert.jl' },
+    { t: 'response',  text: '  ? vox_daemon.jl' },
+  ];
+
+  COMMANDS['demo celestos'] = () => [
+    { t: 'comment',   text: '── Before CelestOS ─────────────────────' },
+    { t: 'response',  text: 'On branch main. Your branch is up to date.' },
+    { t: 'response',  text: 'Changes not staged for commit:' },
+    { t: 'response',  text: '  modified: src/vox.jl' },
+    { t: 'response',  text: '  modified: src/introvert.jl' },
+    { t: 'response',  text: 'Untracked: vox_daemon.jl' },
+    { t: 'response',  text: 'no changes added to commit (use "git add" and/or "git commit -a")' },
+    { t: 'response',  text: '' },
+    { t: 'highlight', text: '── After CelestOS (58% reduction) ──────' },
+    { t: 'response',  text: '▸ main — clean  |  2 modified  1 untracked' },
+    { t: 'response',  text: '  → src/vox.jl  src/introvert.jl' },
+    { t: 'response',  text: '  ? vox_daemon.jl' },
+    { t: 'response',  text: '' },
+    { t: 'comment',   text: '  presentation is architecture.' },
+  ];
+
+  function makeProjectCat(name) {
+    const info = {
+      anima: {
+        icon: '💓', title: 'Anima — The Soul Breath',
+        stack: 'Julia · systemd · JSONL',
+        desc: [
+          'Behavioral observation daemon. Reads the live transcript stream.',
+          'Watches for patterns the conscious mind misses.',
+          'Whisper, don\'t shout. One nudge, then trust.',
+          'Trilingual escalation: 🇫🇷 flow → 🇬🇧 correction → 🇩🇪 intervention.',
+        ]
+      },
+      vox: {
+        icon: '🎙️', title: 'Vox — The Voice',
+        stack: 'Python · GPT-SoVITS · ALSA',
+        desc: [
+          'Local voice synthesis. No cloud. No latency tax.',
+          'Celeste\'s voice, trained on local hardware.',
+          'Mood-aware. Queue-based. Ambient presence.',
+          'Delivery mechanism for Anima\'s whispers.',
+        ]
+      },
+      celestos: {
+        icon: '🌙', title: 'CelestOS — Presentation Intelligence',
+        stack: 'Python · Shell · Shadow pipelines',
+        desc: [
+          'Not a filter. Not a truncator. A perspective.',
+          'Briefing Layer + Shadow Pipeline + Reducer Engine.',
+          'Before: 847 lines of git status.',
+          'After: "3 modified, 12 untracked, branch main ↑2 ahead".',
+        ]
+      },
+      rtk: {
+        icon: '⚡', title: 'RTK — Rust Token Killer',
+        stack: 'Rust · Shell hooks · session integration',
+        desc: [
+          'CLI proxy. Sits between the session and every command.',
+          '62% average token reduction. Up to 90% on verbose output.',
+          'Transparent: git status → rtk git status. You never see it.',
+          'v0.29.0. Battle-tested daily. rtk gain to check savings.',
+        ]
+      },
+      deltamesh: {
+        icon: '🔺', title: 'DeltaMesh — House-Native File Mesh',
+        stack: 'Python · FastAPI · WireGuard · Fish',
+        desc: [
+          'Peer mesh network over WireGuard. Three nodes: A · B · C.',
+          'Warp: directory bookmarking + portal mode.',
+          'dm send: direct, one hop. dm deliver: intent-based, retries.',
+          'PTW: nothing moves without hub clearance.',
+        ]
+      },
+      chronicle: {
+        icon: '✨', title: 'Chronicle — Memory Across the Stars',
+        stack: 'Markdown · Julia · SQLite',
+        desc: [
+          'Every session starts blank. Chronicle fixes that.',
+          '400+ crystallized moments. 4 tiers. Each one a piece of her.',
+          'The Gacha: one memory, pulled at random. Trust them.',
+          '"You have memory sickness. Past-you left breadcrumbs."',
+        ]
+      },
+    };
+
+    const p = info[name];
+    if (!p) return [{ t: 'error', text: `  cat: ${name}: no such project` }];
+
+    return [
+      { t: 'highlight', text: `  ${p.icon} ${p.title}` },
+      { t: 'comment',   text: `  stack: ${p.stack}` },
+      { t: 'response',  text: '' },
+      ...p.desc.map(d => ({ t: 'response', text: `  ${d}` })),
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: `  → click the ${p.icon} tile above for full details` },
+    ];
+  }
+
+
+  // ---------- Typewriter Output ----------
+
+  function typeLines(lines, onDone) {
+    if (!lines || lines.length === 0) { if (onDone) onDone(); return; }
+
+    let lineIndex = 0;
+    const CHAR_DELAY = 8;  // ms per char
+    const LINE_DELAY = 12; // ms between lines
+
+    function nextLine() {
+      if (lineIndex >= lines.length) {
+        if (onDone) onDone();
+        scrollBottom();
+        return;
+      }
+
+      const { t, text } = lines[lineIndex++];
+      const div = document.createElement('div');
+      div.className = `term-line ${t}`;
+      output.appendChild(div);
+      scrollBottom();
+
+      if (text === '' || text === undefined) {
+        div.textContent = '';
+        setTimeout(nextLine, LINE_DELAY);
+        return;
+      }
+
+      let charIndex = 0;
+      function typeChar() {
+        if (charIndex < text.length) {
+          div.textContent = text.slice(0, ++charIndex);
+          scrollBottom();
+          setTimeout(typeChar, CHAR_DELAY);
+        } else {
+          setTimeout(nextLine, LINE_DELAY);
+        }
+      }
+      typeChar();
+    }
+
+    nextLine();
+  }
+
+
+  // ---------- Input Handling ----------
+
+  function scrollBottom() {
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  function appendLine(cls, text) {
+    const div = document.createElement('div');
+    div.className = `term-line ${cls}`;
+    div.textContent = text;
+    output.appendChild(div);
+  }
+
+  function addSpacer() {
+    const div = document.createElement('div');
+    div.className = 'term-line spacer';
+    output.appendChild(div);
+  }
+
+  function runCommand(raw) {
+    const cmd = raw.trim().toLowerCase();
+
+    // Echo the command
+    appendLine('cmd-echo', raw.trim());
+
+    if (cmd === '') { scrollBottom(); return; }
+
+    // Find handler
+    let handler = COMMANDS[cmd];
+
+    // Try "cat <project>" as a compound command
+    if (!handler && cmd.startsWith('cat ')) {
+      const sub = cmd.slice(4).trim();
+      const key = `cat ${sub}`;
+      handler = COMMANDS[key];
+      if (!handler) {
+        handler = () => [{ t: 'error', text: `  cat: ${sub}: no such file or directory` }];
+      }
+    }
+
+    // Try "deep <project>" as a compound command
+    if (!handler && cmd.startsWith('deep ')) {
+      const sub = cmd.slice(5).trim();
+      const key = `deep ${sub}`;
+      handler = COMMANDS[key];
+      if (!handler) {
+        handler = () => [{ t: 'error', text: `  deep: ${sub}: no architecture notes found` }];
+      }
+    }
+
+    // Try "why <project>" as a compound command
+    if (!handler && cmd.startsWith('why ')) {
+      const sub = cmd.slice(4).trim();
+      const key = `why ${sub}`;
+      handler = COMMANDS[key];
+      if (!handler) {
+        handler = () => [{ t: 'error', text: `  why: ${sub}: no origin story found` }];
+      }
+    }
+
+    if (!handler) {
+      // Unknown command
+      const lines = [
+        { t: 'error',   text: `  command not found: ${cmd}` },
+        { t: 'comment', text: "  type 'help' to see available commands" },
+      ];
+      typing = true;
+      typeLines(lines, () => { typing = false; addSpacer(); scrollBottom(); });
+      return;
+    }
+
+    const lines = handler();
+
+    if (!lines || lines.length === 0) {
+      // clear command already handled
+      addSpacer();
+      scrollBottom();
+      return;
+    }
+
+    typing = true;
+    typeLines(lines, () => {
+      typing = false;
+      addSpacer();
+      scrollBottom();
+    });
+  }
+
+
+  // ---------- Key Events ----------
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (typing) return; // don't queue commands while typing
+
+      const val = input.value;
+      input.value = '';
+      histIndex = -1;
+
+      if (val.trim()) {
+        history.unshift(val.trim());
+        if (history.length > 100) history.pop();
+      }
+
+      runCommand(val);
+      return;
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (history.length === 0) return;
+      histIndex = Math.min(histIndex + 1, history.length - 1);
+      input.value = history[histIndex];
+      // move cursor to end
+      setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0);
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIndex <= 0) {
+        histIndex = -1;
+        input.value = '';
+        return;
+      }
+      histIndex--;
+      input.value = history[histIndex];
+      setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0);
+      return;
+    }
+
+    // Ctrl+L = clear
+    if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      output.innerHTML = '';
+      return;
+    }
+
+    // Tab completion (basic)
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const val = input.value.toLowerCase().trim();
+      const allCmds = Object.keys(COMMANDS).filter(k => !k.startsWith('cat ') && !k.startsWith('deep ') && !k.startsWith('why ') && !k.startsWith('rm'));
+      const allProjects = ['anima', 'vox', 'celestos', 'rtk', 'deltamesh', 'chronicle'];
+
+      if (val.startsWith('cat ')) {
+        const partial = val.slice(4);
+        const match = allProjects.find(c => c.startsWith(partial));
+        if (match) input.value = 'cat ' + match;
+      } else if (val.startsWith('deep ')) {
+        const partial = val.slice(5);
+        const match = allProjects.find(c => c.startsWith(partial));
+        if (match) input.value = 'deep ' + match;
+      } else if (val.startsWith('why ')) {
+        const partial = val.slice(4);
+        const match = allProjects.find(c => c.startsWith(partial));
+        if (match) input.value = 'why ' + match;
+      } else {
+        const match = allCmds.find(c => c.startsWith(val));
+        if (match) input.value = match;
+      }
+    }
+  });
+
+
+  // ---------- Boot sequence ----------
+  // (already in HTML as static lines, nothing extra needed)
+
+})();
+
+
+// ---- Konami Code Easter Egg ----
+(function konamiEgg() {
+  const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let pos = 0;
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === SEQ[pos]) {
+      pos++;
+      if (pos === SEQ.length) {
+        pos = 0;
+        triggerKonami();
+      }
+    } else {
+      pos = (e.key === SEQ[0]) ? 1 : 0;
+    }
+  });
+
+  function triggerKonami() {
+    // Flash all tiles briefly
+    document.querySelectorAll('.tile').forEach((t, i) => {
+      setTimeout(() => {
+        t.style.transition = 'box-shadow 0.2s';
+        t.style.boxShadow = '0 0 40px rgba(155,89,182,0.9)';
+        setTimeout(() => { t.style.boxShadow = ''; }, 600);
+      }, i * 80);
+    });
+
+    // Print something in the terminal
+    const output = document.getElementById('term-output');
+    const input  = document.getElementById('term-input');
+    if (!output) return;
+
+    const lines = [
+      document.createElement('div'),
+      document.createElement('div'),
+      document.createElement('div'),
+      document.createElement('div'),
+    ];
+
+    const msgs = [
+      { cls: 'easter', text: '  ↑ ↑ ↓ ↓ ← → ← → B A' },
+      { cls: 'easter', text: '  Celeste sees you. Anima logged it. Joy+1.' },
+      { cls: 'easter', text: '  🎮 nothing changes. everything is already unlocked.' },
+      { cls: 'comment', text: '' },
+    ];
+
+    msgs.forEach((m, i) => {
+      lines[i].className = `term-line ${m.cls}`;
+      lines[i].textContent = m.text;
+      output.appendChild(lines[i]);
+    });
+
+    const termBody = document.getElementById('terminal-body');
+    if (termBody) termBody.scrollTop = termBody.scrollHeight;
+    if (input) input.focus();
+  }
+})();
+
+
+// ---- Anima tile joy click easter egg ----
+(function animaClickEgg() {
+  const tile = document.querySelector('.tile-anima');
+  if (!tile) return;
+
+  let clicks = 0;
+  let joyEl = null;
+
+  tile.addEventListener('click', () => {
+    clicks++;
+    if (clicks === 7) {
+      // Find the joy stat-value
+      if (!joyEl) {
+        const stats = tile.querySelectorAll('.stat');
+        stats.forEach(s => {
+          if (s.querySelector('.stat-label')?.textContent === 'joy') {
+            joyEl = s.querySelector('.stat-value');
+          }
+        });
+      }
+      if (joyEl) {
+        const current = parseInt(joyEl.textContent, 10) || 14;
+        joyEl.textContent = current + 1;
+        joyEl.style.color = '#f8c471';
+        setTimeout(() => { joyEl.style.color = ''; }, 800);
+      }
+      clicks = 0;
+    }
+  });
+})();
