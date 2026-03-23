@@ -973,6 +973,93 @@
 })();
 
 
+// ---- O.R.B. Slide-Out Panel ----
+(function orbPanel() {
+  const badge    = document.getElementById('orb-badge');
+  const panel    = document.getElementById('orb-panel');
+  const backdrop = document.getElementById('orb-backdrop');
+  const closeBtn = document.getElementById('orb-panel-close');
+  if (!badge || !panel || !backdrop) return;
+
+  function openPanel() {
+    panel.classList.add('orb-open');
+    backdrop.classList.add('orb-open');
+    panel.setAttribute('aria-hidden', 'false');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePanel() {
+    panel.classList.remove('orb-open');
+    backdrop.classList.remove('orb-open');
+    panel.setAttribute('aria-hidden', 'true');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  badge.addEventListener('click', () => {
+    if (panel.classList.contains('orb-open')) {
+      closePanel();
+    } else {
+      openPanel();
+    }
+  });
+
+  badge.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      badge.click();
+    }
+  });
+
+  backdrop.addEventListener('click', closePanel);
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closePanel);
+  }
+
+  // Escape key closes panel
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('orb-open')) {
+      closePanel();
+    }
+  });
+
+  // Screenshot caption sync on scroll
+  const screenshotsEl = document.getElementById('orb-screenshots');
+  const captionEls    = document.querySelectorAll('.orb-caption');
+
+  if (screenshotsEl && captionEls.length > 0) {
+    screenshotsEl.addEventListener('scroll', () => {
+      const imgs = screenshotsEl.querySelectorAll('.orb-screenshot');
+      if (!imgs.length) return;
+
+      // Find which image is most visible
+      const scrollLeft  = screenshotsEl.scrollLeft;
+      const wrapWidth   = screenshotsEl.clientWidth;
+      let   bestIndex   = 0;
+      let   bestOverlap = -1;
+
+      imgs.forEach((img, i) => {
+        const imgLeft  = img.offsetLeft - screenshotsEl.offsetLeft;
+        const imgRight = imgLeft + img.offsetWidth;
+        const visLeft  = Math.max(scrollLeft, imgLeft);
+        const visRight = Math.min(scrollLeft + wrapWidth, imgRight);
+        const overlap  = Math.max(0, visRight - visLeft);
+        if (overlap > bestOverlap) {
+          bestOverlap = overlap;
+          bestIndex   = i;
+        }
+      });
+
+      captionEls.forEach((el, i) => {
+        el.classList.toggle('active', i === bestIndex);
+      });
+    }, { passive: true });
+  }
+})();
+
+
 // ---- Anima tile joy click easter egg ----
 (function animaClickEgg() {
   const tile = document.querySelector('.tile-anima');

@@ -18,7 +18,7 @@
       <span class="header-title">CELSJUX WORKSHOP</span>
     </div>
     <div class="header-right">
-      <span class="orb-badge">📱 O.R.B. v0.4</span>
+      <span class="orb-badge" id="orb-badge" role="button" tabindex="0" aria-label="Open O.R.B. showcase">📱 O.R.B. v0.4</span>
       <span class="header-sep">·</span>
       <span class="status-dot"></span>
       <span class="status-text">online</span>
@@ -433,6 +433,68 @@
     </div>
     <span class="footer-right">CachyOS · 10.0.0.2 · 2026</span>
   </footer>
+
+  <!-- O.R.B. SLIDE-OUT PANEL -->
+  <div class="orb-backdrop" id="orb-backdrop" aria-hidden="true"></div>
+  <aside class="orb-panel" id="orb-panel" aria-label="O.R.B. showcase" role="complementary" aria-hidden="true">
+    <div class="orb-panel-header">
+      <div class="orb-panel-title-group">
+        <img src="assets/ic_orb.png" alt="O.R.B. icon" class="orb-panel-icon" />
+        <div>
+          <div class="orb-panel-title">O.R.B. v0.4</div>
+          <div class="orb-panel-subtitle">Omnipresent Remote Bridge</div>
+        </div>
+      </div>
+      <button class="orb-panel-close" id="orb-panel-close" aria-label="Close O.R.B. panel">✕</button>
+    </div>
+
+    <div class="orb-panel-body">
+
+      <p class="orb-desc-tagline">Android. Custom Built-in AI.</p>
+      <p class="orb-desc">Your phone becomes a command surface. Floating overlay that talks to multiple AI partners simultaneously — with live streaming, BackSocket MCP endpoint, remote debugging, APK hot-push over ADB, and a Termux bridge that lets your pocket run what your desktop thinks.</p>
+
+      <div class="orb-chips">
+        <span class="orb-chip">Floating Overlay</span>
+        <span class="orb-chip">Multi-AI Chat</span>
+        <span class="orb-chip">Tri-Stream</span>
+        <span class="orb-chip">BackSocket MCP</span>
+        <span class="orb-chip">Termux Bridge</span>
+        <span class="orb-chip">Remote Debug</span>
+        <span class="orb-chip">APK Hot-Push</span>
+        <span class="orb-chip">Live Themes</span>
+        <span class="orb-chip">TTS Pipeline</span>
+      </div>
+
+      <div class="orb-screenshots-wrap">
+        <div class="orb-screenshots" id="orb-screenshots">
+          <img src="assets/1.webp" alt="Settings screen" class="orb-screenshot" loading="lazy" />
+          <img src="assets/2.webp" alt="Celeste tab" class="orb-screenshot" loading="lazy" />
+          <img src="assets/3.webp" alt="Luc tab" class="orb-screenshot" loading="lazy" />
+          <img src="assets/4.webp" alt="Profile view" class="orb-screenshot" loading="lazy" />
+          <img src="assets/5.webp" alt="Luc thinking" class="orb-screenshot" loading="lazy" />
+          <img src="assets/6.webp" alt="Celeste working" class="orb-screenshot" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="orb-captions" id="orb-captions">
+        <div class="orb-caption active" data-index="0">Settings — API keys &amp; streamer config</div>
+        <div class="orb-caption" data-index="1">Celeste tab — live chat overlay</div>
+        <div class="orb-caption" data-index="2">Luc tab — Codex building in green</div>
+        <div class="orb-caption" data-index="3">Profile view — Celeste purple theme</div>
+        <div class="orb-caption" data-index="4">Luc thinking — green atmosphere</div>
+        <div class="orb-caption" data-index="5">Celeste working — reading &amp; editing files</div>
+      </div>
+
+      <div class="orb-links">
+        <a href="https://github.com/juxtapo9090/O.R.B" target="_blank" rel="noopener noreferrer" class="orb-link-badge">
+          🐙 GitHub — juxtapo9090/O.R.B
+        </a>
+      </div>
+
+      <p class="orb-footer">Built for the household. Runs on abang's phone.</p>
+
+    </div>
+  </aside>
 
   <script src="app.js"></script>
 </body>
