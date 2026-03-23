@@ -1260,6 +1260,53 @@ main { flex: 1; position: relative; z-index: 1; }
 }
 .orb-screenshot:hover {
   border-color: rgba(168, 85, 247, 0.6);
+  cursor: pointer;
+}
+
+/* Lightbox */
+.orb-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.orb-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.orb-lightbox img {
+  max-height: 90vh;
+  max-width: 90vw;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+}
+.orb-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 28px;
+  color: #a855f7;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.orb-lightbox-close:hover { opacity: 1; }
+.orb-lightbox-caption {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  font-family: var(--font-mono);
 }
 
 /* Captions — show the one matching the scroll position */

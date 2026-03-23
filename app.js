@@ -1057,6 +1057,39 @@
       });
     }, { passive: true });
   }
+
+  // Screenshot lightbox — click to enlarge
+  const lightbox    = document.getElementById('orb-lightbox');
+  const lbImg       = document.getElementById('orb-lightbox-img');
+  const lbCaption   = document.getElementById('orb-lightbox-caption');
+  const lbClose     = lightbox ? lightbox.querySelector('.orb-lightbox-close') : null;
+
+  if (lightbox && screenshotsEl) {
+    const captions = [
+      'Settings — API keys & streamer config',
+      'Celeste tab — live chat overlay',
+      'Luc tab — Codex building in green',
+      'Profile view — Celeste purple theme',
+      'Luc thinking — green atmosphere',
+      'Celeste working — reading & editing files',
+    ];
+
+    screenshotsEl.addEventListener('click', (e) => {
+      const img = e.target.closest('.orb-screenshot');
+      if (!img) return;
+      const idx = Array.from(screenshotsEl.querySelectorAll('.orb-screenshot')).indexOf(img);
+      lbImg.src = img.src;
+      lbCaption.textContent = captions[idx] || '';
+      lightbox.classList.add('active');
+    });
+
+    function closeLightbox() { lightbox.classList.remove('active'); }
+    lbClose && lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+  }
 })();
 
 
