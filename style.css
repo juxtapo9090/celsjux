@@ -1032,6 +1032,23 @@ main { flex: 1; position: relative; z-index: 1; }
   .topo-line { transform: rotate(90deg); }
 }
 
+/* ---------- Live Sync Indicator ---------- */
+.live-sync-bar {
+  text-align: right;
+  padding: 4px 8px 0;
+  min-height: 18px;
+}
+.live-sync-ts {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.03em;
+}
+.live-sync-ts:not(:empty) {
+  opacity: 0.6;
+}
+
 /* ---------- Utility ---------- */
 .sr-only {
   position: absolute;

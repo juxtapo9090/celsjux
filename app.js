@@ -5,6 +5,106 @@
 
 'use strict';
 
+
+// ---- Live Data Fetcher ----
+
+(function liveData() {
+  // Parse "2719.2M" → 2719200000, "847K" → 847000, plain number → number
+  function parseTokenCount(str) {
+    if (typeof str === 'number') return str;
+    const s = String(str).trim();
+    const match = s.match(/^([\d.]+)([KMB]?)$/i);
+    if (!match) return null;
+    const n = parseFloat(match[1]);
+    const suffix = match[2].toUpperCase();
+    if (suffix === 'K') return Math.round(n * 1e3);
+    if (suffix === 'M') return Math.round(n * 1e6);
+    if (suffix === 'B') return Math.round(n * 1e9);
+    return Math.round(n);
+  }
+
+  async function fetchJSON(path) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (_) {
+      return null;
+    }
+  }
+
+  async function applyLiveData() {
+    const [anima, rtk, celestos, chronicle] = await Promise.all([
+      fetchJSON('data/anima.json'),
+      fetchJSON('data/rtk.json'),
+      fetchJSON('data/celestos.json'),
+      fetchJSON('data/chronicle.json'),
+    ]);
+
+    // ── Anima tile ──────────────────────────────────────────
+    if (anima) {
+      const animaStats = document.querySelectorAll('.tile-anima .stat-value');
+      if (animaStats[0]) animaStats[0].textContent = '⚡ ' + (anima.vibe || 'observing');
+      if (animaStats[1]) animaStats[1].textContent = anima.joy  ?? animaStats[1].textContent;
+      if (animaStats[2]) animaStats[2].textContent = anima.moved ?? animaStats[2].textContent;
+    }
+
+    // ── RTK tile ────────────────────────────────────────────
+    if (rtk) {
+      // Update stats: first = savings_pct%, second = "active"
+      const rtkStats = document.querySelectorAll('.tile-rtk .stat-value');
+      if (rtkStats[0]) rtkStats[0].textContent = (rtk.savings_pct != null ? rtk.savings_pct.toFixed(0) : '100') + '%';
+      // rtkStats[1] stays "active"
+
+      // Feed the real token count to the counter animation
+      const parsed = parseTokenCount(rtk.tokens_saved);
+      if (parsed != null) {
+        window.__rtkLiveTarget = parsed;
+      }
+    }
+
+    // ── CelestOS tile ───────────────────────────────────────
+    if (celestos) {
+      const celestosStats = document.querySelectorAll('.tile-celestos .stat-value');
+      // First stat: "active" — leave it
+      if (celestosStats[1]) celestosStats[1].textContent = celestos.reducers ?? celestosStats[1].textContent;
+    }
+
+    // ── Chronicle tile ──────────────────────────────────────
+    if (chronicle) {
+      const chronicleStats = document.querySelectorAll('.tile-chronicle .stat-value');
+      if (chronicleStats[0] && chronicle.total_sessions != null) {
+        chronicleStats[0].textContent = chronicle.total_sessions;
+      }
+    }
+
+    // ── Last synced indicator ────────────────────────────────
+    const timestamps = [anima, rtk, celestos, chronicle]
+      .filter(Boolean)
+      .map(d => d.updated_at)
+      .filter(Boolean)
+      .sort()
+      .reverse();
+
+    if (timestamps.length > 0) {
+      const syncEl = document.getElementById('live-sync-ts');
+      if (syncEl) {
+        const ts = new Date(timestamps[0]);
+        const formatted = isNaN(ts) ? timestamps[0] : ts.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        syncEl.textContent = '⬤ synced ' + formatted;
+      }
+    }
+  }
+
+  // Run after DOM is ready — tiles are already painted, we just patch values
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyLiveData);
+  } else {
+    applyLiveData();
+  }
+})();
+
+
 // ---- RTK Counter Animation ----
 
 (function rtkCounter() {
@@ -12,49 +112,61 @@
   const barEl   = document.getElementById('rtk-bar');
   if (!countEl || !barEl) return;
 
-  const TARGET    = 847293;   // total tokens saved (fake but plausible)
-  const BAR_PCT   = 62;       // 62% savings
+  // Use live target injected by liveData if available, else fallback
+  const FALLBACK_TARGET = 847293;
+  const BAR_PCT_DEFAULT = 62;
   const TICK_MS   = 40;       // how often we update
   const RAMP_MS   = 2800;     // how long to ramp up to current value
   const TICK_RATE = 120;      // tokens added per second in "live" mode
 
-  let current = 0;
-  let phase   = 'ramp'; // ramp → live
+  // Resolve target — liveData runs first (async), rtkCounter starts synchronously.
+  // We give liveData a small grace window, then proceed with whatever is available.
+  function startWithTarget(TARGET, BAR_PCT) {
+    let current = 0;
+    let phase   = 'ramp'; // ramp → live
 
-  // Ramp up phase: count from 0 → TARGET over RAMP_MS
-  const steps  = RAMP_MS / TICK_MS;
-  const perStep = TARGET / steps;
+    // Ramp up phase: count from 0 → TARGET over RAMP_MS
+    const steps  = RAMP_MS / TICK_MS;
+    const perStep = TARGET / steps;
 
-  // Bar
-  let barWidth = 0;
-  const barInterval = setInterval(() => {
-    barWidth = Math.min(barWidth + (BAR_PCT / (steps * 0.8)), BAR_PCT);
-    barEl.style.width = barWidth.toFixed(1) + '%';
-    if (barWidth >= BAR_PCT) clearInterval(barInterval);
-  }, TICK_MS);
+    // Bar
+    let barWidth = 0;
+    const barInterval = setInterval(() => {
+      barWidth = Math.min(barWidth + (BAR_PCT / (steps * 0.8)), BAR_PCT);
+      barEl.style.width = barWidth.toFixed(1) + '%';
+      if (barWidth >= BAR_PCT) clearInterval(barInterval);
+    }, TICK_MS);
 
-  const rampInterval = setInterval(() => {
-    current = Math.min(current + perStep, TARGET);
-    countEl.textContent = Math.floor(current).toLocaleString();
-    if (current >= TARGET) {
-      clearInterval(rampInterval);
-      phase = 'live';
-      startLiveTick();
-    }
-  }, TICK_MS);
-
-  function startLiveTick() {
-    // Tick up slowly in "live" mode — simulates ongoing savings
-    let acc = 0;
-    setInterval(() => {
-      acc += (TICK_RATE / (1000 / TICK_MS));
-      if (acc >= 1) {
-        current += Math.floor(acc);
-        acc = acc % 1;
-        countEl.textContent = Math.floor(current).toLocaleString();
+    const rampInterval = setInterval(() => {
+      current = Math.min(current + perStep, TARGET);
+      countEl.textContent = Math.floor(current).toLocaleString();
+      if (current >= TARGET) {
+        clearInterval(rampInterval);
+        phase = 'live';
+        startLiveTick();
       }
     }, TICK_MS);
+
+    function startLiveTick() {
+      // Tick up slowly in "live" mode — simulates ongoing savings
+      let acc = 0;
+      setInterval(() => {
+        acc += (TICK_RATE / (1000 / TICK_MS));
+        if (acc >= 1) {
+          current += Math.floor(acc);
+          acc = acc % 1;
+          countEl.textContent = Math.floor(current).toLocaleString();
+        }
+      }, TICK_MS);
+    }
   }
+
+  // Give liveData up to 300ms to inject the real target, then start the counter
+  setTimeout(() => {
+    const TARGET  = window.__rtkLiveTarget || FALLBACK_TARGET;
+    const BAR_PCT = window.__rtkLiveTarget ? 100 : BAR_PCT_DEFAULT;
+    startWithTarget(TARGET, BAR_PCT);
+  }, 300);
 })();
 
 
