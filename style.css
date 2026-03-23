@@ -1268,17 +1268,13 @@ main { flex: 1; position: relative; z-index: 1; }
   position: fixed;
   inset: 0;
   z-index: 10000;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.92);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
 }
 .orb-lightbox.active {
-  opacity: 1;
-  pointer-events: auto;
+  display: flex;
 }
 .orb-lightbox img {
   max-height: 90vh;
