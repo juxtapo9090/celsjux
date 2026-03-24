@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,29 +10,36 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     /* ── Reset & Base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:         #0a0a0f;
-      --bg-panel:   #0d0d18;
-      --bg-panel-h: #12121e;
-      --text:       #e0e0e0;
-      --text-dim:   #888;
-      --text-muted: #444;
-      --purple:     #a855f7;
-      --purple-dim: #7c3aed;
-      --purple-glow:rgba(168, 85, 247, 0.25);
-      --purple-border: rgba(168, 85, 247, 0.18);
-      --purple-border-h: rgba(168, 85, 247, 0.45);
-      --red:        #ff2222;
-      --red-dim:    rgba(255, 34, 34, 0.15);
-      --green:      #22c55e;
-      --cyan:       #22d3ee;
-      --orange:     #f97316;
-      --font:       'JetBrains Mono', 'Courier New', monospace;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html, body {
+    :root {
+      --bg: #0a0a0f;
+      --bg-panel: #0d0d18;
+      --bg-panel-h: #12121e;
+      --text: #e0e0e0;
+      --text-dim: #888;
+      --text-muted: #444;
+      --purple: #a855f7;
+      --purple-dim: #7c3aed;
+      --purple-glow: rgba(168, 85, 247, 0.25);
+      --purple-border: rgba(168, 85, 247, 0.18);
+      --purple-border-h: rgba(168, 85, 247, 0.45);
+      --red: #ff2222;
+      --red-dim: rgba(255, 34, 34, 0.15);
+      --green: #22c55e;
+      --cyan: #22d3ee;
+      --orange: #f97316;
+      --font: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html,
+    body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font);
@@ -92,6 +100,7 @@
       padding: 3px 10px;
       transition: color 0.2s, border-color 0.2s;
     }
+
     .back-link:hover {
       color: var(--purple);
       border-color: var(--purple-border-h);
@@ -105,16 +114,25 @@
       background: var(--green);
       animation: pulse-dot 2.4s ease-in-out infinite;
     }
+
     @keyframes pulse-dot {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
-      50%       { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+      }
     }
 
     /* ── Three-column layout ── */
     .command-center {
       display: grid;
       grid-template-columns: 260px 1fr 280px;
-      height: calc(100vh - 47px - 200px - 60px); /* subtract header + bottom log + footer */
+      height: calc(100vh - 47px - 200px - 60px);
+      /* subtract header + bottom log + footer */
       min-height: 480px;
     }
 
@@ -126,7 +144,11 @@
       flex-direction: column;
       overflow: hidden;
     }
-    .panel:last-child { border-right: none; border-left: 1px solid var(--purple-border); }
+
+    .panel:last-child {
+      border-right: none;
+      border-left: 1px solid var(--purple-border);
+    }
 
     .panel-header {
       padding: 10px 14px;
@@ -145,8 +167,15 @@
       scrollbar-width: thin;
       scrollbar-color: var(--purple-dim) transparent;
     }
-    .panel-body::-webkit-scrollbar { width: 4px; }
-    .panel-body::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 2px; }
+
+    .panel-body::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .panel-body::-webkit-scrollbar-thumb {
+      background: var(--purple-dim);
+      border-radius: 2px;
+    }
 
     /* ── LEFT: Wall of Shame ── */
     .wall-header {
@@ -167,8 +196,14 @@
       scrollbar-width: thin;
       scrollbar-color: #ff2222 transparent;
     }
-    .attacker-list::-webkit-scrollbar { width: 3px; }
-    .attacker-list::-webkit-scrollbar-thumb { background: #ff2222; }
+
+    .attacker-list::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .attacker-list::-webkit-scrollbar-thumb {
+      background: #ff2222;
+    }
 
     .attacker-entry {
       padding: 8px 8px 10px;
@@ -188,7 +223,11 @@
       gap: 5px;
     }
 
-    .attacker-x { color: var(--red); font-size: 14px; filter: drop-shadow(0 0 4px rgba(255, 34, 34, 0.6)); }
+    .attacker-x {
+      color: var(--red);
+      font-size: 14px;
+      filter: drop-shadow(0 0 4px rgba(255, 34, 34, 0.6));
+    }
 
     .attacker-meta {
       font-size: 10px;
@@ -271,10 +310,14 @@
       line-height: 1.6;
     }
 
-    .globe-hud-stats span { color: var(--purple); }
+    .globe-hud-stats span {
+      color: var(--purple);
+    }
 
     /* ── RIGHT: Live Terminal ── */
-    .right-panel { border-left: 1px solid var(--purple-border); }
+    .right-panel {
+      border-left: 1px solid var(--purple-border);
+    }
 
     .conn-log-header {
       padding: 10px 14px;
@@ -294,8 +337,14 @@
       scrollbar-width: thin;
       scrollbar-color: var(--purple-dim) transparent;
     }
-    .conn-log-body::-webkit-scrollbar { width: 3px; }
-    .conn-log-body::-webkit-scrollbar-thumb { background: var(--purple-dim); }
+
+    .conn-log-body::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .conn-log-body::-webkit-scrollbar-thumb {
+      background: var(--purple-dim);
+    }
 
     .log-line {
       padding: 3px 0;
@@ -304,13 +353,33 @@
       border-bottom: 1px solid rgba(168, 85, 247, 0.05);
     }
 
-    .log-line .log-time { color: var(--text-muted); }
-    .log-line .log-icon-claude { color: #d4a843; }
-    .log-line .log-icon-codex  { color: #22c55e; }
-    .log-line .log-icon-antigravity { color: #a855f7; }
-    .log-line .log-icon-mesh  { color: var(--purple); }
-    .log-line .log-icon-hub   { color: var(--purple); }
-    .log-line .log-icon-atk   { color: var(--red); }
+    .log-line .log-time {
+      color: var(--text-muted);
+    }
+
+    .log-line .log-icon-claude {
+      color: #d4a843;
+    }
+
+    .log-line .log-icon-codex {
+      color: #22c55e;
+    }
+
+    .log-line .log-icon-antigravity {
+      color: #a855f7;
+    }
+
+    .log-line .log-icon-mesh {
+      color: var(--purple);
+    }
+
+    .log-line .log-icon-hub {
+      color: var(--purple);
+    }
+
+    .log-line .log-icon-atk {
+      color: var(--red);
+    }
 
     /* Mini service dashboard */
     .service-dash {
@@ -335,10 +404,25 @@
       border-bottom: 1px solid rgba(168, 85, 247, 0.06);
       font-size: 11px;
     }
-    .svc-row:last-child { border-bottom: none; }
 
-    .svc-label { color: var(--text-dim); flex: 1; }
-    .svc-val   { color: var(--purple); font-weight: 700; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .svc-row:last-child {
+      border-bottom: none;
+    }
+
+    .svc-label {
+      color: var(--text-dim);
+      flex: 1;
+    }
+
+    .svc-val {
+      color: var(--purple);
+      font-weight: 700;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .svc-bar-wrap {
       width: 60px;
       height: 3px;
@@ -346,6 +430,7 @@
       border-radius: 2px;
       overflow: hidden;
     }
+
     .svc-bar {
       height: 100%;
       background: var(--purple);
@@ -382,8 +467,14 @@
       scrollbar-width: thin;
       scrollbar-color: var(--purple-dim) transparent;
     }
-    .bottom-log-body::-webkit-scrollbar { width: 4px; }
-    .bottom-log-body::-webkit-scrollbar-thumb { background: var(--purple-dim); }
+
+    .bottom-log-body::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .bottom-log-body::-webkit-scrollbar-thumb {
+      background: var(--purple-dim);
+    }
 
     .blog-entry {
       display: grid;
@@ -396,18 +487,50 @@
       font-size: 10px;
     }
 
-    .blog-entry:last-child { border-bottom: none; }
+    .blog-entry:last-child {
+      border-bottom: none;
+    }
 
-    .blog-time { color: var(--text-muted); }
-    .blog-src  { color: var(--purple); }
-    .blog-arrow { color: var(--text-muted); }
-    .blog-dst  { color: var(--cyan); }
-    .blog-type-claude { color: #d4a843; }
-    .blog-type-codex  { color: #22c55e; }
-    .blog-type-antigravity { color: #a855f7; }
-    .blog-type-mesh   { color: var(--purple); }
-    .blog-type-hub    { color: var(--purple); }
-    .blog-type-atk    { color: var(--red); font-weight: 700; }
+    .blog-time {
+      color: var(--text-muted);
+    }
+
+    .blog-src {
+      color: var(--purple);
+    }
+
+    .blog-arrow {
+      color: var(--text-muted);
+    }
+
+    .blog-dst {
+      color: var(--cyan);
+    }
+
+    .blog-type-claude {
+      color: #d4a843;
+    }
+
+    .blog-type-codex {
+      color: #22c55e;
+    }
+
+    .blog-type-antigravity {
+      color: #a855f7;
+    }
+
+    .blog-type-mesh {
+      color: var(--purple);
+    }
+
+    .blog-type-hub {
+      color: var(--purple);
+    }
+
+    .blog-type-atk {
+      color: var(--red);
+      font-weight: 700;
+    }
 
     /* ── Footer ── */
     .site-footer {
@@ -421,15 +544,30 @@
       color: var(--text-muted);
     }
 
-    .footer-motto { font-style: italic; color: var(--text-dim); }
-    .footer-motto em { color: var(--purple); font-style: normal; }
-    .footer-right { text-align: right; line-height: 1.6; }
+    .footer-motto {
+      font-style: italic;
+      color: var(--text-dim);
+    }
+
+    .footer-motto em {
+      color: var(--purple);
+      font-style: normal;
+    }
+
+    .footer-right {
+      text-align: right;
+      line-height: 1.6;
+    }
+
     .footer-right a {
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-right a:hover { color: var(--purple); }
+
+    .footer-right a:hover {
+      color: var(--purple);
+    }
 
     /* ── Responsive: Mobile stacks vertically ── */
     @media (max-width: 800px) {
@@ -438,21 +576,50 @@
         height: auto;
       }
 
-      .panel { border-right: none; border-left: none; border-bottom: 1px solid var(--purple-border); }
-      .right-panel { border-left: none; }
-      .globe-panel { height: 60vw; min-height: 300px; }
+      .panel {
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid var(--purple-border);
+      }
 
-      .panel-body, .attacker-list { max-height: 200px; }
-      .conn-log-body { max-height: 160px; }
+      .right-panel {
+        border-left: none;
+      }
 
-      .bottom-log { height: auto; }
-      .bottom-log-body { max-height: 160px; }
+      .globe-panel {
+        height: 60vw;
+        min-height: 300px;
+      }
 
-      .blog-entry { grid-template-columns: 55px 1fr 80px; }
-      .blog-arrow, .blog-dst { display: none; }
+      .panel-body,
+      .attacker-list {
+        max-height: 200px;
+      }
+
+      .conn-log-body {
+        max-height: 160px;
+      }
+
+      .bottom-log {
+        height: auto;
+      }
+
+      .bottom-log-body {
+        max-height: 160px;
+      }
+
+      .blog-entry {
+        grid-template-columns: 55px 1fr 80px;
+      }
+
+      .blog-arrow,
+      .blog-dst {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
@@ -507,9 +674,7 @@
         </div>
         <div class="svc-row">
           <span class="svc-label">⚡ RTK</span>
-          <div style="flex:1">
-            <span class="svc-val" id="svc-rtk">—</span>
-          </div>
+          <span class="svc-val" id="svc-rtk">—</span>
         </div>
         <div class="svc-row">
           <span class="svc-label">🔺 DeltaMesh</span>
@@ -524,7 +689,8 @@
   <div class="bottom-log">
     <div class="bottom-log-header">
       <span>📡 CONNECTION LOG</span>
-      <span style="color:var(--text-muted);font-size:9px;letter-spacing:0.1em">— all active nodes from mesh topology</span>
+      <span style="color:var(--text-muted);font-size:9px;letter-spacing:0.1em">— all active nodes from mesh
+        topology</span>
     </div>
     <div class="bottom-log-body" id="bottom-log-body">
       <!-- populated by JS -->
@@ -545,294 +711,294 @@
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 
   <script>
-  // ── Load all data then bootstrap ──
-  Promise.all([
-    fetch('data/globe.json').then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch('data/anima.json').then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch('data/rtk.json').then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch('data/deltamesh.json').then(r => r.ok ? r.json() : null).catch(() => null),
-  ]).then(function([globe, anima, rtk, dm]) {
-    populateWallOfShame(globe);
-    populateRightLog(globe);
-    populateBottomLog(globe);
-    populateServiceDash(anima, rtk, dm);
-    initGlobe(globe);
-  });
+    // ── Load all data then bootstrap ──
+    Promise.all([
+      fetch('data/globe.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch('data/anima.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch('data/rtk.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch('data/deltamesh.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(function ([globe, anima, rtk, dm]) {
+      populateWallOfShame(globe);
+      populateRightLog(globe);
+      populateBottomLog(globe);
+      populateServiceDash(anima, rtk, dm);
+      initGlobe(globe);
+    });
 
-  // ── WALL OF SHAME ──
-  function populateWallOfShame(data) {
-    var list = document.getElementById('attacker-list');
-    var footer = document.getElementById('wall-footer');
-    var periMsg = document.getElementById('perimeter-msg');
+    // ── WALL OF SHAME ──
+    function populateWallOfShame(data) {
+      var list = document.getElementById('attacker-list');
+      var footer = document.getElementById('wall-footer');
+      var periMsg = document.getElementById('perimeter-msg');
 
-    if (!data || !data.nodes) {
-      periMsg.style.display = 'block';
-      footer.textContent = '🛡️ 0 blocked';
-      return;
-    }
+      if (!data || !data.nodes) {
+        periMsg.style.display = 'block';
+        footer.textContent = '🛡️ 0 blocked';
+        return;
+      }
 
-    var attackers = data.nodes.filter(function(n) { return n.type === 'attacker'; });
+      var attackers = data.nodes.filter(function (n) { return n.type === 'attacker'; });
 
-    if (attackers.length === 0) {
-      periMsg.style.display = 'block';
-      footer.textContent = '🛡️ 0 blocked';
-      return;
-    }
+      if (attackers.length === 0) {
+        periMsg.style.display = 'block';
+        footer.textContent = '🛡️ 0 blocked';
+        return;
+      }
 
-    periMsg.style.display = 'none';
+      periMsg.style.display = 'none';
 
-    attackers.forEach(function(a) {
-      var city = a.label === 'blocked' ? '—' : a.label;
-      var org = a.org || 'unknown org';
-      // Try to derive country from label (e.g. "Icme Cloud" → Sweden from lat/lng)
-      var locStr = getLocationStr(a.lat, a.lng, a.org, a.label);
+      attackers.forEach(function (a) {
+        var city = a.label === 'blocked' ? '—' : a.label;
+        var org = a.org || 'unknown org';
+        // Try to derive country from label (e.g. "Icme Cloud" → Sweden from lat/lng)
+        var locStr = getLocationStr(a.lat, a.lng, a.org, a.label);
 
-      var el = document.createElement('div');
-      el.className = 'attacker-entry';
-      el.innerHTML =
-        '<div class="attacker-ip">' +
+        var el = document.createElement('div');
+        el.className = 'attacker-entry';
+        el.innerHTML =
+          '<div class="attacker-ip">' +
           '<span class="attacker-x">☢</span>' +
           '<span>' + a.ip + '</span>' +
-        '</div>' +
-        '<div class="attacker-meta">' + locStr + '</div>' +
-        '<div class="attacker-org">' + org + '</div>';
-      list.appendChild(el);
-    });
-
-    var count = data.attacker_count || attackers.length;
-    footer.innerHTML = '🛡️ <strong style="color:var(--red)">' + count + '</strong> blocked';
-  }
-
-  function getLocationStr(lat, lng, org, label) {
-    // Approximate country from lat/lng
-    if (lat > 55 && lat < 70 && lng > 10 && lng < 30) return 'Stockholm, SE';
-    if (lat > 35 && lat < 45 && lng > 110 && lng < 125) return 'Beijing, CN';
-    if (lat > 50 && lat < 55 && lng > 0 && lng < 5) return 'Amsterdam, NL';
-    if (lat > 37 && lat < 40 && lng > -80 && lng < -70) return 'New York, US';
-    if (lat > 48 && lat < 52 && lng > 2 && lng < 5) return 'Paris, FR';
-    return label !== 'blocked' ? label : (lat.toFixed(1) + '°, ' + lng.toFixed(1) + '°');
-  }
-
-  // ── GENERATE LOG ENTRIES FROM GLOBE DATA ──
-  function buildLogEntries(data) {
-    if (!data || !data.nodes) return [];
-    var myNode = data.nodes.find(function(n) { return n.type === 'self'; });
-    var entries = [];
-    var baseMs = Date.now();
-    var i = 0;
-
-    data.nodes.forEach(function(n) {
-      if (n.type === 'self') return;
-      var ago = (i * 2 + Math.floor(Math.random() * 3)) * 60 * 1000;
-      var ts = new Date(baseMs - ago);
-      var hh = ts.getHours().toString().padStart(2, '0');
-      var mm = ts.getMinutes().toString().padStart(2, '0');
-
-      var srcLabel = myNode ? 'PC (MY)' : 'PC';
-      var dstLabel = n.label;
-      var dstCity = getDstCity(n);
-
-      entries.push({
-        time: hh + ':' + mm,
-        type: n.type,
-        ip: n.ip,
-        srcLabel: srcLabel,
-        dstLabel: dstLabel,
-        dstCity: dstCity,
-        lat: n.lat,
-        lng: n.lng,
-        org: n.org,
+          '</div>' +
+          '<div class="attacker-meta">' + locStr + '</div>' +
+          '<div class="attacker-org">' + org + '</div>';
+        list.appendChild(el);
       });
-      i++;
-    });
-    return entries;
-  }
 
-  function getDstCity(n) {
-    if (n.type === 'claude' && n.org === 'Anthropic, PBC') return 'SF, US';
-    if (n.type === 'claude' && n.org === 'Cloudflare, Inc.') return 'CDN';
-    if (n.type === 'antigravity') return n.label.replace('AGI ', '') || 'Google';
-    if (n.type === 'codex') return n.label.replace('Codex ', '') || 'OpenAI';
-    if (n.type === 'hub') return 'SG';
-    if (n.type === 'mesh') return 'MY (WG)';
-    if (n.type === 'attacker') return getLocationStr(n.lat, n.lng, n.org, n.label);
-    return n.label;
-  }
-
-  function typeIcon(type) {
-    if (type === 'claude') return '🟣';
-    if (type === 'antigravity') return '💜';
-    if (type === 'codex')  return '🟢';
-    if (type === 'mesh')   return '🔵';
-    if (type === 'hub')    return '🔵';
-    if (type === 'attacker') return '☢️';
-    return '⚪';
-  }
-
-  function typeClass(type) {
-    if (type === 'claude')       return 'log-icon-claude';
-    if (type === 'antigravity')  return 'log-icon-antigravity';
-    if (type === 'codex')        return 'log-icon-codex';
-    if (type === 'mesh')         return 'log-icon-mesh';
-    if (type === 'hub')          return 'log-icon-hub';
-    if (type === 'attacker')     return 'log-icon-atk';
-    return '';
-  }
-
-  // ── RIGHT PANEL LOG ──
-  function populateRightLog(data) {
-    var body = document.getElementById('right-log-body');
-    var entries = buildLogEntries(data);
-
-    if (entries.length === 0) {
-      body.innerHTML = '<div class="log-line" style="color:var(--text-muted)">no connections</div>';
-      return;
+      var count = data.attacker_count || attackers.length;
+      footer.innerHTML = '🛡️ <strong style="color:var(--red)">' + count + '</strong> blocked';
     }
 
-    entries.forEach(function(e) {
-      var line = document.createElement('div');
-      line.className = 'log-line';
+    function getLocationStr(lat, lng, org, label) {
+      // Approximate country from lat/lng
+      if (lat > 55 && lat < 70 && lng > 10 && lng < 30) return 'Stockholm, SE';
+      if (lat > 35 && lat < 45 && lng > 110 && lng < 125) return 'Beijing, CN';
+      if (lat > 50 && lat < 55 && lng > 0 && lng < 5) return 'Amsterdam, NL';
+      if (lat > 37 && lat < 40 && lng > -80 && lng < -70) return 'New York, US';
+      if (lat > 48 && lat < 52 && lng > 2 && lng < 5) return 'Paris, FR';
+      return label !== 'blocked' ? label : (lat.toFixed(1) + '°, ' + lng.toFixed(1) + '°');
+    }
 
-      var icon = typeIcon(e.type);
-      var cls = typeClass(e.type);
+    // ── GENERATE LOG ENTRIES FROM GLOBE DATA ──
+    function buildLogEntries(data) {
+      if (!data || !data.nodes) return [];
+      var myNode = data.nodes.find(function (n) { return n.type === 'self'; });
+      var entries = [];
+      var baseMs = Date.now();
+      var i = 0;
 
-      if (e.type === 'attacker') {
-        line.innerHTML =
-          '<span class="log-time">' + e.time + '</span> ' +
-          '<span class="' + cls + '">' + icon + ' BLOCKED</span> ' +
-          '<span style="color:#ff6666">' + e.ip + '</span>';
-      } else {
-        line.innerHTML =
-          '<span class="log-time">' + e.time + '</span> ' +
-          '<span class="' + cls + '">' + icon + ' PC──→</span> ' +
-          '<span style="color:var(--cyan)">' + e.dstCity + '</span>' +
-          ' <span style="color:var(--text-muted)">[' + e.type + ']</span>';
+      data.nodes.forEach(function (n) {
+        if (n.type === 'self') return;
+        var ago = (i * 2 + Math.floor(Math.random() * 3)) * 60 * 1000;
+        var ts = new Date(baseMs - ago);
+        var hh = ts.getHours().toString().padStart(2, '0');
+        var mm = ts.getMinutes().toString().padStart(2, '0');
+
+        var srcLabel = myNode ? 'PC (MY)' : 'PC';
+        var dstLabel = n.label;
+        var dstCity = getDstCity(n);
+
+        entries.push({
+          time: hh + ':' + mm,
+          type: n.type,
+          ip: n.ip,
+          srcLabel: srcLabel,
+          dstLabel: dstLabel,
+          dstCity: dstCity,
+          lat: n.lat,
+          lng: n.lng,
+          org: n.org,
+        });
+        i++;
+      });
+      return entries;
+    }
+
+    function getDstCity(n) {
+      if (n.type === 'claude' && n.org === 'Anthropic, PBC') return 'SF, US';
+      if (n.type === 'claude' && n.org === 'Cloudflare, Inc.') return 'CDN';
+      if (n.type === 'antigravity') return n.label.replace('AGI ', '') || 'Google';
+      if (n.type === 'codex') return n.label.replace('Codex ', '') || 'OpenAI';
+      if (n.type === 'hub') return 'SG';
+      if (n.type === 'mesh') return 'MY (WG)';
+      if (n.type === 'attacker') return getLocationStr(n.lat, n.lng, n.org, n.label);
+      return n.label;
+    }
+
+    function typeIcon(type) {
+      if (type === 'claude') return '🟣';
+      if (type === 'antigravity') return '💜';
+      if (type === 'codex') return '🟢';
+      if (type === 'mesh') return '🔵';
+      if (type === 'hub') return '🔵';
+      if (type === 'attacker') return '☢️';
+      return '⚪';
+    }
+
+    function typeClass(type) {
+      if (type === 'claude') return 'log-icon-claude';
+      if (type === 'antigravity') return 'log-icon-antigravity';
+      if (type === 'codex') return 'log-icon-codex';
+      if (type === 'mesh') return 'log-icon-mesh';
+      if (type === 'hub') return 'log-icon-hub';
+      if (type === 'attacker') return 'log-icon-atk';
+      return '';
+    }
+
+    // ── RIGHT PANEL LOG ──
+    function populateRightLog(data) {
+      var body = document.getElementById('right-log-body');
+      var entries = buildLogEntries(data);
+
+      if (entries.length === 0) {
+        body.innerHTML = '<div class="log-line" style="color:var(--text-muted)">no connections</div>';
+        return;
       }
 
-      body.appendChild(line);
-    });
-  }
+      entries.forEach(function (e) {
+        var line = document.createElement('div');
+        line.className = 'log-line';
 
-  // ── BOTTOM LOG ──
-  function populateBottomLog(data) {
-    var body = document.getElementById('bottom-log-body');
-    var entries = buildLogEntries(data);
+        var icon = typeIcon(e.type);
+        var cls = typeClass(e.type);
 
-    if (entries.length === 0) {
-      body.innerHTML = '<div class="blog-entry" style="color:var(--text-muted)">no connection data</div>';
-      return;
-    }
-
-    entries.forEach(function(e) {
-      var row = document.createElement('div');
-      row.className = 'blog-entry';
-
-      var typeSpan, arrowSpan, dstSpan;
-
-      if (e.type === 'attacker') {
-        typeSpan = '<span class="blog-type-atk">☢ blocked</span>';
-        arrowSpan = '<span class="blog-arrow">──☢</span>';
-        dstSpan = '<span style="color:#ff6666">' + e.dstCity + '</span>';
-      } else {
-        typeSpan = '<span class="blog-type-' + e.type + '">[' + e.type + ']</span>';
-        arrowSpan = '<span class="blog-arrow">──→</span>';
-        dstSpan = '<span class="blog-dst">' + e.dstLabel + ' (' + e.dstCity + ')</span>';
-      }
-
-      row.innerHTML =
-        '<span class="blog-time">' + e.time + '</span>' +
-        '<span class="blog-src">PC (Nilai, MY)</span>' +
-        arrowSpan +
-        dstSpan +
-        typeSpan;
-
-      body.appendChild(row);
-    });
-  }
-
-  // ── SERVICE DASHBOARD ──
-  function populateServiceDash(anima, rtk, dm) {
-    var animaEl = document.getElementById('svc-anima');
-    var rtkEl = document.getElementById('svc-rtk');
-    var dmEl = document.getElementById('svc-dm');
-
-    if (anima) {
-      animaEl.textContent = 'joy:' + anima.joy + ' moved:' + anima.moved;
-    } else {
-      animaEl.textContent = 'offline';
-      animaEl.style.color = 'var(--text-muted)';
-    }
-
-    if (rtk) {
-      var rtkRaw = rtk.tokens_saved || '';
-      // Convert e.g. "3878.7M" → "3.8B", "950.2K" → "950K", pass through if no unit
-      var rtkShort = rtkRaw.toString().replace(/^(\d+(?:\.\d+)?)M$/, function(_, n) {
-        var m = parseFloat(n);
-        return m >= 1000 ? (m / 1000).toFixed(1) + 'B' : Math.round(m) + 'M';
-      });
-      rtkEl.textContent = rtkShort + ' saved';
-    } else {
-      rtkEl.textContent = 'offline';
-      rtkEl.style.color = 'var(--text-muted)';
-    }
-
-    if (dm) {
-      dmEl.textContent = dm.nodes_active + ' nodes';
-    } else {
-      dmEl.textContent = 'offline';
-      dmEl.style.color = 'var(--text-muted)';
-    }
-  }
-
-  // ── WEBGL GLOBE ──
-  function initGlobe(liveData) {
-    var container = document.getElementById('globe-canvas-wrap');
-    var w = container.offsetWidth;
-    var h = container.offsetHeight;
-
-    var nodeData = [];   // [lat, lng, mag, ...]
-    var nodeTypes = [];  // [type, ...]  parallel to nodeData/3
-    var arcRoutes = [];
-
-    if (liveData && liveData.nodes && liveData.nodes.length > 0) {
-      var myNode = liveData.nodes.find(function(n) { return n.type === 'self'; });
-
-      liveData.nodes.forEach(function(n) {
-        var mag = n.type === 'self' ? 0.8 :
-                  n.type === 'hub' ? 0.5 :
-                  n.type === 'claude' ? 0.4 :
-                  n.type === 'antigravity' ? 0.45 :
-                  n.type === 'codex' ? 0.4 :
-                  n.type === 'attacker' ? 0.3 :
-                  n.type === 'mesh' ? 0.35 : 0.2;
-        nodeData.push(n.lat, n.lng, mag);
-        nodeTypes.push(n.type);
-
-        if (myNode && n.ip !== myNode.ip) {
-          arcRoutes.push([myNode.lat, myNode.lng, n.lat, n.lng, n.type]);
+        if (e.type === 'attacker') {
+          line.innerHTML =
+            '<span class="log-time">' + e.time + '</span> ' +
+            '<span class="' + cls + '">' + icon + ' BLOCKED</span> ' +
+            '<span style="color:#ff6666">' + e.ip + '</span>';
+        } else {
+          line.innerHTML =
+            '<span class="log-time">' + e.time + '</span> ' +
+            '<span class="' + cls + '">' + icon + ' PC──→</span> ' +
+            '<span style="color:var(--cyan)">' + e.dstCity + '</span>' +
+            ' <span style="color:var(--text-muted)">[' + e.type + ']</span>';
         }
-      });
 
-      var dotEl = document.getElementById('dot-count');
-      var arcEl = document.getElementById('arc-count');
-      if (dotEl) dotEl.textContent = liveData.nodes.length;
-      if (arcEl) arcEl.textContent = arcRoutes.length;
-    } else {
-      nodeData = [
-        3.14, 101.69, 0.8,
-        1.35, 103.82, 0.5,
-        37.77, -122.42, 0.4,
-      ];
-      nodeTypes = ['self', 'hub', 'claude'];
-      arcRoutes = [
-        [3.14, 101.69, 37.77, -122.42, 'claude'],
-        [3.14, 101.69, 1.35, 103.82, 'hub'],
-      ];
+        body.appendChild(line);
+      });
     }
 
-    // ── Earth shader — purple atmosphere ──
-    var earthShader = {
-      vertexShader: `
+    // ── BOTTOM LOG ──
+    function populateBottomLog(data) {
+      var body = document.getElementById('bottom-log-body');
+      var entries = buildLogEntries(data);
+
+      if (entries.length === 0) {
+        body.innerHTML = '<div class="blog-entry" style="color:var(--text-muted)">no connection data</div>';
+        return;
+      }
+
+      entries.forEach(function (e) {
+        var row = document.createElement('div');
+        row.className = 'blog-entry';
+
+        var typeSpan, arrowSpan, dstSpan;
+
+        if (e.type === 'attacker') {
+          typeSpan = '<span class="blog-type-atk">☢ blocked</span>';
+          arrowSpan = '<span class="blog-arrow">──☢</span>';
+          dstSpan = '<span style="color:#ff6666">' + e.dstCity + '</span>';
+        } else {
+          typeSpan = '<span class="blog-type-' + e.type + '">[' + e.type + ']</span>';
+          arrowSpan = '<span class="blog-arrow">──→</span>';
+          dstSpan = '<span class="blog-dst">' + e.dstLabel + ' (' + e.dstCity + ')</span>';
+        }
+
+        row.innerHTML =
+          '<span class="blog-time">' + e.time + '</span>' +
+          '<span class="blog-src">PC (Nilai, MY)</span>' +
+          arrowSpan +
+          dstSpan +
+          typeSpan;
+
+        body.appendChild(row);
+      });
+    }
+
+    // ── SERVICE DASHBOARD ──
+    function populateServiceDash(anima, rtk, dm) {
+      var animaEl = document.getElementById('svc-anima');
+      var rtkEl = document.getElementById('svc-rtk');
+      var dmEl = document.getElementById('svc-dm');
+
+      if (anima) {
+        animaEl.textContent = 'joy:' + anima.joy + ' moved:' + anima.moved;
+      } else {
+        animaEl.textContent = 'offline';
+        animaEl.style.color = 'var(--text-muted)';
+      }
+
+      if (rtk) {
+        var rtkRaw = rtk.tokens_saved || '';
+        // Convert e.g. "3878.7M" → "3.8B", "950.2K" → "950K", pass through if no unit
+        var rtkShort = rtkRaw.toString().replace(/^(\d+(?:\.\d+)?)M$/, function (_, n) {
+          var m = parseFloat(n);
+          return m >= 1000 ? (m / 1000).toFixed(1) + 'B' : Math.round(m) + 'M';
+        });
+        rtkEl.textContent = rtkShort + ' saved';
+      } else {
+        rtkEl.textContent = 'offline';
+        rtkEl.style.color = 'var(--text-muted)';
+      }
+
+      if (dm) {
+        dmEl.textContent = dm.nodes_active + ' nodes';
+      } else {
+        dmEl.textContent = 'offline';
+        dmEl.style.color = 'var(--text-muted)';
+      }
+    }
+
+    // ── WEBGL GLOBE ──
+    function initGlobe(liveData) {
+      var container = document.getElementById('globe-canvas-wrap');
+      var w = container.offsetWidth;
+      var h = container.offsetHeight;
+
+      var nodeData = [];   // [lat, lng, mag, ...]
+      var nodeTypes = [];  // [type, ...]  parallel to nodeData/3
+      var arcRoutes = [];
+
+      if (liveData && liveData.nodes && liveData.nodes.length > 0) {
+        var myNode = liveData.nodes.find(function (n) { return n.type === 'self'; });
+
+        liveData.nodes.forEach(function (n) {
+          var mag = n.type === 'self' ? 0.8 :
+            n.type === 'hub' ? 0.5 :
+              n.type === 'claude' ? 0.4 :
+                n.type === 'antigravity' ? 0.45 :
+                  n.type === 'codex' ? 0.4 :
+                    n.type === 'attacker' ? 0.3 :
+                      n.type === 'mesh' ? 0.35 : 0.2;
+          nodeData.push(n.lat, n.lng, mag);
+          nodeTypes.push(n.type);
+
+          if (myNode && n.ip !== myNode.ip) {
+            arcRoutes.push([myNode.lat, myNode.lng, n.lat, n.lng, n.type]);
+          }
+        });
+
+        var dotEl = document.getElementById('dot-count');
+        var arcEl = document.getElementById('arc-count');
+        if (dotEl) dotEl.textContent = liveData.nodes.length;
+        if (arcEl) arcEl.textContent = arcRoutes.length;
+      } else {
+        nodeData = [
+          3.14, 101.69, 0.8,
+          1.35, 103.82, 0.5,
+          37.77, -122.42, 0.4,
+        ];
+        nodeTypes = ['self', 'hub', 'claude'];
+        arcRoutes = [
+          [3.14, 101.69, 37.77, -122.42, 'claude'],
+          [3.14, 101.69, 1.35, 103.82, 'hub'],
+        ];
+      }
+
+      // ── Earth shader — purple atmosphere ──
+      var earthShader = {
+        vertexShader: `
         varying vec3 vNormal;
         varying vec2 vUv;
         void main() {
@@ -841,7 +1007,7 @@
           vUv = uv;
         }
       `,
-      fragmentShader: `
+        fragmentShader: `
         uniform sampler2D uTexture;
         varying vec3 vNormal;
         varying vec2 vUv;
@@ -852,312 +1018,313 @@
           gl_FragColor = vec4(diffuse + atmosphere, 1.0);
         }
       `
-    };
+      };
 
-    var atmosphereShader = {
-      vertexShader: `
+      var atmosphereShader = {
+        vertexShader: `
         varying vec3 vNormal;
         void main() {
           vNormal = normalize(normalMatrix * normal);
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
-      fragmentShader: `
+        fragmentShader: `
         varying vec3 vNormal;
         void main() {
           float intensity = pow(0.75 - dot(vNormal, vec3(0, 0, 1.0)), 10.0);
           gl_FragColor = vec4(0.66, 0.33, 0.97, 1.0) * intensity;
         }
       `
-    };
-
-    var camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
-    camera.position.z = 600;
-
-    var scene = new THREE.Scene();
-    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(w, h);
-    renderer.setClearColor(0x000000, 1);
-    container.appendChild(renderer.domElement);
-
-    // Earth
-    var earthGeom = new THREE.SphereGeometry(200, 40, 30);
-    var earthTex = new THREE.TextureLoader().load('assets/world_dark.jpg');
-    var earthMat = new THREE.ShaderMaterial({
-      uniforms: { uTexture: { value: earthTex } },
-      vertexShader: earthShader.vertexShader,
-      fragmentShader: earthShader.fragmentShader
-    });
-    var earth = new THREE.Mesh(earthGeom, earthMat);
-    earth.rotation.y = Math.PI;
-    scene.add(earth);
-
-    // Atmosphere — purple glow
-    var atmoMat = new THREE.ShaderMaterial({
-      vertexShader: atmosphereShader.vertexShader,
-      fragmentShader: atmosphereShader.fragmentShader,
-      side: THREE.BackSide,
-      blending: THREE.AdditiveBlending,
-      transparent: true
-    });
-    var atmosphere = new THREE.Mesh(earthGeom.clone(), atmoMat);
-    atmosphere.scale.set(1.12, 1.12, 1.12);
-    scene.add(atmosphere);
-
-    // Node dots — type-aware rendering
-    // Attackers get a red ✕ crosshair; other nodes get smooth glowing dots
-    var attackerCrosshairs = []; // for pulse animation: {group, baseScale}
-
-    for (var i = 0; i < nodeData.length; i += 3) {
-      var lat = nodeData[i], lng = nodeData[i + 1], mag = nodeData[i + 2];
-      var ntype = nodeTypes[i / 3];
-      var phi = (90 - lat) * Math.PI / 180;
-      var theta = (180 - lng) * Math.PI / 180;
-      var r = 201;
-
-      var px = r * Math.sin(phi) * Math.cos(theta);
-      var py = r * Math.cos(phi);
-      var pz = r * Math.sin(phi) * Math.sin(theta);
-      var pos = new THREE.Vector3(px, py, pz);
-
-      if (ntype === 'attacker') {
-        // Build a crosshair group: two crossed lines forming an X
-        // The X lies in the plane tangent to the sphere at this point.
-        // We compute two tangent axes: one "up-ish" and one "right-ish"
-        var normal = pos.clone().normalize();
-        var up = new THREE.Vector3(0, 1, 0);
-        var tangentA = new THREE.Vector3().crossVectors(normal, up).normalize();
-        var tangentB = new THREE.Vector3().crossVectors(normal, tangentA).normalize();
-
-        var xSize = mag * 6; // half-length of each arm
-        var crosshairMat = new THREE.LineBasicMaterial({
-          color: 0xff2222,
-          transparent: true,
-          opacity: 0.9,
-          blending: THREE.AdditiveBlending
-        });
-
-        var group = new THREE.Group();
-
-        // Line 1: tangentA direction (\ arm of X)
-        var diag1A = pos.clone().addScaledVector(tangentA.clone().add(tangentB).normalize(), xSize);
-        var diag1B = pos.clone().addScaledVector(tangentA.clone().add(tangentB).normalize(), -xSize);
-        var geom1 = new THREE.BufferGeometry().setFromPoints([diag1A, diag1B]);
-        group.add(new THREE.Line(geom1, crosshairMat.clone()));
-
-        // Line 2: opposite diagonal (/ arm of X)
-        var diag2A = pos.clone().addScaledVector(tangentA.clone().sub(tangentB).normalize(), xSize);
-        var diag2B = pos.clone().addScaledVector(tangentA.clone().sub(tangentB).normalize(), -xSize);
-        var geom2 = new THREE.BufferGeometry().setFromPoints([diag2A, diag2B]);
-        group.add(new THREE.Line(geom2, crosshairMat.clone()));
-
-        scene.add(group);
-        attackerCrosshairs.push({ group: group, phase: Math.random() * Math.PI * 2 });
-
-        // Small red dot at center
-        var dotGeom = new THREE.SphereGeometry(mag * 2, 8, 6);
-        var dotMat = new THREE.MeshBasicMaterial({
-          color: 0xff2222,
-          transparent: true,
-          opacity: 0.85,
-          blending: THREE.AdditiveBlending
-        });
-        var dot = new THREE.Mesh(dotGeom, dotMat);
-        dot.position.copy(pos);
-        scene.add(dot);
-
-      } else {
-        // Normal node: glowing sphere dot
-        var dotColor = ntype === 'antigravity' ? 0xa855f7 :
-                       ntype === 'codex' ? 0x22c55e :
-                       ntype === 'claude' ? 0xf97316 :
-                       mag > 0.5 ? 0xa855f7 : 0x7c3aed;
-
-        var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
-        var dotMat = new THREE.MeshBasicMaterial({
-          color: dotColor,
-          transparent: true,
-          opacity: 0.9,
-          blending: THREE.AdditiveBlending
-        });
-        var dot = new THREE.Mesh(dotGeom, dotMat);
-        dot.position.set(px, py, pz);
-        scene.add(dot);
-
-        if (mag > 0.3) {
-          var ringGeom = new THREE.RingGeometry(mag * 4, mag * 5, 32);
-          var ringMat = new THREE.MeshBasicMaterial({
-            color: 0xa855f7,
-            transparent: true,
-            opacity: 0.25,
-            side: THREE.DoubleSide,
-            blending: THREE.AdditiveBlending
-          });
-          var ring = new THREE.Mesh(ringGeom, ringMat);
-          ring.position.set(px, py, pz);
-          ring.lookAt(new THREE.Vector3(0, 0, 0));
-          scene.add(ring);
-        }
-      }
-    }
-
-    function latLngToVec3(lat, lng, radius) {
-      var phi = (90 - lat) * Math.PI / 180;
-      var theta = (180 - lng) * Math.PI / 180;
-      return new THREE.Vector3(
-        radius * Math.sin(phi) * Math.cos(theta),
-        radius * Math.cos(phi),
-        radius * Math.sin(phi) * Math.sin(theta)
-      );
-    }
-
-    var animatedArcs = [];
-    var ARC_POINTS = 80;
-    var TRAIL_LENGTH = 20;
-
-    function createAnimatedArc(startLat, startLng, endLat, endLng, color, speed) {
-      var start = latLngToVec3(startLat, startLng, 200);
-      var end = latLngToVec3(endLat, endLng, 200);
-      var mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
-      var dist = start.distanceTo(end);
-      mid.normalize().multiplyScalar(200 + dist * 0.4);
-
-      var curve = new THREE.QuadraticBezierCurve3(start, mid, end);
-      var points = curve.getPoints(ARC_POINTS);
-
-      var baseGeom = new THREE.BufferGeometry().setFromPoints(points);
-      var baseMat = new THREE.LineBasicMaterial({
-        color: color,
-        transparent: true,
-        opacity: 0.12,
-        blending: THREE.AdditiveBlending
-      });
-      scene.add(new THREE.Line(baseGeom, baseMat));
-
-      var arcObj = {
-        points: points,
-        color: new THREE.Color(color),
-        head: 0,
-        speed: speed || 0.4,
-        line: null
       };
 
-      var pulseGeom = new THREE.BufferGeometry();
-      var pulseMat = new THREE.LineBasicMaterial({
-        color: color,
-        transparent: true,
-        opacity: 0.85,
-        blending: THREE.AdditiveBlending,
-        linewidth: 2
+      var camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
+      camera.position.z = 600;
+
+      var scene = new THREE.Scene();
+      var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(w, h);
+      renderer.setClearColor(0x000000, 1);
+      container.appendChild(renderer.domElement);
+
+      // Earth
+      var earthGeom = new THREE.SphereGeometry(200, 40, 30);
+      var earthTex = new THREE.TextureLoader().load('assets/world_dark.jpg');
+      var earthMat = new THREE.ShaderMaterial({
+        uniforms: { uTexture: { value: earthTex } },
+        vertexShader: earthShader.vertexShader,
+        fragmentShader: earthShader.fragmentShader
       });
-      arcObj.line = new THREE.Line(pulseGeom, pulseMat);
-      scene.add(arcObj.line);
-      animatedArcs.push(arcObj);
-    }
+      var earth = new THREE.Mesh(earthGeom, earthMat);
+      earth.rotation.y = Math.PI;
+      scene.add(earth);
 
-    // Arc colors — purple theme
-    var typeColors = {
-      'claude':       0xf97316,   // orange — Claude connections
-      'antigravity':  0xa855f7,   // purple — AGI connections
-      'codex':        0x22c55e,   // green  — Codex connections
-      'hub':          0xa855f7,   // purple — our infrastructure
-      'mesh':         0xa855f7,   // purple — WireGuard peers
-      'attacker':     0xff2222,   // red    — enemies
-      'self':         0xa855f7,   // purple — us
-    };
+      // Atmosphere — purple glow
+      var atmoMat = new THREE.ShaderMaterial({
+        vertexShader: atmosphereShader.vertexShader,
+        fragmentShader: atmosphereShader.fragmentShader,
+        side: THREE.BackSide,
+        blending: THREE.AdditiveBlending,
+        transparent: true
+      });
+      var atmosphere = new THREE.Mesh(earthGeom.clone(), atmoMat);
+      atmosphere.scale.set(1.12, 1.12, 1.12);
+      scene.add(atmosphere);
 
-    arcRoutes.forEach(function(route, idx) {
-      var color = typeColors[route[4]] || 0xa855f7;
-      var speed = 0.3 + Math.random() * 0.3;
-      createAnimatedArc(route[0], route[1], route[2], route[3], color, speed);
-    });
+      // Node dots — type-aware rendering
+      // Attackers get a red ✕ crosshair; other nodes get smooth glowing dots
+      var attackerCrosshairs = []; // for pulse animation: {group, baseScale}
 
-    // Mouse interaction
-    var mouse = { x: 0, y: 0 }, mouseDown = { x: 0, y: 0 };
-    var rotation = { x: Math.PI * 1.1, y: Math.PI / 6 };
-    var target = { x: rotation.x, y: rotation.y };
-    var targetDown = { x: 0, y: 0 };
-    var distance = 950, distTarget = 950;
-    var dragging = false;
-    var autoRotate = true;
+      for (var i = 0; i < nodeData.length; i += 3) {
+        var lat = nodeData[i], lng = nodeData[i + 1], mag = nodeData[i + 2];
+        var ntype = nodeTypes[i / 3];
+        var phi = (90 - lat) * Math.PI / 180;
+        var theta = (180 - lng) * Math.PI / 180;
+        var r = 201;
 
-    container.addEventListener('mousedown', function(e) {
-      e.preventDefault();
-      dragging = true;
-      autoRotate = false;
-      mouseDown.x = -e.clientX;
-      mouseDown.y = e.clientY;
-      targetDown.x = target.x;
-      targetDown.y = target.y;
-    });
-    window.addEventListener('mousemove', function(e) {
-      if (!dragging) return;
-      mouse.x = -e.clientX;
-      mouse.y = e.clientY;
-      var z = distance / 1000;
-      target.x = targetDown.x + (mouse.x - mouseDown.x) * 0.005 * z;
-      target.y = targetDown.y + (mouse.y - mouseDown.y) * 0.005 * z;
-      target.y = Math.max(-Math.PI/2, Math.min(Math.PI/2, target.y));
-    });
-    window.addEventListener('mouseup', function() { dragging = false; });
+        var px = r * Math.sin(phi) * Math.cos(theta);
+        var py = r * Math.cos(phi);
+        var pz = r * Math.sin(phi) * Math.sin(theta);
+        var pos = new THREE.Vector3(px, py, pz);
 
-    container.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      distTarget -= e.deltaY * 0.3;
-      distTarget = Math.max(350, Math.min(900, distTarget));
-    }, { passive: false });
+        if (ntype === 'attacker') {
+          // Build a crosshair group: two crossed lines forming an X
+          // The X lies in the plane tangent to the sphere at this point.
+          // We compute two tangent axes: one "up-ish" and one "right-ish"
+          var normal = pos.clone().normalize();
+          var up = new THREE.Vector3(0, 1, 0);
+          var tangentA = new THREE.Vector3().crossVectors(normal, up).normalize();
+          var tangentB = new THREE.Vector3().crossVectors(normal, tangentA).normalize();
 
-    window.addEventListener('resize', function() {
-      var wp = container.offsetWidth;
-      var hp = container.offsetHeight;
-      camera.aspect = wp / hp;
-      camera.updateProjectionMatrix();
-      renderer.setSize(wp, hp);
-    });
+          var xSize = mag * 6; // half-length of each arm
+          var crosshairMat = new THREE.LineBasicMaterial({
+            color: 0xff2222,
+            transparent: true,
+            opacity: 0.9,
+            blending: THREE.AdditiveBlending
+          });
 
-    var animClock = 0;
-    function animate() {
-      requestAnimationFrame(animate);
-      animClock += 0.016;
-      if (autoRotate) target.x += 0.001;
+          var group = new THREE.Group();
 
-      // Pulse crosshair attackers: scale in/out slowly
-      for (var ci = 0; ci < attackerCrosshairs.length; ci++) {
-        var ch = attackerCrosshairs[ci];
-        var pulse = 0.85 + 0.3 * Math.sin(animClock * 1.2 + ch.phase);
-        ch.group.scale.setScalar(pulse);
-      }
+          // Line 1: tangentA direction (\ arm of X)
+          var diag1A = pos.clone().addScaledVector(tangentA.clone().add(tangentB).normalize(), xSize);
+          var diag1B = pos.clone().addScaledVector(tangentA.clone().add(tangentB).normalize(), -xSize);
+          var geom1 = new THREE.BufferGeometry().setFromPoints([diag1A, diag1B]);
+          group.add(new THREE.Line(geom1, crosshairMat.clone()));
 
-      for (var ai = 0; ai < animatedArcs.length; ai++) {
-        var arc = animatedArcs[ai];
-        arc.head += arc.speed;
-        if (arc.head > ARC_POINTS + TRAIL_LENGTH) arc.head = 0;
+          // Line 2: opposite diagonal (/ arm of X)
+          var diag2A = pos.clone().addScaledVector(tangentA.clone().sub(tangentB).normalize(), xSize);
+          var diag2B = pos.clone().addScaledVector(tangentA.clone().sub(tangentB).normalize(), -xSize);
+          var geom2 = new THREE.BufferGeometry().setFromPoints([diag2A, diag2B]);
+          group.add(new THREE.Line(geom2, crosshairMat.clone()));
 
-        var startIdx = Math.max(0, Math.floor(arc.head) - TRAIL_LENGTH);
-        var endIdx = Math.min(ARC_POINTS, Math.floor(arc.head));
+          scene.add(group);
+          attackerCrosshairs.push({ group: group, phase: Math.random() * Math.PI * 2 });
 
-        if (endIdx > startIdx) {
-          var slice = arc.points.slice(startIdx, endIdx + 1);
-          arc.line.geometry.dispose();
-          arc.line.geometry = new THREE.BufferGeometry().setFromPoints(slice);
+          // Small red dot at center
+          var dotGeom = new THREE.SphereGeometry(mag * 2, 8, 6);
+          var dotMat = new THREE.MeshBasicMaterial({
+            color: 0xff2222,
+            transparent: true,
+            opacity: 0.85,
+            blending: THREE.AdditiveBlending
+          });
+          var dot = new THREE.Mesh(dotGeom, dotMat);
+          dot.position.copy(pos);
+          scene.add(dot);
+
+        } else {
+          // Normal node: glowing sphere dot
+          var dotColor = ntype === 'antigravity' ? 0xa855f7 :
+            ntype === 'codex' ? 0x22c55e :
+              ntype === 'claude' ? 0xf97316 :
+                mag > 0.5 ? 0xa855f7 : 0x7c3aed;
+
+          var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
+          var dotMat = new THREE.MeshBasicMaterial({
+            color: dotColor,
+            transparent: true,
+            opacity: 0.9,
+            blending: THREE.AdditiveBlending
+          });
+          var dot = new THREE.Mesh(dotGeom, dotMat);
+          dot.position.set(px, py, pz);
+          scene.add(dot);
+
+          if (mag > 0.3) {
+            var ringGeom = new THREE.RingGeometry(mag * 4, mag * 5, 32);
+            var ringMat = new THREE.MeshBasicMaterial({
+              color: 0xa855f7,
+              transparent: true,
+              opacity: 0.25,
+              side: THREE.DoubleSide,
+              blending: THREE.AdditiveBlending
+            });
+            var ring = new THREE.Mesh(ringGeom, ringMat);
+            ring.position.set(px, py, pz);
+            ring.lookAt(new THREE.Vector3(0, 0, 0));
+            scene.add(ring);
+          }
         }
       }
 
-      rotation.x += (target.x - rotation.x) * 0.1;
-      rotation.y += (target.y - rotation.y) * 0.1;
-      distance += (distTarget - distance) * 0.3;
+      function latLngToVec3(lat, lng, radius) {
+        var phi = (90 - lat) * Math.PI / 180;
+        var theta = (180 - lng) * Math.PI / 180;
+        return new THREE.Vector3(
+          radius * Math.sin(phi) * Math.cos(theta),
+          radius * Math.cos(phi),
+          radius * Math.sin(phi) * Math.sin(theta)
+        );
+      }
 
-      camera.position.x = distance * Math.sin(rotation.x) * Math.cos(rotation.y);
-      camera.position.y = distance * Math.sin(rotation.y);
-      camera.position.z = distance * Math.cos(rotation.x) * Math.cos(rotation.y);
-      camera.lookAt(scene.position);
+      var animatedArcs = [];
+      var ARC_POINTS = 80;
+      var TRAIL_LENGTH = 20;
 
-      renderer.render(scene, camera);
+      function createAnimatedArc(startLat, startLng, endLat, endLng, color, speed) {
+        var start = latLngToVec3(startLat, startLng, 200);
+        var end = latLngToVec3(endLat, endLng, 200);
+        var mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
+        var dist = start.distanceTo(end);
+        mid.normalize().multiplyScalar(200 + dist * 0.4);
+
+        var curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+        var points = curve.getPoints(ARC_POINTS);
+
+        var baseGeom = new THREE.BufferGeometry().setFromPoints(points);
+        var baseMat = new THREE.LineBasicMaterial({
+          color: color,
+          transparent: true,
+          opacity: 0.12,
+          blending: THREE.AdditiveBlending
+        });
+        scene.add(new THREE.Line(baseGeom, baseMat));
+
+        var arcObj = {
+          points: points,
+          color: new THREE.Color(color),
+          head: 0,
+          speed: speed || 0.4,
+          line: null
+        };
+
+        var pulseGeom = new THREE.BufferGeometry();
+        var pulseMat = new THREE.LineBasicMaterial({
+          color: color,
+          transparent: true,
+          opacity: 0.85,
+          blending: THREE.AdditiveBlending,
+          linewidth: 2
+        });
+        arcObj.line = new THREE.Line(pulseGeom, pulseMat);
+        scene.add(arcObj.line);
+        animatedArcs.push(arcObj);
+      }
+
+      // Arc colors — purple theme
+      var typeColors = {
+        'claude': 0xf97316,   // orange — Claude connections
+        'antigravity': 0xa855f7,   // purple — AGI connections
+        'codex': 0x22c55e,   // green  — Codex connections
+        'hub': 0xa855f7,   // purple — our infrastructure
+        'mesh': 0xa855f7,   // purple — WireGuard peers
+        'attacker': 0xff2222,   // red    — enemies
+        'self': 0xa855f7,   // purple — us
+      };
+
+      arcRoutes.forEach(function (route, idx) {
+        var color = typeColors[route[4]] || 0xa855f7;
+        var speed = 0.3 + Math.random() * 0.3;
+        createAnimatedArc(route[0], route[1], route[2], route[3], color, speed);
+      });
+
+      // Mouse interaction
+      var mouse = { x: 0, y: 0 }, mouseDown = { x: 0, y: 0 };
+      var rotation = { x: Math.PI * 1.1, y: Math.PI / 6 };
+      var target = { x: rotation.x, y: rotation.y };
+      var targetDown = { x: 0, y: 0 };
+      var distance = 950, distTarget = 950;
+      var dragging = false;
+      var autoRotate = true;
+
+      container.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        dragging = true;
+        autoRotate = false;
+        mouseDown.x = -e.clientX;
+        mouseDown.y = e.clientY;
+        targetDown.x = target.x;
+        targetDown.y = target.y;
+      });
+      window.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        mouse.x = -e.clientX;
+        mouse.y = e.clientY;
+        var z = distance / 1000;
+        target.x = targetDown.x + (mouse.x - mouseDown.x) * 0.005 * z;
+        target.y = targetDown.y + (mouse.y - mouseDown.y) * 0.005 * z;
+        target.y = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, target.y));
+      });
+      window.addEventListener('mouseup', function () { dragging = false; });
+
+      container.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        distTarget -= e.deltaY * 0.3;
+        distTarget = Math.max(350, Math.min(900, distTarget));
+      }, { passive: false });
+
+      window.addEventListener('resize', function () {
+        var wp = container.offsetWidth;
+        var hp = container.offsetHeight;
+        camera.aspect = wp / hp;
+        camera.updateProjectionMatrix();
+        renderer.setSize(wp, hp);
+      });
+
+      var animClock = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        animClock += 0.016;
+        if (autoRotate) target.x += 0.001;
+
+        // Pulse crosshair attackers: scale in/out slowly
+        for (var ci = 0; ci < attackerCrosshairs.length; ci++) {
+          var ch = attackerCrosshairs[ci];
+          var pulse = 0.85 + 0.3 * Math.sin(animClock * 1.2 + ch.phase);
+          ch.group.scale.setScalar(pulse);
+        }
+
+        for (var ai = 0; ai < animatedArcs.length; ai++) {
+          var arc = animatedArcs[ai];
+          arc.head += arc.speed;
+          if (arc.head > ARC_POINTS + TRAIL_LENGTH) arc.head = 0;
+
+          var startIdx = Math.max(0, Math.floor(arc.head) - TRAIL_LENGTH);
+          var endIdx = Math.min(ARC_POINTS, Math.floor(arc.head));
+
+          if (endIdx > startIdx) {
+            var slice = arc.points.slice(startIdx, endIdx + 1);
+            arc.line.geometry.dispose();
+            arc.line.geometry = new THREE.BufferGeometry().setFromPoints(slice);
+          }
+        }
+
+        rotation.x += (target.x - rotation.x) * 0.1;
+        rotation.y += (target.y - rotation.y) * 0.1;
+        distance += (distTarget - distance) * 0.3;
+
+        camera.position.x = distance * Math.sin(rotation.x) * Math.cos(rotation.y);
+        camera.position.y = distance * Math.sin(rotation.y);
+        camera.position.z = distance * Math.cos(rotation.x) * Math.cos(rotation.y);
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+      }
+      animate();
     }
-    animate();
-  }
   </script>
 
 </body>
+
 </html>
