@@ -383,20 +383,11 @@
       <span class="cs-item">🎨 Theme System — Per-partner atmosphere</span>
     </div>
 
-    <!-- GLOBE -->
-    <section class="globe-section">
-      <div class="globe-wrap">
-        <div class="globe-sphere">
-          <div class="globe-inner"></div>
-          <div class="globe-ring"></div>
-          <div class="globe-dot gd1"></div>
-          <div class="globe-dot gd2"></div>
-          <div class="globe-dot gd3"></div>
-          <div class="globe-dot gd4"></div>
-          <div class="globe-dot gd5"></div>
-        </div>
-        <p class="globe-label">Built in Malaysia 🇲🇾</p>
-      </div>
+    <!-- WEBGL GLOBE -->
+    <section class="webgl-globe-section">
+      <div id="webgl-globe"></div>
+      <div class="globe-hud-top">orbital signal map <strong>celsjux relay field</strong></div>
+      <p class="webgl-globe-label">Built in Malaysia 🇲🇾</p>
     </section>
 
     <!-- TERMINAL -->
@@ -519,6 +510,7 @@
     <div class="orb-lightbox-caption" id="orb-lightbox-caption"></div>
   </div>
 
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

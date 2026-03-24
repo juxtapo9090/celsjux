@@ -1144,3 +1144,308 @@
     }
   });
 })();
+
+
+// ---- WebGL Cyberpunk Globe ----
+(function webglGlobe() {
+  var container = document.getElementById('webgl-globe');
+  if (!container) return;
+
+  // WebGL fallback check
+  try {
+    var testCanvas = document.createElement('canvas');
+    var testCtx = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+    if (!testCtx) throw new Error('no webgl');
+    if (typeof THREE === 'undefined') throw new Error('THREE not loaded');
+  } catch (_) {
+    container.innerHTML = '<div class="webgl-globe-fallback">3D Globe requires WebGL</div>';
+    return;
+  }
+
+  try {
+    // ── Our node data: [lat, lng, magnitude] ──
+    var nodeData = [
+      3.14, 101.69, 0.8,    // Malaysia — HOME (tallest)
+      1.35, 103.82, 0.35,   // Singapore
+      35.68, 139.69, 0.3,   // Japan
+      37.57, 126.98, 0.25,  // South Korea
+      51.51, -0.13, 0.28,   // London
+      37.77, -122.42, 0.3,  // San Francisco
+      -33.87, 151.21, 0.18, // Sydney
+      55.75, 37.62, 0.15,   // Moscow
+      48.86, 2.35, 0.2,     // Paris
+      -23.55, -46.63, 0.18, // São Paulo
+      28.61, 77.21, 0.25,   // Delhi
+      25.20, 55.27, 0.2,    // Dubai
+      39.90, 116.40, 0.28,  // Beijing
+      -6.21, 106.85, 0.18,  // Jakarta
+      13.76, 100.50, 0.25,  // Bangkok
+    ];
+
+    // ── Shaders — purple atmosphere ──
+    var earthShader = {
+      vertexShader: `
+        varying vec3 vNormal;
+        varying vec2 vUv;
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          vNormal = normalize(normalMatrix * normal);
+          vUv = uv;
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D uTexture;
+        varying vec3 vNormal;
+        varying vec2 vUv;
+        void main() {
+          vec3 diffuse = texture2D(uTexture, vUv).xyz * 0.3;
+          float intensity = 1.05 - dot(vNormal, vec3(0.0, 0.0, 1.0));
+          vec3 atmosphere = vec3(0.66, 0.33, 0.97) * pow(intensity, 3.0);
+          gl_FragColor = vec4(diffuse + atmosphere, 1.0);
+        }
+      `
+    };
+
+    var atmosphereShader = {
+      vertexShader: `
+        varying vec3 vNormal;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormal;
+        void main() {
+          float intensity = pow(0.75 - dot(vNormal, vec3(0, 0, 1.0)), 10.0);
+          gl_FragColor = vec4(0.66, 0.33, 0.97, 1.0) * intensity;
+        }
+      `
+    };
+
+    // ── Scene setup ──
+    var w = container.clientWidth, h = container.clientHeight;
+
+    var camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
+    camera.position.z = 600;
+
+    var scene = new THREE.Scene();
+    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(w, h);
+    renderer.setClearColor(0x0a0a0f, 1);
+    container.appendChild(renderer.domElement);
+
+    // ── Earth sphere ──
+    var earthGeom = new THREE.SphereGeometry(200, 40, 30);
+    var earthTex = new THREE.TextureLoader().load('assets/world_dark.jpg');
+    var earthMat = new THREE.ShaderMaterial({
+      uniforms: { uTexture: { value: earthTex } },
+      vertexShader: earthShader.vertexShader,
+      fragmentShader: earthShader.fragmentShader
+    });
+    var earth = new THREE.Mesh(earthGeom, earthMat);
+    earth.rotation.y = Math.PI;
+    scene.add(earth);
+
+    // ── Atmosphere glow — purple ──
+    var atmoMat = new THREE.ShaderMaterial({
+      vertexShader: atmosphereShader.vertexShader,
+      fragmentShader: atmosphereShader.fragmentShader,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true
+    });
+    var atmosphere = new THREE.Mesh(earthGeom.clone(), atmoMat);
+    atmosphere.scale.set(1.12, 1.12, 1.12);
+    scene.add(atmosphere);
+
+    // ── Node dots — purple shades ──
+    for (var i = 0; i < nodeData.length; i += 3) {
+      var lat = nodeData[i], lng = nodeData[i + 1], mag = nodeData[i + 2];
+      var phi = (90 - lat) * Math.PI / 180;
+      var theta = (180 - lng) * Math.PI / 180;
+      var r = 201;
+
+      var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
+      var dotMat = new THREE.MeshBasicMaterial({
+        color: mag > 0.5 ? 0xa855f7 : 0x7c3aed,
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending
+      });
+      var dot = new THREE.Mesh(dotGeom, dotMat);
+      dot.position.x = r * Math.sin(phi) * Math.cos(theta);
+      dot.position.y = r * Math.cos(phi);
+      dot.position.z = r * Math.sin(phi) * Math.sin(theta);
+      scene.add(dot);
+
+      // Glow ring for major nodes
+      if (mag > 0.3) {
+        var ringGeom = new THREE.RingGeometry(mag * 4, mag * 5, 32);
+        var ringMat = new THREE.MeshBasicMaterial({
+          color: 0x6d28d9,
+          transparent: true,
+          opacity: 0.25,
+          side: THREE.DoubleSide,
+          blending: THREE.AdditiveBlending
+        });
+        var ring = new THREE.Mesh(ringGeom, ringMat);
+        ring.position.copy(dot.position);
+        ring.lookAt(new THREE.Vector3(0, 0, 0));
+        scene.add(ring);
+      }
+    }
+
+    // ── Animated arcs — traveling pulse ──
+    var animatedArcs = [];
+    var ARC_POINTS = 80;
+    var TRAIL_LENGTH = 20;
+
+    function latLngToVec3(lat, lng, radius) {
+      var phi = (90 - lat) * Math.PI / 180;
+      var theta = (180 - lng) * Math.PI / 180;
+      return new THREE.Vector3(
+        radius * Math.sin(phi) * Math.cos(theta),
+        radius * Math.cos(phi),
+        radius * Math.sin(phi) * Math.sin(theta)
+      );
+    }
+
+    function createAnimatedArc(startLat, startLng, endLat, endLng, color, speed) {
+      var start = latLngToVec3(startLat, startLng, 200);
+      var end = latLngToVec3(endLat, endLng, 200);
+
+      var mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
+      var dist = start.distanceTo(end);
+      mid.normalize().multiplyScalar(200 + dist * 0.4);
+
+      var curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+      var points = curve.getPoints(ARC_POINTS);
+
+      var baseGeom = new THREE.BufferGeometry().setFromPoints(points);
+      var baseMat = new THREE.LineBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.12,
+        blending: THREE.AdditiveBlending
+      });
+      scene.add(new THREE.Line(baseGeom, baseMat));
+
+      var arcObj = {
+        points: points,
+        color: new THREE.Color(color),
+        head: 0,
+        speed: speed || 0.4,
+        line: null
+      };
+
+      var pulseGeom = new THREE.BufferGeometry();
+      var pulseMat = new THREE.LineBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.85,
+        blending: THREE.AdditiveBlending,
+        linewidth: 2
+      });
+      arcObj.line = new THREE.Line(pulseGeom, pulseMat);
+      scene.add(arcObj.line);
+
+      animatedArcs.push(arcObj);
+    }
+
+    // Primary arcs from Malaysia — orange (contrast)
+    createAnimatedArc(3.14, 101.69, 37.77, -122.42, 0xf97316, 0.35);
+    createAnimatedArc(3.14, 101.69, 35.68, 139.69,  0xf97316, 0.45);
+    createAnimatedArc(3.14, 101.69, 51.51, -0.13,   0xf97316, 0.3);
+    createAnimatedArc(3.14, 101.69, 1.35,  103.82,  0xf97316, 0.6);
+    createAnimatedArc(3.14, 101.69, 28.61, 77.21,   0xf97316, 0.4);
+    createAnimatedArc(3.14, 101.69, 13.76, 100.50,  0xf97316, 0.5);
+    // Secondary arcs — purple
+    createAnimatedArc(51.51, -0.13,  37.77, -122.42, 0xa855f7, 0.35);
+    createAnimatedArc(35.68, 139.69, 37.57,  126.98, 0xa855f7, 0.55);
+    createAnimatedArc(1.35,  103.82, -6.21,  106.85, 0xa855f7, 0.5);
+    createAnimatedArc(28.61, 77.21,  25.20,   55.27, 0xa855f7, 0.4);
+
+    // ── Mouse / touch interaction ──
+    var mouse = { x: 0, y: 0 }, mouseDown = { x: 0, y: 0 };
+    var rotation = { x: Math.PI * 1.1, y: Math.PI / 6 };
+    var target = { x: rotation.x, y: rotation.y };
+    var targetDown = { x: 0, y: 0 };
+    var distance = 600, distTarget = 600;
+    var dragging = false;
+    var autoRotate = true;
+
+    container.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      dragging = true;
+      autoRotate = false;
+      mouseDown.x = -e.clientX;
+      mouseDown.y = e.clientY;
+      targetDown.x = target.x;
+      targetDown.y = target.y;
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      mouse.x = -e.clientX;
+      mouse.y = e.clientY;
+      var z = distance / 1000;
+      target.x = targetDown.x + (mouse.x - mouseDown.x) * 0.005 * z;
+      target.y = targetDown.y + (mouse.y - mouseDown.y) * 0.005 * z;
+      target.y = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, target.y));
+    });
+    window.addEventListener('mouseup', function() { dragging = false; });
+
+    container.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      distTarget -= e.deltaY * 0.3;
+      distTarget = Math.max(350, Math.min(900, distTarget));
+    }, { passive: false });
+
+    window.addEventListener('resize', function() {
+      w = container.clientWidth;
+      h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // ── Animate ──
+    function animate() {
+      requestAnimationFrame(animate);
+
+      if (autoRotate) target.x += 0.001;
+
+      for (var ai = 0; ai < animatedArcs.length; ai++) {
+        var arc = animatedArcs[ai];
+        arc.head += arc.speed;
+        if (arc.head > ARC_POINTS + TRAIL_LENGTH) arc.head = 0;
+
+        var startIdx = Math.max(0, Math.floor(arc.head) - TRAIL_LENGTH);
+        var endIdx = Math.min(ARC_POINTS, Math.floor(arc.head));
+
+        if (endIdx > startIdx) {
+          var slice = arc.points.slice(startIdx, endIdx + 1);
+          arc.line.geometry.dispose();
+          arc.line.geometry = new THREE.BufferGeometry().setFromPoints(slice);
+        }
+      }
+
+      rotation.x += (target.x - rotation.x) * 0.1;
+      rotation.y += (target.y - rotation.y) * 0.1;
+      distance += (distTarget - distance) * 0.3;
+
+      camera.position.x = distance * Math.sin(rotation.x) * Math.cos(rotation.y);
+      camera.position.y = distance * Math.sin(rotation.y);
+      camera.position.z = distance * Math.cos(rotation.x) * Math.cos(rotation.y);
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+  } catch (err) {
+    container.innerHTML = '<div class="webgl-globe-fallback">3D Globe requires WebGL</div>';
+    console.warn('WebGL globe init failed:', err);
+  }
+})();
