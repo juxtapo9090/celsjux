@@ -61,7 +61,13 @@ PC_IPS=$(ss -tn state established | awk '{print $5}' | cut -d: -f1 | sort -u | g
 # Claude Code specific
 CC_IPS=$(ss -tnp | grep -iE "claude|node|bun" | awk '{print $5}' | cut -d: -f1 | sort -u | grep -vE "^$|^10\.|^127\.")
 
-# Codex specific
+# Antigravity / Gemini (language_server process → Google API IPs)
+AG_IPS=$(ss -tnp | grep "language_server" | awk '{print $5}' | cut -d: -f1 | sort -u | grep -vE "^$|^10\.|^127\.|^192\.168\.")
+# Also catch mitmdump proxy outbound (Antigravity routes through it)
+AG_PROXY_IPS=$(ss -tnp | grep "mitmdump" | awk '{print $5}' | cut -d: -f1 | sort -u | grep -vE "^$|^10\.|^127\.|^192\.168\.")
+AG_IPS=$(echo -e "$AG_IPS\n$AG_PROXY_IPS" | sort -u | grep -v "^$")
+
+# Codex / OpenAI specific
 CODEX_IPS=$(ss -tnp | grep -iE "codex" | awk '{print $5}' | cut -d: -f1 | sort -u | grep -vE "^$|^10\.|^127\.")
 
 # WireGuard peers (from VPS)
@@ -156,6 +162,31 @@ import sys,json; d=json.load(sys.stdin)
 print(json.dumps({'ip':d['query'],'lat':d['lat'],'lng':d['lon'],'label':f'{d.get(\"org\",\"\")[:30]}','type':'claude','org':d.get('org','')[:40]}))")
 done
 
+# Antigravity / Gemini connections
+for ip in $AG_IPS; do
+    [[ -z "$ip" ]] && continue
+    # Skip if already captured as CC
+    echo "$CC_IPS" | grep -q "$ip" && continue
+    geo=$(geoip "$ip")
+    [[ -z "$geo" ]] && continue
+    NODES_JSON+=","
+    NODES_JSON+=$(echo "$geo" | python3 -c "
+import sys,json; d=json.load(sys.stdin)
+print(json.dumps({'ip':d['query'],'lat':d['lat'],'lng':d['lon'],'label':f'AGI {d.get(\"org\",\"\")[:25]}','type':'antigravity','org':d.get('org','')[:40]}))")
+done
+
+# Codex / OpenAI connections
+for ip in $CODEX_IPS; do
+    [[ -z "$ip" ]] && continue
+    echo "$CC_IPS $AG_IPS" | grep -q "$ip" && continue
+    geo=$(geoip "$ip")
+    [[ -z "$geo" ]] && continue
+    NODES_JSON+=","
+    NODES_JSON+=$(echo "$geo" | python3 -c "
+import sys,json; d=json.load(sys.stdin)
+print(json.dumps({'ip':d['query'],'lat':d['lat'],'lng':d['lon'],'label':f'Codex {d.get(\"org\",\"\")[:25]}','type':'codex','org':d.get('org','')[:40]}))")
+done
+
 # WireGuard peers
 for ip in $WG_PEERS; do
     [[ -z "$ip" ]] && continue
@@ -196,10 +227,12 @@ cat > "$OUTPUT" << JSONEOF
   "my_ip": "$MY_IP",
   "nodes": $NODES_JSON,
   "cc_ips": [$(echo $CC_IPS | tr ' ' '\n' | grep -v '^$' | sed 's/.*/"&"/' | paste -sd,)],
+  "ag_ips": [$(echo $AG_IPS | tr ' ' '\n' | grep -v '^$' | sed 's/.*/"&"/' | paste -sd,)],
+  "codex_ips": [$(echo $CODEX_IPS | tr ' ' '\n' | grep -v '^$' | sed 's/.*/"&"/' | paste -sd,)],
   "wg_peers": [$(echo $WG_PEERS | tr ' ' '\n' | grep -v '^$' | sed 's/.*/"&"/' | paste -sd,)],
   "attacker_count": $(echo "$ATTACKERS" | grep -c . 2>/dev/null || echo 0)
 }
 JSONEOF
 
 echo "🌍 Globe data → $OUTPUT"
-cat "$OUTPUT" | python3 -m json.tool 2>/dev/null | head -20
+cat "$OUTPUT" | python3 -m json.tool 2>/dev/null | head -30

@@ -1,70 +1,10 @@
 {
-  "collected_at": "2026-03-24T13:41:35+08:00",
-  "my_ip": "redacted",
-  "nodes": [
-    {
-      "ip": "***.***.***.103",
-      "lat": 4.0,
-      "lng": 102.0,
-      "label": "Home \ud83c\uddf2\ud83c\uddfe",
-      "type": "self",
-      "org": ""
-    },
-    {
-      "ip": "160.79.104.10",
-      "lat": 37.7901,
-      "lng": -122.401,
-      "label": "Anthropic, PBC",
-      "type": "claude",
-      "org": "Anthropic, PBC"
-    },
-    {
-      "ip": "162.159.134.234",
-      "lat": 43.6532,
-      "lng": -79.3832,
-      "label": "Cloudflare, Inc.",
-      "type": "claude",
-      "org": "Cloudflare, Inc."
-    },
-    {
-      "ip": "***.***.***.36",
-      "lat": 3.0,
-      "lng": 113.0,
-      "label": "Mesh Peer \ud83c\uddf2\ud83c\uddfe",
-      "type": "mesh",
-      "org": ""
-    },
-    {
-      "ip": "***.***.***.74",
-      "lat": 2.0,
-      "lng": 112.0,
-      "label": "Mesh Peer \ud83c\uddf2\ud83c\uddfe",
-      "type": "mesh",
-      "org": ""
-    },
-    {
-      "ip": "***.***.102.13",
-      "lat": 1.32123,
-      "lng": 103.695,
-      "label": "celsjux-sg \ud83c\uddf8\ud83c\uddec",
-      "type": "hub",
-      "org": "Vultr Holdings, LLC"
-    },
-    {
-      "ip": "185.246.130.20",
-      "lat": 59.3287,
-      "lng": 18.0717,
-      "label": "blocked",
-      "type": "attacker",
-      "org": "Icme Cloud"
-    }
-  ],
-  "cc_ips": [
-    "160.79.104.10",
-    "162.159.134.234"
-  ],
-  "wg_peers": [
-    "redacted"
-  ],
-  "attacker_count": 1
+  "collected_at": "2026-03-24T14:40:02+08:00",
+  "my_ip": "27.125.245.91",
+  "nodes": [{"ip": "27.125.245.91", "lat": 3.08507, "lng": 101.533, "label": "PC Malaysia", "type": "self", "org": ""},{"ip": "162.159.134.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "142.250.193.234", "lat": 28.6139, "lng": 77.2088, "label": "AG Google LLC", "type": "antigravity", "org": "Google LLC"},{"ip": "172.217.25.33", "lat": -33.8688, "lng": 151.209, "label": "AG Google LLC", "type": "antigravity", "org": "Google LLC"},{"ip": "172.217.25.42", "lat": -33.8688, "lng": 151.209, "label": "AG Google LLC", "type": "antigravity", "org": "Google LLC"},{"ip": "216.239.34.223", "lat": 33.7815, "lng": -84.5976, "label": "AG Google LLC", "type": "antigravity", "org": "Google LLC"},{"ip": "216.239.36.223", "lat": 33.7815, "lng": -84.5976, "label": "AG Google LLC", "type": "antigravity", "org": "Google LLC"},{"ip": "34.54.84.110", "lat": 39.0997, "lng": -94.5785, "label": "AG Google Cloud", "type": "antigravity", "org": "Google Cloud"},{"ip": "40.79.150.121", "lat": 48.856567, "lng": 2.347322, "label": "AG Microsoft Azure One Ds Co", "type": "antigravity", "org": "Microsoft Azure One Ds Collector (france"},{"ip": "27.125.245.36", "lat": 3.16667, "lng": 113.033, "label": "WG Peer", "type": "mesh", "org": ""},{"ip": "27.125.245.74", "lat": 2.01667, "lng": 111.917, "label": "WG Peer", "type": "mesh", "org": ""},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"},{"ip": "185.246.130.20", "lat": 59.3287, "lng": 18.0717, "label": "blocked", "type": "attacker", "org": "Icme Cloud"},{"ip": "80.94.92.177", "lat": 52.3676, "lng": 4.90414, "label": "blocked", "type": "attacker", "org": "Techoff SRV Limited"},{"ip": "80.94.92.171", "lat": 52.3676, "lng": 4.90414, "label": "blocked", "type": "attacker", "org": "Techoff SRV Limited"},{"ip": "92.118.39.56", "lat": 32.7797, "lng": -96.8022, "label": "blocked", "type": "attacker", "org": "Pptechnology Limited"}],
+  "cc_ips": ["162.159.134.234"],
+  "ag_ips": ["142.250.193.234","172.217.25.33","172.217.25.42","216.239.34.223","216.239.36.223","34.54.84.110","40.79.150.121"],
+  "codex_ips": [],
+  "wg_peers": ["27.125.245.36","27.125.245.74"],
+  "attacker_count": 4
 }

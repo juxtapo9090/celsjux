@@ -188,7 +188,7 @@
       gap: 5px;
     }
 
-    .attacker-x { color: var(--red); font-size: 12px; }
+    .attacker-x { color: var(--red); font-size: 14px; filter: drop-shadow(0 0 4px rgba(255, 34, 34, 0.6)); }
 
     .attacker-meta {
       font-size: 10px;
@@ -307,6 +307,7 @@
     .log-line .log-time { color: var(--text-muted); }
     .log-line .log-icon-claude { color: #d4a843; }
     .log-line .log-icon-codex  { color: #22c55e; }
+    .log-line .log-icon-antigravity { color: #a855f7; }
     .log-line .log-icon-mesh  { color: var(--purple); }
     .log-line .log-icon-hub   { color: var(--purple); }
     .log-line .log-icon-atk   { color: var(--red); }
@@ -403,6 +404,7 @@
     .blog-dst  { color: var(--cyan); }
     .blog-type-claude { color: #d4a843; }
     .blog-type-codex  { color: #22c55e; }
+    .blog-type-antigravity { color: #a855f7; }
     .blog-type-mesh   { color: var(--purple); }
     .blog-type-hub    { color: var(--purple); }
     .blog-type-atk    { color: var(--red); font-weight: 700; }
@@ -589,7 +591,7 @@
       el.className = 'attacker-entry';
       el.innerHTML =
         '<div class="attacker-ip">' +
-          '<span class="attacker-x">✕</span>' +
+          '<span class="attacker-x">☢</span>' +
           '<span>' + a.ip + '</span>' +
         '</div>' +
         '<div class="attacker-meta">' + locStr + '</div>' +
@@ -649,6 +651,8 @@
   function getDstCity(n) {
     if (n.type === 'claude' && n.org === 'Anthropic, PBC') return 'SF, US';
     if (n.type === 'claude' && n.org === 'Cloudflare, Inc.') return 'CDN';
+    if (n.type === 'antigravity') return n.label.replace('AGI ', '') || 'Google';
+    if (n.type === 'codex') return n.label.replace('Codex ', '') || 'OpenAI';
     if (n.type === 'hub') return 'SG';
     if (n.type === 'mesh') return 'MY (WG)';
     if (n.type === 'attacker') return getLocationStr(n.lat, n.lng, n.org, n.label);
@@ -657,17 +661,21 @@
 
   function typeIcon(type) {
     if (type === 'claude') return '🟣';
+    if (type === 'antigravity') return '💜';
+    if (type === 'codex')  return '🟢';
     if (type === 'mesh')   return '🔵';
     if (type === 'hub')    return '🔵';
-    if (type === 'attacker') return '🔴';
+    if (type === 'attacker') return '☢️';
     return '⚪';
   }
 
   function typeClass(type) {
-    if (type === 'claude')   return 'log-icon-claude';
-    if (type === 'mesh')     return 'log-icon-mesh';
-    if (type === 'hub')      return 'log-icon-hub';
-    if (type === 'attacker') return 'log-icon-atk';
+    if (type === 'claude')       return 'log-icon-claude';
+    if (type === 'antigravity')  return 'log-icon-antigravity';
+    if (type === 'codex')        return 'log-icon-codex';
+    if (type === 'mesh')         return 'log-icon-mesh';
+    if (type === 'hub')          return 'log-icon-hub';
+    if (type === 'attacker')     return 'log-icon-atk';
     return '';
   }
 
@@ -691,7 +699,7 @@
       if (e.type === 'attacker') {
         line.innerHTML =
           '<span class="log-time">' + e.time + '</span> ' +
-          '<span class="' + cls + '">' + icon + ' ✕ BLOCKED</span> ' +
+          '<span class="' + cls + '">' + icon + ' BLOCKED</span> ' +
           '<span style="color:#ff6666">' + e.ip + '</span>';
       } else {
         line.innerHTML =
@@ -722,8 +730,8 @@
       var typeSpan, arrowSpan, dstSpan;
 
       if (e.type === 'attacker') {
-        typeSpan = '<span class="blog-type-atk">✕ blocked</span>';
-        arrowSpan = '<span class="blog-arrow">──✕</span>';
+        typeSpan = '<span class="blog-type-atk">☢ blocked</span>';
+        arrowSpan = '<span class="blog-arrow">──☢</span>';
         dstSpan = '<span style="color:#ff6666">' + e.dstCity + '</span>';
       } else {
         typeSpan = '<span class="blog-type-' + e.type + '">[' + e.type + ']</span>';
@@ -793,6 +801,8 @@
         var mag = n.type === 'self' ? 0.8 :
                   n.type === 'hub' ? 0.5 :
                   n.type === 'claude' ? 0.4 :
+                  n.type === 'antigravity' ? 0.45 :
+                  n.type === 'codex' ? 0.4 :
                   n.type === 'attacker' ? 0.3 :
                   n.type === 'mesh' ? 0.35 : 0.2;
         nodeData.push(n.lat, n.lng, mag);
@@ -959,7 +969,10 @@
 
       } else {
         // Normal node: glowing sphere dot
-        var dotColor = mag > 0.5 ? 0xa855f7 : 0x7c3aed;
+        var dotColor = ntype === 'antigravity' ? 0xa855f7 :
+                       ntype === 'codex' ? 0x22c55e :
+                       ntype === 'claude' ? 0xf97316 :
+                       mag > 0.5 ? 0xa855f7 : 0x7c3aed;
 
         var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
         var dotMat = new THREE.MeshBasicMaterial({
@@ -1045,11 +1058,13 @@
 
     // Arc colors — purple theme
     var typeColors = {
-      'claude':   0xf97316,   // orange — AI connections
-      'hub':      0xa855f7,   // purple — our infrastructure
-      'mesh':     0xa855f7,   // purple — WireGuard peers
-      'attacker': 0xff2222,   // red — enemies
-      'self':     0xa855f7,   // purple — us
+      'claude':       0xf97316,   // orange — Claude connections
+      'antigravity':  0xa855f7,   // purple — AGI connections
+      'codex':        0x22c55e,   // green  — Codex connections
+      'hub':          0xa855f7,   // purple — our infrastructure
+      'mesh':         0xa855f7,   // purple — WireGuard peers
+      'attacker':     0xff2222,   // red    — enemies
+      'self':         0xa855f7,   // purple — us
     };
 
     arcRoutes.forEach(function(route, idx) {
