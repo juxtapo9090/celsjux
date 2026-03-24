@@ -872,7 +872,7 @@
             '<span class="log-time">' + e.time + '</span> ' +
             '<span class="' + cls + '">' + icon + ' PC──→</span> ' +
             '<span style="color:var(--cyan)">' + e.dstCity + '</span>' +
-            ' <span style="color:var(--text-muted)">[' + e.type + ']</span>';
+            ' <span style="color:var(--text-muted)">[' + (e.type === 'antigravity' ? 'AGI' : e.type) + ']</span>';
         }
 
         body.appendChild(line);
