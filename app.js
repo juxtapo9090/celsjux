@@ -34,11 +34,12 @@
   }
 
   async function applyLiveData() {
-    const [anima, rtk, celestos, chronicle] = await Promise.all([
+    const [anima, rtk, celestos, chronicle, deltamesh] = await Promise.all([
       fetchJSON('data/anima.json'),
       fetchJSON('data/rtk.json'),
       fetchJSON('data/celestos.json'),
       fetchJSON('data/chronicle.json'),
+      fetchJSON('data/deltamesh.json'),
     ]);
 
     // ── Anima tile ──────────────────────────────────────────
@@ -52,9 +53,16 @@
     // ── RTK tile ────────────────────────────────────────────
     if (rtk) {
       // Update stats: first = savings_pct%, second = "active"
-      const rtkStats = document.querySelectorAll('.tile-rtk .stat-value');
-      if (rtkStats[0]) rtkStats[0].textContent = (rtk.savings_pct != null ? rtk.savings_pct.toFixed(0) : '100') + '%';
-      // rtkStats[1] stays "active"
+      const rtkPctEl = document.getElementById('rtk-pct');
+      if (rtkPctEl) rtkPctEl.textContent = (rtk.savings_pct != null ? rtk.savings_pct.toFixed(0) : '100') + '%';
+
+      // Today's stats line
+      const todayEl = document.getElementById('rtk-today');
+      if (todayEl && (rtk.today_saved != null || rtk.today_commands != null)) {
+        const saved = rtk.today_saved != null ? rtk.today_saved : '—';
+        const cmds  = rtk.today_commands != null ? rtk.today_commands : '—';
+        todayEl.textContent = 'today: ' + saved + ' saved (' + cmds + ' commands)';
+      }
 
       // Feed the real token count to the counter animation
       const parsed = parseTokenCount(rtk.tokens_saved);
@@ -65,21 +73,34 @@
 
     // ── CelestOS tile ───────────────────────────────────────
     if (celestos) {
-      const celestosStats = document.querySelectorAll('.tile-celestos .stat-value');
-      // First stat: "active" — leave it
-      if (celestosStats[1]) celestosStats[1].textContent = celestos.reducers ?? celestosStats[1].textContent;
+      const celestosReplaysEl = document.getElementById('celestos-replays');
+      if (celestosReplaysEl && celestos.replays_captured != null) {
+        celestosReplaysEl.textContent = celestos.replays_captured;
+      }
     }
 
     // ── Chronicle tile ──────────────────────────────────────
     if (chronicle) {
-      const chronicleStats = document.querySelectorAll('.tile-chronicle .stat-value');
-      if (chronicleStats[0] && chronicle.total_sessions != null) {
-        chronicleStats[0].textContent = chronicle.total_sessions;
+      const memoriesEl = document.getElementById('chronicle-memories');
+      if (memoriesEl && chronicle.memories != null) {
+        memoriesEl.textContent = chronicle.memories;
+      }
+    }
+
+    // ── DeltaMesh tile ──────────────────────────────────────
+    if (deltamesh) {
+      const nodesEl  = document.getElementById('deltamesh-nodes');
+      const statusEl = document.getElementById('deltamesh-status');
+      if (nodesEl && deltamesh.nodes_active != null) {
+        nodesEl.textContent = deltamesh.nodes_active + ' nodes';
+      }
+      if (statusEl && deltamesh.status != null) {
+        statusEl.textContent = deltamesh.status;
       }
     }
 
     // ── Last synced indicator ────────────────────────────────
-    const timestamps = [anima, rtk, celestos, chronicle]
+    const timestamps = [anima, rtk, celestos, chronicle, deltamesh]
       .filter(Boolean)
       .map(d => d.updated_at)
       .filter(Boolean)
