@@ -747,6 +747,9 @@
 
       periMsg.style.display = 'none';
 
+      var kirovSound = new Audio('assets/kirov.wav');
+      var kirovReady = true;
+
       attackers.forEach(function (a) {
         var city = a.label === 'blocked' ? '—' : a.label;
         var org = a.org || 'unknown org';
@@ -755,6 +758,7 @@
 
         var el = document.createElement('div');
         el.className = 'attacker-entry';
+        el.style.cursor = 'pointer';
         el.innerHTML =
           '<div class="attacker-ip">' +
           '<span class="attacker-x">☢</span>' +
@@ -762,6 +766,13 @@
           '</div>' +
           '<div class="attacker-meta">' + locStr + '</div>' +
           '<div class="attacker-org">' + org + '</div>';
+        el.addEventListener('click', function () {
+          if (!kirovReady) return;
+          kirovReady = false;
+          kirovSound.currentTime = 0;
+          kirovSound.play();
+          setTimeout(function () { kirovReady = true; }, 2000);
+        });
         list.appendChild(el);
       });
 
