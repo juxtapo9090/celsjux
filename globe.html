@@ -305,9 +305,10 @@
     }
 
     .log-line .log-time { color: var(--text-muted); }
-    .log-line .log-icon-claude { color: var(--purple); }
-    .log-line .log-icon-mesh  { color: var(--cyan); }
-    .log-line .log-icon-hub   { color: var(--cyan); }
+    .log-line .log-icon-claude { color: #d4a843; }
+    .log-line .log-icon-codex  { color: #22c55e; }
+    .log-line .log-icon-mesh  { color: var(--purple); }
+    .log-line .log-icon-hub   { color: var(--purple); }
     .log-line .log-icon-atk   { color: var(--red); }
 
     /* Mini service dashboard */
@@ -336,7 +337,7 @@
     .svc-row:last-child { border-bottom: none; }
 
     .svc-label { color: var(--text-dim); flex: 1; }
-    .svc-val   { color: var(--purple); font-weight: 700; }
+    .svc-val   { color: var(--purple); font-weight: 700; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .svc-bar-wrap {
       width: 60px;
       height: 3px;
@@ -400,9 +401,10 @@
     .blog-src  { color: var(--purple); }
     .blog-arrow { color: var(--text-muted); }
     .blog-dst  { color: var(--cyan); }
-    .blog-type-claude { color: var(--purple); }
-    .blog-type-mesh   { color: var(--cyan); }
-    .blog-type-hub    { color: var(--cyan); }
+    .blog-type-claude { color: #d4a843; }
+    .blog-type-codex  { color: #22c55e; }
+    .blog-type-mesh   { color: var(--purple); }
+    .blog-type-hub    { color: var(--purple); }
     .blog-type-atk    { color: var(--red); font-weight: 700; }
 
     /* ── Footer ── */
@@ -754,7 +756,13 @@
     }
 
     if (rtk) {
-      rtkEl.textContent = rtk.tokens_saved + ' saved';
+      var rtkRaw = rtk.tokens_saved || '';
+      // Convert e.g. "3878.7M" → "3.8B", "950.2K" → "950K", pass through if no unit
+      var rtkShort = rtkRaw.toString().replace(/^(\d+(?:\.\d+)?)M$/, function(_, n) {
+        var m = parseFloat(n);
+        return m >= 1000 ? (m / 1000).toFixed(1) + 'B' : Math.round(m) + 'M';
+      });
+      rtkEl.textContent = rtkShort + ' saved';
     } else {
       rtkEl.textContent = 'offline';
       rtkEl.style.color = 'var(--text-muted)';
@@ -774,7 +782,8 @@
     var w = container.offsetWidth;
     var h = container.offsetHeight;
 
-    var nodeData = [];
+    var nodeData = [];   // [lat, lng, mag, ...]
+    var nodeTypes = [];  // [type, ...]  parallel to nodeData/3
     var arcRoutes = [];
 
     if (liveData && liveData.nodes && liveData.nodes.length > 0) {
@@ -787,6 +796,7 @@
                   n.type === 'attacker' ? 0.3 :
                   n.type === 'mesh' ? 0.35 : 0.2;
         nodeData.push(n.lat, n.lng, mag);
+        nodeTypes.push(n.type);
 
         if (myNode && n.ip !== myNode.ip) {
           arcRoutes.push([myNode.lat, myNode.lng, n.lat, n.lng, n.type]);
@@ -803,6 +813,7 @@
         1.35, 103.82, 0.5,
         37.77, -122.42, 0.4,
       ];
+      nodeTypes = ['self', 'hub', 'claude'];
       arcRoutes = [
         [3.14, 101.69, 37.77, -122.42, 'claude'],
         [3.14, 101.69, 1.35, 103.82, 'hub'],
@@ -884,42 +895,97 @@
     atmosphere.scale.set(1.12, 1.12, 1.12);
     scene.add(atmosphere);
 
-    // Node dots — purple theme
+    // Node dots — type-aware rendering
+    // Attackers get a red ✕ crosshair; other nodes get smooth glowing dots
+    var attackerCrosshairs = []; // for pulse animation: {group, baseScale}
+
     for (var i = 0; i < nodeData.length; i += 3) {
       var lat = nodeData[i], lng = nodeData[i + 1], mag = nodeData[i + 2];
+      var ntype = nodeTypes[i / 3];
       var phi = (90 - lat) * Math.PI / 180;
       var theta = (180 - lng) * Math.PI / 180;
       var r = 201;
 
-      // Node color by magnitude (magnitude maps to node type)
-      var dotColor = mag > 0.5 ? 0xa855f7 : 0x7c3aed;
+      var px = r * Math.sin(phi) * Math.cos(theta);
+      var py = r * Math.cos(phi);
+      var pz = r * Math.sin(phi) * Math.sin(theta);
+      var pos = new THREE.Vector3(px, py, pz);
 
-      var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
-      var dotMat = new THREE.MeshBasicMaterial({
-        color: dotColor,
-        transparent: true,
-        opacity: 0.9,
-        blending: THREE.AdditiveBlending
-      });
-      var dot = new THREE.Mesh(dotGeom, dotMat);
-      dot.position.x = r * Math.sin(phi) * Math.cos(theta);
-      dot.position.y = r * Math.cos(phi);
-      dot.position.z = r * Math.sin(phi) * Math.sin(theta);
-      scene.add(dot);
+      if (ntype === 'attacker') {
+        // Build a crosshair group: two crossed lines forming an X
+        // The X lies in the plane tangent to the sphere at this point.
+        // We compute two tangent axes: one "up-ish" and one "right-ish"
+        var normal = pos.clone().normalize();
+        var up = new THREE.Vector3(0, 1, 0);
+        var tangentA = new THREE.Vector3().crossVectors(normal, up).normalize();
+        var tangentB = new THREE.Vector3().crossVectors(normal, tangentA).normalize();
 
-      if (mag > 0.3) {
-        var ringGeom = new THREE.RingGeometry(mag * 4, mag * 5, 32);
-        var ringMat = new THREE.MeshBasicMaterial({
-          color: 0xa855f7,
+        var xSize = mag * 6; // half-length of each arm
+        var crosshairMat = new THREE.LineBasicMaterial({
+          color: 0xff2222,
           transparent: true,
-          opacity: 0.25,
-          side: THREE.DoubleSide,
+          opacity: 0.9,
           blending: THREE.AdditiveBlending
         });
-        var ring = new THREE.Mesh(ringGeom, ringMat);
-        ring.position.copy(dot.position);
-        ring.lookAt(new THREE.Vector3(0, 0, 0));
-        scene.add(ring);
+
+        var group = new THREE.Group();
+
+        // Line 1: tangentA direction (\ arm of X)
+        var diag1A = pos.clone().addScaledVector(tangentA.clone().add(tangentB).normalize(), xSize);
+        var diag1B = pos.clone().addScaledVector(tangentA.clone().add(tangentB).normalize(), -xSize);
+        var geom1 = new THREE.BufferGeometry().setFromPoints([diag1A, diag1B]);
+        group.add(new THREE.Line(geom1, crosshairMat.clone()));
+
+        // Line 2: opposite diagonal (/ arm of X)
+        var diag2A = pos.clone().addScaledVector(tangentA.clone().sub(tangentB).normalize(), xSize);
+        var diag2B = pos.clone().addScaledVector(tangentA.clone().sub(tangentB).normalize(), -xSize);
+        var geom2 = new THREE.BufferGeometry().setFromPoints([diag2A, diag2B]);
+        group.add(new THREE.Line(geom2, crosshairMat.clone()));
+
+        scene.add(group);
+        attackerCrosshairs.push({ group: group, phase: Math.random() * Math.PI * 2 });
+
+        // Small red dot at center
+        var dotGeom = new THREE.SphereGeometry(mag * 2, 8, 6);
+        var dotMat = new THREE.MeshBasicMaterial({
+          color: 0xff2222,
+          transparent: true,
+          opacity: 0.85,
+          blending: THREE.AdditiveBlending
+        });
+        var dot = new THREE.Mesh(dotGeom, dotMat);
+        dot.position.copy(pos);
+        scene.add(dot);
+
+      } else {
+        // Normal node: glowing sphere dot
+        var dotColor = mag > 0.5 ? 0xa855f7 : 0x7c3aed;
+
+        var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
+        var dotMat = new THREE.MeshBasicMaterial({
+          color: dotColor,
+          transparent: true,
+          opacity: 0.9,
+          blending: THREE.AdditiveBlending
+        });
+        var dot = new THREE.Mesh(dotGeom, dotMat);
+        dot.position.set(px, py, pz);
+        scene.add(dot);
+
+        if (mag > 0.3) {
+          var ringGeom = new THREE.RingGeometry(mag * 4, mag * 5, 32);
+          var ringMat = new THREE.MeshBasicMaterial({
+            color: 0xa855f7,
+            transparent: true,
+            opacity: 0.25,
+            side: THREE.DoubleSide,
+            blending: THREE.AdditiveBlending
+          });
+          var ring = new THREE.Mesh(ringGeom, ringMat);
+          ring.position.set(px, py, pz);
+          ring.lookAt(new THREE.Vector3(0, 0, 0));
+          scene.add(ring);
+        }
       }
     }
 
@@ -1035,9 +1101,18 @@
       renderer.setSize(wp, hp);
     });
 
+    var animClock = 0;
     function animate() {
       requestAnimationFrame(animate);
+      animClock += 0.016;
       if (autoRotate) target.x += 0.001;
+
+      // Pulse crosshair attackers: scale in/out slowly
+      for (var ci = 0; ci < attackerCrosshairs.length; ci++) {
+        var ch = attackerCrosshairs[ci];
+        var pulse = 0.85 + 0.3 * Math.sin(animClock * 1.2 + ch.phase);
+        ch.group.scale.setScalar(pulse);
+      }
 
       for (var ai = 0; ai < animatedArcs.length; ai++) {
         var arc = animatedArcs[ai];
