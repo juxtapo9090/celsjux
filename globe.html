@@ -358,7 +358,7 @@
     }
 
     .log-line .log-icon-claude {
-      color: #d4a843;
+      color: #f5c842;
     }
 
     .log-line .log-icon-codex {
@@ -366,7 +366,7 @@
     }
 
     .log-line .log-icon-antigravity {
-      color: #a855f7;
+      color: #00d4ff;
     }
 
     .log-line .log-icon-mesh {
@@ -508,7 +508,7 @@
     }
 
     .blog-type-claude {
-      color: #d4a843;
+      color: #f5c842;
     }
 
     .blog-type-codex {
@@ -516,7 +516,7 @@
     }
 
     .blog-type-antigravity {
-      color: #a855f7;
+      color: #00d4ff;
     }
 
     .blog-type-mesh {
@@ -826,8 +826,8 @@
     }
 
     function typeIcon(type) {
-      if (type === 'claude') return '🟣';
-      if (type === 'antigravity') return '💜';
+      if (type === 'claude') return '✨';
+      if (type === 'antigravity') return '✦';
       if (type === 'codex') return '🟢';
       if (type === 'mesh') return '🔵';
       if (type === 'hub') return '🔵';
@@ -1135,9 +1135,9 @@
 
         } else {
           // Normal node: glowing sphere dot
-          var dotColor = ntype === 'antigravity' ? 0xa855f7 :
+          var dotColor = ntype === 'antigravity' ? 0x00d4ff :
             ntype === 'codex' ? 0x22c55e :
-              ntype === 'claude' ? 0xf97316 :
+              ntype === 'claude' ? 0xf5c842 :
                 mag > 0.5 ? 0xa855f7 : 0x7c3aed;
 
           var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
@@ -1224,8 +1224,8 @@
 
       // Arc colors — purple theme
       var typeColors = {
-        'claude': 0xf97316,   // orange — Claude connections
-        'antigravity': 0xa855f7,   // purple — AGI connections
+        'claude': 0xf5c842,   // gold   — Claude connections
+        'antigravity': 0x00d4ff,   // cyan   — AGI connections
         'codex': 0x22c55e,   // green  — Codex connections
         'hub': 0xa855f7,   // purple — our infrastructure
         'mesh': 0xa855f7,   // purple — WireGuard peers
