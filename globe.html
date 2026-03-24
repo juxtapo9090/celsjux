@@ -900,7 +900,7 @@
           arrowSpan = '<span class="blog-arrow">──☢</span>';
           dstSpan = '<span style="color:#ff6666">' + e.dstCity + '</span>';
         } else {
-          typeSpan = '<span class="blog-type-' + e.type + '">[' + e.type + ']</span>';
+          typeSpan = '<span class="blog-type-' + e.type + '">[' + (e.type === 'antigravity' ? 'AGI' : e.type) + ']</span>';
           arrowSpan = '<span class="blog-arrow">──→</span>';
           dstSpan = '<span class="blog-dst">' + e.dstLabel + ' (' + e.dstCity + ')</span>';
         }
