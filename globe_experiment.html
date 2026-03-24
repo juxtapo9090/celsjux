@@ -45,24 +45,58 @@
 
 <script>
 (function() {
-  // ── Our node data: [lat, lng, magnitude] ──
-  var nodeData = [
-    3.14, 101.69, 0.8,    // Malaysia — HOME (tallest)
-    1.35, 103.82, 0.35,   // Singapore
-    35.68, 139.69, 0.3,   // Japan
-    37.57, 126.98, 0.25,  // South Korea
-    51.51, -0.13, 0.28,   // London
-    37.77, -122.42, 0.3,  // San Francisco
-    -33.87, 151.21, 0.18, // Sydney
-    55.75, 37.62, 0.15,   // Moscow
-    48.86, 2.35, 0.2,     // Paris
-    -23.55, -46.63, 0.18, // São Paulo
-    28.61, 77.21, 0.25,   // Delhi
-    25.20, 55.27, 0.2,    // Dubai
-    39.90, 116.40, 0.28,  // Beijing
-    -6.21, 106.85, 0.18,  // Jakarta
-    13.76, 100.50, 0.25,  // Bangkok
-  ];
+  // ── Load real data from globe.json, fallback to static ──
+  fetch('data/globe.json')
+    .then(r => r.ok ? r.json() : null)
+    .then(data => initGlobe(data))
+    .catch(() => initGlobe(null));
+
+  function initGlobe(liveData) {
+
+  // Build node data from live JSON or fallback
+  var nodeData = [];
+  var arcRoutes = [];
+
+  if (liveData && liveData.nodes && liveData.nodes.length > 0) {
+    // REAL DATA MODE 🌍
+    var myNode = liveData.nodes.find(n => n.type === 'self');
+    var hubNode = liveData.nodes.find(n => n.type === 'hub');
+
+    liveData.nodes.forEach(function(n) {
+      var mag = n.type === 'self' ? 0.8 :
+                n.type === 'hub' ? 0.5 :
+                n.type === 'claude' ? 0.4 :
+                n.type === 'attacker' ? 0.3 :
+                n.type === 'mesh' ? 0.35 : 0.2;
+      nodeData.push(n.lat, n.lng, mag);
+
+      // Arcs from self to everything
+      if (myNode && n.ip !== myNode.ip) {
+        arcRoutes.push([myNode.lat, myNode.lng, n.lat, n.lng, n.type]);
+      }
+    });
+
+    // Update HUD
+    var dotEl = document.getElementById('dot-count');
+    var arcEl = document.getElementById('arc-count');
+    if (dotEl) dotEl.textContent = liveData.nodes.length;
+    if (arcEl) arcEl.textContent = arcRoutes.length;
+  } else {
+    // FALLBACK — static fake data
+    nodeData = [
+      3.14, 101.69, 0.8,
+      1.35, 103.82, 0.35,
+      35.68, 139.69, 0.3,
+      37.77, -122.42, 0.3,
+      51.51, -0.13, 0.28,
+      45.32, 103.70, 0.5,
+    ];
+    arcRoutes = [
+      [3.14, 101.69, 37.77, -122.42, 'claude'],
+      [3.14, 101.69, 1.35, 103.82, 'mesh'],
+      [3.14, 101.69, 51.51, -0.13, 'claude'],
+    ];
+  }
 
   // ── Shaders ──
   var earthShader = {
@@ -180,19 +214,7 @@
     }
   }
 
-  // ── Arc lines — curved nuclear launcher style 🚀 ──
-  var arcRoutes = [
-    [3.14, 101.69, 37.77, -122.42],   // MY → SF
-    [3.14, 101.69, 35.68, 139.69],    // MY → Japan
-    [3.14, 101.69, 51.51, -0.13],     // MY → London
-    [3.14, 101.69, 1.35, 103.82],     // MY → Singapore
-    [3.14, 101.69, 28.61, 77.21],     // MY → Delhi
-    [3.14, 101.69, 13.76, 100.50],    // MY → Bangkok
-    [51.51, -0.13, 37.77, -122.42],   // London → SF
-    [35.68, 139.69, 37.57, 126.98],   // Japan → Korea
-    [1.35, 103.82, -6.21, 106.85],    // SG → Jakarta
-    [28.61, 77.21, 25.20, 55.27],     // Delhi → Dubai
-  ];
+  // ── Arc routes built from real data above ──
 
   function latLngToVec3(lat, lng, radius) {
     var phi = (90 - lat) * Math.PI / 180;
@@ -253,25 +275,27 @@
     animatedArcs.push(arcObj);
   }
 
-  // Primary arcs from Malaysia — orange, varied speeds
-  createAnimatedArc(3.14, 101.69, 37.77, -122.42, 0xf97316, 0.35);
-  createAnimatedArc(3.14, 101.69, 35.68, 139.69, 0xf97316, 0.45);
-  createAnimatedArc(3.14, 101.69, 51.51, -0.13, 0xf97316, 0.3);
-  createAnimatedArc(3.14, 101.69, 1.35, 103.82, 0xf97316, 0.6);
-  createAnimatedArc(3.14, 101.69, 28.61, 77.21, 0xf97316, 0.4);
-  createAnimatedArc(3.14, 101.69, 13.76, 100.50, 0xf97316, 0.5);
-  // Secondary arcs — cyan
-  createAnimatedArc(51.51, -0.13, 37.77, -122.42, 0x22d3ee, 0.35);
-  createAnimatedArc(35.68, 139.69, 37.57, 126.98, 0x22d3ee, 0.55);
-  createAnimatedArc(1.35, 103.82, -6.21, 106.85, 0x22d3ee, 0.5);
-  createAnimatedArc(28.61, 77.21, 25.20, 55.27, 0x22d3ee, 0.4);
+  // Create arcs from real data — color by type
+  var typeColors = {
+    'claude': 0xf97316,    // orange — AI services
+    'hub': 0x22d3ee,       // cyan — our infrastructure
+    'mesh': 0x22d3ee,      // cyan — WireGuard peers
+    'attacker': 0xff2222,  // red — enemies
+    'self': 0xa855f7,      // purple — us
+  };
+
+  arcRoutes.forEach(function(route, i) {
+    var color = typeColors[route[4]] || 0x22d3ee;
+    var speed = 0.3 + Math.random() * 0.3;
+    createAnimatedArc(route[0], route[1], route[2], route[3], color, speed);
+  });
 
   // ── Mouse interaction ──
   var mouse = { x: 0, y: 0 }, mouseDown = { x: 0, y: 0 };
   var rotation = { x: Math.PI * 1.1, y: Math.PI / 6 };
   var target = { x: rotation.x, y: rotation.y };
   var targetDown = { x: 0, y: 0 };
-  var distance = 600, distTarget = 600;
+  var distance = 950, distTarget = 950;
   var dragging = false;
   var autoRotate = true;
 
@@ -342,6 +366,7 @@
     renderer.render(scene, camera);
   }
   animate();
+  } // end initGlobe
 })();
 </script>
 </body>

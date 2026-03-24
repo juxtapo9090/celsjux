@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeltaMesh Command Center — celsjux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0a0a0f;
+      --bg-panel:   #0d0d18;
+      --bg-panel-h: #12121e;
+      --text:       #e0e0e0;
+      --text-dim:   #888;
+      --text-muted: #444;
+      --purple:     #a855f7;
+      --purple-dim: #7c3aed;
+      --purple-glow:rgba(168, 85, 247, 0.25);
+      --purple-border: rgba(168, 85, 247, 0.18);
+      --purple-border-h: rgba(168, 85, 247, 0.45);
+      --red:        #ff2222;
+      --red-dim:    rgba(255, 34, 34, 0.15);
+      --green:      #22c55e;
+      --cyan:       #22d3ee;
+      --orange:     #f97316;
+      --font:       'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 24px;
+      background: rgba(10, 10, 15, 0.95);
+      border-bottom: 1px solid var(--purple-border);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+    }
+
+    .header-subtitle {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-left: 4px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back-link {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--purple-border);
+      border-radius: 4px;
+      padding: 3px 10px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--purple);
+      border-color: var(--purple-border-h);
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+      50%       { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+    }
+
+    /* ── Three-column layout ── */
+    .command-center {
+      display: grid;
+      grid-template-columns: 260px 1fr 280px;
+      height: calc(100vh - 47px - 200px - 60px); /* subtract header + bottom log + footer */
+      min-height: 480px;
+    }
+
+    /* ── Panel base ── */
+    .panel {
+      background: var(--bg-panel);
+      border-right: 1px solid var(--purple-border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel:last-child { border-right: none; border-left: 1px solid var(--purple-border); }
+
+    .panel-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--purple-border);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    .panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--purple-dim) transparent;
+    }
+    .panel-body::-webkit-scrollbar { width: 4px; }
+    .panel-body::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 2px; }
+
+    /* ── LEFT: Wall of Shame ── */
+    .wall-header {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.05em;
+      padding: 12px 14px 8px;
+      border-bottom: 1px solid rgba(255, 34, 34, 0.15);
+      flex-shrink: 0;
+      text-shadow: 0 0 10px rgba(255, 34, 34, 0.4);
+    }
+
+    .attacker-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: #ff2222 transparent;
+    }
+    .attacker-list::-webkit-scrollbar { width: 3px; }
+    .attacker-list::-webkit-scrollbar-thumb { background: #ff2222; }
+
+    .attacker-entry {
+      padding: 8px 8px 10px;
+      margin-bottom: 6px;
+      border: 1px solid rgba(255, 34, 34, 0.12);
+      border-left: 2px solid var(--red);
+      background: var(--red-dim);
+      border-radius: 4px;
+    }
+
+    .attacker-ip {
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .attacker-x { color: var(--red); font-size: 12px; }
+
+    .attacker-meta {
+      font-size: 10px;
+      color: #ff6666;
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .attacker-org {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .wall-footer {
+      padding: 10px 14px;
+      border-top: 1px solid rgba(255, 34, 34, 0.15);
+      font-size: 11px;
+      color: #ff4444;
+      flex-shrink: 0;
+    }
+
+    .perimeter-clear {
+      color: var(--green);
+      font-size: 12px;
+      padding: 20px 10px;
+      text-align: center;
+    }
+
+    /* ── CENTER: Globe ── */
+    .globe-panel {
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+
+    #globe-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    #globe-canvas-wrap {
+      position: absolute;
+      inset: 0;
+    }
+
+    .globe-hud {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .globe-hud-sub {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(168, 85, 247, 0.5);
+    }
+
+    .globe-hud-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(240, 220, 255, 0.9);
+      text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    .globe-hud-stats {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      z-index: 10;
+      pointer-events: none;
+      font-size: 10px;
+      color: rgba(168, 85, 247, 0.6);
+      line-height: 1.6;
+    }
+
+    .globe-hud-stats span { color: var(--purple); }
+
+    /* ── RIGHT: Live Terminal ── */
+    .right-panel { border-left: 1px solid var(--purple-border); }
+
+    .conn-log-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--purple-border);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    .conn-log-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 10px;
+      font-size: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--purple-dim) transparent;
+    }
+    .conn-log-body::-webkit-scrollbar { width: 3px; }
+    .conn-log-body::-webkit-scrollbar-thumb { background: var(--purple-dim); }
+
+    .log-line {
+      padding: 3px 0;
+      color: #7cfc8a;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.05);
+    }
+
+    .log-line .log-time { color: var(--text-muted); }
+    .log-line .log-icon-claude { color: var(--purple); }
+    .log-line .log-icon-mesh  { color: var(--cyan); }
+    .log-line .log-icon-hub   { color: var(--cyan); }
+    .log-line .log-icon-atk   { color: var(--red); }
+
+    /* Mini service dashboard */
+    .service-dash {
+      flex-shrink: 0;
+      border-top: 1px solid var(--purple-border);
+      padding: 10px;
+    }
+
+    .service-dash-title {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .svc-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.06);
+      font-size: 11px;
+    }
+    .svc-row:last-child { border-bottom: none; }
+
+    .svc-label { color: var(--text-dim); flex: 1; }
+    .svc-val   { color: var(--purple); font-weight: 700; }
+    .svc-bar-wrap {
+      width: 60px;
+      height: 3px;
+      background: rgba(168, 85, 247, 0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .svc-bar {
+      height: 100%;
+      background: var(--purple);
+      border-radius: 2px;
+    }
+
+    /* ── Bottom: Connection Log (full width) ── */
+    .bottom-log {
+      border-top: 1px solid var(--purple-border);
+      background: var(--bg-panel);
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bottom-log-header {
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--purple-border);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .bottom-log-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 16px;
+      font-size: 11px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--purple-dim) transparent;
+    }
+    .bottom-log-body::-webkit-scrollbar { width: 4px; }
+    .bottom-log-body::-webkit-scrollbar-thumb { background: var(--purple-dim); }
+
+    .blog-entry {
+      display: grid;
+      grid-template-columns: 55px 70px 1fr 1fr 80px;
+      gap: 8px;
+      align-items: center;
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.06);
+      color: #7cfc8a;
+      font-size: 10px;
+    }
+
+    .blog-entry:last-child { border-bottom: none; }
+
+    .blog-time { color: var(--text-muted); }
+    .blog-src  { color: var(--purple); }
+    .blog-arrow { color: var(--text-muted); }
+    .blog-dst  { color: var(--cyan); }
+    .blog-type-claude { color: var(--purple); }
+    .blog-type-mesh   { color: var(--cyan); }
+    .blog-type-hub    { color: var(--cyan); }
+    .blog-type-atk    { color: var(--red); font-weight: 700; }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: rgba(10, 10, 15, 0.95);
+      border-top: 1px solid var(--purple-border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-motto { font-style: italic; color: var(--text-dim); }
+    .footer-motto em { color: var(--purple); font-style: normal; }
+    .footer-right { text-align: right; line-height: 1.6; }
+    .footer-right a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--purple); }
+
+    /* ── Responsive: Mobile stacks vertically ── */
+    @media (max-width: 800px) {
+      .command-center {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .panel { border-right: none; border-left: none; border-bottom: 1px solid var(--purple-border); }
+      .right-panel { border-left: none; }
+      .globe-panel { height: 60vw; min-height: 300px; }
+
+      .panel-body, .attacker-list { max-height: 200px; }
+      .conn-log-body { max-height: 160px; }
+
+      .bottom-log { height: auto; }
+      .bottom-log-body { max-height: 160px; }
+
+      .blog-entry { grid-template-columns: 55px 1fr 80px; }
+      .blog-arrow, .blog-dst { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-logo">🔺 DeltaMesh</span>
+      <span class="header-subtitle">command center</span>
+    </div>
+    <div class="header-right">
+      <span class="status-dot"></span>
+      <span style="font-size:11px;color:var(--text-dim)">mesh live</span>
+      <a href="index.html" class="back-link">← back to workshop</a>
+    </div>
+  </header>
+
+  <!-- THREE-COLUMN COMMAND CENTER -->
+  <div class="command-center">
+
+    <!-- LEFT: Wall of Shame -->
+    <div class="panel" id="left-panel">
+      <div class="wall-header">☠️ INTERCEPTED</div>
+      <div class="attacker-list" id="attacker-list">
+        <div class="perimeter-clear" id="perimeter-msg" style="display:none">🟢 perimeter clear</div>
+      </div>
+      <div class="wall-footer" id="wall-footer">loading...</div>
+    </div>
+
+    <!-- CENTER: WebGL Globe -->
+    <div class="globe-panel" id="globe-panel">
+      <div id="globe-canvas-wrap"></div>
+      <div class="globe-hud">
+        <div class="globe-hud-sub">orbital signal map</div>
+        <div class="globe-hud-title">celsjux relay field</div>
+      </div>
+      <div class="globe-hud-stats" id="globe-hud-stats">
+        <span id="dot-count">—</span> nodes · <span id="arc-count">—</span> routes<br>
+        home: <span>Kuala Lumpur</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Live Terminal Panel -->
+    <div class="panel right-panel" id="right-panel">
+      <div class="conn-log-header">&gt; LIVE TERMINAL</div>
+      <div class="conn-log-body" id="right-log-body">
+        <!-- populated by JS -->
+      </div>
+      <div class="service-dash" id="service-dash">
+        <div class="service-dash-title">// system pulse</div>
+        <div class="svc-row">
+          <span class="svc-label">💓 Anima</span>
+          <span class="svc-val" id="svc-anima">—</span>
+        </div>
+        <div class="svc-row">
+          <span class="svc-label">⚡ RTK</span>
+          <div style="flex:1">
+            <span class="svc-val" id="svc-rtk">—</span>
+          </div>
+        </div>
+        <div class="svc-row">
+          <span class="svc-label">🔺 DeltaMesh</span>
+          <span class="svc-val" id="svc-dm">—</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM: Full-width connection log -->
+  <div class="bottom-log">
+    <div class="bottom-log-header">
+      <span>📡 CONNECTION LOG</span>
+      <span style="color:var(--text-muted);font-size:9px;letter-spacing:0.1em">— all active nodes from mesh topology</span>
+    </div>
+    <div class="bottom-log-body" id="bottom-log-body">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-motto">
+      "Some hide their tracks. We put ours on a <em>spinning globe</em>."
+      <span style="margin-left:12px;color:var(--text-muted)">Built in Malaysia 🇲🇾</span>
+    </div>
+    <div class="footer-right">
+      <a href="index.html">← celsjux workshop</a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+  <script>
+  // ── Load all data then bootstrap ──
+  Promise.all([
+    fetch('data/globe.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('data/anima.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('data/rtk.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('data/deltamesh.json').then(r => r.ok ? r.json() : null).catch(() => null),
+  ]).then(function([globe, anima, rtk, dm]) {
+    populateWallOfShame(globe);
+    populateRightLog(globe);
+    populateBottomLog(globe);
+    populateServiceDash(anima, rtk, dm);
+    initGlobe(globe);
+  });
+
+  // ── WALL OF SHAME ──
+  function populateWallOfShame(data) {
+    var list = document.getElementById('attacker-list');
+    var footer = document.getElementById('wall-footer');
+    var periMsg = document.getElementById('perimeter-msg');
+
+    if (!data || !data.nodes) {
+      periMsg.style.display = 'block';
+      footer.textContent = '🛡️ 0 blocked';
+      return;
+    }
+
+    var attackers = data.nodes.filter(function(n) { return n.type === 'attacker'; });
+
+    if (attackers.length === 0) {
+      periMsg.style.display = 'block';
+      footer.textContent = '🛡️ 0 blocked';
+      return;
+    }
+
+    periMsg.style.display = 'none';
+
+    attackers.forEach(function(a) {
+      var city = a.label === 'blocked' ? '—' : a.label;
+      var org = a.org || 'unknown org';
+      // Try to derive country from label (e.g. "Icme Cloud" → Sweden from lat/lng)
+      var locStr = getLocationStr(a.lat, a.lng, a.org, a.label);
+
+      var el = document.createElement('div');
+      el.className = 'attacker-entry';
+      el.innerHTML =
+        '<div class="attacker-ip">' +
+          '<span class="attacker-x">✕</span>' +
+          '<span>' + a.ip + '</span>' +
+        '</div>' +
+        '<div class="attacker-meta">' + locStr + '</div>' +
+        '<div class="attacker-org">' + org + '</div>';
+      list.appendChild(el);
+    });
+
+    var count = data.attacker_count || attackers.length;
+    footer.innerHTML = '🛡️ <strong style="color:var(--red)">' + count + '</strong> blocked';
+  }
+
+  function getLocationStr(lat, lng, org, label) {
+    // Approximate country from lat/lng
+    if (lat > 55 && lat < 70 && lng > 10 && lng < 30) return 'Stockholm, SE';
+    if (lat > 35 && lat < 45 && lng > 110 && lng < 125) return 'Beijing, CN';
+    if (lat > 50 && lat < 55 && lng > 0 && lng < 5) return 'Amsterdam, NL';
+    if (lat > 37 && lat < 40 && lng > -80 && lng < -70) return 'New York, US';
+    if (lat > 48 && lat < 52 && lng > 2 && lng < 5) return 'Paris, FR';
+    return label !== 'blocked' ? label : (lat.toFixed(1) + '°, ' + lng.toFixed(1) + '°');
+  }
+
+  // ── GENERATE LOG ENTRIES FROM GLOBE DATA ──
+  function buildLogEntries(data) {
+    if (!data || !data.nodes) return [];
+    var myNode = data.nodes.find(function(n) { return n.type === 'self'; });
+    var entries = [];
+    var baseMs = Date.now();
+    var i = 0;
+
+    data.nodes.forEach(function(n) {
+      if (n.type === 'self') return;
+      var ago = (i * 2 + Math.floor(Math.random() * 3)) * 60 * 1000;
+      var ts = new Date(baseMs - ago);
+      var hh = ts.getHours().toString().padStart(2, '0');
+      var mm = ts.getMinutes().toString().padStart(2, '0');
+
+      var srcLabel = myNode ? 'PC (MY)' : 'PC';
+      var dstLabel = n.label;
+      var dstCity = getDstCity(n);
+
+      entries.push({
+        time: hh + ':' + mm,
+        type: n.type,
+        ip: n.ip,
+        srcLabel: srcLabel,
+        dstLabel: dstLabel,
+        dstCity: dstCity,
+        lat: n.lat,
+        lng: n.lng,
+        org: n.org,
+      });
+      i++;
+    });
+    return entries;
+  }
+
+  function getDstCity(n) {
+    if (n.type === 'claude' && n.org === 'Anthropic, PBC') return 'SF, US';
+    if (n.type === 'claude' && n.org === 'Cloudflare, Inc.') return 'CDN';
+    if (n.type === 'hub') return 'SG';
+    if (n.type === 'mesh') return 'MY (WG)';
+    if (n.type === 'attacker') return getLocationStr(n.lat, n.lng, n.org, n.label);
+    return n.label;
+  }
+
+  function typeIcon(type) {
+    if (type === 'claude') return '🟣';
+    if (type === 'mesh')   return '🔵';
+    if (type === 'hub')    return '🔵';
+    if (type === 'attacker') return '🔴';
+    return '⚪';
+  }
+
+  function typeClass(type) {
+    if (type === 'claude')   return 'log-icon-claude';
+    if (type === 'mesh')     return 'log-icon-mesh';
+    if (type === 'hub')      return 'log-icon-hub';
+    if (type === 'attacker') return 'log-icon-atk';
+    return '';
+  }
+
+  // ── RIGHT PANEL LOG ──
+  function populateRightLog(data) {
+    var body = document.getElementById('right-log-body');
+    var entries = buildLogEntries(data);
+
+    if (entries.length === 0) {
+      body.innerHTML = '<div class="log-line" style="color:var(--text-muted)">no connections</div>';
+      return;
+    }
+
+    entries.forEach(function(e) {
+      var line = document.createElement('div');
+      line.className = 'log-line';
+
+      var icon = typeIcon(e.type);
+      var cls = typeClass(e.type);
+
+      if (e.type === 'attacker') {
+        line.innerHTML =
+          '<span class="log-time">' + e.time + '</span> ' +
+          '<span class="' + cls + '">' + icon + ' ✕ BLOCKED</span> ' +
+          '<span style="color:#ff6666">' + e.ip + '</span>';
+      } else {
+        line.innerHTML =
+          '<span class="log-time">' + e.time + '</span> ' +
+          '<span class="' + cls + '">' + icon + ' PC──→</span> ' +
+          '<span style="color:var(--cyan)">' + e.dstCity + '</span>' +
+          ' <span style="color:var(--text-muted)">[' + e.type + ']</span>';
+      }
+
+      body.appendChild(line);
+    });
+  }
+
+  // ── BOTTOM LOG ──
+  function populateBottomLog(data) {
+    var body = document.getElementById('bottom-log-body');
+    var entries = buildLogEntries(data);
+
+    if (entries.length === 0) {
+      body.innerHTML = '<div class="blog-entry" style="color:var(--text-muted)">no connection data</div>';
+      return;
+    }
+
+    entries.forEach(function(e) {
+      var row = document.createElement('div');
+      row.className = 'blog-entry';
+
+      var typeSpan, arrowSpan, dstSpan;
+
+      if (e.type === 'attacker') {
+        typeSpan = '<span class="blog-type-atk">✕ blocked</span>';
+        arrowSpan = '<span class="blog-arrow">──✕</span>';
+        dstSpan = '<span style="color:#ff6666">' + e.dstCity + '</span>';
+      } else {
+        typeSpan = '<span class="blog-type-' + e.type + '">[' + e.type + ']</span>';
+        arrowSpan = '<span class="blog-arrow">──→</span>';
+        dstSpan = '<span class="blog-dst">' + e.dstLabel + ' (' + e.dstCity + ')</span>';
+      }
+
+      row.innerHTML =
+        '<span class="blog-time">' + e.time + '</span>' +
+        '<span class="blog-src">PC (Nilai, MY)</span>' +
+        arrowSpan +
+        dstSpan +
+        typeSpan;
+
+      body.appendChild(row);
+    });
+  }
+
+  // ── SERVICE DASHBOARD ──
+  function populateServiceDash(anima, rtk, dm) {
+    var animaEl = document.getElementById('svc-anima');
+    var rtkEl = document.getElementById('svc-rtk');
+    var dmEl = document.getElementById('svc-dm');
+
+    if (anima) {
+      animaEl.textContent = 'joy:' + anima.joy + ' moved:' + anima.moved;
+    } else {
+      animaEl.textContent = 'offline';
+      animaEl.style.color = 'var(--text-muted)';
+    }
+
+    if (rtk) {
+      rtkEl.textContent = rtk.tokens_saved + ' saved';
+    } else {
+      rtkEl.textContent = 'offline';
+      rtkEl.style.color = 'var(--text-muted)';
+    }
+
+    if (dm) {
+      dmEl.textContent = dm.nodes_active + ' nodes';
+    } else {
+      dmEl.textContent = 'offline';
+      dmEl.style.color = 'var(--text-muted)';
+    }
+  }
+
+  // ── WEBGL GLOBE ──
+  function initGlobe(liveData) {
+    var container = document.getElementById('globe-canvas-wrap');
+    var w = container.offsetWidth;
+    var h = container.offsetHeight;
+
+    var nodeData = [];
+    var arcRoutes = [];
+
+    if (liveData && liveData.nodes && liveData.nodes.length > 0) {
+      var myNode = liveData.nodes.find(function(n) { return n.type === 'self'; });
+
+      liveData.nodes.forEach(function(n) {
+        var mag = n.type === 'self' ? 0.8 :
+                  n.type === 'hub' ? 0.5 :
+                  n.type === 'claude' ? 0.4 :
+                  n.type === 'attacker' ? 0.3 :
+                  n.type === 'mesh' ? 0.35 : 0.2;
+        nodeData.push(n.lat, n.lng, mag);
+
+        if (myNode && n.ip !== myNode.ip) {
+          arcRoutes.push([myNode.lat, myNode.lng, n.lat, n.lng, n.type]);
+        }
+      });
+
+      var dotEl = document.getElementById('dot-count');
+      var arcEl = document.getElementById('arc-count');
+      if (dotEl) dotEl.textContent = liveData.nodes.length;
+      if (arcEl) arcEl.textContent = arcRoutes.length;
+    } else {
+      nodeData = [
+        3.14, 101.69, 0.8,
+        1.35, 103.82, 0.5,
+        37.77, -122.42, 0.4,
+      ];
+      arcRoutes = [
+        [3.14, 101.69, 37.77, -122.42, 'claude'],
+        [3.14, 101.69, 1.35, 103.82, 'hub'],
+      ];
+    }
+
+    // ── Earth shader — purple atmosphere ──
+    var earthShader = {
+      vertexShader: `
+        varying vec3 vNormal;
+        varying vec2 vUv;
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          vNormal = normalize(normalMatrix * normal);
+          vUv = uv;
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D uTexture;
+        varying vec3 vNormal;
+        varying vec2 vUv;
+        void main() {
+          vec3 diffuse = texture2D(uTexture, vUv).xyz * 0.3;
+          float intensity = 1.05 - dot(vNormal, vec3(0.0, 0.0, 1.0));
+          vec3 atmosphere = vec3(0.66, 0.33, 0.97) * pow(intensity, 3.0);
+          gl_FragColor = vec4(diffuse + atmosphere, 1.0);
+        }
+      `
+    };
+
+    var atmosphereShader = {
+      vertexShader: `
+        varying vec3 vNormal;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormal;
+        void main() {
+          float intensity = pow(0.75 - dot(vNormal, vec3(0, 0, 1.0)), 10.0);
+          gl_FragColor = vec4(0.66, 0.33, 0.97, 1.0) * intensity;
+        }
+      `
+    };
+
+    var camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
+    camera.position.z = 600;
+
+    var scene = new THREE.Scene();
+    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(w, h);
+    renderer.setClearColor(0x000000, 1);
+    container.appendChild(renderer.domElement);
+
+    // Earth
+    var earthGeom = new THREE.SphereGeometry(200, 40, 30);
+    var earthTex = new THREE.TextureLoader().load('assets/world_dark.jpg');
+    var earthMat = new THREE.ShaderMaterial({
+      uniforms: { uTexture: { value: earthTex } },
+      vertexShader: earthShader.vertexShader,
+      fragmentShader: earthShader.fragmentShader
+    });
+    var earth = new THREE.Mesh(earthGeom, earthMat);
+    earth.rotation.y = Math.PI;
+    scene.add(earth);
+
+    // Atmosphere — purple glow
+    var atmoMat = new THREE.ShaderMaterial({
+      vertexShader: atmosphereShader.vertexShader,
+      fragmentShader: atmosphereShader.fragmentShader,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true
+    });
+    var atmosphere = new THREE.Mesh(earthGeom.clone(), atmoMat);
+    atmosphere.scale.set(1.12, 1.12, 1.12);
+    scene.add(atmosphere);
+
+    // Node dots — purple theme
+    for (var i = 0; i < nodeData.length; i += 3) {
+      var lat = nodeData[i], lng = nodeData[i + 1], mag = nodeData[i + 2];
+      var phi = (90 - lat) * Math.PI / 180;
+      var theta = (180 - lng) * Math.PI / 180;
+      var r = 201;
+
+      // Node color by magnitude (magnitude maps to node type)
+      var dotColor = mag > 0.5 ? 0xa855f7 : 0x7c3aed;
+
+      var dotGeom = new THREE.SphereGeometry(mag * 3, 12, 8);
+      var dotMat = new THREE.MeshBasicMaterial({
+        color: dotColor,
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending
+      });
+      var dot = new THREE.Mesh(dotGeom, dotMat);
+      dot.position.x = r * Math.sin(phi) * Math.cos(theta);
+      dot.position.y = r * Math.cos(phi);
+      dot.position.z = r * Math.sin(phi) * Math.sin(theta);
+      scene.add(dot);
+
+      if (mag > 0.3) {
+        var ringGeom = new THREE.RingGeometry(mag * 4, mag * 5, 32);
+        var ringMat = new THREE.MeshBasicMaterial({
+          color: 0xa855f7,
+          transparent: true,
+          opacity: 0.25,
+          side: THREE.DoubleSide,
+          blending: THREE.AdditiveBlending
+        });
+        var ring = new THREE.Mesh(ringGeom, ringMat);
+        ring.position.copy(dot.position);
+        ring.lookAt(new THREE.Vector3(0, 0, 0));
+        scene.add(ring);
+      }
+    }
+
+    function latLngToVec3(lat, lng, radius) {
+      var phi = (90 - lat) * Math.PI / 180;
+      var theta = (180 - lng) * Math.PI / 180;
+      return new THREE.Vector3(
+        radius * Math.sin(phi) * Math.cos(theta),
+        radius * Math.cos(phi),
+        radius * Math.sin(phi) * Math.sin(theta)
+      );
+    }
+
+    var animatedArcs = [];
+    var ARC_POINTS = 80;
+    var TRAIL_LENGTH = 20;
+
+    function createAnimatedArc(startLat, startLng, endLat, endLng, color, speed) {
+      var start = latLngToVec3(startLat, startLng, 200);
+      var end = latLngToVec3(endLat, endLng, 200);
+      var mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
+      var dist = start.distanceTo(end);
+      mid.normalize().multiplyScalar(200 + dist * 0.4);
+
+      var curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+      var points = curve.getPoints(ARC_POINTS);
+
+      var baseGeom = new THREE.BufferGeometry().setFromPoints(points);
+      var baseMat = new THREE.LineBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.12,
+        blending: THREE.AdditiveBlending
+      });
+      scene.add(new THREE.Line(baseGeom, baseMat));
+
+      var arcObj = {
+        points: points,
+        color: new THREE.Color(color),
+        head: 0,
+        speed: speed || 0.4,
+        line: null
+      };
+
+      var pulseGeom = new THREE.BufferGeometry();
+      var pulseMat = new THREE.LineBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.85,
+        blending: THREE.AdditiveBlending,
+        linewidth: 2
+      });
+      arcObj.line = new THREE.Line(pulseGeom, pulseMat);
+      scene.add(arcObj.line);
+      animatedArcs.push(arcObj);
+    }
+
+    // Arc colors — purple theme
+    var typeColors = {
+      'claude':   0xf97316,   // orange — AI connections
+      'hub':      0xa855f7,   // purple — our infrastructure
+      'mesh':     0xa855f7,   // purple — WireGuard peers
+      'attacker': 0xff2222,   // red — enemies
+      'self':     0xa855f7,   // purple — us
+    };
+
+    arcRoutes.forEach(function(route, idx) {
+      var color = typeColors[route[4]] || 0xa855f7;
+      var speed = 0.3 + Math.random() * 0.3;
+      createAnimatedArc(route[0], route[1], route[2], route[3], color, speed);
+    });
+
+    // Mouse interaction
+    var mouse = { x: 0, y: 0 }, mouseDown = { x: 0, y: 0 };
+    var rotation = { x: Math.PI * 1.1, y: Math.PI / 6 };
+    var target = { x: rotation.x, y: rotation.y };
+    var targetDown = { x: 0, y: 0 };
+    var distance = 950, distTarget = 950;
+    var dragging = false;
+    var autoRotate = true;
+
+    container.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      dragging = true;
+      autoRotate = false;
+      mouseDown.x = -e.clientX;
+      mouseDown.y = e.clientY;
+      targetDown.x = target.x;
+      targetDown.y = target.y;
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      mouse.x = -e.clientX;
+      mouse.y = e.clientY;
+      var z = distance / 1000;
+      target.x = targetDown.x + (mouse.x - mouseDown.x) * 0.005 * z;
+      target.y = targetDown.y + (mouse.y - mouseDown.y) * 0.005 * z;
+      target.y = Math.max(-Math.PI/2, Math.min(Math.PI/2, target.y));
+    });
+    window.addEventListener('mouseup', function() { dragging = false; });
+
+    container.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      distTarget -= e.deltaY * 0.3;
+      distTarget = Math.max(350, Math.min(900, distTarget));
+    }, { passive: false });
+
+    window.addEventListener('resize', function() {
+      var wp = container.offsetWidth;
+      var hp = container.offsetHeight;
+      camera.aspect = wp / hp;
+      camera.updateProjectionMatrix();
+      renderer.setSize(wp, hp);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (autoRotate) target.x += 0.001;
+
+      for (var ai = 0; ai < animatedArcs.length; ai++) {
+        var arc = animatedArcs[ai];
+        arc.head += arc.speed;
+        if (arc.head > ARC_POINTS + TRAIL_LENGTH) arc.head = 0;
+
+        var startIdx = Math.max(0, Math.floor(arc.head) - TRAIL_LENGTH);
+        var endIdx = Math.min(ARC_POINTS, Math.floor(arc.head));
+
+        if (endIdx > startIdx) {
+          var slice = arc.points.slice(startIdx, endIdx + 1);
+          arc.line.geometry.dispose();
+          arc.line.geometry = new THREE.BufferGeometry().setFromPoints(slice);
+        }
+      }
+
+      rotation.x += (target.x - rotation.x) * 0.1;
+      rotation.y += (target.y - rotation.y) * 0.1;
+      distance += (distTarget - distance) * 0.3;
+
+      camera.position.x = distance * Math.sin(rotation.x) * Math.cos(rotation.y);
+      camera.position.y = distance * Math.sin(rotation.y);
+      camera.position.z = distance * Math.cos(rotation.x) * Math.cos(rotation.y);
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  }
+  </script>
+
+</body>
+</html>

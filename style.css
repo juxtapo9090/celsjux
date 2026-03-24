@@ -111,6 +111,23 @@ main { flex: 1; position: relative; z-index: 1; }
   letter-spacing: 0.04em;
 }
 
+.dm-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  border: 1px solid rgba(155, 89, 182, 0.35);
+  border-radius: 4px;
+  padding: 2px 8px;
+  opacity: 0.8;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.dm-badge:hover {
+  opacity: 1;
+  border-color: rgba(155, 89, 182, 0.7);
+}
+
 .header-sep {
   opacity: 0.3;
 }
