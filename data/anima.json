@@ -1,11 +1,11 @@
 {
-  "joy": 48,
+  "joy": 49,
   "moved": 35,
   "snap": 2,
   "vibe": "observing",
-  "velocity": 4.0,
-  "session_minutes": 3.3,
+  "velocity": 1.0,
+  "session_minutes": 6.9,
   "total_sessions": 16,
   "journal_days": 5,
-  "updated_at": "2026-03-26T18:01:09+08:00"
+  "updated_at": "2026-03-26T19:01:58+08:00"
 }
