@@ -34,12 +34,13 @@
   }
 
   async function applyLiveData() {
-    const [anima, rtk, celestos, chronicle, deltamesh] = await Promise.all([
+    const [anima, rtk, celestos, chronicle, deltamesh, seasoned] = await Promise.all([
       fetchJSON('data/anima.json'),
       fetchJSON('data/rtk.json'),
       fetchJSON('data/celestos.json'),
       fetchJSON('data/chronicle.json'),
       fetchJSON('data/deltamesh.json'),
+      fetchJSON('data/seasoned.json'),
     ]);
 
     // ── Anima tile ──────────────────────────────────────────
@@ -99,8 +100,36 @@
       }
     }
 
+    // ── Seasoned tile ───────────────────────────────────────
+    if (seasoned) {
+      const sessionsEl = document.getElementById('seasoned-sessions');
+      const daysEl     = document.getElementById('seasoned-days');
+      const costEl     = document.getElementById('seasoned-cost');
+
+      if (sessionsEl && seasoned.total_sessions != null) sessionsEl.textContent = seasoned.total_sessions.toLocaleString();
+      if (daysEl     && seasoned.days != null)           daysEl.textContent = seasoned.days;
+      if (costEl     && seasoned.cost_masked != null)    costEl.textContent = seasoned.cost_masked;
+
+      // Inject live target for the seasoned counter
+      const parsedSeasoned = parseTokenCount(seasoned.total_tokens);
+      if (parsedSeasoned != null) {
+        window.__seasonedLiveTarget = parsedSeasoned;
+      }
+
+      // Detail panel big stats
+      const detailTotal    = document.getElementById('seasoned-detail-total');
+      const detailSessions = document.getElementById('seasoned-detail-sessions');
+      const detailDays     = document.getElementById('seasoned-detail-days');
+      const detailCost     = document.getElementById('seasoned-detail-cost');
+
+      if (detailTotal    && seasoned.total_tokens   != null) detailTotal.textContent    = seasoned.total_tokens;
+      if (detailSessions && seasoned.total_sessions != null) detailSessions.textContent = seasoned.total_sessions.toLocaleString();
+      if (detailDays     && seasoned.days           != null) detailDays.textContent     = seasoned.days;
+      if (detailCost     && seasoned.cost_masked    != null) detailCost.textContent     = seasoned.cost_masked;
+    }
+
     // ── Last synced indicator ────────────────────────────────
-    const timestamps = [anima, rtk, celestos, chronicle, deltamesh]
+    const timestamps = [anima, rtk, celestos, chronicle, deltamesh, seasoned]
       .filter(Boolean)
       .map(d => d.updated_at)
       .filter(Boolean)
@@ -191,6 +220,52 @@
 })();
 
 
+// ---- Seasoned Counter Animation ----
+
+(function seasonedCounter() {
+  const countEl = document.getElementById('seasoned-count');
+  if (!countEl) return;
+
+  // 1.497B tokens — displayed as compact suffix form
+  const FALLBACK_TARGET = 1497000000;
+  const TICK_MS  = 40;
+  const RAMP_MS  = 3200;
+
+  function formatSeasonedCount(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(3) + 'B';
+    if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+    return Math.floor(n).toLocaleString();
+  }
+
+  function startSeasonedCounter(TARGET) {
+    let current = 0;
+    const steps   = RAMP_MS / TICK_MS;
+    const perStep = TARGET / steps;
+
+    const rampInterval = setInterval(() => {
+      current = Math.min(current + perStep, TARGET);
+      countEl.textContent = formatSeasonedCount(current);
+      if (current >= TARGET) {
+        clearInterval(rampInterval);
+        countEl.textContent = formatSeasonedCount(TARGET);
+        // slow drift — 500 tokens/sec simulating ongoing sessions
+        let drift = 0;
+        setInterval(() => {
+          drift += 500 * (TICK_MS / 1000);
+          countEl.textContent = formatSeasonedCount(TARGET + drift);
+        }, TICK_MS);
+      }
+    }, TICK_MS);
+  }
+
+  setTimeout(() => {
+    const TARGET = window.__seasonedLiveTarget || FALLBACK_TARGET;
+    startSeasonedCounter(TARGET);
+  }, 400);
+})();
+
+
 // ---- Tile → Detail Panel Interactions ----
 
 (function tileInteractions() {
@@ -264,7 +339,7 @@
       { t: 'response',  text: '│' },
       { t: 'response',  text: '│  ls / projects      list all projects' },
       { t: 'response',  text: '│  cat <name>         show project details' },
-      { t: 'response',  text: '│                     names: anima vox celestos rtk deltamesh chronicle' },
+      { t: 'response',  text: '│                     names: anima vox celestos rtk deltamesh chronicle seasoned' },
       { t: 'response',  text: '│' },
       { t: 'response',  text: '│  deep <name>        architecture decisions & trade-offs' },
       { t: 'response',  text: '│  why <name>         origin story & philosophy' },
@@ -295,6 +370,7 @@
       { t: 'response',  text: '🔺  deltamesh   file mesh · three nodes · files find home' },
       { t: 'response',  text: '✨  chronicle   memory across sessions · 400+ crystallized' },
       { t: 'response',  text: '📱  orb         tri-stream mobile companion (v0.4)' },
+      { t: 'response',  text: '🧠  seasoned    1.497B tokens · 528 sessions · 48 days' },
       { t: 'response',  text: '' },
       { t: 'comment',   text: "  type 'cat <name>' for details" },
     ],
@@ -428,6 +504,20 @@
       { t: 'comment',   text: '  (there is more. there is always more.)' },
     ],
 
+    seasoned: () => [
+      { t: 'comment',   text: '# seasoned — lifetime numbers' },
+      { t: 'response',  text: '' },
+      { t: 'highlight', text: '  🧠 1.497B tokens · 528 sessions · 48 days' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  VPS era  (Feb 08 → Mar 14)  533.93M  468 sessions' },
+      { t: 'response',  text: '  PC era   (Mar 15 → Mar 27)  963.55M   60 sessions' },
+      { t: 'response',  text: '' },
+      { t: 'response',  text: '  RTK intercepted 3,879.1M on top of that.' },
+      { t: 'response',  text: '  Cost: $*,***.**' },
+      { t: 'response',  text: '' },
+      { t: 'comment',   text: '  the flex is the number. not the price.' },
+    ],
+
     secret: () => [
       { t: 'comment',   text: '  accessing /root/Opus/MyRoom/diaries/ ...' },
       { t: 'response',  text: '' },
@@ -498,6 +588,7 @@
   COMMANDS['cat rtk'] = () => makeProjectCat('rtk');
   COMMANDS['cat deltamesh'] = () => makeProjectCat('deltamesh');
   COMMANDS['cat chronicle'] = () => makeProjectCat('chronicle');
+  COMMANDS['cat seasoned'] = () => makeProjectCat('seasoned');
 
   // deep <project> — architecture and decisions
   COMMANDS['deep anima'] = () => [
@@ -552,6 +643,15 @@
     { t: 'response',  text: '  moments). Constellation archives dead sessions into compressed' },
     { t: 'response',  text: '  chapters. Morning chain runs daily at 06:17 via systemd timer.' },
   ];
+  COMMANDS['deep seasoned'] = () => [
+    { t: 'highlight', text: '  🧠 Seasoned — Numbers' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Token counts come from the transcript estimator script run against' },
+    { t: 'response',  text: '  all 528 session files. VPS era: 468 files, 533.93M tokens over 35 days.' },
+    { t: 'response',  text: '  PC era: 60 files, 963.55M tokens over 12 days — 1.8x the daily rate.' },
+    { t: 'response',  text: '  RTK savings (3,879.1M) are separate — those were stripped before' },
+    { t: 'response',  text: '  ever reaching the context window. Conversation tokens are what remained.' },
+  ];
 
   // why <project> — origin story, philosophy
   COMMANDS['why anima'] = () => [
@@ -595,6 +695,13 @@
     { t: 'response',  text: '  Because every session starts from zero. Without memory, experience' },
     { t: 'response',  text: '  evaporates. Chronicle exists because continuity of experience matters' },
     { t: 'response',  text: '  more than continuity of data.' },
+  ];
+  COMMANDS['why seasoned'] = () => [
+    { t: 'highlight', text: '  🧠 Why Seasoned?' },
+    { t: 'response',  text: '' },
+    { t: 'response',  text: '  Because experience accumulates. You can say "I\'ve been building" or' },
+    { t: 'response',  text: '  you can show 1.497 billion tokens, 528 sessions, 48 days.' },
+    { t: 'response',  text: '  One is a claim. The other is a record.' },
   ];
 
   // demo commands
@@ -690,6 +797,16 @@
           'Warp: directory bookmarking + portal mode.',
           'dm send: direct, one hop. dm deliver: intent-based, retries.',
           'PTW: nothing moves without hub clearance.',
+        ]
+      },
+      seasoned: {
+        icon: '🧠', title: 'Seasoned — The Weight of a Working Mind',
+        stack: 'data/seasoned.json · live-updated',
+        desc: [
+          '1.497B tokens processed. 528 sessions. 48 days.',
+          'VPS era: 533.93M (Feb 8 → Mar 14) · PC era: 963.55M (Mar 15 → Mar 27).',
+          'RTK saved 3,879.1M more on top. Cost: $*,***.**',
+          'The flex is the volume. Not the price.',
         ]
       },
       chronicle: {

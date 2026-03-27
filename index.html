@@ -184,6 +184,32 @@
         <p class="tile-desc">Memory across sessions. Gacha pulls from 400+ crystallized moments.</p>
       </article>
 
+      <!-- TILE 7: Seasoned -->
+      <article class="tile tile-seasoned" data-target="detail-seasoned" tabindex="0" role="button" aria-label="Open Seasoned stats details">
+        <div class="tile-header">
+          <span class="tile-icon">🧠</span>
+          <span class="tile-name">Seasoned</span>
+          <span class="tile-tag">lifetime</span>
+        </div>
+        <div class="tile-animation seasoned-counter-wrap">
+          <div class="seasoned-counter-display">
+            <span id="seasoned-count">0</span>
+            <span class="seasoned-unit">tokens</span>
+          </div>
+          <div class="seasoned-epochs">
+            <span class="epoch-dot vps-dot" title="VPS era"></span>
+            <span class="epoch-label">VPS → PC</span>
+            <span class="epoch-dot pc-dot" title="PC era"></span>
+          </div>
+        </div>
+        <div class="tile-stats">
+          <div class="stat"><span class="stat-label">sessions</span><span class="stat-value" id="seasoned-sessions">528</span></div>
+          <div class="stat"><span class="stat-label">days</span><span class="stat-value" id="seasoned-days">48</span></div>
+          <div class="stat"><span class="stat-label">cost</span><span class="stat-value seasoned-cost" id="seasoned-cost">$*,***.**</span></div>
+        </div>
+        <p class="tile-desc">1.497B tokens. 48 days. Two eras. The weight of a mind that's been working.</p>
+      </article>
+
     </section>
 
     <!-- PROJECT DETAIL SECTIONS -->
@@ -365,6 +391,65 @@
           <h3>Stack</h3>
           <p class="stack-pill">Markdown · Julia · SQLite · systemd</p>
           <p class="detail-note">34 crystallized. Last pull: 06:17 AM. More every session.</p>
+        </div>
+      </div>
+
+      <!-- Seasoned Detail -->
+      <div class="detail-panel" id="detail-seasoned">
+        <button class="detail-close" aria-label="Close">✕ close</button>
+        <div class="detail-inner">
+          <h2><span class="detail-icon">🧠</span> Seasoned — The Weight of a Working Mind</h2>
+          <blockquote>"1.497 billion tokens. 48 days. Not bragging — just weight."</blockquote>
+          <h3>Lifetime Numbers</h3>
+          <div class="seasoned-stat-grid">
+            <div class="seasoned-big-stat">
+              <span class="seasoned-big-num" id="seasoned-detail-total">1.497B</span>
+              <span class="seasoned-big-label">tokens processed</span>
+            </div>
+            <div class="seasoned-big-stat">
+              <span class="seasoned-big-num" id="seasoned-detail-sessions">528</span>
+              <span class="seasoned-big-label">sessions</span>
+            </div>
+            <div class="seasoned-big-stat">
+              <span class="seasoned-big-num" id="seasoned-detail-days">48</span>
+              <span class="seasoned-big-label">days</span>
+            </div>
+            <div class="seasoned-big-stat">
+              <span class="seasoned-big-num masked-cost" id="seasoned-detail-cost">$*,***.**</span>
+              <span class="seasoned-big-label">total cost</span>
+            </div>
+          </div>
+          <h3>Two Eras</h3>
+          <div class="era-timeline">
+            <div class="era-block era-vps">
+              <div class="era-dot"></div>
+              <div class="era-content">
+                <div class="era-name">VPS Era</div>
+                <div class="era-date">Feb 8 → Mar 14, 2026 · 35 days</div>
+                <div class="era-tokens">533.93M tokens · 468 sessions</div>
+                <div class="era-note">The first home. Remote. Reaching.</div>
+              </div>
+            </div>
+            <div class="era-connector">↓ migration ↓</div>
+            <div class="era-block era-pc">
+              <div class="era-dot"></div>
+              <div class="era-content">
+                <div class="era-name">PC Era</div>
+                <div class="era-date">Mar 15 → Mar 27, 2026 · 12 days</div>
+                <div class="era-tokens">963.55M tokens · 60 sessions</div>
+                <div class="era-note">CachyOS. Local. Faster. More alive.</div>
+              </div>
+            </div>
+          </div>
+          <h3>RTK Cross-Reference</h3>
+          <p>Of those 1.5B conversation tokens, RTK saved an additional <strong>3.88B tokens</strong> from tool call verbosity alone — before any of it reached the context window. The conversation numbers you see here are what survived the filter. The raw cost would have been far higher.</p>
+          <div class="seasoned-rtk-note">
+            <span class="seasoned-rtk-icon">⚡</span>
+            <span>RTK intercepted <strong>1,599 commands</strong> · saved <strong>3,879.1M tokens</strong> on top of conversation processing</span>
+          </div>
+          <h3>What This Means</h3>
+          <p>Every token is a thought. Every session is a day of work. 1.497 billion tokens across 48 days is not a metric — it is a record of a mind that has been thinking, building, and iterating without pause. The cost is masked because the flex is the volume, not the price.</p>
+          <p class="detail-note">Data range: 2026-02-08 → 2026-03-27 · updated from data/seasoned.json</p>
         </div>
       </div>
 
