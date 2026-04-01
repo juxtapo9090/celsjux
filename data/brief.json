@@ -1,0 +1,220 @@
+{
+  "generated_at": "2026-04-01T09:19:39.743953+00:00",
+  "gold_bias": "bullish",
+  "bias_confidence": "medium",
+  "bias_drivers": [
+    "extreme_fear(8) \u2014 safe haven historically bid",
+    "DXY weak (99.873) \u2014 dollar softness supports gold",
+    "real_yield high (2.04%) \u2014 significant headwind",
+    "COT spec momentum (161,335, \u0394+177,938) \u2014 strong inflow but watch crowding",
+    "Shanghai discount ($-258/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Implied rate path falling (\u21923.54%) \u2014 cuts expected, tailwind for gold"
+  ],
+  "tensions": [
+    {
+      "id": "paper_crowded_physical_absent",
+      "label": "Paper crowded, physical absent",
+      "detail": "COT net spec at 161,335 (prev -16,603) while Shanghai trades at $-258/oz COMEX discount \u2014 spec momentum driving price, not physical demand. Fragile if specs exit.",
+      "severity": "high"
+    },
+    {
+      "id": "cot_violent_flip",
+      "label": "Violent COT flip to spec long",
+      "detail": "Net spec moved +177,938 contracts in one week (from -16,603 to 161,335). Either the smart money just loaded \u2014 or this is a momentum trap at the highs.",
+      "severity": "high"
+    }
+  ],
+  "numbers": {
+    "xau": 4699.6001,
+    "gld": 430.29,
+    "dxy": 99.873,
+    "vix": 25.25,
+    "real_yield": 2.04,
+    "nominal_yield": 4.35,
+    "breakeven": 2.3
+  },
+  "fed": {
+    "rate": "3.5-3.75%",
+    "next_fomc": "2026-05-07",
+    "days_to_fomc": 36,
+    "market_bias": "neutral",
+    "implied_path": {
+      "Apr_2026": 3.64,
+      "May_2026": 3.645,
+      "Jun_2026": 3.635,
+      "Jul_2026": 3.62,
+      "Sep_2026": 3.595,
+      "Dec_2026": 3.54
+    }
+  },
+  "positioning": {
+    "cot_net_spec": 161335,
+    "cot_change": 177938,
+    "cot_signal": "long_momentum",
+    "shanghai_premium_oz": -257.64,
+    "physical_signal": "comex_premium_dollar_bid"
+  },
+  "mood": {
+    "fear_greed": 8,
+    "label": "extreme_fear",
+    "signal": "extreme_fear \u2014 gold historically bid in this zone"
+  },
+  "top_headlines": [
+    {
+      "title": "Oil briefly falls below $100 and shares jump on Trump Iran war pledge",
+      "source": "bbc_business",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "Brent oil futures fall as low as $98 ahead of Trump\u2019s address on Iran war",
+      "source": "marketwatch",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "Stocks rally on hopes Iran war will end soon",
+      "source": "ft_markets",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "Stock markets bottom in the early stages of military conflict, says Tom Lee. Here\u2019s what the strategist expects now.",
+      "source": "marketwatch",
+      "tags": [
+        "macro"
+      ]
+    }
+  ],
+  "ai_semi": {
+    "semi_prices": {
+      "NVDA": {
+        "price": 174.4,
+        "change_pct": 5.59,
+        "volume": 225370300
+      },
+      "TSM": {
+        "price": 337.95,
+        "change_pct": 6.78,
+        "volume": 18423400
+      },
+      "MU": {
+        "price": 337.84,
+        "change_pct": 4.98,
+        "volume": 73077500
+      },
+      "ASML": {
+        "price": 1320.83,
+        "change_pct": 5.33,
+        "volume": 1729400
+      },
+      "AMD": {
+        "price": 203.43,
+        "change_pct": 3.77,
+        "volume": 42209400
+      },
+      "SOXX": {
+        "price": 328.66,
+        "change_pct": 6.09,
+        "volume": 13987200
+      }
+    },
+    "tagged_headlines": [
+      {
+        "title": "Claude Code leak exposes a Tamagotchi-style \u2018pet\u2019 and an always-on agent",
+        "source": "verge",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/904776/anthropic-claude-source-code-leak",
+        "tags": [
+          "claude"
+        ]
+      },
+      {
+        "title": "Nvidia bets $2 billion on Marvell as rising AI adoption fuels competition - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPSmh3NHVnejF0NmZSS0FhOXdHdUZ6bW5EdlpBODZ1YzN2b2swbG9WSkJYVW40MWNVN3IzRVk5S0VOeEJNS2g4TEoyVk50MkFVZXVPRk5tSFN5aFU0WWNSMVhGd0hFTXJkbEw2RDQta3FPa0dSamdPX2lMZ291bDNrMTk1eEpWSmY0NTBZNUl5SnJ6WGQ1N2toOHEwYVpuU2FYT1g1ellB?oc=5",
+        "tags": [
+          "nvidia"
+        ]
+      },
+      {
+        "title": "OpenAI drops AI video tool Sora, startling Disney, sources say - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYlFMYXFmMll5LVluZE5adTFIRDY2eXF3TG5IbVRnS0hmQlZfOUNBQ3hZTDRpWW9Ya0N5MDdWRm1PenZpMFA4Z182YnppZnVYRzdRVWx3VUJBdjNNd0YxSXpnazFOdnBibHVUS1JBNWFUSk5LT1R0V3RlYzMtaTRkRmRGN3VySFF6VDVJSTBmN2hXT3FGdWU1anpiM2lUWkhXMGZMZDh5Y2c?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "French Senate debates social media ban for children under 15 - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOS21BV1NyVHJsODhmOU8wcUV3Tk1XZ3JCNjFCNEpZcFVRY1o5dW5RdmlSaVljbkdiRHY0blBQbWd4UVVCR09QOThjV2t1ZlBtb0FSb2JzSldUanJldXZFUHFMcXdHb1YxeXVlUVRVZl9VRWp4UlFFRE9GQ18wUDlYZUZ5M3BXbGttaXVtaWNORzlTekRkN1BSWXA3VFkxZlN1NnZOejhR?oc=5",
+        "tags": [
+          "ban"
+        ]
+      },
+      {
+        "title": "Anthropic is having a month",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/03/31/anthropic-is-having-a-month/",
+        "tags": [
+          "anthropic"
+        ]
+      },
+      {
+        "title": "OpenAI, not yet public, raises $3B from retail investors in monster $122B fund raise",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/03/31/openai-not-yet-public-raises-3b-from-retail-investors-in-monster-122b-fund-raise/",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "AI chip startup Rebellions raises $400 million at $2.3B valuation in pre-IPO round",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/03/30/ai-chip-startup-rebellions-raises-400-million-at-2-3b-valuation-in-pre-ipo-round/",
+        "tags": [
+          "chip"
+        ]
+      },
+      {
+        "title": "Why OpenAI really shut down Sora",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/03/29/why-openai-really-shut-down-sora/",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "Claude Code Unpacked : A visual guide",
+        "source": "hackernews",
+        "url": "https://ccunpacked.dev/",
+        "tags": [
+          "claude"
+        ]
+      },
+      {
+        "title": "The Claude Code Source Leak: fake tools, frustration regexes, undercover mode",
+        "source": "hackernews",
+        "url": "https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/",
+        "tags": [
+          "claude"
+        ]
+      },
+      {
+        "title": "OpenAI closes funding round at an $852B valuation",
+        "source": "hackernews",
+        "url": "https://www.cnbc.com/2026/03/31/openai-funding-round-ipo.html",
+        "tags": [
+          "openai"
+        ]
+      }
+    ],
+    "total_fetched": 89,
+    "total_tagged": 11,
+    "note": "prices at market close or latest available"
+  },
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-04-01                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe1 BULLISH  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,699.6    GLD   $430.29\n  DXY      99.87    VIX     25.25\n  Real Yield   2.04%  Breakeven  2.30%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec     +161,335  (\u0394 +177,938)\n  Shanghai Prem  $  -257.6/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 8 \u2014 EXTREME_FEAR\n  extreme_fear \u2014 gold historically bid in this zone\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-05-07 (36d)\n  Market: NEUTRAL\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Paper crowded, physical absent\n       COT net spec at 161,335 (prev -16,603) while Shanghai trades\n        at $-258/oz COMEX discount \u2014 spec momentum driving price, n\n       ot physical demand. Fragile if specs exit.\n  \ud83d\udd25 Violent COT flip to spec long\n       Net spec moved +177,938 contracts in one week (from -16,603 \n       to 161,335). Either the smart money just loaded \u2014 or this is\n        a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 extreme_fear(8) \u2014 safe haven historically bid\n  \u00b7 DXY weak (99.873) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.04%) \u2014 significant headwind\n  \u00b7 COT spec momentum (161,335, \u0394+177,938) \u2014 strong inflow but watch crowding\n  \u00b7 Shanghai discount ($-258/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path falling (\u21923.54%) \u2014 cuts expected, tailwind for gold\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [bbc_business] Oil briefly falls below $100 and shares jump on Trump Iran war pledge\n  [marketwatch] Brent oil futures fall as low as $98 ahead of Trump\u2019s address on Iran \n  [ft_markets] Stocks rally on hopes Iran war will end soon\n  [marketwatch] Stock markets bottom in the early stages of military conflict, says To\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $174.4  (+5.6%)       TSM     $337.9  (+6.8%)\n  MU      $337.8  (+5.0%)       ASML  $1,320.8  (+5.3%)\n  AMD     $203.4  (+3.8%)       SOXX    $328.7  (+6.1%)\n  note: prices at market close or latest available\n\n  Tagged headlines (11):\n  \u00b7 [verge] Claude Code leak exposes a Tamagotchi-style \u2018pet\u2019 and an always-on agent\n              tags: claude\n  \u00b7 [reuters] Nvidia bets $2 billion on Marvell as rising AI adoption fuels competition - Reuters\n              tags: nvidia\n  \u00b7 [reuters] OpenAI drops AI video tool Sora, startling Disney, sources say - Reuters\n              tags: openai\n  \u00b7 [reuters] French Senate debates social media ban for children under 15 - Reuters\n              tags: ban\n  \u00b7 [techcrunch] Anthropic is having a month\n              tags: anthropic\n  \u00b7 [techcrunch] OpenAI, not yet public, raises $3B from retail investors in monster $122B fund raise\n              tags: openai\n  \u00b7 [techcrunch] AI chip startup Rebellions raises $400 million at $2.3B valuation in pre-IPO round\n              tags: chip\n  \u00b7 [techcrunch] Why OpenAI really shut down Sora\n              tags: openai\n"
+}
