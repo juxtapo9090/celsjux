@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-04-05T06:04:14+08:00",
+  "collected_at": "2026-04-05T06:20:26+08:00",
   "my_ip": "",
   "nodes": [,{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
   "cc_ips": [],
