@@ -1,8 +1,8 @@
 {
-  "collected_at": "2026-04-09T22:04:46+08:00",
+  "collected_at": "2026-04-09T23:06:03+08:00",
   "my_ip": "182.62.61.175",
-  "nodes": [{"ip": "182.62.61.175", "lat": 3.06863, "lng": 101.57, "label": "PC Malaysia", "type": "self", "org": "DiGi Telecommunications Sdn Bhd"},{"ip": "162.159.134.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
-  "cc_ips": ["162.159.134.234"],
+  "nodes": [{"ip": "182.62.61.175", "lat": 3.06863, "lng": 101.57, "label": "PC Malaysia", "type": "self", "org": "DiGi Telecommunications Sdn Bhd"},{"ip": "162.159.130.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
+  "cc_ips": ["162.159.130.234"],
   "ag_ips": [],
   "codex_ips": [],
   "wg_peers": [],
