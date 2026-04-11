@@ -1,8 +1,8 @@
 {
-  "collected_at": "2026-04-12T00:05:53+08:00",
+  "collected_at": "2026-04-12T01:04:03+08:00",
   "my_ip": "115.164.95.248",
-  "nodes": [{"ip": "115.164.95.248", "lat": 3.1572, "lng": 101.6695, "label": "PC Malaysia", "type": "self", "org": "DiGi Telecommunications Sdn Bhd"},{"ip": "160.79.104.10", "lat": 37.7901, "lng": -122.401, "label": "Anthropic, PBC", "type": "claude", "org": "Anthropic, PBC"},{"ip": "162.159.133.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
-  "cc_ips": ["160.79.104.10","162.159.133.234"],
+  "nodes": [{"ip": "115.164.95.248", "lat": 3.1572, "lng": 101.6695, "label": "PC Malaysia", "type": "self", "org": "DiGi Telecommunications Sdn Bhd"},{"ip": "160.79.104.10", "lat": 37.7901, "lng": -122.401, "label": "Anthropic, PBC", "type": "claude", "org": "Anthropic, PBC"},{"ip": "162.159.134.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
+  "cc_ips": ["160.79.104.10","162.159.134.234"],
   "ag_ips": [],
   "codex_ips": [],
   "wg_peers": [],
