@@ -1,7 +1,7 @@
 {
-  "collected_at": "2026-05-02T03:09:51+08:00",
-  "my_ip": "27.125.245.62",
-  "nodes": [{"ip": "27.125.245.62", "lat": 3.139, "lng": 101.72, "label": "PC Malaysia", "type": "self", "org": ""},{"ip": "162.159.135.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
+  "collected_at": "2026-05-02T04:08:55+08:00",
+  "my_ip": "27.125.245.242",
+  "nodes": [{"ip": "27.125.245.242", "lat": 3.139, "lng": 101.72, "label": "PC Malaysia", "type": "self", "org": ""},{"ip": "162.159.135.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
   "cc_ips": ["162.159.135.234"],
   "ag_ips": [],
   "codex_ips": [],
