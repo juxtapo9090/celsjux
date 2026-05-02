@@ -1,8 +1,8 @@
 {
-  "collected_at": "2026-05-02T07:09:20+08:00",
-  "my_ip": "27.125.245.114",
-  "nodes": [{"ip": "27.125.245.114", "lat": 3.139, "lng": 101.72, "label": "PC Malaysia", "type": "self", "org": ""},{"ip": "162.159.133.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
-  "cc_ips": ["162.159.133.234"],
+  "collected_at": "2026-05-02T08:08:19+08:00",
+  "my_ip": "27.125.245.62",
+  "nodes": [{"ip": "27.125.245.62", "lat": 3.139, "lng": 101.72, "label": "PC Malaysia", "type": "self", "org": ""},{"ip": "162.159.135.234", "lat": 43.6532, "lng": -79.3832, "label": "Cloudflare, Inc.", "type": "claude", "org": "Cloudflare, Inc."},{"ip": "45.32.102.13", "lat": 1.32123, "lng": 103.695, "label": "celsjux-sg VPS", "type": "hub", "org": "Vultr Holdings, LLC"}],
+  "cc_ips": ["162.159.135.234"],
   "ag_ips": [],
   "codex_ips": [],
   "wg_peers": [],
