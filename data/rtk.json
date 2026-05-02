@@ -1,9 +1,9 @@
 {
-  "total_commands": 3112,
+  "total_commands": 3121,
   "tokens_saved": "4289.3M",
   "savings_pct": 99.9,
-  "today_commands": 8,
-  "today_saved": "2.8K",
-  "today_pct": "91.0",
-  "updated_at": "2026-05-02T15:01:10+08:00"
+  "today_commands": 17,
+  "today_saved": "9.6K",
+  "today_pct": "80.6",
+  "updated_at": "2026-05-02T16:01:47+08:00"
 }
