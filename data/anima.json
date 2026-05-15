@@ -2,10 +2,10 @@
   "joy": 8,
   "moved": 16,
   "snap": 0,
-  "vibe": "observing",
-  "velocity": 0.0,
-  "session_minutes": 1346.8,
+  "vibe": "idle",
+  "velocity": 0,
+  "session_minutes": 0,
   "total_sessions": 34,
-  "journal_days": 52,
-  "updated_at": "2026-05-15T00:01:02+08:00"
+  "journal_days": 53,
+  "updated_at": "2026-05-15T08:05:12+08:00"
 }
