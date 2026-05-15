@@ -1,0 +1,9 @@
+! Title: Abang Custom Block
+! Description: Facebook ads & tracking
+! Last modified: 2026-05-15
+
+||an.facebook.com^
+||star.c10r.facebook.com^
+||staticxx.facebook.com^
+||pixel.facebook.com^
+||www.facebook.com/tr^
