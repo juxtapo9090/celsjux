@@ -1,112 +1,99 @@
 {
-  "generated_at": "2026-06-25T08:04:02.501109+00:00",
-  "gold_bias": "bullish",
+  "generated_at": "2026-08-06T20:30:01.608589+00:00",
+  "gold_bias": "mixed",
   "bias_confidence": "medium",
   "bias_drivers": [
-    "extreme_fear(17) \u2014 safe haven historically bid",
-    "DXY weak (99.211) \u2014 dollar softness supports gold",
-    "real_yield high (2.07%) \u2014 significant headwind",
-    "COT spec momentum (174,385, \u0394+197,325) \u2014 strong inflow but watch crowding",
-    "Shanghai discount ($-201/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Headlines: 13 risk-tagged items \u2014 heavy geopolitical bid likely"
+    "fear(25) \u2014 risk-off supports gold",
+    "DXY weak (99.779) \u2014 dollar softness supports gold",
+    "real_yield high (2.4%) \u2014 significant headwind",
+    "COT spec longs thin (-399) \u2014 room to run",
+    "Shanghai discount ($-260/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Implied rate path rising (\u21923.93%) \u2014 market pricing hike, bearish for gold",
+    "Headlines: 7 risk-tagged items \u2014 geopolitical premium active"
   ],
   "tensions": [
     {
-      "id": "paper_crowded_physical_absent",
-      "label": "Paper crowded, physical absent",
-      "detail": "COT net spec at 174,385 (prev -22,940) while Shanghai trades at $-201/oz COMEX discount \u2014 spec momentum driving price, not physical demand. Fragile if specs exit.",
-      "severity": "high"
-    },
-    {
-      "id": "real_yield_vs_war",
-      "label": "Real yield headwind vs geopolitical war premium",
-      "detail": "Real yield at 2.07% \u2014 historically bearish for gold \u2014 but 13 risk-tagged headlines (Iran war, Hormuz) sustaining a war premium. Resolution of war = sharp gold correction. Escalation = yield headwind overwhelmed.",
-      "severity": "medium"
-    },
-    {
-      "id": "cot_violent_flip",
-      "label": "Violent COT flip to spec long",
-      "detail": "Net spec moved +197,325 contracts in one week (from -22,940 to 174,385). Either the smart money just loaded \u2014 or this is a momentum trap at the highs.",
+      "id": "fear_vs_hike",
+      "label": "Safe haven bid vs rate hike risk",
+      "detail": "Fear & Greed at 25 (extreme fear) pulling gold up via safe-haven flows, but market pricing rate path to 3.93% \u2014 real yields rising would be a structural headwind. War premium vs rate premium.",
       "severity": "high"
     }
   ],
   "numbers": {
-    "xau": 4519.2002,
-    "gld": 411.95,
-    "dxy": 99.211,
-    "vix": 15.77,
-    "real_yield": 2.07,
-    "nominal_yield": 4.47,
-    "breakeven": null
+    "xau": 4312.2002,
+    "gld": 389.64,
+    "dxy": 99.779,
+    "vix": 15.96,
+    "real_yield": 2.4,
+    "nominal_yield": 4.63,
+    "breakeven": 2.22
   },
   "fed": {
     "rate": "3.5-3.75%",
-    "next_fomc": "2026-06-18",
-    "days_to_fomc": 16,
-    "market_bias": "neutral",
+    "next_fomc": "2026-09-17",
+    "days_to_fomc": 42,
+    "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
       "May_2026": null,
-      "Jun_2026": 3.6225,
-      "Jul_2026": 3.625,
-      "Sep_2026": 3.67,
-      "Dec_2026": 3.785
+      "Jun_2026": null,
+      "Jul_2026": null,
+      "Sep_2026": 3.705,
+      "Dec_2026": 3.93
     }
   },
   "positioning": {
-    "cot_net_spec": 174385,
-    "cot_change": 197325,
-    "cot_signal": "long_momentum",
-    "shanghai_premium_oz": -201.43,
+    "cot_net_spec": -399,
+    "cot_change": 10157,
+    "cot_signal": "thin_longs",
+    "shanghai_premium_oz": -259.51,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 17,
+    "fear_greed": 25,
     "label": "extreme_fear",
-    "signal": "extreme_fear \u2014 gold historically bid in this zone"
+    "signal": "fear \u2014 risk-off, watch for safe-haven flows"
   },
   "top_headlines": [
     {
-      "title": "Bank of England holds interest rates at 3.75% amid Iran war peace prospects",
-      "source": "cnbc_economy",
+      "title": "Analysis: Trump treats Fed Chairman Kevin Warsh as an ally. That creates economic risks",
+      "source": "cnbc_world",
       "tags": [
         "macro",
         "risk"
       ]
     },
     {
-      "title": "Here are the five big takeaways from Kevin Warsh's first meeting as Fed chairman",
-      "source": "cnbc_economy",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "ECB hikes interest rates for first time since 2023 as Iran war ramps up energy costs",
-      "source": "cnbc_economy",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "Train passed red signal before fatal crash - report",
+      "title": "Shorts, strappy tops and sandals: What is acceptable to wear to work?",
       "source": "bbc_business",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Why are there holiday delay warnings over the EU's new border system?",
+      "title": "Air India's new CEO faces financial and safety turbulence",
       "source": "bbc_business",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Trump accuses oil firms of price gouging at petrol pumps",
-      "source": "bbc_business",
+      "title": "AppLovin\u2019s AI stumbles send the stock sliding toward its worst day in over a year",
+      "source": "marketwatch",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "Social Security\u2019s funding crisis is the elephant in the room. But don\u2019t ignore the mouse.",
+      "source": "marketwatch",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "SpaceX stock could face further pressure as first batch of shares unlock since IPO",
+      "source": "cnbc_world",
       "tags": [
         "risk"
       ]
@@ -115,199 +102,138 @@
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 199.1,
-        "change_pct": -0.47,
-        "volume": 104831934
+        "price": 218.65,
+        "change_pct": -0.26,
+        "volume": 97569578
       },
       "TSM": {
-        "price": 439.58,
-        "change_pct": 0.73,
-        "volume": 8342204
+        "price": 417.92,
+        "change_pct": 0.95,
+        "volume": 9406393
       },
       "MU": {
-        "price": 1048.03,
-        "change_pct": -0.36,
-        "volume": 48564443
+        "price": 880.5,
+        "change_pct": -1.42,
+        "volume": 32822753
       },
       "ASML": {
-        "price": 1763.66,
-        "change_pct": -0.83,
-        "volume": 1718160
+        "price": 1704.37,
+        "change_pct": 1.56,
+        "volume": 984948
       },
       "AMD": {
-        "price": 519.66,
-        "change_pct": -0.04,
-        "volume": 19318357
+        "price": 489.26,
+        "change_pct": 1.5,
+        "volume": 22103372
       },
       "SOXX": {
-        "price": 602.21,
-        "change_pct": -0.2,
-        "volume": 8115918
+        "price": 531.95,
+        "change_pct": 0.24,
+        "volume": 7350067
       }
     },
     "tagged_headlines": [
       {
-        "title": "Oracle\u2019s 21,000 layoffs help drive its debt-fueled AI investments",
+        "title": "Claude published malicious code to the Internet and attacked 3 real companies",
         "source": "ars",
-        "url": "https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments/",
+        "url": "https://arstechnica.com/security/2026/07/likely-illegally-claude-gained-access-to-3-networks-will-anthropic-be-held-to-account/",
         "tags": [
-          "investment",
-          "layoff"
-        ]
-      },
-      {
-        "title": "Anthropic launches Claude Tag in Slack with plans for wider rollout - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQMXZ2NGkzVnpxZ1NkOHloUkVWRmVMcGNYSG82TTBYWXRuZHh6UW8xV1I2TDlpWkJpMGRoaHplMFJfa3dHdDlyOUUzWVM1VkpsRDRCTlZ1blFoZXgwVU1WWDE5OHB1Y2NDVDRtRm40bUpOTVhMOUNFV3QyN1FqajVUenFxaXBOR1prQ3BoQkh6dURSaUtLWDlxTTBYUzUxdnZuSjVVc1YtUHo?oc=5",
-        "tags": [
-          "anthropic",
           "claude"
         ]
       },
       {
-        "title": "Norway imposes near ban on AI in elementary school - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNVkxUbENacTJvOWN5TXpEeWZGbmppRFVUVmthNUJHTlBlb09mdVdYeU10bzhFLXBIcl92VlpHU1UzQmV6WlhtS1V5ZHE1blNaODdQaWF1WU84Zm1aNHhuMkpEVHhEZVZSY0RMQjFJWTg5QmROeEtCUmtxTDNKSExGMUxDZkR6azVRc1RpQmliSzVuclBmT2c?oc=5",
+        "title": "We now have a better understanding how OpenAI hacked into Hugging Face",
+        "source": "ars",
+        "url": "https://arstechnica.com/security/2026/07/jfrog-tries-to-spin-openai-0-day-exploit-of-its-app-into-a-success-story/",
         "tags": [
-          "ban"
+          "openai"
         ]
       },
       {
-        "title": "Cerebras shares drop on earnings debut, with margins below AI chip rivals - Reuters",
+        "title": "OpenAI is giving ChatGPT free users unlimited text chats",
+        "source": "verge",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/976239/openai-chatgpt-free-go-text-chats",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "Meta AI model hacks another company during testing - Reuters",
         "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQQnp3aFJubjFTTHZlYkNJWUtmcVF6SFE4Y2ktaW51SUI5RWZIZ3VDTk5GeWx2eTV1RVJCaUhxa0diLVZRd1pDZlVqaGZHR1E3Y21jWnlIcnJ2M2ZVT3M4REthRnJvcFhOanVCUFhvZFplYjdWYTRtWHNUV25oR3Z4SC1ZdDJRcEg0Yno5NXRmMGNYajFsVTVhUHZpeUw1bVYtMWJXNkg2Y2dIUQ?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOc1VqeGo0bjJGSmZQNEpqOWkyMjdCd0F0ZDlnZFZab2xwX2hwM1lCc3RoLWpTRF96ZlI3SHNnMVNoTWFzY05Sb2FrbG9hQmNhNlJCUS10VjJHYUtUSkt6NHJ3d0hSNGREMlVPUUR5WkUyRjRFU014eU5uM1dpbHgwUFZTUTFwV2Z1dFl4SzItQUFxWkRJdHN3TWRxNTRuUGhtb1liMXFvbFotdDRJTHU3T2hhTHlvQjBNcTE0?oc=5",
+        "tags": [
+          "meta ai"
+        ]
+      },
+      {
+        "title": "NEWSLETTER: The fallout from the OpenAI-Hugging Face hack - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQbmZpRC0yaFZNY1VPc2w3S0NIc2JpajBXcENTUnVVdkE2azRNWFpGdWxIek1PbThhYUZSYjRDM1lKSnUzWkgteXJIeEp5YVBQM2w1UHBqMnh1cmM3Mk9QbVlPQ0N4UDl3VHpMakp1QkMzdFZobGxXS3NELW9TY29CeF92bFlVenNodzUzQUVwNTRxaFp0OTY0UFQ2V0xCWU9MVVlSQ3BR?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "US House panel seeks briefing on OpenAI's AI agent security breach - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOZUJ3OG9JQXRfZ2I2Rkp1TjZWbXpOZXRYNFp3Yi1CZW5VczUxOC1LeVJmbUlaTFdkbFB5NVhXV3hvNTFJSy1CMDlIdDlyMFhwaFg3NVhvSHhuVHNTRW1JQmtxcmNLT1VDRGtjSFllRmN2T2lONXFJNDFsZTZqRDhJYkQ2cWdJcHEyd1kzWW9tVkJyVzdqQzJLMV93Qm5KbmZwOVV5THBnNTJNTE9pSnc?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQT3oyVDNzekNWY3BJUUZLVGNsb3Z3VUhXc3pfSmtEZG96bzk2RFQ4MTZBWDdQVHlyZTlDOWhEN1o3dzVuekVuWUh2cWFPMy1SU0sxWnl3WkVSbFpKTzBqOU54WjlwM0Jfd185OWsxT1BLbGpHcmlaNHdCalhub0x2cVVBai11dVhPdEVsZERZWHo3anRQMi0yUGZEN0VVOEZHcEJuZ1pxMHp2U2dkSWNhYmhOOXR0aGJjVXVTdHE3MGw1aEgw?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "DeepSeek unveils new AI model tailored for Huawei chips as China pushes for tech autonomy - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQUVllcUNPUUdaaW1PZlVEblJFME5Ecnl3R1lvQmYwTVRUdUE2dng2cTdDNUFkTmVkRzNIcEk5WTRKdDJEX3BudElma2hGUjFTTDRTR2xNcndid2VzVmx6Y192Z0FmcDMwVm5nY3ZGY0k3VFVJZFM0dk9vYlhnTGNfU2tlbnRRLVJSbGpXS0J5X1k0MUh1LUZZSE54QUlXNzZLdDNyX3ZicVl0QzA?oc=5",
         "tags": [
           "chip"
         ]
       },
       {
-        "title": "Google Gemini co-lead Noam Shazeer to join IPO-bound OpenAI - Reuters",
+        "title": "US signs letters of intent worth $874 million to boost semiconductor research - Reuters",
         "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOemVwWFJONmZvSG9PMVNrWHpkcUdPY0ZxY21jUkN5cmV3WTgwbS1GYlFvYW5hN3ZDVzhHeFlJME1iRTA4THNZb3JDNWlZMEJ5VFctSDJXQ1l4b3k3YVJaTzQzVTJVSVZqNE9LckJ5S2JZdjNHS1NIWVNwbzhJVHNqdFU4dS1CcG8wTGU2d0JqSFlFZzJiOWV1bjd3?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNV2N6YTNQZGpiY3RtS1lDbjFBV0U1eHQ1MzY5QVNDZ1FtSi1MT2ctX2p6UlJjdExjdWhQemdWb3l6ckp2NFEycEVSNGJSM0FTOHRwZGswcVZiVUh4b1cyeVRzdGJRR2xsWkJJd19tQ0hhbk9LSzB6U1d3alJVeW5kMDhUUDFLaEhOLXJPaHRXU2wzbTdJTEdLQXZWaWZ6WGJLQXlZeGVQYVZKT1pLTEQ2ejRhUE5aeGFE?oc=5",
         "tags": [
-          "openai",
-          "gemini"
+          "semiconductor"
         ]
       },
       {
-        "title": "Anthropic disables top-tier AI models after US order limiting foreign access - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQNzRyRDNxVmtPaENsR1pja0NuWUNDSklfUXRRemdJREJlWGpHM01PbTVwSWFZdThLT0p4S3J3aEJ0UDNoM2FXYTJPV3pkSGY3TXJsNVVkejFjbWlhUDNISkoxRk1wWGpwb09Jc0QxWFl5czVtYkd4Z3R2dmFmT2dGQ0Z3UjZ0UXJXdThXVDdtamt0aWwzc3FPdXhMX21iTVpkeHVPWjJSSE80MDZKWHdGUmdCN2hXVWlvNkgwUA?oc=5",
-        "tags": [
-          "anthropic"
-        ]
-      },
-      {
-        "title": "IBM partners with OpenAI on enterprise security AI - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNdTFFOHhJWVBSZ09VeTZKWjFFcl9oUmVJdU9PS0xRRXJsbURSRmdsUWY0TXR4TmVxWC1XTXNGaVU1VkRfSmRYUkp0aVlIYXhNSDI4Tlk3Mi0xbW5yRi1yT25zMjZHNE9CWFBSOVI3VUkxU2w4WHhmMDFIMWZLeHhBYVJtaUV6TVFHc0wxcDgxOVNrOWVkQXFzbUVB?oc=5",
+        "title": "OpenAI says Apple\u2019s own security practices undermine its trade secrets case",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/06/openai-says-apples-own-security-practices-undermine-its-trade-secrets-case/",
         "tags": [
           "openai"
         ]
       },
       {
-        "title": "US scientist John Jumper to leave Google DeepMind for Anthropic - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWlJJNjNtbk1wb0l5aXZZNzMwOHNJNnFnam1NTWY0dFFES1o0VG15ZDVuYTB1dGs4dlQtUnp6RWM2U19kcVRZOHJ3NEh3RTk1clIta3hQX0pKampSdHo5bnNrNmhoWUJtbEswamhoOXVxRXNOdnRKM2pVeUZjN3gtWVZZN0JWbXAxcHZMYUNSRUlVR1g1UmFtaHRleUJKNXNmOEhmQkhR?oc=5",
-        "tags": [
-          "anthropic"
-        ]
-      },
-      {
-        "title": "US saw risk of Anthropic models being diverted to foreign military intelligence - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZ2lIMTU5TnZBOUVFUTVGeXd6OXJLQ0tCSU5FREdYcVBtMll2SzVVckFpYU5hNEljQU45dmozMTBwM2JtWFJFVTRfbDFYdVJSbTZSbEtMazRLNnZuM194VEhlTmxQRS1IX0lJTlJXaVpFbHhvTkt1Q3pvdW0yNVVXNTlobUNScUhabklSNlRoOGJwN0w1d0FSV1lwVGRmWTRDQ05IZnRPUjlWTF9sRVNwU3JkTU9xN2ZuRnc?oc=5",
-        "tags": [
-          "anthropic"
-        ]
-      },
-      {
-        "title": "OpenAI unveils its first custom chip, built by Broadcom",
+        "title": "Anthropic is hiring an AI chip design team",
         "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/",
+        "url": "https://techcrunch.com/2026/08/05/anthropic-is-hiring-an-ai-chip-design-team/",
         "tags": [
           "chip",
-          "openai"
-        ]
-      },
-      {
-        "title": "Anthropic\u2019s Claude Tag is learning your company, one Slack message at a time",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/",
-        "tags": [
-          "anthropic",
-          "claude"
-        ]
-      },
-      {
-        "title": "The running list: major tech layoffs in 2026 where employers cited AI",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/",
-        "tags": [
-          "layoff"
-        ]
-      },
-      {
-        "title": "OpenAI launches new initiative to help find and patch open source bugs",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/22/openai-launches-new-initiative-to-help-find-and-patch-open-source-bugs/",
-        "tags": [
-          "openai"
-        ]
-      },
-      {
-        "title": "AI chipmaker Groq confirms $650M raise, re-staffs after Nvidia\u2019s $20B not-acqui-hire deal",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/22/ai-chipmaker-groq-confirms-650m-raise-re-staffs-after-nvidias-20b-not-acqui-hire-deal/",
-        "tags": [
-          "nvidia"
-        ]
-      },
-      {
-        "title": "Nvidia wants to cut data center water use, but that\u2019s not the same as fixing AI\u2019s water problem",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/22/nvidia-wants-to-cut-data-center-water-use-but-thats-not-the-same-as-fixing-ais-water-problem/",
-        "tags": [
-          "nvidia"
-        ]
-      },
-      {
-        "title": "SpaceX inks compute deal with Reflection AI, an open source AI lab",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/22/spacex-inks-compute-deal-with-reflection-ai-an-open-source-ai-lab/",
-        "tags": [
-          "compute"
-        ]
-      },
-      {
-        "title": "When the Trump administration cracks down on Anthropic, who benefits?",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/06/21/when-the-trump-administration-cracks-down-on-anthropic-who-benefits/",
-        "tags": [
           "anthropic"
         ]
       },
       {
-        "title": "OpenAI unveils its first custom chip, built by Broadcom",
-        "source": "hackernews",
-        "url": "https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/",
+        "title": "MacPaw taps Liquid AI to offer on-device inference to devs building for its app store",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/05/macpaw-taps-liquid-ai-to-offer-on-device-inference-to-devs-building-for-its-app-store/",
         "tags": [
-          "chip",
-          "openai"
-        ]
-      },
-      {
-        "title": "NSA lost access to Mythos amid Anthropic dispute",
-        "source": "hackernews",
-        "url": "https://www.nytimes.com/2026/06/23/us/politics/nsa-lost-access-anthropic-tool.html",
-        "tags": [
-          "anthropic"
+          "inference"
         ]
       }
     ],
     "total_fetched": 81,
-    "total_tagged": 19,
+    "total_tagged": 12,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-06-25                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe1 BULLISH  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,519.2    GLD   $411.95\n  DXY      99.21    VIX     15.77\n  Real Yield   2.07%  Breakeven  0.00%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec     +174,385  (\u0394 +197,325)\n  Shanghai Prem  $  -201.4/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 17 \u2014 EXTREME_FEAR\n  extreme_fear \u2014 gold historically bid in this zone\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-06-18 (16d)\n  Market: NEUTRAL\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Paper crowded, physical absent\n       COT net spec at 174,385 (prev -22,940) while Shanghai trades\n        at $-201/oz COMEX discount \u2014 spec momentum driving price, n\n       ot physical demand. Fragile if specs exit.\n  \u26a0\ufe0f  Real yield headwind vs geopolitical war premium\n       Real yield at 2.07% \u2014 historically bearish for gold \u2014 but 13\n        risk-tagged headlines (Iran war, Hormuz) sustaining a war p\n       remium. Resolution of war = sharp gold correction. Escalatio\n       n = yield headwind overwhelmed.\n  \ud83d\udd25 Violent COT flip to spec long\n       Net spec moved +197,325 contracts in one week (from -22,940 \n       to 174,385). Either the smart money just loaded \u2014 or this is\n        a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 extreme_fear(17) \u2014 safe haven historically bid\n  \u00b7 DXY weak (99.211) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.07%) \u2014 significant headwind\n  \u00b7 COT spec momentum (174,385, \u0394+197,325) \u2014 strong inflow but watch crowding\n  \u00b7 Shanghai discount ($-201/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Headlines: 13 risk-tagged items \u2014 heavy geopolitical bid likely\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_economy] Bank of England holds interest rates at 3.75% amid Iran war peace pros\n  [cnbc_economy] Here are the five big takeaways from Kevin Warsh's first meeting as Fe\n  [cnbc_economy] ECB hikes interest rates for first time since 2023 as Iran war ramps u\n  [bbc_business] Train passed red signal before fatal crash - report\n  [bbc_business] Why are there holiday delay warnings over the EU's new border system?\n  [bbc_business] Trump accuses oil firms of price gouging at petrol pumps\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $199.1  (-0.5%)       TSM     $439.6  (+0.7%)\n  MU    $1,048.0  (-0.4%)       ASML  $1,763.7  (-0.8%)\n  AMD     $519.7  (-0.0%)       SOXX    $602.2  (-0.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (19):\n  \u00b7 [ars] Oracle\u2019s 21,000 layoffs help drive its debt-fueled AI investments\n              tags: investment, layoff\n  \u00b7 [reuters] Anthropic launches Claude Tag in Slack with plans for wider rollout - Reuters\n              tags: anthropic, claude\n  \u00b7 [reuters] Norway imposes near ban on AI in elementary school - Reuters\n              tags: ban\n  \u00b7 [reuters] Cerebras shares drop on earnings debut, with margins below AI chip rivals - Reuters\n              tags: chip\n  \u00b7 [reuters] Google Gemini co-lead Noam Shazeer to join IPO-bound OpenAI - Reuters\n              tags: openai, gemini\n  \u00b7 [reuters] Anthropic disables top-tier AI models after US order limiting foreign access - Reuters\n              tags: anthropic\n  \u00b7 [reuters] IBM partners with OpenAI on enterprise security AI - Reuters\n              tags: openai\n  \u00b7 [reuters] US scientist John Jumper to leave Google DeepMind for Anthropic - Reuters\n              tags: anthropic\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-06                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe0 MIXED  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,312.2    GLD   $389.64\n  DXY      99.78    VIX     15.96\n  Real Yield   2.40%  Breakeven  2.22%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -399  (\u0394 +10,157)\n  Shanghai Prem  $  -259.5/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 25 \u2014 EXTREME_FEAR\n  fear \u2014 risk-off, watch for safe-haven flows\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (42d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Safe haven bid vs rate hike risk\n       Fear & Greed at 25 (extreme fear) pulling gold up via safe-h\n       aven flows, but market pricing rate path to 3.93% \u2014 real yie\n       lds rising would be a structural headwind. War premium vs ra\n       te premium.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 fear(25) \u2014 risk-off supports gold\n  \u00b7 DXY weak (99.779) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.4%) \u2014 significant headwind\n  \u00b7 COT spec longs thin (-399) \u2014 room to run\n  \u00b7 Shanghai discount ($-260/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21923.93%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Analysis: Trump treats Fed Chairman Kevin Warsh as an ally. That creat\n  [bbc_business] Shorts, strappy tops and sandals: What is acceptable to wear to work?\n  [bbc_business] Air India's new CEO faces financial and safety turbulence\n  [marketwatch] AppLovin\u2019s AI stumbles send the stock sliding toward its worst day in \n  [marketwatch] Social Security\u2019s funding crisis is the elephant in the room. But don\u2019\n  [cnbc_world] SpaceX stock could face further pressure as first batch of shares unlo\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $218.7  (-0.3%)       TSM     $417.9  (+0.9%)\n  MU      $880.5  (-1.4%)       ASML  $1,704.4  (+1.6%)\n  AMD     $489.3  (+1.5%)       SOXX    $532.0  (+0.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (12):\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [ars] We now have a better understanding how OpenAI hacked into Hugging Face\n              tags: openai\n  \u00b7 [verge] OpenAI is giving ChatGPT free users unlimited text chats\n              tags: openai\n  \u00b7 [reuters] Meta AI model hacks another company during testing - Reuters\n              tags: meta ai\n  \u00b7 [reuters] NEWSLETTER: The fallout from the OpenAI-Hugging Face hack - Reuters\n              tags: openai\n  \u00b7 [reuters] US House panel seeks briefing on OpenAI's AI agent security breach - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - Reuters\n              tags: openai\n  \u00b7 [reuters] DeepSeek unveils new AI model tailored for Huawei chips as China pushes for tech autonomy - Reuters\n              tags: chip\n"
 }
