@@ -1,52 +1,51 @@
 {
-  "generated_at": "2026-08-06T20:30:01.608589+00:00",
-  "gold_bias": "mixed",
-  "bias_confidence": "medium",
+  "generated_at": "2026-08-07T13:19:30.222831+00:00",
+  "gold_bias": "bullish",
+  "bias_confidence": "low",
   "bias_drivers": [
     "fear(25) \u2014 risk-off supports gold",
-    "DXY weak (99.779) \u2014 dollar softness supports gold",
-    "real_yield high (2.4%) \u2014 significant headwind",
+    "DXY weak (99.435) \u2014 dollar softness supports gold",
+    "real_yield high (2.41%) \u2014 significant headwind",
     "COT spec longs thin (-399) \u2014 room to run",
-    "Shanghai discount ($-260/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Implied rate path rising (\u21923.93%) \u2014 market pricing hike, bearish for gold",
+    "Shanghai discount ($-245/oz) \u2014 no physical demand from China, COMEX paper-led",
     "Headlines: 7 risk-tagged items \u2014 geopolitical premium active"
   ],
   "tensions": [
     {
       "id": "fear_vs_hike",
       "label": "Safe haven bid vs rate hike risk",
-      "detail": "Fear & Greed at 25 (extreme fear) pulling gold up via safe-haven flows, but market pricing rate path to 3.93% \u2014 real yields rising would be a structural headwind. War premium vs rate premium.",
+      "detail": "Fear & Greed at 25 (extreme fear) pulling gold up via safe-haven flows, but market pricing rate path to 3.88% \u2014 real yields rising would be a structural headwind. War premium vs rate premium.",
       "severity": "high"
     }
   ],
   "numbers": {
-    "xau": 4312.2002,
-    "gld": 389.64,
-    "dxy": 99.779,
-    "vix": 15.96,
-    "real_yield": 2.4,
-    "nominal_yield": 4.63,
-    "breakeven": 2.22
+    "xau": 4430.2002,
+    "gld": 389.67,
+    "dxy": 99.435,
+    "vix": 15.26,
+    "real_yield": 2.41,
+    "nominal_yield": null,
+    "breakeven": null
   },
   "fed": {
-    "rate": "3.5-3.75%",
+    "rate": "None-3.75%",
     "next_fomc": "2026-09-17",
-    "days_to_fomc": 42,
+    "days_to_fomc": 41,
     "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
       "May_2026": null,
       "Jun_2026": null,
       "Jul_2026": null,
-      "Sep_2026": 3.705,
-      "Dec_2026": 3.93
+      "Sep_2026": 3.68,
+      "Dec_2026": 3.88
     }
   },
   "positioning": {
     "cot_net_spec": -399,
     "cot_change": 10157,
     "cot_signal": "thin_longs",
-    "shanghai_premium_oz": -259.51,
+    "shanghai_premium_oz": -245.1,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
@@ -235,5 +234,5 @@
     "total_tagged": 12,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-06                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe0 MIXED  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,312.2    GLD   $389.64\n  DXY      99.78    VIX     15.96\n  Real Yield   2.40%  Breakeven  2.22%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -399  (\u0394 +10,157)\n  Shanghai Prem  $  -259.5/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 25 \u2014 EXTREME_FEAR\n  fear \u2014 risk-off, watch for safe-haven flows\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (42d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Safe haven bid vs rate hike risk\n       Fear & Greed at 25 (extreme fear) pulling gold up via safe-h\n       aven flows, but market pricing rate path to 3.93% \u2014 real yie\n       lds rising would be a structural headwind. War premium vs ra\n       te premium.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 fear(25) \u2014 risk-off supports gold\n  \u00b7 DXY weak (99.779) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.4%) \u2014 significant headwind\n  \u00b7 COT spec longs thin (-399) \u2014 room to run\n  \u00b7 Shanghai discount ($-260/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21923.93%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Analysis: Trump treats Fed Chairman Kevin Warsh as an ally. That creat\n  [bbc_business] Shorts, strappy tops and sandals: What is acceptable to wear to work?\n  [bbc_business] Air India's new CEO faces financial and safety turbulence\n  [marketwatch] AppLovin\u2019s AI stumbles send the stock sliding toward its worst day in \n  [marketwatch] Social Security\u2019s funding crisis is the elephant in the room. But don\u2019\n  [cnbc_world] SpaceX stock could face further pressure as first batch of shares unlo\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $218.7  (-0.3%)       TSM     $417.9  (+0.9%)\n  MU      $880.5  (-1.4%)       ASML  $1,704.4  (+1.6%)\n  AMD     $489.3  (+1.5%)       SOXX    $532.0  (+0.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (12):\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [ars] We now have a better understanding how OpenAI hacked into Hugging Face\n              tags: openai\n  \u00b7 [verge] OpenAI is giving ChatGPT free users unlimited text chats\n              tags: openai\n  \u00b7 [reuters] Meta AI model hacks another company during testing - Reuters\n              tags: meta ai\n  \u00b7 [reuters] NEWSLETTER: The fallout from the OpenAI-Hugging Face hack - Reuters\n              tags: openai\n  \u00b7 [reuters] US House panel seeks briefing on OpenAI's AI agent security breach - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - Reuters\n              tags: openai\n  \u00b7 [reuters] DeepSeek unveils new AI model tailored for Huawei chips as China pushes for tech autonomy - Reuters\n              tags: chip\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-07                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe1 BULLISH  [LOW CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,430.2    GLD   $389.67\n  DXY      99.44    VIX     15.26\n  Real Yield   2.41%  Breakeven  0.00%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -399  (\u0394 +10,157)\n  Shanghai Prem  $  -245.1/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 25 \u2014 EXTREME_FEAR\n  fear \u2014 risk-off, watch for safe-haven flows\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: None-3.75%   Next FOMC: 2026-09-17 (41d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Safe haven bid vs rate hike risk\n       Fear & Greed at 25 (extreme fear) pulling gold up via safe-h\n       aven flows, but market pricing rate path to 3.88% \u2014 real yie\n       lds rising would be a structural headwind. War premium vs ra\n       te premium.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 fear(25) \u2014 risk-off supports gold\n  \u00b7 DXY weak (99.435) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.41%) \u2014 significant headwind\n  \u00b7 COT spec longs thin (-399) \u2014 room to run\n  \u00b7 Shanghai discount ($-245/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Analysis: Trump treats Fed Chairman Kevin Warsh as an ally. That creat\n  [bbc_business] Shorts, strappy tops and sandals: What is acceptable to wear to work?\n  [bbc_business] Air India's new CEO faces financial and safety turbulence\n  [marketwatch] AppLovin\u2019s AI stumbles send the stock sliding toward its worst day in \n  [marketwatch] Social Security\u2019s funding crisis is the elephant in the room. But don\u2019\n  [cnbc_world] SpaceX stock could face further pressure as first batch of shares unlo\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $218.7  (-0.3%)       TSM     $417.9  (+0.9%)\n  MU      $880.5  (-1.4%)       ASML  $1,704.4  (+1.6%)\n  AMD     $489.3  (+1.5%)       SOXX    $532.0  (+0.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (12):\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [ars] We now have a better understanding how OpenAI hacked into Hugging Face\n              tags: openai\n  \u00b7 [verge] OpenAI is giving ChatGPT free users unlimited text chats\n              tags: openai\n  \u00b7 [reuters] Meta AI model hacks another company during testing - Reuters\n              tags: meta ai\n  \u00b7 [reuters] NEWSLETTER: The fallout from the OpenAI-Hugging Face hack - Reuters\n              tags: openai\n  \u00b7 [reuters] US House panel seeks briefing on OpenAI's AI agent security breach - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - Reuters\n              tags: openai\n  \u00b7 [reuters] DeepSeek unveils new AI model tailored for Huawei chips as China pushes for tech autonomy - Reuters\n              tags: chip\n"
 }
