@@ -1,7 +1,7 @@
 {
-  "commands_observed": 72403,
-  "replays_captured": 19133,
+  "commands_observed": 72597,
+  "replays_captured": 19175,
   "reducers": 4,
   "graduated": ["cat"],
-  "updated_at": "2026-08-08T08:01:09+08:00"
+  "updated_at": "2026-08-08T09:00:32+08:00"
 }
