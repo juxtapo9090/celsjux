@@ -705,6 +705,24 @@ main { flex: 1; position: relative; z-index: 1; }
   border-top: 1px solid var(--border);
 }
 
+/* a story-link note stacked under another note: no second divider */
+.detail-note + .detail-note {
+  margin-top: 6px;
+  padding-top: 0;
+  border-top: none;
+}
+.story-link {
+  color: var(--accent, #b98cff);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s ease;
+}
+.story-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
 /* Signal table */
 .signal-table {
   display: flex;

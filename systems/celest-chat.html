@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>celest-chat — The Live Editor · CELSJUX</title>
+  <meta name="description" content="A hardened, framework-free live session editor — Python stdlib backend, vanilla JS frontend, and a root-privilege write route we attacked ourselves before anyone else could." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Story-page layout (page-local) ---- */
+    .story-hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 56px 28px 44px;
+      text-align: center;
+    }
+    .story-hero-anim {
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .story-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .story-title {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin: 8px 0 12px;
+    }
+    .story-tagline {
+      font-size: 17px;
+      color: var(--text-dim);
+      font-style: italic;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .story-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 28px 20px;
+    }
+    .story-body h2 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-body h2:first-child { margin-top: 0; }
+    .story-body p {
+      color: var(--text-dim);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-size: 15.5px;
+    }
+    .story-body p .lead { color: var(--text); }
+    .story-body strong { color: var(--text); font-weight: 600; }
+    .story-body code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: rgba(155, 89, 182, 0.12);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .pull {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding: 6px 0 6px 18px;
+      margin: 24px 0;
+      line-height: 1.6;
+    }
+
+    /* principle list */
+    .principles { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 8px; }
+    .principle {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      padding: 12px 16px;
+      background: rgba(155, 89, 182, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .principle-key {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 150px;
+    }
+    .principle-val { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+
+    .stack-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .story-origin {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 24px 28px 8px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .story-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 20px 28px 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .story-nav a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .story-nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ---- page-local: the attack timeline ---- */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin: 18px 0 8px; }
+    .tl-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 0 0 20px 0;
+      position: relative;
+    }
+    .tl-step:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 26px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-dot {
+      width: 27px;
+      height: 27px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-tile);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      z-index: 1;
+    }
+    .tl-body { padding-top: 3px; }
+    .tl-head {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .tl-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+    /* ---- page-local: code block ---- */
+    .codeblock {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.7;
+      background: var(--bg-tile);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+      color: var(--text-dim);
+      white-space: pre;
+    }
+    .codeblock .c-key { color: var(--accent); }
+    .codeblock .c-com { color: var(--text-muted); }
+
+    /* ---- page-local: before/after counter ---- */
+    .ba { display: flex; gap: 12px; margin: 18px 0 6px; flex-wrap: wrap; }
+    .ba-card {
+      flex: 1 1 200px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      background: var(--bg-tile);
+    }
+    .ba-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .ba-value {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .ba-card.after .ba-value { color: var(--accent); }
+    .ba-note { font-size: 12.5px; color: var(--text-dim); margin-top: 8px; line-height: 1.5; }
+
+    /* ---- page-local: hero animation (an editor caret over a polling pane) ---- */
+    .cc-pane {
+      width: 132px;
+      height: 74px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-tile);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 14px;
+    }
+    .cc-line { height: 3px; border-radius: 2px; background: rgba(155, 89, 182, 0.28); }
+    .cc-line.w1 { width: 70%; }
+    .cc-line.w2 { width: 88%; }
+    .cc-line.w3 { width: 46%; }
+    .cc-caret {
+      position: absolute;
+      left: 14px;
+      bottom: 20px;
+      width: 2px;
+      height: 11px;
+      background: var(--accent);
+      animation: cc-blink 1.05s steps(2, start) infinite;
+    }
+    @keyframes cc-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .cc-poll {
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      border: 1px solid var(--accent);
+      opacity: 0;
+      animation: cc-poll 2.6s ease-out infinite;
+    }
+    @keyframes cc-poll {
+      0%   { opacity: 0.55; transform: scale(1); }
+      70%  { opacity: 0;    transform: scale(1.16); }
+      100% { opacity: 0;    transform: scale(1.16); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cc-caret, .cc-poll { animation: none; }
+      .cc-poll { opacity: 0.3; }
+    }
+
+    @media (max-width: 640px) {
+      .story-title { font-size: 30px; }
+      .principle-key { min-width: 0; }
+      .principle { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~$</span>
+      <a href="../index.html" class="header-title" style="text-decoration:none;color:var(--text);">CELSJUX WORKSHOP</a>
+    </div>
+    <div class="header-right">
+      <a href="../index.html" class="dm-badge">← All systems</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">active</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="story-hero">
+      <div class="story-hero-anim">
+        <div class="cc-pane">
+          <div class="cc-poll"></div>
+          <div class="cc-line w1"></div>
+          <div class="cc-line w2"></div>
+          <div class="cc-line w3"></div>
+          <div class="cc-caret"></div>
+        </div>
+      </div>
+      <div class="story-eyebrow">Live session editor · hardened</div>
+      <h1 class="story-title">🖥️ celest-chat</h1>
+      <p class="story-tagline">"A live editor with root on the filesystem. So the first real feature wasn't a feature — it was attacking it ourselves."</p>
+    </section>
+
+    <article class="story-body">
+
+      <h2>What it is</h2>
+      <p>
+        <span class="lead">celest-chat is a browser-based observatory for a live AI coding session, with an
+        editor deck bolted on.</span> The left half streams the session as it happens — the conversation,
+        the tool calls, what the agent is touching right now. The right half is a real multi-file editor:
+        browse the filesystem, open several files as tabs, edit, save. When the agent writes to a file you
+        have open, the diff is projected straight into your pane, live.
+      </p>
+      <p>
+        It is deliberately small. No framework on either side. The backend is <strong>Python's standard
+        library and nothing else</strong>; the frontend is plain JavaScript in ordinary
+        <code>&lt;script&gt;</code> tags. There is no websocket layer, no build step, no bundler, no
+        node_modules. It is one process you can read end to end in an afternoon.
+      </p>
+
+      <div class="pull">A tool that edits real files as root is not a toy. It is an attack surface with a nice UI.</div>
+
+      <h2>The part worth telling: we attacked our own tool</h2>
+      <p>
+        The service runs <strong>as root</strong>, and it has to — its whole job is tailing session
+        transcripts that are owned by root and readable by nobody else. That is a legitimate reason, and
+        it is also exactly the kind of legitimate reason that quietly justifies a dangerous shape.
+      </p>
+      <p>
+        So the tool got audited the way an attacker would audit it, not the way an author would review it.
+        The question was never <em>"does saving a file work?"</em> — it was
+        <strong>"what is the worst thing a stranger can make this process do?"</strong>
+      </p>
+
+      <div class="timeline">
+        <div class="tl-step">
+          <span class="tl-dot">1</span>
+          <div class="tl-body">
+            <div class="tl-head">Found it</div>
+            <div class="tl-text">
+              The save route — a <code>POST</code> that writes a file to disk — had <strong>no
+              authentication of any kind</strong>. Not a token, not a session, not an origin check.
+              A root-privileged arbitrary-file overwrite, sitting behind a plain HTTP endpoint.
+            </div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-dot">2</span>
+          <div class="tl-body">
+            <div class="tl-head">Understood why "localhost only" wasn't a defence</div>
+            <div class="tl-text">
+              The service binds to loopback, which feels safe and isn't. Any web page open in the same
+              browser can issue a cross-origin <code>POST</code> to <code>127.0.0.1</code> — a classic
+              drive-by CSRF. The browser is inside the trust boundary; the network binding never was
+              the control.
+            </div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-dot">3</span>
+          <div class="tl-body">
+            <div class="tl-head">Proved it instead of arguing it</div>
+            <div class="tl-text">
+              A theoretical vulnerability gets debated; a demonstrated one gets fixed. The attack was
+              carried out for real against a throwaway file, from an off-origin page, and it succeeded —
+              the server cheerfully returned success. <strong>No estimate, no severity guess. A working
+              exploit.</strong>
+            </div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-dot">4</span>
+          <div class="tl-body">
+            <div class="tl-head">Fixed it in one place, not five</div>
+            <div class="tl-text">
+              The obvious patch is to guard the write route. The better patch is to notice that
+              <strong>five</strong> routes mutate state — write, message-relay, two keystroke-injection
+              routes — and that a per-route check is a checklist you will eventually forget to tick.
+              One gate went in above the dispatch, so a route added tomorrow is covered by default.
+            </div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-dot">5</span>
+          <div class="tl-body">
+            <div class="tl-head">Re-attacked</div>
+            <div class="tl-text">
+              The same exploit was run again against the patched server and refused. A fix you have not
+              tried to break is a hypothesis, not a fix.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-card">
+          <div class="ba-label">Before</div>
+          <div class="ba-value">0 / 5</div>
+          <div class="ba-note">state-changing routes protected — including a root-privileged file write.</div>
+        </div>
+        <div class="ba-card after">
+          <div class="ba-label">After</div>
+          <div class="ba-value">5 / 5</div>
+          <div class="ba-note">covered by a <strong>single</strong> check above the router. No per-route bypass to maintain.</div>
+        </div>
+      </div>
+
+      <h2>The fix itself</h2>
+      <p>
+        The whole control is six lines. That is the point — the engineering was in choosing
+        <em>where</em> it goes and <em>what it defaults to</em>, not in writing it.
+      </p>
+      <div class="codeblock"><span class="c-key">def</span> _csrf_ok(self):
+    origin = self.headers.get(<span class="c-key">"Origin"</span>)
+    <span class="c-key">if not</span> origin:
+        <span class="c-key">return True</span>          <span class="c-com"># no Origin: not a browser — CLI tools stay working</span>
+    host = urlsplit(origin).hostname
+    <span class="c-key">return</span> host <span class="c-key">in</span> (<span class="c-key">"127.0.0.1"</span>, <span class="c-key">"localhost"</span>, <span class="c-key">"::1"</span>)</div>
+      <p>
+        The interesting decision is the <strong>absent-header case</strong>. Browsers always attach an
+        <code>Origin</code> to a cross-origin POST, so a missing one means the caller isn't a browser —
+        a script, a health check, a shell one-liner. Rejecting those would have broken every legitimate
+        non-browser caller in exchange for blocking an attack that cannot originate there. Security that
+        breaks the tool gets switched off within a week, and a control that is switched off protects
+        nothing.
+      </p>
+
+      <h2>Defence in depth around it</h2>
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-key">Resolve, then check</span>
+          <span class="principle-val">Every path is passed through <code>realpath</code> <em>before</em> the allowed-roots comparison — so <code>..</code> traversal and symlinks pointing outside are both refused by the same line, rather than by two separate rules that can drift apart.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Overwrite, never create</span>
+          <span class="principle-val">The write route refuses any path that isn't already a file. An attacker cannot plant a new <code>.service</code> unit, cron entry, or shell profile — only overwrite something that already exists inside the sandbox.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Atomic writes</span>
+          <span class="principle-val">Write to a temporary file, then rename over the target. A crash mid-save cannot leave a half-written file where a whole one used to be.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Narrow the keyboard</span>
+          <span class="principle-val">The keystroke-injection route accepts digits and escape — nothing else. It exists to answer a yes/no prompt, so that is the entire alphabet it is given.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Read cap</span>
+          <span class="principle-val">File reads are capped and binary content is rejected, so the reader cannot be turned into a memory-exhaustion lever.</span>
+        </div>
+      </div>
+      <p>
+        The traversal defences were verified the same way as the CSRF fix — by trying them. Requests for
+        <code>/etc/passwd</code>, a <code>..</code> climb toward <code>/etc/shadow</code>, and a symlink
+        pointing out of the sandbox were all fired at the running server and all refused.
+      </p>
+
+      <h2>Radical simplicity, on purpose</h2>
+      <p>
+        The second thing worth saying about this tool is how little is in it. A live-updating multi-file
+        editor with a streaming activity view is the sort of thing that usually arrives as a React app, a
+        websocket server, a bundler config and four hundred transitive dependencies.
+      </p>
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-key">Backend</span>
+          <span class="principle-val">Python standard library only — the built-in threading HTTP server, subclassed. No Flask, no FastAPI, no ASGI. Zero third-party backend packages.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Frontend</span>
+          <span class="principle-val">Vanilla JavaScript in ordinary script tags. No framework, no build step, no bundler. Edit a file, reload the tab.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Transport</span>
+          <span class="principle-val">HTTP long-polling, not websockets — the session stream on a sub-second poll, each open editor pane checking its own file for on-disk changes. Boring, debuggable with <code>curl</code>, and impossible to get into a half-open state you can't see.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Persistence</span>
+          <span class="principle-val">None. No database, no ORM, no migrations. The filesystem is the state, and the session transcript is the log.</span>
+        </div>
+      </div>
+      <p>
+        Long-polling instead of websockets is the trade this project is happy to defend. A websocket buys
+        latency the interface cannot perceive, and costs a reconnect state machine, a heartbeat, and a
+        class of "connected but dead" bugs that are miserable to reproduce. A poll that fails just
+        fails — visibly, on the next tick.
+      </p>
+      <div class="stack-line">
+        <span class="stack-pill">Python 3 stdlib</span>
+        <span class="stack-pill">http.server</span>
+        <span class="stack-pill">vanilla JS</span>
+        <span class="stack-pill">HTTP long-polling</span>
+        <span class="stack-pill">systemd</span>
+        <span class="stack-pill">no framework</span>
+        <span class="stack-pill">no database</span>
+        <span class="stack-pill">loopback-bound</span>
+      </div>
+
+      <h2>Scope &amp; roadmap</h2>
+      <p>
+        It is an editor, not an IDE, and the difference is deliberate. The text surface is a plain
+        textarea with a line-number gutter — <strong>no syntax highlighting, no language server, no
+        integrated terminal</strong>. A full editor component was evaluated and dropped: shipping it
+        would have meant adopting a bundler, which would have cost the one property the project is built
+        around.
+      </p>
+      <p>
+        On the roadmap, honestly ranked: syntax highlighting without a build step, new-file creation
+        (currently refused by design, since overwrite-only is a security property worth keeping until
+        it's replaced deliberately), and find-and-replace. The tool is single-operator and loopback-bound
+        by design — multi-user access would need real authentication, not an origin check, and that is a
+        different product.
+      </p>
+
+    </article>
+
+    <p class="story-origin">Built in a fortnight of evenings. The security work took one of them — and is the part worth reading.</p>
+
+    <nav class="story-nav">
+      <a href="../index.html">← Back to all systems</a>
+      <a href="map.html">Next: The Substrate — the system map →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="../index.html">Workshop</a>
+        <span class="footer-sep">·</span>
+        <a href="../portfolio/index.html">Selected work</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-right">the tool you attack first is the one you can trust</div>
+  </footer>
+
+</body>
+</html>

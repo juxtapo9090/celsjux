@@ -1,2 +1,15 @@
 SKETCH.md
 SCRATCHPAD.md
+
+# Private household hub — NEVER publish to public celsjux Pages site
+hub.html
+raphael.html
+assets/celeste_soul_private.webp
+assets/celeste_origin_bg.mp4
+assets/celeste_origin_bg.webm
+assets/celeste_origin_poster.webp
+
+# bak/checkpoint copies — reversible on disk, NEVER pushed (any Archived/ dir, any level)
+Archived/
+# raw un-sanitized O.R.B phone screenshots (API keys, model names) — sanitized set lives in systems/assets/orb/
+assets/[1-6].webp

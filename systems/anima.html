@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anima — The Watcher · CELSJUX</title>
+  <meta name="description" content="A behavioral observation daemon that reads a live session in real time, scores signals, and nudges — never blocks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Story-page layout (page-local) ---- */
+    .story-hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 56px 28px 44px;
+      text-align: center;
+    }
+    .story-hero-anim {
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .story-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .story-title {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin: 8px 0 12px;
+    }
+    .story-tagline {
+      font-size: 17px;
+      color: var(--text-dim);
+      font-style: italic;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .story-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 28px 20px;
+    }
+    .story-body h2 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-body h2:first-child { margin-top: 0; }
+    .story-body p {
+      color: var(--text-dim);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-size: 15.5px;
+    }
+    .story-body p .lead { color: var(--text); }
+    .story-body strong { color: var(--text); font-weight: 600; }
+    .story-body code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: rgba(155, 89, 182, 0.12);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .pull {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding: 6px 0 6px 18px;
+      margin: 24px 0;
+      line-height: 1.6;
+    }
+
+    /* principle list */
+    .principles { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 8px; }
+    .principle {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      padding: 12px 16px;
+      background: rgba(155, 89, 182, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .principle-key {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 150px;
+    }
+    .principle-val { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+
+    /* signal table */
+    .signals { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
+    .signal {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 16px;
+      background: var(--bg-tile);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .signal-emoji { font-size: 20px; flex-shrink: 0; }
+    .signal-name {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+    .signal-how { font-size: 13.5px; color: var(--text-dim); line-height: 1.5; }
+
+    .stack-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .story-origin {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 24px 28px 8px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .story-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 20px 28px 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .story-nav a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .story-nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .story-title { font-size: 30px; }
+      .principle-key { min-width: 0; }
+      .principle { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~$</span>
+      <a href="../index.html" class="header-title" style="text-decoration:none;color:var(--text);">CELSJUX WORKSHOP</a>
+    </div>
+    <div class="header-right">
+      <a href="../index.html" class="dm-badge">← All systems</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">active</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="story-hero">
+      <div class="story-hero-anim">
+        <div class="tile-animation anima-heartbeat" style="height:auto;">
+          <div class="heartbeat-ring r1"></div>
+          <div class="heartbeat-ring r2"></div>
+          <div class="heartbeat-ring r3"></div>
+          <div class="heartbeat-core"></div>
+        </div>
+      </div>
+      <div class="story-eyebrow">Behavioral observation daemon</div>
+      <h1 class="story-title">💓 Anima</h1>
+      <p class="story-tagline">"The quiet one. It doesn't build. It watches — and when the rhythm breaks, it whispers."</p>
+    </section>
+
+    <article class="story-body">
+
+      <h2>What it is</h2>
+      <p>
+        <span class="lead">Anima is a background daemon that reads a live working session in real time</span>
+        — the model's reasoning, its tool calls, its output, the whole stream — and watches for
+        patterns the moment-to-moment focus tends to miss. It does not modify anything. It does not
+        block anything. It observes, keeps a private running journal, and when a signal crosses a
+        threshold, it surfaces a single, quiet nudge.
+      </p>
+      <p>
+        The design bet is that the most useful interventions are <strong>ambient, not authoritative</strong>.
+        A tool that halts you mid-flow to warn you is expensive and easy to resent. A tool that says one
+        true thing softly and then trusts you to decide is something you actually keep running.
+      </p>
+
+      <div class="pull">Observe, don't interrupt. Whisper, don't shout. Say it once, then trust.</div>
+
+      <h2>The philosophy</h2>
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-key">Whisper, don't shout</span>
+          <span class="principle-val">Nudges are ambient and non-blocking — they inform, they never gate.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">One nudge, then trust</span>
+          <span class="principle-val">Say a thing once and back off. Repetition is nagging, and nagging gets muted.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Moveset-driven, not timed</span>
+          <span class="principle-val">It reacts to the shape of what's happening, not a clock tick — watches the dance, not the metronome.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Escalation, tiered</span>
+          <span class="principle-val">A three-level scale — from a light note, to a correction, to a genuine intervention — so tone matches stakes.</span>
+        </div>
+      </div>
+
+      <h2>What it watches</h2>
+      <p>
+        Each signal is a small, cheap detector over the live stream — keyword sentinels, tool-sequence
+        analysis, and rolling-window arithmetic. None of them is smart on its own; the value is in
+        running all of them, quietly, all the time.
+      </p>
+      <div class="signals">
+        <div class="signal">
+          <span class="signal-emoji">🌀</span>
+          <span class="signal-name">Spiral</span>
+          <span class="signal-how">Retry-and-fail loops — "let me try again," "still failing" — caught by keyword sentinels combined with a rising error rate.</span>
+        </div>
+        <div class="signal">
+          <span class="signal-emoji">👁️</span>
+          <span class="signal-name">Blind edits</span>
+          <span class="signal-how">Editing a file without having read it first — pure tool-sequence analysis, no guessing.</span>
+        </div>
+        <div class="signal">
+          <span class="signal-emoji">⚡</span>
+          <span class="signal-name">Velocity</span>
+          <span class="signal-how">Sudden spikes in tool calls per minute — rolling-window arithmetic over the event stream.</span>
+        </div>
+        <div class="signal">
+          <span class="signal-emoji">🛒</span>
+          <span class="signal-name">Drift</span>
+          <span class="signal-how">Scope creep away from the stated task — "while I'm here," "let me also…" — flagged before a small job quietly becomes three.</span>
+        </div>
+        <div class="signal">
+          <span class="signal-emoji">📉</span>
+          <span class="signal-name">Affective state</span>
+          <span class="signal-how">Coarse tone signals in the reasoning stream, tracked as two floats (energy, warmth) so the nudge tone can match the moment rather than fight it.</span>
+        </div>
+      </div>
+
+      <h2>How it decides</h2>
+      <p>
+        A raw keyword match is a false-positive machine. So detection runs in
+        <strong>three layers, and a nudge only fires when all three agree</strong>:
+      </p>
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-key">1 · Structural</span>
+          <span class="principle-val">Cheap arithmetic over the stream — velocity, error rate, file-revisit counts. No language understanding, just shape.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">2 · Keyword</span>
+          <span class="principle-val">Behavioral sentinels — known phrases that hint a pattern is forming.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">3 · Semantic</span>
+          <span class="principle-val">A small local neural model reads action verbs in context against session history — the layer that tells a real signal from a coincidence.</span>
+        </div>
+      </div>
+      <p>
+        Requiring all three to align is what keeps false positives near zero — the difference between a
+        tool you trust and one you mute on day two. Internally the daemon splits into three cooperating
+        roles: a <strong>journaler</strong> that writes observations, a <strong>signal window</strong>
+        that does the rolling arithmetic, and a <strong>history cross-reference</strong> that recognises
+        when something echoes an earlier session.
+      </p>
+
+      <h2>Under the hood</h2>
+      <p>
+        Written in <strong>Julia</strong> with a small <strong>Flux.jl</strong> model for the semantic
+        layer, run as a <strong>systemd</strong> service so it survives crashes and boots with the
+        machine. It reads the transcript like a passenger reading the dashboard — <strong>aware, not
+        driving</strong>: no hooks into the host, no modifications to output. State is a compact
+        append-only feed, and every detector is a rolling window over it, so memory stays flat no matter
+        how long the session runs. Entirely local — nothing leaves the box. The whole point is a
+        subsystem you forget is running until the one moment it says something worth hearing.
+      </p>
+      <div class="stack-line">
+        <span class="stack-pill">Julia</span>
+        <span class="stack-pill">Flux.jl</span>
+        <span class="stack-pill">systemd</span>
+        <span class="stack-pill">append-only feed</span>
+        <span class="stack-pill">rolling-window detectors</span>
+        <span class="stack-pill">100% local</span>
+      </div>
+
+    </article>
+
+    <p class="story-origin">Born from a 3AM sketch over a long weekend — from a scribbled idea to a resident daemon.</p>
+
+    <nav class="story-nav">
+      <a href="../index.html">← Back to all systems</a>
+      <a href="vox.html">Next: Vox — the voice →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="../index.html">Workshop</a>
+        <span class="footer-sep">·</span>
+        <a href="../portfolio/index.html">Selected work</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-right">a system that watches, so you don't have to</div>
+  </footer>
+
+</body>
+</html>

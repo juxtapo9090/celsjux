@@ -72,7 +72,7 @@
       }
     }
 
-    // ── CelestOS tile ───────────────────────────────────────
+    // ── legacy celestos data-sync (tile element removed; guarded no-op, kept inert) ──
     if (celestos) {
       const celestosReplaysEl = document.getElementById('celestos-replays');
       if (celestosReplaysEl && celestos.replays_captured != null) {
@@ -339,12 +339,12 @@
       { t: 'response',  text: '│' },
       { t: 'response',  text: '│  ls / projects      list all projects' },
       { t: 'response',  text: '│  cat <name>         show project details' },
-      { t: 'response',  text: '│                     names: anima vox celestos rtk deltamesh chronicle seasoned' },
+      { t: 'response',  text: '│                     names: anima vox celest-chat rtk deltamesh chronicle seasoned' },
       { t: 'response',  text: '│' },
       { t: 'response',  text: '│  deep <name>        architecture decisions & trade-offs' },
       { t: 'response',  text: '│  why <name>         origin story & philosophy' },
       { t: 'response',  text: '│  demo rtk           before/after token comparison' },
-      { t: 'response',  text: '│  demo celestos      before/after output reduction' },
+      { t: 'response',  text: '│  demo celest-chat   attack our own tool, before/after the fix' },
       { t: 'response',  text: '│  architecture       full system diagram' },
       { t: 'response',  text: '│  philosophy         the design ethos' },
       { t: 'response',  text: '│  stack              all technologies across projects' },
@@ -365,8 +365,8 @@
       { t: 'response',  text: '' },
       { t: 'response',  text: '💓  anima       soul daemon · watching the rhythm' },
       { t: 'response',  text: '🎙️  vox         voice synthesis · local GPT-SoVITS' },
-      { t: 'response',  text: '🌙  celestos    presentation intelligence · style over firehose' },
-      { t: 'response',  text: '⚡  rtk         token killer · 62% savings · always on' },
+      { t: 'response',  text: '🖥️  celest-chat live session editor · framework-free, hardened' },
+      { t: 'response',  text: '⚡  rtk         token proxy · integrated · 62% savings' },
       { t: 'response',  text: '🔺  deltamesh   file mesh · three nodes · files find home' },
       { t: 'response',  text: '✨  chronicle   memory across sessions · 400+ crystallized' },
       { t: 'response',  text: '📱  orb         tri-stream mobile companion (v0.4)' },
@@ -400,7 +400,7 @@
       { t: 'response',  text: '' },
       { t: 'response',  text: '  anima       [●] watching    vibe: ⚡flow    joy:14  moved:8' },
       { t: 'response',  text: '  vox         [●] ready       mood: warm     engine: GPT-SoVITS' },
-      { t: 'response',  text: '  celestos    [●] active      shadow: online reducers: 4' },
+      { t: 'response',  text: '  celest-chat  [●] served      auth: origin-gated  deps: 0' },
       { t: 'response',  text: '  rtk         [●] proxying    saved: 62%     proxy: on' },
       { t: 'response',  text: '  deltamesh   [●] mesh up     nodes: A·B·C   transport: ok' },
       { t: 'response',  text: '  chronicle   [●] crystallizing  memories: 34   last: 06:17' },
@@ -535,8 +535,8 @@
       { t: 'highlight', text: '│     │                        │              │' },
       { t: 'highlight', text: '│     └──── state.json ────────┘              │' },
       { t: 'highlight', text: '│                                              │' },
-      { t: 'highlight', text: '│  ⚡ RTK ←──hook──→ 🌙 CelestOS              │' },
-      { t: 'highlight', text: '│                       │                      │' },
+      { t: 'highlight', text: '│  ⚡ RTK (proxy)      🖥️ celest-chat (editor) │' },
+      { t: 'highlight', text: '│                                              │' },
       { t: 'highlight', text: '│  ✨ Chronicle ←── Oracle ── Constellation    │' },
       { t: 'highlight', text: '│                                              │' },
       { t: 'highlight', text: '│  🔺 DeltaMesh: A ◄──► B ◄──► C             │' },
@@ -565,7 +565,7 @@
       { t: 'response',  text: '  Infra        systemd · WireGuard · FastAPI · SQLite · ALSA' },
       { t: 'response',  text: '  Data         JSONL · Markdown · FTS5 · rolling windows' },
       { t: 'response',  text: '  Frontend     HTML · CSS · vanilla JS · JetBrains Mono · Inter' },
-      { t: 'response',  text: '  Patterns     shadow pipelines · FIFO queues · PTW permits' },
+      { t: 'response',  text: '  Patterns     origin-gated writes · FIFO queues · PTW permits' },
       { t: 'response',  text: '               daemon isolation · local-first · no-cloud' },
       { t: 'response',  text: '' },
       { t: 'comment',   text: '  "I\'m the logic and senses, you\'re the expert coder"' },
@@ -584,7 +584,7 @@
   COMMANDS['man'] = () => [{ t: 'comment', text: '  RTFM → type help' }];
   COMMANDS['cat anima'] = () => makeProjectCat('anima');
   COMMANDS['cat vox'] = () => makeProjectCat('vox');
-  COMMANDS['cat celestos'] = () => makeProjectCat('celestos');
+  COMMANDS['cat celest-chat'] = () => makeProjectCat('celest-chat');
   COMMANDS['cat rtk'] = () => makeProjectCat('rtk');
   COMMANDS['cat deltamesh'] = () => makeProjectCat('deltamesh');
   COMMANDS['cat chronicle'] = () => makeProjectCat('chronicle');
@@ -610,14 +610,13 @@
     { t: 'response',  text: '  4 lanes for throughput. WireGuard as transport, not the internet.' },
     { t: 'response',  text: '  Hub node (B) absorbs network instability so endpoints don\'t have to.' },
   ];
-  COMMANDS['deep celestos'] = () => [
-    { t: 'highlight', text: '  🌙 CelestOS — Architecture' },
+  COMMANDS['deep celest-chat'] = () => [
+    { t: 'highlight', text: '  🖥️ celest-chat — Architecture' },
     { t: 'response',  text: '' },
-    { t: 'response',  text: '  Shadow pipeline runs both the production reducer and the experimental' },
-    { t: 'response',  text: '  briefing engine on every command. Neither knows about the other.' },
-    { t: 'response',  text: '  Stats accumulate silently. When the shadow wins enough rounds, it' },
-    { t: 'response',  text: '  graduates to production. Data-driven style evolution, not faith-based' },
-    { t: 'response',  text: '  deployment.' },
+    { t: 'response',  text: '  Python stdlib HTTP server, subclassed — no framework, no bundler,' },
+    { t: 'response',  text: '  no websockets. Frontend is vanilla JS in plain script tags. The' },
+    { t: 'response',  text: '  session streams over HTTP long-polling; each editor pane polls its' },
+    { t: 'response',  text: '  own file for on-disk changes. The filesystem is the only state.' },
   ];
   COMMANDS['deep rtk'] = () => [
     { t: 'highlight', text: '  ⚡ RTK — Architecture' },
@@ -669,12 +668,13 @@
     { t: 'response',  text: '  one house, connected by WireGuard. The mesh exists because trust is' },
     { t: 'response',  text: '  local.' },
   ];
-  COMMANDS['why celestos'] = () => [
-    { t: 'highlight', text: '  🌙 Why CelestOS?' },
+  COMMANDS['why celest-chat'] = () => [
+    { t: 'highlight', text: '  🖥️ Why celest-chat?' },
     { t: 'response',  text: '' },
-    { t: 'response',  text: '  Because raw output is hostile. Information can be correct and still' },
-    { t: 'response',  text: '  disrespectful of your attention. CelestOS is the belief that' },
-    { t: 'response',  text: '  presentation is not decoration — it\'s architecture.' },
+    { t: 'response',  text: '  Because a live editor running as root is an attack surface with a' },
+    { t: 'response',  text: '  nice UI. The first real feature wasn\'t a feature — it was attacking' },
+    { t: 'response',  text: '  the tool ourselves: a demonstrated CSRF on the write route, fixed' },
+    { t: 'response',  text: '  with one Origin gate above the router. Try to break it, then trust it.' },
   ];
   COMMANDS['why rtk'] = () => [
     { t: 'highlight', text: '  ⚡ Why RTK?' },
@@ -730,21 +730,18 @@
     { t: 'response',  text: '  ? vox_daemon.jl' },
   ];
 
-  COMMANDS['demo celestos'] = () => [
-    { t: 'comment',   text: '── Before CelestOS ─────────────────────' },
-    { t: 'response',  text: 'On branch main. Your branch is up to date.' },
-    { t: 'response',  text: 'Changes not staged for commit:' },
-    { t: 'response',  text: '  modified: src/vox.jl' },
-    { t: 'response',  text: '  modified: src/introvert.jl' },
-    { t: 'response',  text: 'Untracked: vox_daemon.jl' },
-    { t: 'response',  text: 'no changes added to commit (use "git add" and/or "git commit -a")' },
+  COMMANDS['demo celest-chat'] = () => [
+    { t: 'comment',   text: '── celest-chat: attacking our own write route ──' },
+    { t: 'response',  text: '$ curl -s -X POST http://127.0.0.1:PORT/__write \\' },
+    { t: 'response',  text: '    -H "Origin: http://evil.example" \\' },
+    { t: 'response',  text: '    --data \'{"path":"/tmp/pwned","content":"x"}\'' },
+    { t: 'highlight', text: '── Before the gate ─────────────────────' },
+    { t: 'response',  text: '{"ok": true}          # root-privileged write, off-origin. bad.' },
     { t: 'response',  text: '' },
-    { t: 'highlight', text: '── After CelestOS (58% reduction) ──────' },
-    { t: 'response',  text: '▸ main — clean  |  2 modified  1 untracked' },
-    { t: 'response',  text: '  → src/vox.jl  src/introvert.jl' },
-    { t: 'response',  text: '  ? vox_daemon.jl' },
+    { t: 'highlight', text: '── After the gate (0/5 → 5/5) ──────────' },
+    { t: 'response',  text: '403 Forbidden         # one Origin check above the router' },
     { t: 'response',  text: '' },
-    { t: 'comment',   text: '  presentation is architecture.' },
+    { t: 'comment',   text: '  a fix you have not tried to break is a hypothesis.' },
   ];
 
   function makeProjectCat(name) {
@@ -769,14 +766,14 @@
           'Delivery mechanism for Anima\'s whispers.',
         ]
       },
-      celestos: {
-        icon: '🌙', title: 'CelestOS — Presentation Intelligence',
-        stack: 'Python · Shell · Shadow pipelines',
+      'celest-chat': {
+        icon: '🖥️', title: 'celest-chat — Live Session Editor',
+        stack: 'Python 3 stdlib · vanilla JS · long-polling',
         desc: [
-          'Not a filter. Not a truncator. A perspective.',
-          'Briefing Layer + Shadow Pipeline + Reducer Engine.',
-          'Before: 847 lines of git status.',
-          'After: "3 modified, 12 untracked, branch main ↑2 ahead".',
+          'Browser observatory for a live AI coding session + multi-file editor.',
+          'Backend is Python stdlib only. No framework, no database, no websockets.',
+          'We attacked our own tool: 0/5 → 5/5 state-routes gated by one Origin check.',
+          'Radical simplicity, on purpose — one process you can read in an afternoon.',
         ]
       },
       rtk: {
@@ -786,7 +783,7 @@
           'CLI proxy. Sits between the session and every command.',
           '62% average token reduction. Up to 90% on verbose output.',
           'Transparent: git status → rtk git status. You never see it.',
-          'v0.29.0. Battle-tested daily. rtk gain to check savings.',
+          'Third-party tooling we integrate — not ours. rtk gain for savings.',
         ]
       },
       deltamesh: {
@@ -1024,7 +1021,7 @@
       e.preventDefault();
       const val = input.value.toLowerCase().trim();
       const allCmds = Object.keys(COMMANDS).filter(k => !k.startsWith('cat ') && !k.startsWith('deep ') && !k.startsWith('why ') && !k.startsWith('rm'));
-      const allProjects = ['anima', 'vox', 'celestos', 'rtk', 'deltamesh', 'chronicle'];
+      const allProjects = ['anima', 'vox', 'celest-chat', 'rtk', 'deltamesh', 'chronicle'];
 
       if (val.startsWith('cat ')) {
         const partial = val.slice(4);

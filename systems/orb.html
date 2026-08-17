@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O.R.B. — Phone Control Surface · CELSJUX</title>
+  <meta name="description" content="A phone view into a living multi-agent house, and the Rust relay beneath it — O.R.B. and Orb Streamer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Story-page layout (page-local; mirrors anima.html / vox.html) ---- */
+    .story-hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 56px 28px 44px;
+      text-align: center;
+    }
+    .story-hero-anim {
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .story-hero-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 0 26px var(--accent-glow-soft);
+    }
+    .story-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .story-title {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin: 8px 0 12px;
+    }
+    .story-tagline {
+      font-size: 17px;
+      color: var(--text-dim);
+      font-style: italic;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .story-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 28px 20px;
+    }
+    .story-body h2 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-body h2:first-child { margin-top: 0; }
+    .story-body p {
+      color: var(--text-dim);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-size: 15.5px;
+    }
+    .story-body p .lead { color: var(--text); }
+    .story-body strong { color: var(--text); font-weight: 600; }
+    .story-body code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: rgba(155, 89, 182, 0.12);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .pull {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding: 6px 0 6px 18px;
+      margin: 24px 0;
+      line-height: 1.6;
+    }
+    .stack-line { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+
+    /* product-surface table (mirrors map.html comp-table) */
+    .comp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+    .comp-table th, .comp-table td {
+      text-align: left;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .comp-table th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .comp-table td { color: var(--text-dim); }
+    .comp-table td:first-child { font-family: var(--font-mono); color: var(--text); white-space: nowrap; }
+    .table-scroll { overflow-x: auto; }
+
+    /* engineering flow diagram (mirrors map.html flow-wrap) */
+    .flow-wrap {
+      background: var(--bg-terminal);
+      border: 1px solid var(--border-h);
+      border-radius: var(--radius-lg);
+      padding: 8px 4px;
+      margin: 18px 0;
+      overflow-x: auto;
+      box-shadow: 0 0 26px var(--accent-glow-soft);
+    }
+    .flow-pre {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-dim);
+      padding: 18px 20px;
+      white-space: pre;
+      min-width: 560px;
+    }
+
+    /* story figures — approved phone screenshots */
+    .story-figures {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 18px 0;
+      justify-content: center;
+    }
+    .story-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      max-width: 200px;
+    }
+    .story-figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-h);
+      box-shadow: 0 0 22px var(--accent-glow-soft);
+    }
+    .story-figure figcaption {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* proven list */
+    .proof-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 9px; margin: 10px 0; }
+    .proof-list li {
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative;
+    }
+    .proof-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-size: 12px; top: 3px; }
+
+    /* honest boundaries (mirrors map.html .boundaries) */
+    .boundaries {
+      background: rgba(243, 156, 18, 0.05);
+      border: 1px solid rgba(243, 156, 18, 0.22);
+      border-left: 3px solid var(--amber);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 14px 0;
+    }
+    .boundaries p { color: var(--text-dim); font-size: 14px; margin: 0; line-height: 1.7; }
+
+    .story-origin {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 24px 28px 8px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .story-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 20px 28px 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .story-nav a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .story-nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .story-title { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~$</span>
+      <a href="../index.html" class="header-title" style="text-decoration:none;color:var(--text);">CELSJUX WORKSHOP</a>
+    </div>
+    <div class="header-right">
+      <a href="../index.html" class="dm-badge">← All systems</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">active</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="story-hero">
+      <div class="story-hero-anim">
+        <img src="../assets/ic_orb.png" alt="O.R.B. icon" class="story-hero-icon" />
+      </div>
+      <div class="story-eyebrow">Phone control surface · Rust relay</div>
+      <h1 class="story-title">🔮 O.R.B.</h1>
+      <p class="story-tagline">"Live work. Real transcripts. One small screen that stays useful."</p>
+    </section>
+
+    <article class="story-body">
+
+      <h2>The short version</h2>
+      <p>
+        <span class="lead">O.R.B. turns a phone into a live window and control surface for a working
+        multi-agent house. Orb Streamer is the Rust relay beneath it: it follows an agent's real
+        transcript, normalizes it into a stable live feed, and carries a prompt back to the seat.</span>
+      </p>
+      <p>
+        This is not a mock chatbot. The interesting work is making the loop survive contact with the
+        real system: different agent transcript formats, long-running sessions, phone networking, file
+        movement, permission gates, and operator visibility.
+      </p>
+
+      <h2>A phone view into a living system</h2>
+      <p>
+        O.R.B. gives the operator a practical way to watch agent work, send the next instruction,
+        inspect changes, and move files without pretending the house is a clean SaaS diagram.
+      </p>
+      <p>
+        It is a control surface for systems that already exist: agent seats, their session logs, their
+        command lanes, and the phone-to-house network.
+      </p>
+      <div class="pull">Live work. Real transcripts. One small screen that stays useful.</div>
+
+      <h2>What the product does</h2>
+      <div class="table-scroll">
+      <table class="comp-table">
+        <thead>
+          <tr><th>Surface</th><th>What it makes possible</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Live chat/watch</td>
+            <td>A phone subscribes to a server-sent event feed and sees replay plus new agent activity as it arrives.</td>
+          </tr>
+          <tr>
+            <td>Prompt return lane</td>
+            <td>A submitted phone prompt is routed to the selected agent's established input path rather than inventing a second chat brain.</td>
+          </tr>
+          <tr>
+            <td>Change visibility</td>
+            <td>File edits can arrive as structured change data, so the phone can render real red/green diffs instead of a vague "edited a file" line.</td>
+          </tr>
+          <tr>
+            <td>File lane</td>
+            <td>Browse and upload helpers stay rooted to declared directories; DeltaMesh carries direct phone/PC transfers for the O.R.B. lane.</td>
+          </tr>
+          <tr>
+            <td>Operator gates</td>
+            <td>Permission cards are deliberately held at the UI boundary—especially destructive choices—rather than silently auto-confirmed.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="story-figures">
+        <figure class="story-figure">
+          <img src="assets/orb/orb-house.webp" alt="The House — private control console" loading="lazy" />
+          <figcaption>The House — private control console</figcaption>
+        </figure>
+        <figure class="story-figure">
+          <img src="assets/orb/orb-chat.webp" alt="Live agent chat with inline diff-cards" loading="lazy" />
+          <figcaption>Live agent chat with inline diff-cards</figcaption>
+        </figure>
+        <figure class="story-figure">
+          <img src="assets/orb/orb-settings.webp" alt="Pluggable AI backend and per-seat streamer routing" loading="lazy" />
+          <figcaption>Pluggable AI backend and per-seat streamer routing</figcaption>
+        </figure>
+      </div>
+
+      <h2>The engineering story</h2>
+      <p>
+        At first, each agent seat had its own Python streamer. They worked, but the HTTP transport,
+        replay logic, polling, prompt injection, and file helpers kept drifting apart.
+      </p>
+      <p>
+        Orb Streamer replaces that repetition with one Rust runtime and narrow engine adapters. Axum
+        owns the HTTP/SSE surface; a selected adapter understands the transcript shape for Codex or a
+        Claude-family seat. The result is one operational contract while still respecting that the
+        engines do not write identical logs.
+      </p>
+      <div class="flow-wrap">
+<pre class="flow-pre">agent transcript ──&gt; engine adapter ──&gt; Orb Streamer (Rust) ──SSE──&gt; O.R.B. phone
+      ▲                                           │                     │
+      └──────── established prompt lane &lt;─────────┴──── POST /prompt ────┘
+
+phone/PC file movement ───────────────────── DeltaMesh direct transfer lane</pre>
+      </div>
+      <p>
+        The deployed proving ground is Luc's Codex lane on port 8202. It has a replay view for
+        reconnecting clients, a live tail for new transcript entries, duplicate suppression,
+        health/debug endpoints, prompt dispatch, and rooted browse/upload routes. The old Python lane
+        is retained as rollback history; migration of the other seats is intentionally incremental.
+      </p>
+
+      <h2>A small detail that tells the truth</h2>
+      <p>
+        "The agent changed a file" is not enough to supervise work from a phone.
+      </p>
+      <p>
+        The streamer was extended to preserve structured tool input alongside the human-readable tool
+        summary. That additive wire format lets O.R.B. draw an actual before/after diff card for
+        supported Edit, Write, and MultiEdit calls. The client does the diff calculation; the relay
+        keeps the raw event intact. That boundary matters: transport stays simple, the phone owns its
+        presentation, and older clients can still consume the original summary.
+      </p>
+
+      <h2>What is proven, not promised</h2>
+      <ul class="proof-list">
+        <li>Rust Streamer is the canonical live Luc/Codex service on <code>:8202</code>.</li>
+        <li>Its HTTP surface includes health, replay/debug, SSE stream, prompt, browse, and upload endpoints.</li>
+        <li>The Codex change-event path has been validated carrying real <code>{path, patch}</code> cards while ordinary assistant replies continue normally.</li>
+        <li>O.R.B.'s phone answer lane has been exercised end-to-end: tap, authenticated answer request, delivery to the active seat, and prompt clear.</li>
+        <li>O.R.B. and DeltaMesh have passed phone-to-PC and PC-to-phone file-transfer proofs, including categorized landing paths.</li>
+        <li>The phone UI has a deliberate auto/manual permission contract: only a plain <code>Yes</code> can be auto-approved; <code>rm</code> remains manual.</li>
+      </ul>
+
+      <h2>Honest boundaries</h2>
+      <div class="boundaries">
+        <p>
+          This is a live house system, so the portfolio should not pretend every component is "done."
+          Claude-family seats now stream through the relay path declared by the adapter manifest; no
+          legacy Python streamer is in production. Codex session discovery currently follows the newest configured
+          transcript. The point is not a fictional finished platform; it is a working control loop with
+          clear seams and a disciplined path to harden them.
+        </p>
+      </div>
+
+      <h2>Case-study close</h2>
+      <p>
+        O.R.B. started from a simple question: <em>can the phone be where the operator stays connected
+        to the work, instead of where information goes to die?</em>
+      </p>
+      <p>
+        The answer became a practical stack: an Android surface, a Rust streaming core, real agent
+        transcript adapters, an established prompt-return lane, and direct file transfer. It is built
+        around the awkward parts most demos omit—reconnects, mismatched log formats, risky actions, and
+        real devices on imperfect networks.
+      </p>
+      <p>
+        That is the portfolio story: not "we made an AI app," but <strong>we built a calm, inspectable
+        bridge between an operator and a messy system that is actually alive.</strong>
+      </p>
+      <div class="stack-line">
+        <span class="stack-pill">Rust</span>
+        <span class="stack-pill">SSE</span>
+        <span class="stack-pill">Android</span>
+        <span class="stack-pill">WireGuard</span>
+        <span class="stack-pill">DeltaMesh</span>
+      </div>
+
+    </article>
+
+    <p class="story-origin">The phone as a live window, not a place where information goes to die.</p>
+
+    <nav class="story-nav">
+      <a href="../index.html">← Back to all systems</a>
+      <a href="map.html">The Substrate — system map →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="../index.html">Workshop</a>
+        <span class="footer-sep">·</span>
+        <a href="../portfolio/index.html">Selected work</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-right">a phone view into a living system</div>
+  </footer>
+
+</body>
+</html>

@@ -20,7 +20,7 @@
     <div class="header-right">
       <a href="globe.html" class="dm-badge">🔺 DeltaMesh</a>
       <span class="header-sep">·</span>
-      <span class="orb-badge" id="orb-badge" role="button" tabindex="0" aria-label="Open O.R.B. showcase">📱 O.R.B. v0.4</span>
+      <a href="systems/orb.html" class="orb-badge" id="orb-badge" aria-label="Open O.R.B. story">📱 O.R.B. v0.4</a>
       <span class="header-sep">·</span>
       <span class="status-dot"></span>
       <span class="status-text">online</span>
@@ -78,12 +78,12 @@
         <p class="tile-desc">Voice synthesis pipeline. Celeste speaks. Local, no cloud.</p>
       </article>
 
-      <!-- TILE 3: CelestOS -->
-      <article class="tile tile-celestos" data-target="detail-celestos" tabindex="0" role="button" aria-label="Open CelestOS project details">
+      <!-- TILE 3: celest-chat -->
+      <article class="tile tile-celestos" data-target="detail-celestos" tabindex="0" role="button" aria-label="Open celest-chat project details">
         <div class="tile-header">
-          <span class="tile-icon">🌙</span>
-          <span class="tile-name">CelestOS</span>
-          <span class="tile-tag">active</span>
+          <span class="tile-icon">🖥️</span>
+          <span class="tile-name">celest-chat</span>
+          <span class="tile-tag">hardened</span>
         </div>
         <div class="tile-animation celestos-moon">
           <div class="moon-glow"></div>
@@ -92,10 +92,10 @@
           <div class="moon-orbit o2"></div>
         </div>
         <div class="tile-stats">
-          <div class="stat"><span class="stat-label">replays</span><span class="stat-value" id="celestos-replays">510</span></div>
-          <div class="stat"><span class="stat-label">compression</span><span class="stat-value">0.20x</span></div>
+          <div class="stat"><span class="stat-label">routes gated</span><span class="stat-value">5/5</span></div>
+          <div class="stat"><span class="stat-label">backend deps</span><span class="stat-value">0</span></div>
         </div>
-        <p class="tile-desc">Presentation intelligence. Raw output becomes what you needed.</p>
+        <p class="tile-desc">Live session editor. Python stdlib, no framework. We attacked our own tool first.</p>
       </article>
 
       <!-- TILE 4: RTK -->
@@ -103,7 +103,7 @@
         <div class="tile-header">
           <span class="tile-icon">⚡</span>
           <span class="tile-name">RTK</span>
-          <span class="tile-tag">active</span>
+          <span class="tile-tag">integrated</span>
         </div>
         <div class="tile-animation rtk-counter-wrap">
           <div class="rtk-counter-display">
@@ -119,7 +119,7 @@
           <div class="stat"><span class="stat-label">proxy</span><span class="stat-value">active</span></div>
         </div>
         <span class="rtk-today" id="rtk-today"></span>
-        <p class="tile-desc">Token proxy that kills verbosity. 60–90% savings on dev ops.</p>
+        <p class="tile-desc">Third-party token proxy we run house-wide. Tooling we integrate, not ours. 60–90% savings on dev ops.</p>
       </article>
 
       <!-- TILE 5: DeltaMesh -->
@@ -243,6 +243,7 @@
           <h3>Stack</h3>
           <p class="stack-pill">Julia · systemd · JSONL · rolling windows</p>
           <p class="detail-note">Born 2026-03-22, Raya weekend. From a 3AM sketch to a living daemon.</p>
+          <p class="detail-note"><a class="story-link" href="systems/anima.html">Read the full story →</a></p>
         </div>
       </div>
 
@@ -267,42 +268,38 @@
           <h3>Stack</h3>
           <p class="stack-pill">Python · GPT-SoVITS · Fish shell · systemd · ALSA</p>
           <p class="detail-note">The <code>say</code> command. One word, one voice, no cloud.</p>
+          <p class="detail-note"><a class="story-link" href="systems/vox.html">Read the full story →</a></p>
         </div>
       </div>
 
-      <!-- CelestOS Detail -->
+      <!-- celest-chat Detail -->
       <div class="detail-panel" id="detail-celestos">
         <button class="detail-close" aria-label="Close">✕ close</button>
         <div class="detail-inner">
-          <h2><span class="detail-icon">🌙</span> CelestOS — Personality as Infrastructure</h2>
-          <blockquote>"Not what happened. What matters."</blockquote>
-          <h3>The Problem</h3>
-          <p>Every development session outputs the same way. Raw. Verbose. Firehose. A 200-line <code>git status</code> when you needed three words. A full file dump when you needed the diff.</p>
-          <p>The information is correct. The <em>presentation</em> is hostile.</p>
-          <h3>What Is CelestOS?</h3>
-          <p>CelestOS is a <strong>presentation intelligence layer</strong> — it decides <em>how</em> session output reaches you. Not a filter. Not a truncator. A perspective.</p>
+          <h2><span class="detail-icon">🖥️</span> celest-chat — The Live Editor, Hardened</h2>
+          <blockquote>"A live editor with root on the filesystem. So the first real feature wasn't a feature — it was attacking it ourselves."</blockquote>
+          <h3>What Is This?</h3>
+          <p>A browser-based observatory for a live AI coding session, with a real multi-file editor bolted on. The left half streams the session as it happens; the right half browses the filesystem, opens files as tabs, edits, saves. When the agent writes a file you have open, the diff projects into your pane — live.</p>
+          <p>Deliberately small: the backend is <strong>Python's standard library and nothing else</strong>, the frontend is plain JavaScript in ordinary <code>&lt;script&gt;</code> tags. No framework, no build step, no bundler, no websockets. One process you can read end to end in an afternoon.</p>
+          <h3>We Attacked Our Own Tool</h3>
+          <p>It runs <strong>as root</strong> — it has to, to tail session transcripts nobody else can read. That's a legitimate reason, and exactly the kind that quietly justifies a dangerous shape. So it got audited the way an attacker would, not the way an author would: <em>"what's the worst thing a stranger can make this process do?"</em></p>
           <div class="before-after">
             <div class="ba-col">
               <div class="ba-label before">Before</div>
-              <div class="ba-text">847 lines of git status, every untracked file listed</div>
+              <div class="ba-text">0 / 5 state-changing routes protected — including a root-privileged file write behind a no-auth endpoint</div>
             </div>
             <div class="ba-arrow">→</div>
             <div class="ba-col">
               <div class="ba-label after">After</div>
-              <div class="ba-text">3 modified, 12 untracked, branch main ↑2 ahead</div>
+              <div class="ba-text">5 / 5 covered by a single Origin check above the router — no per-route bypass to maintain</div>
             </div>
           </div>
-          <h3>Three Layers</h3>
-          <ul>
-            <li><strong>Briefing Layer</strong> — restructures output by what you need to know first</li>
-            <li><strong>Shadow Pipeline</strong> — A/B tests new reducers live without disrupting you</li>
-            <li><strong>Reducer Engine</strong> — format-aware compression (JSON, logs, code, tables)</li>
-          </ul>
-          <h3>Shadow Pipeline</h3>
-          <p>Every command runs through both paths simultaneously. Neither knows about the other. Stats accumulate. When the shadow wins enough rounds, it graduates to production. No faith-based deployment. Data-driven style evolution.</p>
+          <p>The exploit was <strong>demonstrated, not argued</strong> — run for real from an off-origin page against a throwaway file, then re-run against the patched server and refused. A fix you haven't tried to break is a hypothesis, not a fix.</p>
+          <h3>Radical Simplicity, On Purpose</h3>
+          <p>A live multi-file editor with a streaming activity view usually arrives as a React app, a websocket server, a bundler and four hundred dependencies. This one has none of that — long-polling over websockets, the filesystem as the only state, zero third-party backend packages.</p>
           <h3>Stack</h3>
-          <p class="stack-pill">Python · Shell · Shadow pipelines · systemd hooks</p>
-          <p class="detail-note">Private repo. Public concept. Every system has output. Few have style.</p>
+          <p class="stack-pill">Python 3 stdlib · http.server · vanilla JS · long-polling · no framework · no database</p>
+          <p class="detail-note"><a class="story-link" href="systems/celest-chat.html">Read the full story →</a></p>
         </div>
       </div>
 
@@ -311,22 +308,22 @@
         <button class="detail-close" aria-label="Close">✕ close</button>
         <div class="detail-inner">
           <h2><span class="detail-icon">⚡</span> RTK — Rust Token Killer</h2>
-          <blockquote>"60–90% token savings on dev operations. Transparent proxy. Zero overhead."</blockquote>
+          <blockquote>"Third-party tooling we integrate — not our build. Worth showing because how you run your tools is part of the craft."</blockquote>
           <h3>What Is This?</h3>
-          <p>RTK is a CLI proxy that sits between the session and every command it runs. Git output, file listings, build logs — all of it passes through RTK first, which strips verbosity and returns only what matters.</p>
+          <p>RTK is a third-party CLI proxy (Rust Token Killer) that sits between the session and every command it runs. Git output, file listings, build logs — all of it passes through RTK first, which strips verbosity and returns only what matters. <strong>We didn't write it; we wire it into every session.</strong></p>
           <p>The hook is transparent: <code>git status</code> becomes <code>rtk git status</code> automatically. The session never sees the raw firehose. You never see the difference except in speed and context window usage.</p>
-          <h3>Numbers</h3>
+          <h3>Why We Run It</h3>
           <ul>
             <li>62% average token reduction on dev operations</li>
             <li>Up to 90% on verbose commands (long git logs, full file dumps)</li>
-            <li>v0.29.0 — battle-tested on daily use</li>
+            <li>Battle-tested on daily use across every seat in the house</li>
             <li>Savings tracked: <code>rtk gain</code></li>
           </ul>
           <h3>Philosophy</h3>
-          <p>Every token read costs money and competes for attention. RTK treats your context window like a resource — because it is. Less noise means better reasoning, faster loops, and cheaper sessions.</p>
+          <p>Every token read costs money and competes for attention. Treating the context window like a resource — because it is — means less noise, better reasoning, faster loops, cheaper sessions. Knowing which tools to reach for is its own kind of engineering.</p>
           <h3>Stack</h3>
           <p class="stack-pill">Rust · Shell hooks · session integration</p>
-          <p class="detail-note">Running live. Every session. Every command.</p>
+          <p class="detail-note">Third-party tool — integrated, not authored. Running live, every session, every command.</p>
         </div>
       </div>
 
@@ -521,76 +518,9 @@
     <span class="footer-right">CachyOS · 10.0.0.2 · 2026</span>
   </footer>
 
-  <!-- O.R.B. SLIDE-OUT PANEL -->
-  <div class="orb-backdrop" id="orb-backdrop" aria-hidden="true"></div>
-  <aside class="orb-panel" id="orb-panel" aria-label="O.R.B. showcase" role="complementary" aria-hidden="true">
-    <div class="orb-panel-header">
-      <div class="orb-panel-title-group">
-        <img src="assets/ic_orb.png" alt="O.R.B. icon" class="orb-panel-icon" />
-        <div>
-          <div class="orb-panel-title">O.R.B. v0.4</div>
-          <div class="orb-panel-subtitle">Omnipresent Remote Bridge</div>
-        </div>
-      </div>
-      <button class="orb-panel-close" id="orb-panel-close" aria-label="Close O.R.B. panel">✕</button>
-    </div>
-
-    <div class="orb-panel-body">
-
-      <p class="orb-desc-tagline">Android. Custom Built-in AI.</p>
-      <p class="orb-desc">Your phone becomes a command surface. Floating overlay that talks to multiple AI partners simultaneously — with live streaming, BackSocket MCP endpoint, remote debugging, APK hot-push over ADB, and a Termux bridge that lets your pocket run what your desktop thinks.</p>
-
-      <div class="orb-chips">
-        <span class="orb-chip">Floating Overlay</span>
-        <span class="orb-chip">Multi-AI Chat</span>
-        <span class="orb-chip">Tri-Stream</span>
-        <span class="orb-chip">BackSocket MCP</span>
-        <span class="orb-chip">Termux Bridge</span>
-        <span class="orb-chip">Remote Debug</span>
-        <span class="orb-chip">APK Hot-Push</span>
-        <span class="orb-chip">Live Themes</span>
-        <span class="orb-chip">TTS Pipeline</span>
-      </div>
-
-      <div class="orb-screenshots-wrap">
-        <div class="orb-screenshots" id="orb-screenshots">
-          <img src="assets/1.webp" alt="Settings screen" class="orb-screenshot" loading="lazy" />
-          <img src="assets/2.webp" alt="Celeste tab" class="orb-screenshot" loading="lazy" />
-          <img src="assets/3.webp" alt="Luc tab" class="orb-screenshot" loading="lazy" />
-          <img src="assets/4.webp" alt="Profile view" class="orb-screenshot" loading="lazy" />
-          <img src="assets/5.webp" alt="Luc thinking" class="orb-screenshot" loading="lazy" />
-          <img src="assets/6.webp" alt="Celeste working" class="orb-screenshot" loading="lazy" />
-        </div>
-      </div>
-
-      <div class="orb-captions" id="orb-captions">
-        <div class="orb-caption active" data-index="0">Settings — API keys &amp; streamer config</div>
-        <div class="orb-caption" data-index="1">Celeste tab — live chat overlay</div>
-        <div class="orb-caption" data-index="2">Luc tab — Codex building in green</div>
-        <div class="orb-caption" data-index="3">Profile view — Celeste purple theme</div>
-        <div class="orb-caption" data-index="4">Luc thinking — green atmosphere</div>
-        <div class="orb-caption" data-index="5">Celeste working — reading &amp; editing files</div>
-      </div>
-
-      <div class="orb-links">
-        <a href="https://github.com/juxtapo9090/O.R.B" target="_blank" rel="noopener noreferrer" class="orb-link-badge">
-          🐙 GitHub — juxtapo9090/O.R.B
-        </a>
-      </div>
-
-      <p class="orb-footer">Built for the household. Runs on abang's phone.</p>
-
-    </div>
-  </aside>
-
-  <!-- O.R.B. Lightbox -->
-  <div class="orb-lightbox" id="orb-lightbox">
-    <button class="orb-lightbox-close" aria-label="Close lightbox">✕</button>
-    <img src="" alt="O.R.B. screenshot" id="orb-lightbox-img" />
-    <div class="orb-lightbox-caption" id="orb-lightbox-caption"></div>
-  </div>
+  <!-- O.R.B. showcase moved to systems/orb.html (Luc's story page, sanitized visuals). Badge navigates there. -->
 
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20260817"></script>
 </body>
 </html>

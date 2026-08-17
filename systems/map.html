@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Substrate — System Map · CELSJUX</title>
+  <meta name="description" content="How a multi-agent house actually connects: one shared transcript pool to read from, one inject socket to write through." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Map page (page-local) ---- */
+    .map-hero {
+      border-bottom: 1px solid var(--border);
+      padding: 52px 28px 40px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .map-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .map-title {
+      font-family: var(--font-mono);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin: 10px 0 14px;
+    }
+    .map-thesis {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .map-thesis strong { color: var(--text); }
+    .nexus-line {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      color: var(--accent);
+      margin-top: 18px;
+      line-height: 1.7;
+    }
+    .map-body { max-width: 900px; margin: 0 auto; padding: 8px 28px 20px; }
+    .map-body h2 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .map-body p { color: var(--text-dim); line-height: 1.8; margin-bottom: 14px; font-size: 15px; }
+    .map-body strong { color: var(--text); font-weight: 600; }
+    .map-body code {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      background: rgba(155, 89, 182, 0.12);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    /* the flow diagram */
+    .flow-wrap {
+      background: var(--bg-terminal);
+      border: 1px solid var(--border-h);
+      border-radius: var(--radius-lg);
+      padding: 8px 4px;
+      margin: 18px 0;
+      overflow-x: auto;
+      box-shadow: 0 0 26px var(--accent-glow-soft);
+    }
+    .flow-pre {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-dim);
+      padding: 18px 20px;
+      white-space: pre;
+      min-width: 640px;
+    }
+    .flow-pre .read  { color: var(--cyan); }
+    .flow-pre .write { color: var(--amber); }
+    .flow-pre .nex   { color: var(--accent); font-weight: 700; }
+    .flow-pre .node  { color: var(--text); }
+    .flow-pre .dim   { color: var(--text-muted); }
+
+    .legend { display: flex; gap: 20px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12px; margin: 10px 2px 0; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; color: var(--text-dim); }
+    .legend .dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+    .legend .dot.read { background: var(--cyan); }
+    .legend .dot.write { background: var(--amber); }
+    .legend .dot.nex { background: var(--accent); }
+
+    /* two-lane split cards */
+    .lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0; }
+    .lane {
+      background: var(--bg-tile);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+    .lane.read-lane  { border-top: 3px solid var(--cyan); }
+    .lane.write-lane { border-top: 3px solid var(--amber); }
+    .lane h3 {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+    .lane.read-lane h3 { color: var(--cyan); }
+    .lane.write-lane h3 { color: var(--amber); }
+    .lane p { font-size: 13.5px; margin-bottom: 8px; }
+    .lane .verdict {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* components table */
+    .comp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+    .comp-table th, .comp-table td {
+      text-align: left;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .comp-table th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .comp-table td { color: var(--text-dim); }
+    .comp-table td:first-child { font-family: var(--font-mono); color: var(--text); white-space: nowrap; }
+    .comp-table code { font-size: 11.5px; }
+    .comp-table tr.nexus-row td { background: rgba(155, 89, 182, 0.08); }
+    .table-scroll { overflow-x: auto; }
+
+    /* honest boundaries */
+    .boundaries {
+      background: rgba(243, 156, 18, 0.05);
+      border: 1px solid rgba(243, 156, 18, 0.22);
+      border-left: 3px solid var(--amber);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 14px 0;
+    }
+    .boundaries h3 { font-family: var(--font-mono); font-size: 12px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .boundaries ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+    .boundaries li { color: var(--text-dim); font-size: 13.5px; line-height: 1.6; padding-left: 18px; position: relative; }
+    .boundaries li::before { content: '△'; position: absolute; left: 0; color: var(--amber); font-size: 11px; top: 3px; }
+
+    .map-nav {
+      display: flex; justify-content: space-between; gap: 12px;
+      max-width: 900px; margin: 20px auto 0;
+      padding: 20px 28px 48px; border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .map-nav a {
+      font-family: var(--font-mono); font-size: 12px; color: var(--text-dim);
+      text-decoration: none; border: 1px solid var(--border); border-radius: 6px;
+      padding: 9px 16px; transition: border-color 0.2s, color 0.2s;
+    }
+    .map-nav a:hover { border-color: var(--accent); color: var(--accent); }
+    .provenance { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-align: center; padding: 8px 28px; max-width: 900px; margin: 0 auto; opacity: 0.6; }
+
+    @media (max-width: 720px) {
+      .lanes { grid-template-columns: 1fr; }
+      .map-title { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~$</span>
+      <a href="../index.html" class="header-title" style="text-decoration:none;color:var(--text);">CELSJUX WORKSHOP</a>
+    </div>
+    <div class="header-right">
+      <a href="../index.html" class="dm-badge">← All systems</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">live map</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="map-hero">
+      <div class="map-eyebrow">System map · the connective tissue</div>
+      <h1 class="map-title">🗺️ The Substrate</h1>
+      <p class="map-thesis">
+        A dozen tools — a phone app, a CLI, a web chat, per-seat streamers — look like separate
+        products. They aren't. They're all faces of <strong>one substrate</strong> with exactly two
+        primitives: <strong>read a living agent</strong> (follow its transcript) and
+        <strong>write a living agent</strong> (inject a prompt). Everything is those two, pointed a
+        different way.
+      </p>
+      <div class="nexus-line">
+        read from the same file pool · write through the same one socket
+      </div>
+    </section>
+
+    <article class="map-body">
+
+      <h2>The whole thing, on one screen</h2>
+      <div class="flow-wrap">
+<pre class="flow-pre">
+                 <span class="read">╔══════════════ THE READ POOL ══════════════╗</span>
+                 <span class="read">║  agent transcripts on disk (a LOCATION)   ║</span>
+                 <span class="read">║  /root/.claude/projects/…  ~/.codex/…     ║</span>
+                 <span class="read">╚═══════════════════╤═══════════════════════╝</span>
+             each reader watches independently — no shared tailer
+          <span class="read">┌────────────────────────┴───────────────────────┐</span>
+          <span class="read">▼</span>                                                <span class="read">▼</span>
+  <span class="node">orb-streamer × 7</span>  <span class="dim">(Rust)</span>                          <span class="node">celest-chat</span>  <span class="dim">(Tauri)</span>
+  per seat · <span class="read">:8201–8207</span> · per-engine adapters          its <span class="read">own</span> transcript.py
+  file-watch → <span class="read">SSE</span>                                    file-glob reader
+          <span class="read">│</span> SSE                                              <span class="read">│</span>
+          <span class="read">▼</span>                                                <span class="read">▼</span>
+    <span class="node">O.R.B phone</span> <span class="dim">(Kotlin)</span>                            <span class="node">CelestOS UI</span>
+          <span class="dim">·</span>                                                <span class="dim">·</span>
+  <span class="write">─────────────────── THE WRITE FUNNEL ───────────────────</span>
+  <span class="node">O.R.B</span>  ──POST /prompt──▶  <span class="node">orb-streamer</span>  ──shell──▶  <span class="write">sms</span> ─┐
+  <span class="node">any seat / human</span> ─────────────────────────▶  <span class="write">sms</span> CLI ─┤
+  <span class="node">celest-chat</span>  ──────────────▶  relay.py  ───────────▶ ─┤
+                                                          <span class="write">▼</span>
+                                          <span class="nex">╔═══════════════════════════╗</span>
+                                          <span class="nex">║   injectd   ◀── THE NEXUS  ║</span>
+                                          <span class="nex">║   /tmp/injectd.sock       ║</span>
+                                          <span class="nex">║   kitten @ send-text      ║</span>
+                                          <span class="nex">╚═════════════╤═════════════╝</span>
+                                                        <span class="write">▼</span>
+                                            the target seat's live pane
+</pre>
+      </div>
+      <div class="legend">
+        <span><span class="dot read"></span> READ lane (transcript → SSE)</span>
+        <span><span class="dot write"></span> WRITE lane (prompt → inject)</span>
+        <span><span class="dot nex"></span> the nexus</span>
+      </div>
+
+      <h2>The nexus is asymmetric — and that's the insight</h2>
+      <p>
+        The interesting part isn't that everything connects. It's <em>how</em>: the two primitives
+        converge in <strong>completely different ways</strong>.
+      </p>
+      <div class="lanes">
+        <div class="lane read-lane">
+          <h3>◇ READ → a location</h3>
+          <p>There is <strong>no shared read daemon</strong>. Each surface watches the transcript files itself — the 7 orb-streamers each spawn a per-seat file watcher, and celest-chat runs its own independent glob reader over the same directories.</p>
+          <p>What everyone agrees on is a <strong>place on disk</strong>, not a process.</p>
+          <div class="verdict">Nexus = the transcript files themselves.</div>
+        </div>
+        <div class="lane write-lane">
+          <h3>◆ WRITE → one process</h3>
+          <p>Every inject path — the phone's <code>/prompt</code>, all 7 streamers, the <code>sms</code> CLI, celest-chat's <code>relay.py</code> — bottoms out at <strong>one daemon</strong>. Even orb-streamer doesn't inject directly: its <code>prompt_command</code> shells out to <code>sms</code>.</p>
+          <p>No write path bypasses it. One socket, one keystroke-injection function.</p>
+          <div class="verdict">Nexus = <code>injectd</code> · <code>/tmp/injectd.sock</code>.</div>
+        </div>
+      </div>
+      <p>
+        So a dev orienting on this system only needs two anchors: <strong>to see what an agent is
+        doing, tail the transcript pool; to make an agent do something, everything routes through
+        <code>injectd</code>.</strong> Learn those two and the whole fleet — CLI, phone, web — stops
+        being a dozen mysteries and becomes one loop with two ends.
+      </p>
+
+      <h2>The components</h2>
+      <div class="table-scroll">
+      <table class="comp-table">
+        <thead>
+          <tr><th>Component</th><th>Lang</th><th>Where</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr class="nexus-row">
+            <td>injectd</td><td>Python</td><td><code>/tmp/injectd.sock</code></td>
+            <td><strong>WRITE nexus</strong> — the only thing that calls <code>kitten @ send-text</code>; every inject funnels here.</td>
+          </tr>
+          <tr>
+            <td>transcript pool</td><td>—</td><td><code>/root/.claude/projects/…</code>, <code>~/.codex/sessions</code></td>
+            <td><strong>READ nexus</strong> — the shared on-disk location every reader watches independently.</td>
+          </tr>
+          <tr>
+            <td>orb-streamer</td><td>Rust (Axum)</td><td>7 instances · <code>:8201–8207</code></td>
+            <td>READ (per-seat file-watch → SSE) + WRITE (<code>/prompt</code> → shells <code>sms</code>). Per-engine adapters normalise each transcript format.</td>
+          </tr>
+          <tr>
+            <td>sms</td><td>Python</td><td><code>/usr/local/bin/sms</code></td>
+            <td>Roster-aware WRITE client — every <code>sms &lt;seat&gt;</code> terminates at injectd's socket.</td>
+          </tr>
+          <tr>
+            <td>O.R.B</td><td>Kotlin</td><td>Android · talks to <code>:8201–8207</code></td>
+            <td>Phone UI — pure client of the streamer SSE feed + <code>/prompt</code> return lane.</td>
+          </tr>
+          <tr>
+            <td>celest-chat</td><td>Python / Tauri</td><td><code>celest-chat-fafo.service</code></td>
+            <td>Web presentation — <em>own</em> transcript reader + own write path (<code>relay.py</code> → injectd).</td>
+          </tr>
+          <tr>
+            <td>DeltaMesh</td><td>Rust</td><td><code>:8300</code></td>
+            <td>File-transfer lane (phone ⇄ PC) — parallel to the loop, not part of read/write.</td>
+          </tr>
+          <tr>
+            <td>agents.json</td><td>JSON</td><td><code>/etc/ctx/agents.json</code></td>
+            <td>The one roster of record — 10 seat ids; every router resolves seats here.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>Scope &amp; roadmap</h2>
+      <p>
+        The substrate is live and load-bearing, and it's built to grow one seam at a time. The
+        streamer fleet is standardising on a single Rust runtime with per-engine adapters, migrated
+        seat by seat rather than in a risky big-bang cutover; the file-transfer lane and the phone
+        surface evolve behind the same stable read/write contract. The two anchors — <strong>the
+        transcript pool</strong> and <strong><code>injectd</code></strong> — stay fixed while the
+        surfaces around them iterate.
+      </p>
+
+    </article>
+
+    <p class="provenance">Mapped from a live read of the running machine — <code>ss -ltnp</code>, <code>systemctl</code>, and source at file:line — Aug 2026.</p>
+
+    <nav class="map-nav">
+      <a href="../index.html">← Back to all systems</a>
+      <a href="../portfolio/index.html">Selected work →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="../index.html">Workshop</a>
+        <span class="footer-sep">·</span>
+        <a href="../portfolio/index.html">Selected work</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-right">one pool to read · one socket to write</div>
+  </footer>
+
+</body>
+</html>

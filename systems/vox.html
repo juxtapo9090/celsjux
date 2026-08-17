@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vox — The Voice · CELSJUX</title>
+  <meta name="description" content="A fully-offline text-to-speech pipeline — mood-aware, queue-based, no cloud, no latency tax." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Story-page layout (page-local; mirrors anima.html) ---- */
+    .story-hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 56px 28px 44px;
+      text-align: center;
+    }
+    .story-hero-anim {
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .story-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .story-title {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin: 8px 0 12px;
+    }
+    .story-tagline {
+      font-size: 17px;
+      color: var(--text-dim);
+      font-style: italic;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .story-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 28px 20px;
+    }
+    .story-body h2 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-body h2:first-child { margin-top: 0; }
+    .story-body p {
+      color: var(--text-dim);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-size: 15.5px;
+    }
+    .story-body p .lead { color: var(--text); }
+    .story-body strong { color: var(--text); font-weight: 600; }
+    .story-body code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: rgba(155, 89, 182, 0.12);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .pull {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding: 6px 0 6px 18px;
+      margin: 24px 0;
+      line-height: 1.6;
+    }
+    .principles { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 8px; }
+    .principle {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      padding: 12px 16px;
+      background: rgba(155, 89, 182, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .principle-key {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 150px;
+    }
+    .principle-val { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 18px 14px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 16px 0;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+    }
+    .flow-node {
+      color: var(--text);
+      padding: 6px 12px;
+      border: 1px solid var(--border-h);
+      border-radius: 6px;
+      background: var(--bg-tile-h);
+    }
+    .flow-node.accent { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+    .flow-arrow { color: var(--accent); font-size: 16px; }
+    .stack-line { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .story-origin {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 24px 28px 8px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .story-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 20px 28px 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .story-nav a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .story-nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* bigger, centered waveform for the hero */
+    .vox-hero-wave { display: flex; align-items: flex-end; gap: 4px; height: 72px; }
+    .vox-hero-wave .bar { width: 6px; }
+
+    @media (max-width: 640px) {
+      .story-title { font-size: 30px; }
+      .principle-key { min-width: 0; }
+      .principle { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~$</span>
+      <a href="../index.html" class="header-title" style="text-decoration:none;color:var(--text);">CELSJUX WORKSHOP</a>
+    </div>
+    <div class="header-right">
+      <a href="../index.html" class="dm-badge">← All systems</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">active</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="story-hero">
+      <div class="story-hero-anim">
+        <div class="vox-hero-wave">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+      <div class="story-eyebrow">Offline text-to-speech pipeline</div>
+      <h1 class="story-title">🎙️ Vox</h1>
+      <p class="story-tagline">"It speaks. Locally. No cloud. No latency tax."</p>
+    </section>
+
+    <article class="story-body">
+
+      <h2>What it is</h2>
+      <p>
+        <span class="lead">Vox turns text into speech entirely on local hardware.</span>
+        It takes whatever the system needs to say — output, a nudge, an ambient note — and renders it
+        as audio using a neural voice model running on the machine itself. No API calls, no per-request
+        fees, and no audio ever leaves the box. One command, <code>say "…"</code>, and a voice comes out.
+      </p>
+      <p>
+        Most "natural AI voice" setups reach for a cloud TTS API, which buys quality at the cost of
+        latency, a per-word bill, an internet dependency, and a third party hearing everything.
+        Vox takes the opposite bet: <strong>own the whole pipeline</strong>, keep it offline, and make
+        it fast enough to feel conversational.
+      </p>
+
+      <div class="pull">One command, one voice, no cloud. The voice lives on the machine — nothing to call, nothing to leak.</div>
+
+      <h2>The philosophy</h2>
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-key">Local-first</span>
+          <span class="principle-val">Zero network dependency for synthesis — it works on a plane, in a blackout, behind any firewall.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Mood-aware</span>
+          <span class="principle-val">Preset moods shift delivery — warm for casual, clinical for a serious note — so tone carries meaning, not just words.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Queue-based</span>
+          <span class="principle-val">Messages don't stomp each other — they wait their turn, so speech stays intelligible under load.</span>
+        </div>
+        <div class="principle">
+          <span class="principle-key">Ambient presence</span>
+          <span class="principle-val">Not an assistant that yells for attention — one that occasionally, quietly, says something.</span>
+        </div>
+      </div>
+
+      <h2>How it flows</h2>
+      <p>
+        The pipeline is <strong>fire-and-forget</strong>: the command hands text to a local server, which
+        runs inference and plays the result through the system audio in a <strong>detached process</strong> —
+        so playback survives the caller exiting. A small routing layer can send the audio to this machine,
+        a paired device, or both, from one entry point.
+      </p>
+      <div class="flow-diagram">
+        <span class="flow-node">say "…"</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">local server</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node accent">neural inference</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">detached playback</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">device routing</span>
+      </div>
+
+      <h2>Under the hood</h2>
+      <p>
+        Built on a <strong>GPT-SoVITS</strong> voice model (voice-cloned from a
+        <strong>custom reference profile</strong>), driven by <strong>Python</strong>, wired into the
+        machine through <strong>systemd</strong> and a shell entrypoint, and played over the local audio
+        stack. Because synthesis is non-blocking and detached, the caller never waits on it — the request
+        returns in well under a second while the voice plays out on its own.
+      </p>
+      <div class="stack-line">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">GPT-SoVITS</span>
+        <span class="stack-pill">systemd</span>
+        <span class="stack-pill">detached playback</span>
+        <span class="stack-pill">multi-device routing</span>
+        <span class="stack-pill">100% offline</span>
+      </div>
+
+      <h2>Where it fits</h2>
+      <p>
+        Vox is the delivery mechanism for <a href="anima.html" style="color:var(--accent);text-decoration:none;">Anima</a>'s
+        whispers. When Anima detects something worth speaking, Vox gives it a voice — and together they
+        make a background presence: something watching, waiting, and occasionally saying <em>hey</em>.
+      </p>
+
+    </article>
+
+    <p class="story-origin">The <code>say</code> command — one word to a voice, with nothing in between and nothing sent away.</p>
+
+    <nav class="story-nav">
+      <a href="anima.html">← Anima — the watcher</a>
+      <a href="../index.html">Back to all systems →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="../index.html">Workshop</a>
+        <span class="footer-sep">·</span>
+        <a href="../portfolio/index.html">Selected work</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-right">a voice that lives on the machine</div>
+  </footer>
+
+</body>
+</html>

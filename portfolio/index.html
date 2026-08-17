@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aizat — Selected Work</title>
+  <meta name="description" content="Production systems engineering — Rust, Python, automation, and SRE tooling built and run on real infrastructure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Portfolio-specific (page-local; does not touch the shared workshop) ---- */
+    .pf-hero {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 48px 28px 12px;
+    }
+    .pf-hero-name {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .pf-hero-role {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+    .pf-hero-intro {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+    .pf-hero-intro strong { color: var(--text); font-weight: 600; }
+    .pf-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .pf-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      background: rgba(155, 89, 182, 0.06);
+      letter-spacing: 0.03em;
+    }
+    .pf-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 15px;
+      text-decoration: none;
+      background: rgba(155, 89, 182, 0.05);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .pf-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(155, 89, 182, 0.1);
+    }
+    .pf-link.primary {
+      border-color: var(--border-h);
+      color: var(--accent);
+    }
+
+    /* Section intro strip */
+    .pf-section-head {
+      max-width: 1000px;
+      margin: 34px auto 4px;
+      padding: 0 28px;
+    }
+    .pf-section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .pf-section-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-top: 6px;
+    }
+
+    /* Project cards — reuse the workshop's .detail-inner styling, but always visible */
+    .pf-projects {
+      max-width: 1000px;
+      margin: 12px auto 0;
+      padding: 0 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .proj-card {
+      background: var(--bg-tile);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px 34px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(ellipse at top left, var(--accent-glow-soft), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .proj-card:hover { border-color: var(--border-h); box-shadow: 0 0 26px var(--accent-glow); }
+    .proj-card:hover::before { opacity: 1; }
+
+    .proj-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .proj-icon { font-size: 24px; }
+    .proj-name {
+      font-family: var(--font-mono);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .proj-oneline {
+      font-size: 13px;
+      color: var(--text-dim);
+      flex-basis: 100%;
+      line-height: 1.5;
+    }
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 18px;
+    }
+    .proj-stack .stack-pill { margin-top: 0; }
+
+    .proj-card h3 {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 22px 0 10px;
+    }
+    .proj-card blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      color: var(--text-dim);
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .proj-card p {
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .proj-card ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .proj-card ul li {
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.65;
+      padding-left: 18px;
+      position: relative;
+    }
+    .proj-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    .proj-card code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      background: rgba(155, 89, 182, 0.12);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .proj-card strong { color: var(--text); font-weight: 600; }
+
+    /* The "real bug" callout */
+    .bug-callout {
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 8px 0 6px;
+    }
+    .bug-callout p { margin-bottom: 8px; }
+    .bug-callout p:last-child { margin-bottom: 0; }
+    .bug-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    /* Secondary "also built" strip */
+    .pf-also {
+      max-width: 1000px;
+      margin: 6px auto 0;
+      padding: 0 28px 40px;
+    }
+    .pf-also-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .also-card {
+      background: var(--bg-tile);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+    }
+    .also-card h4 {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .also-card p { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .pf-also-grid { grid-template-columns: 1fr; }
+      .proj-card { padding: 24px 20px; }
+      .pf-hero { padding: 32px 20px 8px; }
+      .pf-hero-name { font-size: 23px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio$</span>
+      <span class="header-title">SELECTED WORK</span>
+    </div>
+    <div class="header-right">
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../systems/map.html" class="dm-badge">🗺️ Substrate Map</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="pf-hero">
+      <div class="pf-hero-name">Muhammad Aizat</div>
+      <div class="pf-hero-role">Systems Engineer · Automation · SRE tooling</div>
+      <p class="pf-hero-intro">
+        Self-taught systems developer. I build the plumbing that keeps a busy machine
+        honest — <strong>reverse proxies, resident daemons, code-intelligence graphs, and
+        search infrastructure</strong> — in Rust, Python, and Julia. Everything below runs
+        in production on a real workstation orchestrating multiple concurrent AI coding
+        agents. Each piece was shipped to solve a problem I actually hit, and each carries
+        a real bug I found and fixed. <strong>I lead with fail-loud over fail-silent</strong>,
+        because a tool that lies quietly is worse than one that crashes.
+      </p>
+      <div class="pf-chips">
+        <span class="pf-chip">Rust</span>
+        <span class="pf-chip">Python</span>
+        <span class="pf-chip">Julia</span>
+        <span class="pf-chip">Automation</span>
+        <span class="pf-chip">Observability / SRE</span>
+        <span class="pf-chip">systemd</span>
+        <span class="pf-chip">SQLite</span>
+        <span class="pf-chip">MCP / agent tooling</span>
+      </div>
+      <div class="pf-links">
+        <a class="pf-link primary" href="../resume/index.html">📄 Full résumé</a>
+        <a class="pf-link" href="../index.html">🛠️ Live workshop dashboard</a>
+        <a class="pf-link" href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+      </div>
+    </section>
+
+    <!-- SECTION HEAD -->
+    <div class="pf-section-head">
+      <div class="pf-section-label">// selected projects</div>
+      <div class="pf-section-note">seven production systems · problem → build → the bug I fixed → why it matters</div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section class="pf-projects">
+
+      <!-- 1 · jaga -->
+      <article class="proj-card" id="jaga">
+        <div class="proj-head">
+          <span class="proj-icon">🐺</span>
+          <span class="proj-name">jaga</span>
+          <span class="proj-oneline">A multi-channel LLM reverse proxy that observes, rewrites, and accounts for every model request on the box.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Rust</span>
+          <span class="stack-pill">tokio / hyper</span>
+          <span class="stack-pill">SSE streaming</span>
+          <span class="stack-pill">systemd</span>
+          <span class="stack-pill">observability</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Several AI coding agents run on one machine, each against a different upstream
+          (Anthropic, OpenAI, a self-hosted lane). There was no single place to answer
+          <em>what did they actually send, what came back, how long did it take, what did it
+          cost</em> — and no way to rewrite a request in flight without editing every client.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A Rust proxy (tokio/hyper, ~4,400 lines across 7 modules) that sits between each
+          agent and its upstream. One binary, seven listeners defined in config — each with
+          its own upstream and protocol. Per request it forwards faithfully, strips configured
+          prompt fragments, tees a normalized event stream to disk and a companion dashboard
+          via a non-blocking shadow observer, and records per-call latency and token counts.
+          systemd-managed with <code>Restart=always</code>; <code>--version</code> stamps the
+          release, exact git SHA, and a <code>-dirty</code> flag so "what's running" is never
+          a guess. A read-only dashboard tails those feeds and merges them with local usage
+          history — <strong>zero extra instrumentation in the hot path</strong>.
+        </p>
+
+        <h3>Technical depth</h3>
+        <p>
+          The hardest module is a streaming <strong>Anthropic ⇄ OpenAI protocol translator</strong>
+          — it re-emits one wire format's server-sent events as the other's, incrementally,
+          without ever buffering the full response.
+        </p>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            A replay gate was blocking the translator cutover. The upstream model sent
+            <code>finish_reason: ""</code> — an <em>empty-string placeholder</em> — on every
+            mid-stream chunk, and the emitter treated <code>Some("")</code> as a terminal
+            signal, closing and reopening the content block on each delta:
+            <strong>292 <code>content_block_start</code> events for a single tool call</strong>
+            (130 empty vs 1 real), confirmed against captured traffic.
+          </p>
+          <p>
+            The fix was a one-line <code>!finish.is_empty()</code> guard, matching guards
+            already used elsewhere in the same file. In the same pass I made rule compilation
+            <strong>fail loud</strong> (print + exit) instead of silently dropping a regex that
+            won't compile — a previous bug had no-op'd exactly that way.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <ul>
+          <li>Observability without touching clients — the classic proxy pattern, done at protocol level.</li>
+          <li>Streaming correctness under a real, messy wire format.</li>
+          <li>Regression tests built from <strong>captured real traffic</strong>: 73/73 tests green, clippy + fmt clean, 12/12 streaming captures verified.</li>
+          <li>A later shipped fix in the same codebase — a UTF-8 boundary panic surfacing as a client-side connection reset — was root-caused from logs, reproduced in a test that provably panics on the pre-fix code, then fixed.</li>
+        </ul>
+      </article>
+
+      <!-- 2 · mag -->
+      <article class="proj-card" id="mag">
+        <div class="proj-head">
+          <span class="proj-icon">⚙️</span>
+          <span class="proj-name">mag</span>
+          <span class="proj-oneline">A resident warm-pool shell runner that turns "re-establish your context every command" into a solved problem.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Rust (2024)</span>
+          <span class="stack-pill">axum / tokio</span>
+          <span class="stack-pill">systemd socket activation</span>
+          <span class="stack-pill">unix sockets</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          A default agent shell is stateless: every command spawns a fresh process, so
+          <code>cd</code>, <code>export</code>, and activated virtualenvs evaporate between
+          calls. Any multi-step workflow re-establishes its own context every invocation —
+          and cold process spawn dominates latency when the real work is a 5&nbsp;ms
+          <code>git status</code>.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          <code>mag</code> — a resident shell runner (~7.9k lines of Rust, <code>clippy::pedantic</code>
+          enforced) backed by systemd-managed daemons holding pre-spawned bash shells. Jobs
+          dispatch in ~5–10&nbsp;ms. Named sessions pin a warm shell so environment, working
+          directory, and functions survive across calls.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li>Transport over per-instance unix sockets via <strong>systemd socket activation</strong>; a templated unit splits daemons by uid, since one process can only be one user.</li>
+          <li>Session storage is an in-memory map keyed <code>&lt;caller&gt;:&lt;session&gt;</code> behind a mutex; an idle reaper evicts stale shells, and the named-session cap is clamped below the worker count so pinned sessions can never starve the default lane.</li>
+          <li>Resilience: partial pool-spawn failure reaps already-spawned children rather than orphaning them; every claim calls an <code>ensure_alive()</code> check so a watchdog-killed shell restarts transparently instead of handing the next caller a broken pipe.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ two real bugs I fixed</span>
+          <p>
+            <strong>Silent no-op.</strong> The session ID was honoured on one code path but
+            <em>silently discarded</em> on the simple lane used 95% of the time — so every
+            call <em>looked</em> continuous while getting a fresh shell. Diagnosed by diffing
+            the shell PID (<code>$$</code>) across calls; fixed by making session fields
+            envelope-level and orthogonal to the lane.
+          </p>
+          <p>
+            <strong>Identity collision.</strong> Caller identity came from an environment
+            variable that every privileged instance inherited the same value from —
+            misattributing 345 audit rows and letting two callers share one named shell.
+            Fixed by deriving identity from the <em>socket the connection arrived on</em>,
+            making it unspoofable by the client.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          Persistent, low-latency shell context for many concurrent callers, with a full
+          audit trail and <strong>honest failure reporting</strong> — a <code>pid=gone</code>
+          verdict says the bookkeeping outlived the shell rather than guessing at the truth.
+        </p>
+      </article>
+
+      <!-- 3 · reactor -->
+      <article class="proj-card" id="reactor">
+        <div class="proj-head">
+          <span class="proj-icon">📡</span>
+          <span class="proj-name">reactor</span>
+          <span class="proj-oneline">A ground-truth orientation service — one call answers "what is actually true on this box right now," and it refuses to manufacture a green light.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Julia</span>
+          <span class="stack-pill">unix socket + CLI + HTTP</span>
+          <span class="stack-pill">SQLite code graph</span>
+          <span class="stack-pill">SRE</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Every fresh session on a 40-service box started the same way: guessing. Is the
+          daemon up? What owns port 8787? Which files break if I touch this one? The answers
+          existed — in <code>systemctl</code>, <code>/proc</code>, a code graph, a memory DB —
+          but reaching them meant a dozen shell calls, and a wrong guess reads exactly like a
+          right one. Worse, a dead unit, a unit stuck in auto-restart, and a unit systemd
+          calls "active" whose socket never answers are three different bugs — calling all of
+          them "down" hides the useful part.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A resident Julia daemon holding one warm, JIT-compiled module, reachable through
+          three cheap doors: a unix socket, a CLI, and an HTTP endpoint. Read-only by design.
+          The verb set (<code>service · port · health · impact · resolve · why · …</code>) is
+          generated from the routing table itself, so the help can't drift from behaviour, and
+          verbs compose — <code>resolve cli.rs | impact</code> — because each returns a typed
+          result, not prose.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li><strong>Honest zeros.</strong> Every result carries a value, a provenance chain, and an explicit "unanswered" slot — five named zero-causes distinguish "isn't there" from "I couldn't reach that source." Partial answers are first-class.</li>
+          <li><strong>Live, not cached.</strong> Health probes shell out to <code>systemctl</code> on both buses, then probe the socket only if systemd already claims active, and read the machine's <em>own</em> service roster rather than a private copy that could disagree.</li>
+          <li><strong>Blast radius.</strong> The "who depends on this file" verb reads a SQLite code graph ranked by the depender's centrality; a <code>0 rdeps</code> verdict — the only one that invites deletion — is cross-examined against disk, which once caught the graph certifying a file as safe to delete that the parser had never actually entered.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            First session using reactor as a live dashboard, its health sweep immediately
+            flagged <strong>a service flapping with 500+ restarts and climbing</strong> — a
+            state that had been failing silently. Traced it: a browser was being launched
+            without its remote-debugging port, so the controller had no endpoint to attach to
+            and died on every start. The catch was <em>only</em> possible because "flapping" is
+            a distinct verdict (auto-restart substate, or dead with &gt;5 restarts) — a plain
+            up/down check shows green between restarts and misses it entirely.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          Orientation becomes a single call instead of a guessing game — and the tool refuses
+          to lie: an empty roster returns a gap, not a clean bill of health. Two of its guards
+          exist <strong>because the tool lied once, was caught, and the fix was written into
+          the code with the receipt beside it.</strong>
+        </p>
+      </article>
+
+      <!-- 4 · ariadne -->
+      <article class="proj-card" id="ariadne">
+        <div class="proj-head">
+          <span class="proj-icon">🧵</span>
+          <span class="proj-name">ariadne</span>
+          <span class="proj-oneline">A static cross-language dependency graph over 62 projects in 4 languages, refreshed nightly, that answers "what imports this?" before you delete it.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Rust</span>
+          <span class="stack-pill">SQLite</span>
+          <span class="stack-pill">systemd timer</span>
+          <span class="stack-pill">multi-language parsing</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Sixty-plus projects across four languages (Rust, Python, Julia, Kotlin/Java) on one
+          machine — no monorepo, no shared build system. Before touching or deleting a file,
+          the real question is <em>what imports this?</em> — and grep can't answer it across
+          language boundaries. Existing tools index text; nothing indexed <em>relationships</em>.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A Rust CLI that parses import statements per language into a normalized SQLite graph
+          (<code>roots / paths / edges / unresolved</code>), with query verbs for imports,
+          reverse dependencies, relatedness, and neighbourhoods. Around it, an automated
+          nightly pipeline (systemd timer): a discovery pass finds project roots by marker
+          files, the scan writes to a <strong>staging DB</strong>, and it is promoted over live
+          <em>only</em> if it passes sanity gates (non-zero paths; no &gt;50% drop). A failed
+          scan leaves the working graph untouched. Live: 62 roots, 1,466 files, 3,043 edges.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li>Per-root transactions, so a mid-scan crash can't leave half-written edges — and the scan-run record is opened <em>outside</em> the transaction so crash evidence survives the rollback.</li>
+          <li>Unresolved imports are recorded with the correct language tag rather than dropped, with a "looks like ours" heuristic so standard-library noise doesn't flood the table.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            The path resolver matched a bare relative path across <em>all</em> roots and
+            silently returned the lowest row id. <strong>24 of 62 roots contain a
+            <code>src/main.rs</code></strong>, so "reverse-deps of <code>src/main.rs</code>"
+            was confidently answering about a coin-flip project — the worst failure mode for a
+            tool people trust <em>before deleting code</em>. Fixed with layered resolution
+            (absolute → cwd-relative → bare path only if unique) that <strong>refuses loudly</strong>
+            on ambiguity, listing every root that holds the path.
+          </p>
+          <p>
+            The same pass caught two silent-loss bugs — a comment stripper that only understood
+            <code>//</code> (so a Julia <code>using Foo # note</code> produced neither an edge
+            nor an unresolved row) and an insert that hardcoded the language tag. After the fix,
+            unresolved rows went 74 → 275 with honest tags: <strong>the graph stopped lying
+            about how much it knew.</strong>
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          Delete-safety and blast-radius answers on demand, across languages, kept current
+          without anyone remembering to run it. The <strong>staging → gate → promote</strong>
+          pattern means the automation can never degrade the thing it maintains.
+        </p>
+      </article>
+
+      <!-- 5 · knowledge -->
+      <article class="proj-card" id="knowledge">
+        <div class="proj-head">
+          <span class="proj-icon">🔎</span>
+          <span class="proj-name">knowledge</span>
+          <span class="proj-oneline">Indexed full-text search over a ~900k-file tree — sub-second where a recursive grep never returns — with an enforcement layer that makes the slow path unreachable.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Rust / Tantivy</span>
+          <span class="stack-pill">Bash</span>
+          <span class="stack-pill">BM25</span>
+          <span class="stack-pill">pre-execution hook</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          <code>grep -r</code> across a ~900k-file tree doesn't just run slow — it hangs the
+          session that launched it. But everyone reaches for grep by reflex. The fix had to be
+          both a faster tool <em>and</em> a mechanism that made the slow path unreachable —
+          because a tool nobody remembers to use isn't a fix.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          <code>knowledge</code> — a CLI front-end over a Rust/Tantivy full-text daemon. One
+          entrypoint, two modes: an indexed BM25 content search, and a <code>knowledge grep</code>
+          bridge that forwards verbatim to a fast live scanner. <strong>Live: 912,520 documents,
+          388&nbsp;ms query latency</strong> — versus a full-tree grep that never returns.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li>The grep bridge is the real work: grep's flags don't map cleanly onto the modern scanner (some silently misfire, some are meaningless), so they're translated or dropped explicitly — and hidden/ignored files are <strong>always forced on</strong>, because a tool claiming to be an honest grep replacement can't silently skip exactly the dotfiles debugging hunts for.</li>
+          <li>Enforcement lives in a <strong>pre-execution hook</strong>: simple grep invocations are rewritten in place to the indexed search (the span only, leaving pipes and redirects intact); anything else is denied with an escalating message keyed to a per-session counter — by the third attempt it stops suggesting flags and challenges the <em>approach</em>.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ real bugs I fixed</span>
+          <p>
+            <strong>Silent query narrowing.</strong> A multi-word query kept only the last word
+            — each bare term clobbered the previous. Now joined. <em>Silent wrong answers are
+            worse than loud failures.</em>
+          </p>
+          <p>
+            <strong>Flag-unbundling corruption.</strong> Stripping one letter from a bundled
+            flag group also corrupted an adjacent argument-taking flag, which then ate the next
+            token as its value. Fixed by stopping the unbundle at the first argument-taking
+            letter and copying the tail through untouched.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          Search went from session-hanging to sub-second at ~900k documents, and the
+          enforcement layer means <strong>the fast path is the only path</strong> — no
+          discipline required. The honest tradeoff (the index can be import-stale) is surfaced
+          in the tool itself, and the live-scan escape hatch is a first-class mode, not a
+          fallback.
+        </p>
+      </article>
+
+      <!-- 6 · The Spine -->
+      <article class="proj-card" id="spine">
+        <div class="proj-head">
+          <span class="proj-icon">🧠</span>
+          <span class="proj-name">The Spine</span>
+          <span class="proj-oneline">A persistent semantic-memory subsystem giving a long-running agent continuity across sessions — retrieval that blends similarity with time-decay.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">PyTorch</span>
+          <span class="stack-pill">SQLite (FTS5)</span>
+          <span class="stack-pill">sentence-transformers</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Conversational AI is stateless — every session starts from zero. Re-feeding whole
+          transcripts doesn't scale: slow, costly, and it buries the signal. The system needs
+          to start with the <em>right</em> context, not the whole history.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A memory subsystem that ingests session summaries and structured recall cards,
+          encodes each into a vector, and retrieves the relevant ones at wake-up so the agent
+          starts with context rather than a blank slate. A sentence-transformer produces a
+          384-dim embedding, projected down to a compact 128-dim vector; an idempotent CLI
+          exposes <code>ingest / query / recall / status / decay</code>.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li>Retrieval blends <strong>semantic similarity</strong> with a <strong>time-decay half-life</strong> (old memories fade rather than vanish) plus a recency-reinforcement boost.</li>
+          <li>Atomic writes with row-and-vector count verification against corruption; auto-chunking and token-budgeting for long documents.</li>
+          <li>Scale: 202 sessions and 668 memory records indexed, sub-second query latency over the full corpus.</li>
+        </ul>
+
+        <h3>Why it matters</h3>
+        <p>
+          A practical, fully-local retrieval layer — the same problem space as production RAG
+          (embeddings, vector retrieval, ranking, decay, data integrity) — built and run
+          end-to-end rather than bolted together from a framework.
+        </p>
+      </article>
+
+      <!-- 7 · orchestra -->
+      <article class="proj-card" id="orchestra">
+        <div class="proj-head">
+          <span class="proj-icon">📬</span>
+          <span class="proj-name">orchestra</span>
+          <span class="proj-oneline">A verified message-delivery lane between many concurrent AI agent processes — it reports what actually happened, and refuses to fake a green light.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">unix socket daemon</span>
+          <span class="stack-pill">newline-JSON protocol</span>
+          <span class="stack-pill">/proc introspection</span>
+          <span class="stack-pill">systemd</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Nine concurrent AI agent processes, running as long-lived terminal sessions under two
+          different user IDs, need to hand each other work. The only transport available injects
+          text into a pane — and by its own docs, <em>"errors are not reported … send-text always
+          succeeds, even if no text was sent to any window."</em> A transport that structurally
+          <em>cannot</em> fail is worse than one that fails loudly: every delivery looks green, and
+          the first symptom of a dead lane is a task nobody did.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A resident daemon (~460 lines, a unix socket speaking newline-delimited JSON) doing
+          exactly one job — deliver a message to a named agent and <strong>verify it landed</strong>
+          — with a thin CLI on top. Delivery isn't a boolean: it returns one of three honest states —
+          <code>unknown</code> (couldn't resolve the target, nothing sent), <code>reached</code>
+          (characters read back off the recipient's screen), or <code>sent</code> (the send returned
+          but read-back didn't confirm). Deliberately absent: <em>heard</em> — whether the agent
+          understood isn't knowable from this side of the glass, so the tool refuses to imply it.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li><strong>Truth from the calls that can fail.</strong> Confidence comes from a match-check <em>before</em> (exits non-zero honestly on a miss) and a screen read-back <em>after</em> — not from the fire-and-forget send in between.</li>
+          <li><strong>Guard rails in the tool, not the docs.</strong> It refuses a pane that has dropped back to a shell (where an injected message becomes a command the shell would run), never fuzzy-matches a target name (a near-miss delivers your brief to the wrong agent, silently and permanently), and verifies the <em>recipient's</em> user ID can actually read the file you're pointing it at.</li>
+          <li><strong>One roster, no silent fallback.</strong> A single source-of-truth roster file — the tooling had grown one roster per transport and they disagreed, which is how a target once ended up with no delivery lane at all. The degrade-to-older-transport fallback was removed on purpose: it turned "this agent has no pane" into a second, more confusing failure that hid the first.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            The read-back probe was a naive substring check. Panes <em>wrap</em> long lines, so the
+            probe straddled a newline that only exists on screen — and the tool reported
+            <code>sent</code> (its "suspicious, unconfirmed" state) for messages that had in fact
+            landed, been read, <strong>and been replied to</strong>. An instrument that cries failure
+            on success gets ignored exactly as fast as one that cries success on failure.
+          </p>
+          <p>
+            Fix: compare with all whitespace squashed, and <strong>poll to a deadline instead of
+            sleeping a fixed guess</strong> — the old fixed 150&nbsp;ms sleep meant the reported
+            latency was measuring the sleep, not the lane. A sister bug in the same class: injecting
+            into a pane whose agent had quit was inert <em>only</em> because the text happened to
+            start with <code>#</code>. Luck, not design — which became the shell-occupant guard,
+            walking <code>/proc</code> descendants because the terminal reports only the top
+            foreground process and privileged agents launch under <code>sudo</code>.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          The system stopped producing confident lies. Every send now returns evidence or an honest
+          refusal, and the failure modes that used to be invisible — dead listener, quit agent,
+          unreadable path, wrong-user socket — each surface as their own distinct message. It is the
+          message bus behind a multi-agent workflow where <strong>every handoff carries a sender, a
+          recipient, and a verifiable outcome</strong>.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- ALSO BUILT -->
+    <section class="pf-also">
+      <div class="pf-section-label">// also built</div>
+      <div class="pf-also-grid">
+        <div class="also-card">
+          <h4>🎙️ Vox</h4>
+          <p>A fully-offline text-to-speech pipeline (voice cloning from a custom reference profile) — no cloud, no per-request cost, sub-second non-blocking playback, multi-device audio routing.</p>
+        </div>
+        <div class="also-card">
+          <h4>🔗 Agent fleet infra</h4>
+          <p>Service-fleet operations at small scale: a single registry as source of truth for routing, identity bound at process launch (not caller-supplied), privilege separation across a sudo boundary, transport adapters for heterogeneous endpoints.</p>
+        </div>
+        <div class="also-card">
+          <h4>💓 Anima</h4>
+          <p>A background observation daemon that scores behavioural signals from a live session in real time and maintains a lightweight state — a memory-UX layer that surfaces the right context at the right moment.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+        <span class="footer-sep">·</span>
+        <a href="../systems/map.html">Substrate Map</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run in production · Melaka, MY</div>
+  </footer>
+
+</body>
+</html>
