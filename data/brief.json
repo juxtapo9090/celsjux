@@ -1,19 +1,17 @@
 {
-  "generated_at": "2026-08-17T21:26:51.035793+00:00",
-  "gold_bias": "bullish",
+  "generated_at": "2026-08-18T20:30:01.884968+00:00",
+  "gold_bias": "bearish",
   "bias_confidence": "low",
   "bias_drivers": [
-    "fear(31) \u2014 risk-off supports gold",
-    "DXY weak (99.458) \u2014 dollar softness supports gold",
+    "DXY weak (99.627) \u2014 dollar softness supports gold",
     "COT spec longs crowded (214,856) \u2014 squeeze risk",
-    "Shanghai discount ($-278/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Headlines: 9 risk-tagged items \u2014 geopolitical premium active"
+    "Shanghai discount ($-268/oz) \u2014 no physical demand from China, COMEX paper-led"
   ],
   "tensions": [
     {
       "id": "paper_crowded_physical_absent",
       "label": "Paper crowded, physical absent",
-      "detail": "COT net spec at 214,856 (prev -14,937) while Shanghai trades at $-278/oz COMEX discount \u2014 spec momentum driving price, not physical demand. Fragile if specs exit.",
+      "detail": "COT net spec at 214,856 (prev -14,937) while Shanghai trades at $-268/oz COMEX discount \u2014 spec momentum driving price, not physical demand. Fragile if specs exit.",
       "severity": "high"
     },
     {
@@ -24,18 +22,18 @@
     }
   ],
   "numbers": {
-    "xau": 4438.0,
-    "gld": 401.48,
-    "dxy": 99.458,
-    "vix": 15.05,
+    "xau": 4451.0,
+    "gld": NaN,
+    "dxy": 99.627,
+    "vix": 15.79,
     "real_yield": null,
-    "nominal_yield": 4.63,
-    "breakeven": 2.27
+    "nominal_yield": null,
+    "breakeven": 2.28
   },
   "fed": {
     "rate": "3.5-3.75%",
     "next_fomc": "2026-09-17",
-    "days_to_fomc": 31,
+    "days_to_fomc": 30,
     "market_bias": "neutral",
     "implied_path": {
       "Apr_2026": null,
@@ -43,31 +41,32 @@
       "Jun_2026": null,
       "Jul_2026": null,
       "Sep_2026": 3.67,
-      "Dec_2026": 3.83
+      "Dec_2026": 3.845
     }
   },
   "positioning": {
     "cot_net_spec": 214856,
     "cot_change": 229793,
     "cot_signal": "crowded_long",
-    "shanghai_premium_oz": -278.43,
+    "shanghai_premium_oz": -267.94,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 31,
+    "fear_greed": 41,
     "label": "fear",
     "signal": "fear \u2014 risk-off, watch for safe-haven flows"
   },
   "top_headlines": [
     {
-      "title": "Viral vodka brand Au set to sell for \u00a3500m to BuzzBallz owner",
-      "source": "bbc_business",
+      "title": "The Fed minutes are coming \u2014and they\u2019re more crucial now as Warsh limits his communication",
+      "source": "marketwatch",
       "tags": [
-        "gold"
+        "macro",
+        "risk"
       ]
     },
     {
-      "title": "'Don't get too comfortable': Wall Street\u2019s \u2018fear gauge\u2019 hits 2026 low \u2014 here's why it's unlikely to last",
+      "title": "Analysis: Bond market pressure is squeezing Main Street as Wall Street waits on Warsh",
       "source": "cnbc_world",
       "tags": [
         "macro",
@@ -75,65 +74,65 @@
       ]
     },
     {
-      "title": "Virgin takes step towards running Channel Tunnel rail services",
+      "title": "AI to help planes avoid climate-warming 'sky graffiti'",
       "source": "bbc_business",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Investor dubbed the \u2018AI stock god\u2019 had 56% of his hedge fund invested in these two stocks before the July blow-up",
+      "title": "Soon you can buy Medicare Advantage plans at Costco. What you need to know.",
       "source": "marketwatch",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Prediction market traders see roughly 1-in-4 odds Paramount\u2019s bid to buy Warner Bros. Discovery fails",
-      "source": "cnbc_world",
+      "title": "Russia says its economy is strong. It just fired a top economist who warned otherwise",
+      "source": "cnbc_economy",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Eli Lilly and J&J bounce on new data, as software stocks give up last week's gains",
-      "source": "cnbc_world",
+      "title": "Global borrowing costs hit fresh highs on oil, AI and inflation",
+      "source": "bbc_business",
       "tags": [
-        "risk"
+        "macro"
       ]
     }
   ],
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 225.11,
-        "change_pct": -0.02,
-        "volume": 71019571
+        "price": 219.54,
+        "change_pct": -2.43,
+        "volume": 81716903
       },
       "TSM": {
-        "price": 430.95,
-        "change_pct": 1.08,
-        "volume": 7225052
+        "price": 413.64,
+        "change_pct": -4.02,
+        "volume": 11369938
       },
       "MU": {
-        "price": 1011.25,
-        "change_pct": 4.07,
-        "volume": 29971226
+        "price": 940.84,
+        "change_pct": -7.01,
+        "volume": 32093741
       },
       "ASML": {
-        "price": 1882.96,
-        "change_pct": 2.11,
-        "volume": 1089853
+        "price": 1802.33,
+        "change_pct": -4.29,
+        "volume": 1264491
       },
       "AMD": {
-        "price": 506.05,
-        "change_pct": -1.62,
-        "volume": 17443350
+        "price": 484.42,
+        "change_pct": -4.26,
+        "volume": 19392535
       },
       "SOXX": {
-        "price": 559.38,
-        "change_pct": 1.63,
-        "volume": 5165867
+        "price": 530.79,
+        "change_pct": -5.07,
+        "volume": 9067561
       }
     },
     "tagged_headlines": [
@@ -171,19 +170,11 @@
         ]
       },
       {
-        "title": "Nvidia partners with Wall Street giants to raise $500 billion for AI buildout - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNNC15TDEteDI0VXNtbnFkb016anJWMDJqVHRSTDlRNVNkTXFIS2NVWWlDVVVldmN1Qld0ZWIyeXowZ3d6WkFQR2YtQWN6SUU1Tzl3VFR2YmphekZzUWtCZGpsQmFWQVR4bzhEdGI1Tkxfby15cy1xVWVhWXYzQUU5WTlYWDRHc2d1azhzYXJaMHcyeGxJT0pBdU5RRXpfZG15QTJrdmRBd3hrSnlDLV9wTUdiU3U5NW5PYXBUbGJoZEdmVHBY?oc=5",
+        "title": "OpenAI lays out new security changes after its AI hacked Hugging Face",
+        "source": "verge",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/981640/openai-security-changes-ai-hugging-face-hack",
         "tags": [
-          "nvidia"
-        ]
-      },
-      {
-        "title": "China's Z.ai says new model nears Anthropic's Mythos 5 in cyber-defence tests - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNS1MtSVJMY0p5blN0MUdSV0xMMmE1NzdWdVJYUjh0cTdCNVJyOXRLVmtId004V0xIc2FyVS1IRk5laFR1MHBKemVhcWV0SGxWZkVJUGM0V2t6d214Zlg1QUFQam1aS1RoanhfOXR3dzNmWmN3enhDWWpDZ1poT1JJek92Q0tIU2ZvdVR1VTlWcEdtZVZSVmVEa1BKV29XaHIwdHVoTHFJUDhkc0pveVpidEtOcE5walIyM1E?oc=5",
-        "tags": [
-          "anthropic"
+          "openai"
         ]
       },
       {
@@ -195,6 +186,38 @@
         ]
       },
       {
+        "title": "OpenAI unveils ChatGPT for Teens with stronger guardrails to tackle safety risks - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOVlMzd203czRIQzl2a0RlczBUQnFHcklwTnNqc3hfdHNBSW5QdFVReFJZdTFBM1pvUGlLeWZJWUVHTHlzMUdTbHVBNXI1OWM2Q2FtS0ZON3hEcENqQ3J5Z0RvOFgwdm9FZzY0b3RfWlJIMmtINHZtQmdQYlplbi1rS3hkVGw3TXN3RThwZ3EwQzI0N2ZVVTN3WVBWVWI4c29wdGllRl9Pd09YTGxaRWxudHdZQmRaSFc4SEE?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "AI chip startup Etched doubles valuation to $21 billion in under a month - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZ3NNZlBGNU1FVmtQWnVzMlc1SjFEVmtwYWJLNVJTYUpJS0NEb29iT0NhR1R5bUdKMlhqUWsyMjRJekVtcWFWb3dCX1lHMWlFNHJVLTZCeEoycW1ZdE03VThfZDEzellONHd4ZnJ3RlNEYlA4cGJReEFvaG13bTR0MHItbHlWN3pMWDNMN3JMVkJQNFo2aHFTQUw1QTlrWUt0V0FKamtGSm5rWUVT?oc=5",
+        "tags": [
+          "chip"
+        ]
+      },
+      {
+        "title": "Anthropic revenue run rate tops $65 billion, source says - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNVEJ6S2RpblVGQzhVS083a3dqR3JpajJOUkJIVUZIS1ZkQ05PeW9TdkJUazFpRXNybXNDUUNnV3dfWTllcFdsYms2Mm53dGJwY1VyYnVYb0xYSTNwZWoyaC1vM0FDVWJtTlh6VjFyTGxGUUNaYkg0VDdzNlhjMDJ4dUxJVHQzY0dUaWdKd2t3d0NoWk5IQU52bDRXWTJxZWNFdThJ?oc=5",
+        "tags": [
+          "anthropic"
+        ]
+      },
+      {
+        "title": "China's Z.ai says new model nears Anthropic's Mythos 5 in cyber-defence tests - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNS1MtSVJMY0p5blN0MUdSV0xMMmE1NzdWdVJYUjh0cTdCNVJyOXRLVmtId004V0xIc2FyVS1IRk5laFR1MHBKemVhcWV0SGxWZkVJUGM0V2t6d214Zlg1QUFQam1aS1RoanhfOXR3dzNmWmN3enhDWWpDZ1poT1JJek92Q0tIU2ZvdVR1VTlWcEdtZVZSVmVEa1BKV29XaHIwdHVoTHFJUDhkc0pveVpidEtOcE5walIyM1E?oc=5",
+        "tags": [
+          "anthropic"
+        ]
+      },
+      {
         "title": "Anthropic in talks to buy Decart AI, source says - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQRlV4bzBCa2VxRlZkN1VMdzh3UVR0VmJ5d0VIUEpLQkZBRFBpaC1sSkFuTzAtaU0zZkdjNmh1dFB0ZXdQLW5rcU82Q3g3SW1xOEpXWjl6MmpuOUQzVkhFcXBFRFRsWnpXb0t6RFNFRlZfV0d5VXdJSVVKUjBKcGI0YTJvM2ltekctTHQ0WlhyWkFQQQ?oc=5",
@@ -203,11 +226,11 @@
         ]
       },
       {
-        "title": "Adyen raises revenue forecast on acquisition boost, shares soar - Reuters",
+        "title": "Nvidia partners with Wall Street giants to raise $500 billion for AI buildout - Reuters",
         "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTDZha3pOVEZhTEdYZXo4QzBWbDhHcTRGby1xM3ZKalg2WTZmbHRkeVF3Z09fcEs4OVl3cmVwWHp3aldiWkJaNUtiUUNNQkdBbGdvR212WnFRYzJ6NU1ucm9yZjI4djVkanRGVHpVOHd6TDVUVXFrZ3R1TDJ4eGRFMU92NEhPdmlXbTFnRldnLTJRN21lTDhMazBPUHk3dzFiZzZqMWxB?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNNC15TDEteDI0VXNtbnFkb016anJWMDJqVHRSTDlRNVNkTXFIS2NVWWlDVVVldmN1Qld0ZWIyeXowZ3d6WkFQR2YtQWN6SUU1Tzl3VFR2YmphekZzUWtCZGpsQmFWQVR4bzhEdGI1Tkxfby15cy1xVWVhWXYzQUU5WTlYWDRHc2d1azhzYXJaMHcyeGxJT0pBdU5RRXpfZG15QTJrdmRBd3hrSnlDLV9wTUdiU3U5NW5PYXBUbGJoZEdmVHBY?oc=5",
         "tags": [
-          "acquisition"
+          "nvidia"
         ]
       },
       {
@@ -219,11 +242,27 @@
         ]
       },
       {
-        "title": "Senior OpenAI executive Brad Lightcap to leave for new venture - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOaW9tVHl4S3FDMjB1RzBIbTdSZzN0OERJeE10VVNoelUwUDFGczV3R2lOR1FidVNJY3FqS0xGeFhEOFphV19NQkhtOE9MdEpyTC1kOXJtYWM4eFlZcFpUOG9JTVZiU0V1Rkhnd0pYM0ZjX0ZWMUdtQnFNdWlXbVJicw?oc=5",
+        "title": "OpenAI institutes new safeguards after Hugging Face breach",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/18/openai-institutes-new-safeguards-after-hugging-face-breach/",
         "tags": [
           "openai"
+        ]
+      },
+      {
+        "title": "OpenAI launches a safer ChatGPT for teens \u2014 years after teens started using it",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/18/openai-launches-a-safer-chatgpt-for-teens-years-after-teens-started-using-it/",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "Anthropic\u2019s annualized revenue surges to $65B",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/17/anthropics-annualized-revenue-surges-to-65b/",
+        "tags": [
+          "anthropic"
         ]
       },
       {
@@ -277,67 +316,17 @@
         ]
       },
       {
-        "title": "Kog is going deeper to squeeze more inference out of GPUs",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/08/14/kog-is-going-deeper-to-squeeze-more-inference-out-of-gpus/",
-        "tags": [
-          "gpu",
-          "inference"
-        ]
-      },
-      {
-        "title": "Hyperscalers might regret embracing natural gas if new forecast proves correct",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/08/14/hyperscalers-might-regret-embracing-natural-gas-if-new-forecast-proves-correct/",
-        "tags": [
-          "hyperscaler"
-        ]
-      },
-      {
-        "title": "OpenAI introduces \u2018Ultrafast,\u2019 a new mode that makes GPT-5.6 Sol work at 14x the speed",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/",
-        "tags": [
-          "openai"
-        ]
-      },
-      {
-        "title": "IBM partners with OpenAI to bolster enterprise AI push",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/08/13/ibm-partners-with-openai-to-bolster-enterprise-ai-push/",
-        "tags": [
-          "openai"
-        ]
-      },
-      {
-        "title": "GPT 5.6 Sol is the best \"vision\" model OpenAI ever released",
+        "title": "Claude Code May\u2013August 2026 weekly limits promotion",
         "source": "hackernews",
-        "url": "https://blog.roboflow.com/openai-gpt-5-6/",
+        "url": "https://support.claude.com/en/articles/15910845-claude-code-may-august-2026-weekly-limits-promotion",
         "tags": [
-          "openai"
-        ]
-      },
-      {
-        "title": "Anthropic's \u2018watermark\u2019 text adulteration in Claude is a perversion of writing",
-        "source": "hackernews",
-        "url": "https://daringfireball.net/2026/08/anthropics_watermark_text_adulteration_in_claude_is_a_perversion_of_writing",
-        "tags": [
-          "anthropic",
           "claude"
-        ]
-      },
-      {
-        "title": "On AI regulation and messaging",
-        "source": "hackernews",
-        "url": "https://twitter.com/DarioAmodei/status/2088758816376807762",
-        "tags": [
-          "regulation"
         ]
       }
     ],
-    "total_fetched": 81,
-    "total_tagged": 24,
+    "total_fetched": 86,
+    "total_tagged": 23,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-17                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe1 BULLISH  [LOW CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,438.0    GLD   $401.48\n  DXY      99.46    VIX     15.05\n  Real Yield   0.00%  Breakeven  2.27%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec     +214,856  (\u0394 +229,793)\n  Shanghai Prem  $  -278.4/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 31 \u2014 FEAR\n  fear \u2014 risk-off, watch for safe-haven flows\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (31d)\n  Market: NEUTRAL\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Paper crowded, physical absent\n       COT net spec at 214,856 (prev -14,937) while Shanghai trades\n        at $-278/oz COMEX discount \u2014 spec momentum driving price, n\n       ot physical demand. Fragile if specs exit.\n  \ud83d\udd25 Violent COT flip to spec long\n       Net spec moved +229,793 contracts in one week (from -14,937 \n       to 214,856). Either the smart money just loaded \u2014 or this is\n        a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 fear(31) \u2014 risk-off supports gold\n  \u00b7 DXY weak (99.458) \u2014 dollar softness supports gold\n  \u00b7 COT spec longs crowded (214,856) \u2014 squeeze risk\n  \u00b7 Shanghai discount ($-278/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Headlines: 9 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [bbc_business] Viral vodka brand Au set to sell for \u00a3500m to BuzzBallz owner\n  [cnbc_world] 'Don't get too comfortable': Wall Street\u2019s \u2018fear gauge\u2019 hits 2026 low \n  [bbc_business] Virgin takes step towards running Channel Tunnel rail services\n  [marketwatch] Investor dubbed the \u2018AI stock god\u2019 had 56% of his hedge fund invested \n  [cnbc_world] Prediction market traders see roughly 1-in-4 odds Paramount\u2019s bid to b\n  [cnbc_world] Eli Lilly and J&J bounce on new data, as software stocks give up last \n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $225.1  (-0.0%)       TSM     $430.9  (+1.1%)\n  MU    $1,011.2  (+4.1%)       ASML  $1,883.0  (+2.1%)\n  AMD     $506.1  (-1.6%)       SOXX    $559.4  (+1.6%)\n  note: prices at market close or latest available\n\n  Tagged headlines (24):\n  \u00b7 [ars] Nvidia discloses $21B stake in SpaceX\n              tags: nvidia\n  \u00b7 [ars] OpenAI and Anthropic in price war as Chinese AI rivals gain ground\n              tags: openai, anthropic\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [ars] We now have a better understanding how OpenAI hacked into Hugging Face\n              tags: openai\n  \u00b7 [reuters] Nvidia partners with Wall Street giants to raise $500 billion for AI buildout - Reuters\n              tags: nvidia\n  \u00b7 [reuters] China's Z.ai says new model nears Anthropic's Mythos 5 in cyber-defence tests - Reuters\n              tags: anthropic\n  \u00b7 [reuters] Chip equipment maker Lam Research to invest more than $3 billion to expand R&D labs - Reuters\n              tags: chip\n  \u00b7 [reuters] Anthropic in talks to buy Decart AI, source says - Reuters\n              tags: anthropic\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-18                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udd34 BEARISH  [LOW CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,451.0    GLD   $   nan\n  DXY      99.63    VIX     15.79\n  Real Yield   0.00%  Breakeven  2.28%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec     +214,856  (\u0394 +229,793)\n  Shanghai Prem  $  -267.9/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 41 \u2014 FEAR\n  fear \u2014 risk-off, watch for safe-haven flows\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (30d)\n  Market: NEUTRAL\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Paper crowded, physical absent\n       COT net spec at 214,856 (prev -14,937) while Shanghai trades\n        at $-268/oz COMEX discount \u2014 spec momentum driving price, n\n       ot physical demand. Fragile if specs exit.\n  \ud83d\udd25 Violent COT flip to spec long\n       Net spec moved +229,793 contracts in one week (from -14,937 \n       to 214,856). Either the smart money just loaded \u2014 or this is\n        a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (99.627) \u2014 dollar softness supports gold\n  \u00b7 COT spec longs crowded (214,856) \u2014 squeeze risk\n  \u00b7 Shanghai discount ($-268/oz) \u2014 no physical demand from China, COMEX paper-led\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [marketwatch] The Fed minutes are coming \u2014and they\u2019re more crucial now as Warsh limi\n  [cnbc_world] Analysis: Bond market pressure is squeezing Main Street as Wall Street\n  [bbc_business] AI to help planes avoid climate-warming 'sky graffiti'\n  [marketwatch] Soon you can buy Medicare Advantage plans at Costco. What you need to \n  [cnbc_economy] Russia says its economy is strong. It just fired a top economist who w\n  [bbc_business] Global borrowing costs hit fresh highs on oil, AI and inflation\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $219.5  (-2.4%)       TSM     $413.6  (-4.0%)\n  MU      $940.8  (-7.0%)       ASML  $1,802.3  (-4.3%)\n  AMD     $484.4  (-4.3%)       SOXX    $530.8  (-5.1%)\n  note: prices at market close or latest available\n\n  Tagged headlines (23):\n  \u00b7 [ars] Nvidia discloses $21B stake in SpaceX\n              tags: nvidia\n  \u00b7 [ars] OpenAI and Anthropic in price war as Chinese AI rivals gain ground\n              tags: openai, anthropic\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [ars] We now have a better understanding how OpenAI hacked into Hugging Face\n              tags: openai\n  \u00b7 [verge] OpenAI lays out new security changes after its AI hacked Hugging Face\n              tags: openai\n  \u00b7 [reuters] Chip equipment maker Lam Research to invest more than $3 billion to expand R&D labs - Reuters\n              tags: chip\n  \u00b7 [reuters] OpenAI unveils ChatGPT for Teens with stronger guardrails to tackle safety risks - Reuters\n              tags: openai\n  \u00b7 [reuters] AI chip startup Etched doubles valuation to $21 billion in under a month - Reuters\n              tags: chip\n"
 }
