@@ -1,19 +1,20 @@
 {
-  "generated_at": "2026-08-27T20:30:01.739257+00:00",
+  "generated_at": "2026-08-28T20:30:01.747190+00:00",
   "gold_bias": "mixed",
   "bias_confidence": "medium",
   "bias_drivers": [
-    "DXY weak (99.213) \u2014 dollar softness supports gold",
-    "real_yield high (2.32%) \u2014 significant headwind",
+    "DXY weak (99.217) \u2014 dollar softness supports gold",
+    "real_yield high (2.34%) \u2014 significant headwind",
+    "VIX low (14.45) \u2014 complacency, risk-on",
     "COT spec longs thin (-2,858) \u2014 room to run",
-    "Shanghai discount ($-280/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Headlines: 9 risk-tagged items \u2014 geopolitical premium active"
+    "Shanghai discount ($-278/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Headlines: 17 risk-tagged items \u2014 heavy geopolitical bid likely"
   ],
   "tensions": [
     {
       "id": "real_yield_vs_war",
       "label": "Real yield headwind vs geopolitical war premium",
-      "detail": "Real yield at 2.32% \u2014 historically bearish for gold \u2014 but 9 risk-tagged headlines (Iran war, Hormuz) sustaining a war premium. Resolution of war = sharp gold correction. Escalation = yield headwind overwhelmed.",
+      "detail": "Real yield at 2.34% \u2014 historically bearish for gold \u2014 but 17 risk-tagged headlines (Iran war, Hormuz) sustaining a war premium. Resolution of war = sharp gold correction. Escalation = yield headwind overwhelmed.",
       "severity": "medium"
     },
     {
@@ -24,43 +25,43 @@
     }
   ],
   "numbers": {
-    "xau": 4634.8999,
-    "gld": 421.32,
-    "dxy": 99.213,
-    "vix": 15.1,
-    "real_yield": 2.32,
-    "nominal_yield": 4.64,
-    "breakeven": 2.32
+    "xau": 4648.2002,
+    "gld": 422.6,
+    "dxy": 99.217,
+    "vix": 14.45,
+    "real_yield": 2.34,
+    "nominal_yield": 4.66,
+    "breakeven": 2.33
   },
   "fed": {
     "rate": "3.5-3.75%",
     "next_fomc": "2026-09-17",
-    "days_to_fomc": 21,
+    "days_to_fomc": 20,
     "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
       "May_2026": null,
       "Jun_2026": null,
       "Jul_2026": null,
-      "Sep_2026": 3.67,
-      "Dec_2026": 3.87
+      "Sep_2026": 3.675,
+      "Dec_2026": 3.885
     }
   },
   "positioning": {
     "cot_net_spec": -2858,
     "cot_change": -222353,
     "cot_signal": "thin_longs",
-    "shanghai_premium_oz": -279.5,
+    "shanghai_premium_oz": -277.98,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 71,
+    "fear_greed": 73,
     "label": "greed",
     "signal": "greed \u2014 risk-on, gold may face headwind"
   },
   "top_headlines": [
     {
-      "title": "Nvidia revenue doubles on continued AI demand",
+      "title": "Fed has 'work to do' if price rises don't ease for Americans, Warsh says",
       "source": "bbc_business",
       "tags": [
         "macro",
@@ -68,7 +69,7 @@
       ]
     },
     {
-      "title": "How will stocks perform when the Fed chair speaks at Jackson Hole? Here\u2019s what history tells us.",
+      "title": "Kevin Warsh gets what every Fed chair hopes for: A bond market that trust his words",
       "source": "marketwatch",
       "tags": [
         "macro",
@@ -76,7 +77,15 @@
       ]
     },
     {
-      "title": "Fed Chairman Kevin Warsh delivers his key Jackson Hole speech Friday. Here's what to expect",
+      "title": "Fed Chairman Warsh expresses concern about inflation, advocates for 'quieter' central bank",
+      "source": "cnbc_economy",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Analysis: Kevin Warsh sharpens inflation warning at Jackson Hole, signaling possible rate hike",
       "source": "cnbc_world",
       "tags": [
         "macro",
@@ -84,7 +93,7 @@
       ]
     },
     {
-      "title": "Trump signs order to rename Lake Ontario 'Lake America' amid Canada trade war",
+      "title": "Bessent attacks Warren over yen intervention query, offers \u2018Foreign Exchange for Dummies\u2019 lesson",
       "source": "cnbc_world",
       "tags": [
         "macro",
@@ -92,17 +101,10 @@
       ]
     },
     {
-      "title": "What Warsh will say and how the market will react, according to prediction markets",
+      "title": "2-year Treasury yield jumps as Warsh says Fed may 'have work to do'",
       "source": "cnbc_world",
       "tags": [
         "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "Iran says it is 'fully prepared' to counter widened US economic sanctions",
-      "source": "bbc_business",
-      "tags": [
         "risk"
       ]
     }
@@ -110,34 +112,34 @@
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 227.98,
-        "change_pct": 8.74,
-        "volume": 285962803
+        "price": 217.53,
+        "change_pct": -4.58,
+        "volume": 166602233
       },
       "TSM": {
-        "price": 427.33,
-        "change_pct": 2.31,
-        "volume": 11857205
+        "price": 417.39,
+        "change_pct": -2.32,
+        "volume": 7707561
       },
       "MU": {
-        "price": 935.39,
+        "price": 932.41,
         "change_pct": -0.32,
-        "volume": 26485894
+        "volume": 21119616
       },
       "ASML": {
-        "price": 1735.01,
-        "change_pct": -0.61,
-        "volume": 859917
+        "price": 1696.79,
+        "change_pct": -2.2,
+        "volume": 1095782
       },
       "AMD": {
-        "price": 476.6,
-        "change_pct": -0.9,
-        "volume": 14486858
+        "price": 465.65,
+        "change_pct": -2.31,
+        "volume": 12595289
       },
       "SOXX": {
-        "price": 525.43,
-        "change_pct": 1.95,
-        "volume": 8780122
+        "price": 508.55,
+        "change_pct": -3.21,
+        "volume": 7821730
       }
     },
     "tagged_headlines": [
@@ -191,26 +193,33 @@
         ]
       },
       {
-        "title": "Jensen Huang says Nvidia achieved AGI, again \u2014 not that it matters",
+        "title": "DLSS 5 leaked and modders are putting Nvidia\u2019s AI effects on everything",
         "source": "verge",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/985597/jensen-huang-says-nvidia-achieved-senseless-agi",
+        "url": "https://www.theverge.com/games/986197/nvidia-dlss-5-leak-ai",
         "tags": [
-          "nvidia",
-          "agi"
+          "nvidia"
         ]
       },
       {
-        "title": "Nvidia agrees to buy Hugging Face for $12.9 billion, The Information reports - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQcnRUV293OVVFOWdRY2o0c0tqNDhzYzRfMHVQdFBrT3ZZdmxiRGVOeDl0d3JiZmN6NnVBY3JvODV5MTdlRXZhWlZuM3ZfcldFSXlDR0RLNHVvYUFrVmR6VXBoR21tWlpXWE1YZ2ItQXJFeHAxWllIVnBtXzB1ci1uUHp2d296ZlRzU0VYOGlkbUlBZnl3X2FtV2tYaE5TdHQ5V1d1MTdVVloyNjhjS19mbkJtbDlBOXBLT2R6ZVdB?oc=5",
+        "title": "Anthropic was illegally blacklisted by the Trump administration, court rules",
+        "source": "verge",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling",
         "tags": [
-          "nvidia"
+          "anthropic"
         ]
       },
       {
         "title": "Nvidia to start employee-funded US political action committee - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNb2RIV3JCTFFfTXJMcF9qcUJjRVNkaUFiN01rZHFEZHlXMEtnV0RVeHduNWhlNWNoRk11MHFUNkswWG42YThwZUlnYmt1bExwUTdyaXlPejkya3plQ28ycFc0NFhSRkFMY1FZNG1UcTZOd0N2WEhhSkMzOWlpNlFScFZLd3d4NnF1cXZrTHZuODRLREVJbUNBb0dkcGpjZGJ6YnVVYkJpZFA?oc=5",
+        "tags": [
+          "nvidia"
+        ]
+      },
+      {
+        "title": "Nvidia agrees to buy Hugging Face for $12.9 billion, The Information reports - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQcnRUV293OVVFOWdRY2o0c0tqNDhzYzRfMHVQdFBrT3ZZdmxiRGVOeDl0d3JiZmN6NnVBY3JvODV5MTdlRXZhWlZuM3ZfcldFSXlDR0RLNHVvYUFrVmR6VXBoR21tWlpXWE1YZ2ItQXJFeHAxWllIVnBtXzB1ci1uUHp2d296ZlRzU0VYOGlkbUlBZnl3X2FtV2tYaE5TdHQ5V1d1MTdVVloyNjhjS19mbkJtbDlBOXBLT2R6ZVdB?oc=5",
         "tags": [
           "nvidia"
         ]
@@ -232,20 +241,11 @@
         ]
       },
       {
-        "title": "Anthropic revenue run rate tops $65 billion, source says - Reuters",
+        "title": "Salesforce raises annual forecasts, expands AI partnership with Anthropic - Reuters",
         "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNVEJ6S2RpblVGQzhVS083a3dqR3JpajJOUkJIVUZIS1ZkQ05PeW9TdkJUazFpRXNybXNDUUNnV3dfWTllcFdsYms2Mm53dGJwY1VyYnVYb0xYSTNwZWoyaC1vM0FDVWJtTlh6VjFyTGxGUUNaYkg0VDdzNlhjMDJ4dUxJVHQzY0dUaWdKd2t3d0NoWk5IQU52bDRXWTJxZWNFdThJ?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOeDN3Q0RQRENZTDF5TE95YURuRTZiczNvdTJ3ZzBRQjBGNkxRUnBlSWpSd2p3MUpJQzJoamNOR084RzU2dXRFM3ZEUXVBYWRLaVc5UXFza0VRcWNvS3ZvZGowVWdkbG9ROGVIVUt6bE9nN05VRk8zVng2b3JHT0Vub000Y2lDMzBMaWdBd1RmYVlJdw?oc=5",
         "tags": [
           "anthropic"
-        ]
-      },
-      {
-        "title": "Nvidia discusses Perplexity investment at $30 billion-plus valuation, The Information reports - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOcFhTZEFZTUhYaHB6bUtnVVg0Q2hMT19aV3MxMkJEX3IySC04dWlZaFlWYjJqdDJ0Y2s5RmZtTk9HNDluQ2tGT2cwRkpkYm5xQ2pmbDJBV1hRSkwtTE5zeDcxdEx3VThSV3cxcXM1RTAyUl9pcEw2OExWNm9oZkpwUWdvRXVCWUtNMkRDd2s2eXU3a3VMeDZua1UwYi1wbzljV2Zqd0tESlRjMzVjUUJVQnVfb2I1VUNHWWFWRTJtZWg?oc=5",
-        "tags": [
-          "nvidia",
-          "investment"
         ]
       },
       {
@@ -257,15 +257,64 @@
         ]
       },
       {
-        "title": "Salesforce raises annual forecasts, expands AI partnership with Anthropic - Reuters",
+        "title": "Anthropic unveils new framework allowing AI agents to operate physical devices - Reuters",
         "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOeDN3Q0RQRENZTDF5TE95YURuRTZiczNvdTJ3ZzBRQjBGNkxRUnBlSWpSd2p3MUpJQzJoamNOR084RzU2dXRFM3ZEUXVBYWRLaVc5UXFza0VRcWNvS3ZvZGowVWdkbG9ROGVIVUt6bE9nN05VRk8zVng2b3JHT0Vub000Y2lDMzBMaWdBd1RmYVlJdw?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOTWhmNnhIejBEcG1zQWRzeWtHbVZCOUtZZmtraGJiNHdjVzdpU3liY2VfZTF0X3pUUl8tNWN1TXMxcTNqRk9xRXRTZ3VGQUV2MVl1MllqWHpCby1ua2R2VWJJR1hRUi1aTWJxQ1lXWHBEcklUb1hZS3dkTEZkSDFxUjNzbFFiZUktaXJ3WGJRUjF5RHROREJSd2c3N0RfRkNIbzNxd05GdnJ4VnZma0R5QU5QTEJwOG1aUmZuaERmMA?oc=5",
         "tags": [
           "anthropic"
         ]
       },
       {
-        "title": "Barret Zoph, the Thinking Machines co-founder who defected to OpenAI, is now at Google",
+        "title": "Investigators say hundreds of OpenAI agents hacked Hugging Face and tried to cover their tracks - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObmp1Sm45YlVSVElnTE1FdlZuWnZDWW1RRFRDdzRxUmEwYXNlWktadzMxYXN0UmFqZERGbkhOWU1xZlVZRnp1YmUxMHlNbWw3c2NfZUp2cUJEaDl4MWdzX3VpdmNneklCanFvRWx6TUpzbUJ4S20xZDY5WUE1cmstam1TWjVzQnBuSXVvblZSeTNUSDlNVHZVNHZCdmpBVTBJa3dCcDJ3Q3BYNlA2dXVGVWgtV3dwbE1TNHpCdDVzaXROdk0?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "An Anthropic researcher just gave us a peek at self-improving AI",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/",
+        "tags": [
+          "anthropic"
+        ]
+      },
+      {
+        "title": "Open-weight AI companies are the Valley\u2019s hottest acquisition targets",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/28/open-weight-ai-companies-are-the-valleys-hottest-acquisition-targets/",
+        "tags": [
+          "acquisition"
+        ]
+      },
+      {
+        "title": "Anthropic gets its first court win over the Pentagon\u2019s supply-chain risk label",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/28/anthropic-gets-its-first-court-win-over-the-pentagons-supply-chain-risk-label/",
+        "tags": [
+          "anthropic"
+        ]
+      },
+      {
+        "title": "Meta executive leaves for OpenAI as the social media giant faces growing scrutiny in India",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/28/meta-executive-leaves-for-openai-as-the-social-media-giant-faces-growing-scrutiny-in-india/",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "Anthropic and OpenAI are joining the AI stage at TechCrunch Disrupt 2026",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/08/27/anthropic-and-openai-are-joining-the-ai-stage-at-techcrunch-disrupt-2026/",
+        "tags": [
+          "openai",
+          "anthropic"
+        ]
+      },
+      {
+        "title": "Barret Zoph, the Thinking Machines co-founder ousted before joining OpenAI, is now at Google",
         "source": "techcrunch",
         "url": "https://techcrunch.com/2026/08/27/barret-zoph-the-thinking-machines-co-founder-who-defected-to-openai-is-now-at-google/",
         "tags": [
@@ -333,41 +382,25 @@
         ]
       },
       {
-        "title": "OpenAI releases its official report on the Hugging Face breach",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/08/26/openai-releases-its-official-report-on-the-hugging-face-breach/",
+        "title": "Judge rules Trump administration\u2019s blacklisting of Anthropic was illegal",
+        "source": "hackernews",
+        "url": "https://www.nytimes.com/2026/08/27/technology/anthropic-government-blacklisting-ruling.html",
         "tags": [
-          "openai"
+          "anthropic"
         ]
       },
       {
-        "title": "Gemini Omni 1.1 Flash",
+        "title": "Luanti removed from Google Play due to baseless AI copyright notice",
         "source": "hackernews",
-        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
+        "url": "https://blog.luanti.org/2026/08/27/luanti-dmca-tracer-ai/",
         "tags": [
-          "gemini"
-        ]
-      },
-      {
-        "title": "Nvidia agrees to acquire Hugging Face for $13B",
-        "source": "hackernews",
-        "url": "https://www.businessinsider.com/nvidia-in-talks-to-buy-hugging-face-13-billion-dollars-2026-8",
-        "tags": [
-          "nvidia"
-        ]
-      },
-      {
-        "title": "Show HN: The load-bearing vocabulary of Claude",
-        "source": "hackernews",
-        "url": "https://louisabraham.github.io/load-bearing/",
-        "tags": [
-          "claude"
+          "copyright"
         ]
       }
     ],
-    "total_fetched": 83,
-    "total_tagged": 27,
+    "total_fetched": 82,
+    "total_tagged": 31,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-27                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe0 MIXED  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,634.9    GLD   $421.32\n  DXY      99.21    VIX     15.10\n  Real Yield   2.32%  Breakeven  2.32%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec       -2,858  (\u0394 -222,353)\n  Shanghai Prem  $  -279.5/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 71 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (21d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u26a0\ufe0f  Real yield headwind vs geopolitical war premium\n       Real yield at 2.32% \u2014 historically bearish for gold \u2014 but 9 \n       risk-tagged headlines (Iran war, Hormuz) sustaining a war pr\n       emium. Resolution of war = sharp gold correction. Escalation\n        = yield headwind overwhelmed.\n  \ud83d\udd25 Violent COT flip to spec short\n       Net spec moved -222,353 contracts in one week (from 219,495 \n       to -2,858). Either the smart money just loaded \u2014 or this is \n       a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (99.213) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.32%) \u2014 significant headwind\n  \u00b7 COT spec longs thin (-2,858) \u2014 room to run\n  \u00b7 Shanghai discount ($-280/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Headlines: 9 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [bbc_business] Nvidia revenue doubles on continued AI demand\n  [marketwatch] How will stocks perform when the Fed chair speaks at Jackson Hole? Her\n  [cnbc_world] Fed Chairman Kevin Warsh delivers his key Jackson Hole speech Friday. \n  [cnbc_world] Trump signs order to rename Lake Ontario 'Lake America' amid Canada tr\n  [cnbc_world] What Warsh will say and how the market will react, according to predic\n  [bbc_business] Iran says it is 'fully prepared' to counter widened US economic sancti\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $228.0  (+8.7%)       TSM     $427.3  (+2.3%)\n  MU      $935.4  (-0.3%)       ASML  $1,735.0  (-0.6%)\n  AMD     $476.6  (-0.9%)       SOXX    $525.4  (+1.9%)\n  note: prices at market close or latest available\n\n  Tagged headlines (27):\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [ars] Grok exfiltrates user data when malicious instructions are encrypted\n              tags: grok\n  \u00b7 [ars] Nvidia discloses $21B stake in SpaceX\n              tags: nvidia\n  \u00b7 [ars] OpenAI and Anthropic in price war as Chinese AI rivals gain ground\n              tags: openai, anthropic\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [verge] Jensen Huang says Nvidia achieved AGI, again \u2014 not that it matters\n              tags: nvidia, agi\n  \u00b7 [reuters] Nvidia agrees to buy Hugging Face for $12.9 billion, The Information reports - Reuters\n              tags: nvidia\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-08-28                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe0 MIXED  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,648.2    GLD   $422.60\n  DXY      99.22    VIX     14.45\n  Real Yield   2.34%  Breakeven  2.33%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec       -2,858  (\u0394 -222,353)\n  Shanghai Prem  $  -278.0/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 73 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (20d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u26a0\ufe0f  Real yield headwind vs geopolitical war premium\n       Real yield at 2.34% \u2014 historically bearish for gold \u2014 but 17\n        risk-tagged headlines (Iran war, Hormuz) sustaining a war p\n       remium. Resolution of war = sharp gold correction. Escalatio\n       n = yield headwind overwhelmed.\n  \ud83d\udd25 Violent COT flip to spec short\n       Net spec moved -222,353 contracts in one week (from 219,495 \n       to -2,858). Either the smart money just loaded \u2014 or this is \n       a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (99.217) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.34%) \u2014 significant headwind\n  \u00b7 VIX low (14.45) \u2014 complacency, risk-on\n  \u00b7 COT spec longs thin (-2,858) \u2014 room to run\n  \u00b7 Shanghai discount ($-278/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Headlines: 17 risk-tagged items \u2014 heavy geopolitical bid likely\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [bbc_business] Fed has 'work to do' if price rises don't ease for Americans, Warsh sa\n  [marketwatch] Kevin Warsh gets what every Fed chair hopes for: A bond market that tr\n  [cnbc_economy] Fed Chairman Warsh expresses concern about inflation, advocates for 'q\n  [cnbc_world] Analysis: Kevin Warsh sharpens inflation warning at Jackson Hole, sign\n  [cnbc_world] Bessent attacks Warren over yen intervention query, offers \u2018Foreign Ex\n  [cnbc_world] 2-year Treasury yield jumps as Warsh says Fed may 'have work to do'\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $217.5  (-4.6%)       TSM     $417.4  (-2.3%)\n  MU      $932.4  (-0.3%)       ASML  $1,696.8  (-2.2%)\n  AMD     $465.6  (-2.3%)       SOXX    $508.6  (-3.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (31):\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [ars] Grok exfiltrates user data when malicious instructions are encrypted\n              tags: grok\n  \u00b7 [ars] Nvidia discloses $21B stake in SpaceX\n              tags: nvidia\n  \u00b7 [ars] OpenAI and Anthropic in price war as Chinese AI rivals gain ground\n              tags: openai, anthropic\n  \u00b7 [ars] Claude published malicious code to the Internet and attacked 3 real companies\n              tags: claude\n  \u00b7 [verge] DLSS 5 leaked and modders are putting Nvidia\u2019s AI effects on everything\n              tags: nvidia\n  \u00b7 [verge] Anthropic was illegally blacklisted by the Trump administration, court rules\n              tags: anthropic\n"
 }
