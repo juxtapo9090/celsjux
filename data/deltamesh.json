@@ -1,6 +1,6 @@
 {
-  "nodes_active": 3,
+  "nodes_active": 2,
   "total_transfers": 38,
-  "status": "mesh live",
-  "updated_at": "2026-08-30T18:00:32+08:00"
+  "status": "2/3 nodes up",
+  "updated_at": "2026-08-30T19:00:02+08:00"
 }
