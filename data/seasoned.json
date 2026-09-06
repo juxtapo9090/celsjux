@@ -1,10 +1,10 @@
 {
-  "total_tokens": "6.990B",
+  "total_tokens": "6.992B",
   "total_sessions": 351,
   "days": 50,
   "date_range": "2026-07-19 → 2026-09-06",
-  "pc_tokens": "6.990B",
+  "pc_tokens": "6.992B",
   "cost_masked": "$*,***.**",
   "rtk_saved": "1883.5M",
-  "updated_at": "2026-09-07T04:00:36+08:00"
+  "updated_at": "2026-09-07T05:00:05+08:00"
 }
