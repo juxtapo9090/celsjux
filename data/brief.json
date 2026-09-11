@@ -1,19 +1,20 @@
 {
-  "generated_at": "2026-09-09T20:30:02.371977+00:00",
-  "gold_bias": "mixed",
+  "generated_at": "2026-09-10T20:30:02.558947+00:00",
+  "gold_bias": "bearish",
   "bias_confidence": "medium",
   "bias_drivers": [
-    "DXY weak (98.684) \u2014 dollar softness supports gold",
+    "DXY weak (99.084) \u2014 dollar softness supports gold",
+    "real_yield high (2.43%) \u2014 significant headwind",
     "COT spec longs crowded (222,188) \u2014 squeeze risk",
-    "Shanghai discount ($-262/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Implied rate path rising (\u21923.95%) \u2014 market pricing hike, bearish for gold",
-    "Headlines: 12 risk-tagged items \u2014 heavy geopolitical bid likely"
+    "Shanghai discount ($-242/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Implied rate path rising (\u21924.00%) \u2014 market pricing hike, bearish for gold",
+    "Headlines: 8 risk-tagged items \u2014 geopolitical premium active"
   ],
   "tensions": [
     {
       "id": "paper_crowded_physical_absent",
       "label": "Paper crowded, physical absent",
-      "detail": "COT net spec at 222,188 (prev -27,417) while Shanghai trades at $-262/oz COMEX discount \u2014 spec momentum driving price, not physical demand. Fragile if specs exit.",
+      "detail": "COT net spec at 222,188 (prev -27,417) while Shanghai trades at $-242/oz COMEX discount \u2014 spec momentum driving price, not physical demand. Fragile if specs exit.",
       "severity": "high"
     },
     {
@@ -24,81 +25,81 @@
     }
   ],
   "numbers": {
-    "xau": 4441.0,
-    "gld": 399.72,
-    "dxy": 98.684,
-    "vix": 16.31,
-    "real_yield": null,
-    "nominal_yield": 4.78,
-    "breakeven": null
+    "xau": 4389.2998,
+    "gld": 403.35,
+    "dxy": 99.084,
+    "vix": 17.76,
+    "real_yield": 2.43,
+    "nominal_yield": null,
+    "breakeven": 2.37
   },
   "fed": {
-    "rate": "None-3.75%",
+    "rate": "3.5-3.75%",
     "next_fomc": "2026-09-17",
-    "days_to_fomc": 8,
+    "days_to_fomc": 7,
     "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
       "May_2026": null,
       "Jun_2026": null,
       "Jul_2026": null,
-      "Sep_2026": 3.7,
-      "Dec_2026": 3.95
+      "Sep_2026": 3.7075,
+      "Dec_2026": 4.0
     }
   },
   "positioning": {
     "cot_net_spec": 222188,
     "cot_change": 249605,
     "cot_signal": "crowded_long",
-    "shanghai_premium_oz": -262.21,
+    "shanghai_premium_oz": -242.33,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 66,
+    "fear_greed": 69,
     "label": "greed",
     "signal": "greed \u2014 risk-on, gold may face headwind"
   },
   "top_headlines": [
     {
-      "title": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
-      "source": "bbc_business",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "U.S. reveals import ban on slew of Canadian goods as trade war escalates",
-      "source": "cnbc_economy",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "What execs are talking about at Goldman Sachs' Communacopia: AI, data centers, disruption",
+      "title": "Humans need to 'surf the wave' of AI rather than get swallowed by it, Chesky says at Communacopia",
       "source": "cnbc_world",
       "tags": [
         "gold"
       ]
     },
     {
-      "title": "U.S. reveals import ban on slew of Canadian goods as trade war escalates",
+      "title": "Kalshi launches \u2018perps\u2019 for gold and silver following CFTC approval, expanding futures offerings",
       "source": "cnbc_world",
+      "tags": [
+        "gold"
+      ]
+    },
+    {
+      "title": "Druckenmiller says US borrowing costs still \u2018a little low\u2019 despite surge in yields",
+      "source": "ft_markets",
       "tags": [
         "macro",
         "risk"
       ]
     },
     {
-      "title": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
-      "source": "bbc_business",
+      "title": "Houthis capture Red Sea port in blow to Saudis",
+      "source": "ft_markets",
       "tags": [
+        "macro",
         "risk"
       ]
     },
     {
-      "title": "Anthropic researcher believes more than 10% chance AI 'could kill all humans'",
+      "title": "ECB prepares for \u2018longer-lasting\u2019 inflation as it lifts interest rates to 2.5%",
+      "source": "ft_markets",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Oil, gas and borrowing costs surge as fears over Middle East escalate",
       "source": "bbc_business",
       "tags": [
         "risk"
@@ -108,34 +109,34 @@
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 223.73,
-        "change_pct": -0.89,
-        "volume": 66435219
+        "price": 218.4,
+        "change_pct": -2.36,
+        "volume": 84143034
       },
       "TSM": {
-        "price": 435.72,
-        "change_pct": -0.75,
-        "volume": 6502253
+        "price": 427.95,
+        "change_pct": -1.7,
+        "volume": 6976918
       },
       "MU": {
-        "price": 1027.2,
-        "change_pct": 2.69,
-        "volume": 21828107
+        "price": 977.36,
+        "change_pct": -4.9,
+        "volume": 22775448
       },
       "ASML": {
-        "price": 1728.89,
-        "change_pct": -2.04,
-        "volume": 939443
+        "price": 1688.14,
+        "change_pct": -2.39,
+        "volume": 863680
       },
       "AMD": {
-        "price": 520.84,
-        "change_pct": 2.99,
-        "volume": 20518067
+        "price": 503.53,
+        "change_pct": -3.37,
+        "volume": 13257352
       },
       "SOXX": {
-        "price": 531.74,
-        "change_pct": 0.63,
-        "volume": 6142622
+        "price": 517.33,
+        "change_pct": -2.76,
+        "volume": 6231505
       }
     },
     "tagged_headlines": [
@@ -180,14 +181,6 @@
         ]
       },
       {
-        "title": "Mamdani imposes one-year ban on AI for most NYC students - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQc3pZYVc0QVRhMWllSnUwZHJsNDlzd1ZhWXZOTmpHVXZwcXU3T2FtTUl0b0ZrLTdFLVNJdmRNYjdUalY5cnVSV1VjZU82SlpPTkdqRS0zSENzd3N1dl9rcEpzSVpfeC12cVp6V21TSDJwYmdmVmEtVXNOdkMtb0F6QXIzZ3d4eDVEekxHMkZ3UHI0WGphSVFrcDd3UWE?oc=5",
-        "tags": [
-          "ban"
-        ]
-      },
-      {
         "title": "Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPZl80VFZ2VnoyVGhIdk1HaHpWdzVuTFZRNWdhdXBaU0JxMy1HY3d0aXV4bHZUNFIxSS1TMWVpVVM0UDZqWFlTY2VuZEFzaW40UzZmZGJ4d1d6emVGOHZ1em1ycUJSOUIxM05DN3NzNlJObXpmYTJaZ2JMOGp1bGNib20yZUZibDJTMjNvSnNvWVRseE5QT3o5OTVMV3NVUHFr?oc=5",
@@ -196,12 +189,11 @@
         ]
       },
       {
-        "title": "Anthropic resumes external cyber tests after Claude AI hacks - Reuters",
+        "title": "Mamdani imposes one-year ban on AI for most NYC students - Reuters",
         "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQV3Y5eFQ4dWtTbDlKWE1yeXpuR25wNXBRMzVpeTJMM01vdzBiREpsR1IxSTVTWTU0YUxTNzZyZjBsQUVfS1I2bzJQRWtUcGVLaUJKbmxhLUJhQ2RGaWdjN3c4ZjZvcWVQdExIbWlHb3hpQ3lXXzlRcUZhNlVkLVBRMlFpRWFySk1XVzlSbmxNNkx4bTZhMXZMR3FpTVU4bTg2dzQtVG14b3FNZXZvcVM1QWV2Yk5BMllIMkxV?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQc3pZYVc0QVRhMWllSnUwZHJsNDlzd1ZhWXZOTmpHVXZwcXU3T2FtTUl0b0ZrLTdFLVNJdmRNYjdUalY5cnVSV1VjZU82SlpPTkdqRS0zSENzd3N1dl9rcEpzSVpfeC12cVp6V21TSDJwYmdmVmEtVXNOdkMtb0F6QXIzZ3d4eDVEekxHMkZ3UHI0WGphSVFrcDd3UWE?oc=5",
         "tags": [
-          "anthropic",
-          "claude"
+          "ban"
         ]
       },
       {
@@ -213,19 +205,19 @@
         ]
       },
       {
-        "title": "NEWSLETTER: Anthropic was cautious on mega infra deals. Then demand surged - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNM3Vra0t2YkJEa2JoRGtXbkZMamFHN2QzTEtGRGEweEVhTktmWEx0TkpheHltTzFwLXpnSE05WWs2aW01WkVQeEV6cFVwbVZCV19pZ1pTeHUyaW01Ym0xWTA4RkxXYUwyWXpVWjlKTVdpeFl4Y05id3h3TUNtSVp4NlNKQUpxVERqR0dldE9IcGFJZXdlR2ctWWtDWVRqVXg4UFhCS2k1UFBoNGdUZ1o4RWp2OEtJelRDU1FhMFpZdjYtV0NVYThTUw?oc=5",
+        "title": "Anthropic reveals rogue AI agents hate CAPTCHAs, just like you",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/10/anthropic-reveals-rogue-ai-agents-hate-captchas-just-like-you/",
         "tags": [
           "anthropic"
         ]
       },
       {
-        "title": "AI cloud firm Nscale commits compute worth $3.5 billion for Figure's robotics ambitions - Reuters",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOTkxWaUZTWUN1WTdnSy1SREFuS1hVQ3N3MS1RV3pROEhrME1MXzNHQU81enhla2E4WmtuVFA3WllLeWhtYVRzSDNPc1JnUXFuY3JVNzdITFo3Rjl1ZU9xaFFyNHhhWW9TR1pNN01aRE9JSHFVbFN5TU1nWWhvTWY3dHRWTVo5aG9nUTJyQTdKRnNvVmtPYmFnZDBxbVlrek5wQThPa1lxa2hoMTlTZFgtRl8wOVBzQ1JuN2ZxSHNSUEVwc3VSc0E?oc=5",
+        "title": "OpenAI adds a prominent AI doomer to its board of directors",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/",
         "tags": [
-          "compute"
+          "openai"
         ]
       },
       {
@@ -237,41 +229,17 @@
         ]
       },
       {
-        "title": "Besxar is building an orbital semiconductor factory, one SpaceX rocket at a time",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/09/besxar-is-strapping-advanced-chip-fabs-onto-spacexs-falcon-9-rockets/",
-        "tags": [
-          "semiconductor"
-        ]
-      },
-      {
-        "title": "Suno replaces its AI models with a new one trained on licensed music as copyright suits pile up",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/",
-        "tags": [
-          "copyright"
-        ]
-      },
-      {
-        "title": "Hackers are stealing Claude tokens from subscribers",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/08/hackers-are-stealing-claude-tokens-from-subscribers/",
-        "tags": [
-          "claude"
-        ]
-      },
-      {
-        "title": "Claude, change the \u201cAdd to Cart\u201d button to blue",
+        "title": "More questions about whether researchers can trust OpenAI with unpublished math",
         "source": "hackernews",
-        "url": "https://opusfived.dev/",
+        "url": "https://mathstodon.xyz/@andreasthom/117240535270608201",
         "tags": [
-          "claude"
+          "openai"
         ]
       }
     ],
     "total_fetched": 81,
-    "total_tagged": 16,
+    "total_tagged": 12,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-09                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe0 MIXED  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,441.0    GLD   $399.72\n  DXY      98.68    VIX     16.31\n  Real Yield   0.00%  Breakeven  0.00%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec     +222,188  (\u0394 +249,605)\n  Shanghai Prem  $  -262.2/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 66 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: None-3.75%   Next FOMC: 2026-09-17 (8d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Paper crowded, physical absent\n       COT net spec at 222,188 (prev -27,417) while Shanghai trades\n        at $-262/oz COMEX discount \u2014 spec momentum driving price, n\n       ot physical demand. Fragile if specs exit.\n  \ud83d\udd25 Violent COT flip to spec long\n       Net spec moved +249,605 contracts in one week (from -27,417 \n       to 222,188). Either the smart money just loaded \u2014 or this is\n        a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (98.684) \u2014 dollar softness supports gold\n  \u00b7 COT spec longs crowded (222,188) \u2014 squeeze risk\n  \u00b7 Shanghai discount ($-262/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21923.95%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 12 risk-tagged items \u2014 heavy geopolitical bid likely\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [bbc_business] US to ban imports of some Canadian alcohol, dairy goods and motorbikes\n  [cnbc_economy] U.S. reveals import ban on slew of Canadian goods as trade war escalat\n  [cnbc_world] What execs are talking about at Goldman Sachs' Communacopia: AI, data \n  [cnbc_world] U.S. reveals import ban on slew of Canadian goods as trade war escalat\n  [bbc_business] Petrol prices rise by 5p over a week as Iran war sends oil higher\n  [bbc_business] Anthropic researcher believes more than 10% chance AI 'could kill all \n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $223.7  (-0.9%)       TSM     $435.7  (-0.8%)\n  MU    $1,027.2  (+2.7%)       ASML  $1,728.9  (-2.0%)\n  AMD     $520.8  (+3.0%)       SOXX    $531.7  (+0.6%)\n  note: prices at market close or latest available\n\n  Tagged headlines (16):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [ars] Grok exfiltrates user data when malicious instructions are encrypted\n              tags: grok\n  \u00b7 [ars] Nvidia discloses $21B stake in SpaceX\n              tags: nvidia\n  \u00b7 [reuters] Mamdani imposes one-year ban on AI for most NYC students - Reuters\n              tags: ban\n  \u00b7 [reuters] Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock - Reuters\n              tags: chip\n  \u00b7 [reuters] Anthropic resumes external cyber tests after Claude AI hacks - Reuters\n              tags: anthropic, claude\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-10                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udd34 BEARISH  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,389.3    GLD   $403.35\n  DXY      99.08    VIX     17.76\n  Real Yield   2.43%  Breakeven  2.37%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec     +222,188  (\u0394 +249,605)\n  Shanghai Prem  $  -242.3/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 69 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (7d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Paper crowded, physical absent\n       COT net spec at 222,188 (prev -27,417) while Shanghai trades\n        at $-242/oz COMEX discount \u2014 spec momentum driving price, n\n       ot physical demand. Fragile if specs exit.\n  \ud83d\udd25 Violent COT flip to spec long\n       Net spec moved +249,605 contracts in one week (from -27,417 \n       to 222,188). Either the smart money just loaded \u2014 or this is\n        a momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (99.084) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.43%) \u2014 significant headwind\n  \u00b7 COT spec longs crowded (222,188) \u2014 squeeze risk\n  \u00b7 Shanghai discount ($-242/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21924.00%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 8 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Humans need to 'surf the wave' of AI rather than get swallowed by it, \n  [cnbc_world] Kalshi launches \u2018perps\u2019 for gold and silver following CFTC approval, e\n  [ft_markets] Druckenmiller says US borrowing costs still \u2018a little low\u2019 despite sur\n  [ft_markets] Houthis capture Red Sea port in blow to Saudis\n  [ft_markets] ECB prepares for \u2018longer-lasting\u2019 inflation as it lifts interest rates\n  [bbc_business] Oil, gas and borrowing costs surge as fears over Middle East escalate\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $218.4  (-2.4%)       TSM     $427.9  (-1.7%)\n  MU      $977.4  (-4.9%)       ASML  $1,688.1  (-2.4%)\n  AMD     $503.5  (-3.4%)       SOXX    $517.3  (-2.8%)\n  note: prices at market close or latest available\n\n  Tagged headlines (12):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [ars] Grok exfiltrates user data when malicious instructions are encrypted\n              tags: grok\n  \u00b7 [ars] Nvidia discloses $21B stake in SpaceX\n              tags: nvidia\n  \u00b7 [reuters] Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock - Reuters\n              tags: chip\n  \u00b7 [reuters] Mamdani imposes one-year ban on AI for most NYC students - Reuters\n              tags: ban\n  \u00b7 [reuters] Analog Devices to buy Alif Semiconductor for $1.35 billion - Reuters\n              tags: semiconductor\n"
 }
