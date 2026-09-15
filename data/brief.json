@@ -1,94 +1,102 @@
 {
-  "generated_at": "2026-09-13T20:30:02.505139+00:00",
-  "gold_bias": "bearish",
-  "bias_confidence": "low",
+  "generated_at": "2026-09-14T20:30:02.665817+00:00",
+  "gold_bias": "mixed",
+  "bias_confidence": "medium",
   "bias_drivers": [
-    "DXY weak (99.12) \u2014 dollar softness supports gold",
+    "DXY weak (99.628) \u2014 dollar softness supports gold",
     "real_yield high (2.55%) \u2014 significant headwind",
     "COT spec longs thin (-358) \u2014 room to run",
-    "Shanghai discount ($-262/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Implied rate path rising (\u21924.08%) \u2014 market pricing hike, bearish for gold",
-    "Headlines: 7 risk-tagged items \u2014 geopolitical premium active"
+    "Shanghai discount ($-244/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Implied rate path rising (\u21924.09%) \u2014 market pricing hike, bearish for gold",
+    "Headlines: 12 risk-tagged items \u2014 heavy geopolitical bid likely"
   ],
-  "tensions": [],
+  "tensions": [
+    {
+      "id": "real_yield_vs_war",
+      "label": "Real yield headwind vs geopolitical war premium",
+      "detail": "Real yield at 2.55% \u2014 historically bearish for gold \u2014 but 12 risk-tagged headlines (Iran war, Hormuz) sustaining a war premium. Resolution of war = sharp gold correction. Escalation = yield headwind overwhelmed.",
+      "severity": "medium"
+    }
+  ],
   "numbers": {
-    "xau": 4408.8999,
+    "xau": 4313.8999,
     "gld": 398.77,
-    "dxy": 99.12,
-    "vix": 15.84,
+    "dxy": 99.628,
+    "vix": 17.73,
     "real_yield": 2.55,
     "nominal_yield": 4.95,
-    "breakeven": 2.36
+    "breakeven": null
   },
   "fed": {
     "rate": "3.5-3.75%",
     "next_fomc": "2026-09-17",
-    "days_to_fomc": 4,
+    "days_to_fomc": 3,
     "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
       "May_2026": null,
       "Jun_2026": null,
       "Jul_2026": null,
-      "Sep_2026": 3.73,
-      "Dec_2026": 4.085
+      "Sep_2026": 3.7325,
+      "Dec_2026": 4.09
     }
   },
   "positioning": {
     "cot_net_spec": -358,
     "cot_change": 25737,
     "cot_signal": "thin_longs",
-    "shanghai_premium_oz": -261.56,
+    "shanghai_premium_oz": -243.59,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 61,
+    "fear_greed": 57,
     "label": "greed",
     "signal": "greed \u2014 risk-on, gold may face headwind"
   },
   "top_headlines": [
     {
-      "title": "Fed rate hikes won\u2019t bring down gas prices. Why the bond market is pushing for them anyway.",
-      "source": "marketwatch",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "The price of almost everything on your dinner table is climbing at once \u2014 and Wall Street is taking notice",
-      "source": "marketwatch",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "Here are the 2 big things we're watching in this week's stock market",
-      "source": "cnbc_world",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "Up 3,600%, this freight fund has posted the biggest gains of all on Iran war oil shock",
-      "source": "cnbc_world",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "Dramatic insider warnings over AI fall flat with some in Silicon Valley",
+      "title": "Carney gambles on the world's biggest investors betting on Canada",
       "source": "bbc_business",
       "tags": [
+        "macro",
         "risk"
       ]
     },
     {
-      "title": "China's Xi urges BRICS nations to work towards peace in the Middle East",
+      "title": "Amazon pauses work with cargo firm after fatal crash",
+      "source": "bbc_business",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Counting the votes: Warsh faces a tough battle as the Fed girds for expected interest rate hike",
+      "source": "cnbc_economy",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Counting the votes: Warsh faces a tough battle as the Fed girds for expected interest rate hike",
       "source": "cnbc_world",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Ten-year Treasury yield hits 5% for first time since 2023",
+      "source": "ft_markets",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Trump downplays warnings of AI risks, citing rivalry with China",
+      "source": "bbc_business",
       "tags": [
         "risk"
       ]
@@ -97,34 +105,34 @@
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 218.29,
-        "change_pct": -0.03,
-        "volume": 88804100
+        "price": 211.03,
+        "change_pct": -3.33,
+        "volume": 108787267
       },
       "TSM": {
-        "price": 433.24,
-        "change_pct": 1.22,
-        "volume": 10629200
+        "price": 418.62,
+        "change_pct": -3.38,
+        "volume": 10948932
       },
       "MU": {
-        "price": 975.26,
-        "change_pct": -0.22,
-        "volume": 21694700
+        "price": 924.11,
+        "change_pct": -5.24,
+        "volume": 24574918
       },
       "ASML": {
-        "price": 1698.3,
-        "change_pct": 0.64,
-        "volume": 881200
+        "price": 1574.64,
+        "change_pct": -7.28,
+        "volume": 1736937
       },
       "AMD": {
-        "price": 516.13,
-        "change_pct": 2.49,
-        "volume": 19001000
+        "price": 493.43,
+        "change_pct": -4.4,
+        "volume": 21482568
       },
       "SOXX": {
-        "price": 527.07,
-        "change_pct": 1.86,
-        "volume": 5663000
+        "price": 497.07,
+        "change_pct": -5.69,
+        "volume": 9815609
       }
     },
     "tagged_headlines": [
@@ -161,22 +169,6 @@
         ]
       },
       {
-        "title": "OpenAI\u2019s rogue AI tried to hack another company in May",
-        "source": "verge",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/994383/openais-rogue-ai-rubygems-hack",
-        "tags": [
-          "openai"
-        ]
-      },
-      {
-        "title": "Sam Altman says OpenAI going public in 2026 would be \u2018ill-advised\u2019",
-        "source": "verge",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/994384/sam-altman-no-openai-ipo-ill-advised",
-        "tags": [
-          "openai"
-        ]
-      },
-      {
         "title": "Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPZl80VFZ2VnoyVGhIdk1HaHpWdzVuTFZRNWdhdXBaU0JxMy1HY3d0aXV4bHZUNFIxSS1TMWVpVVM0UDZqWFlTY2VuZEFzaW40UzZmZGJ4d1d6emVGOHZ1em1ycUJSOUIxM05DN3NzNlJObXpmYTJaZ2JMOGp1bGNib20yZUZibDJTMjNvSnNvWVRseE5QT3o5OTVMV3NVUHFr?oc=5",
@@ -190,6 +182,22 @@
         "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQMmI0Ym1wdlpTVDlBV0RQdVhpY19wS1lLcFFIZ3FLd2Y4TjZoOTNaY1NHZGoxWERJLWRGOVFTMlBjeXF2dGZPVjFmU1VjMFBqUFBzMjBILUw5ekZ4UU1EeTB1cnVfbFZIcVBidERqNXFSSUJRNjFxVVVMZTFkVTkwYnhxdnJOZDJfc1IwdExVUzhJVUx1a3NFR0VBcHg?oc=5",
         "tags": [
           "semiconductor"
+        ]
+      },
+      {
+        "title": "Fashion app Daydream uses Apple Intelligence to help you shop the outfits in your camera roll",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/14/fashion-discovery-app-daydream-uses-apple-intelligence-to-help-you-shop-the-outfits-saved-in-your-camera-roll/",
+        "tags": [
+          "apple intelligence"
+        ]
+      },
+      {
+        "title": "Only at TechCrunch Disrupt 2026: What happens when OpenAI ships your roadmap?",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/14/only-at-techcrunch-disrupt-2026-what-happens-when-openai-ships-your-roadmap/",
+        "tags": [
+          "openai"
         ]
       },
       {
@@ -241,51 +249,17 @@
         ]
       },
       {
-        "title": "Jensen Huang explains why Nvidia will grow an astounding 70% next year",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/10/jensen-huang-explains-why-nvidia-will-grow-an-astounding-70-next-year/",
-        "tags": [
-          "nvidia"
-        ]
-      },
-      {
-        "title": "OpenAI puts Pro subscriptions on hold due to Astra demand",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/",
+        "title": "OpenAI bots knew about the RubyGems caching vulnerability",
+        "source": "hackernews",
+        "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/",
         "tags": [
           "openai"
         ]
-      },
-      {
-        "title": "Anthropic details distillation campaigns from Alibaba, Moonshot AI, and DeepSeek",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek/",
-        "tags": [
-          "anthropic"
-        ]
-      },
-      {
-        "title": "Anthropic reveals rogue AI agents hate CAPTCHAs, just like you",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/10/anthropic-reveals-rogue-ai-agents-hate-captchas-just-like-you/",
-        "tags": [
-          "anthropic"
-        ]
-      },
-      {
-        "title": "David Sacks: OpenAI and Anthropic Don't Need Regulations to Pace Frontier Models",
-        "source": "hackernews",
-        "url": "https://twitter.com/DavidSacks/status/2098973625252708460",
-        "tags": [
-          "openai",
-          "anthropic",
-          "regulation"
-        ]
       }
     ],
-    "total_fetched": 83,
-    "total_tagged": 19,
+    "total_fetched": 82,
+    "total_tagged": 15,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-13                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udd34 BEARISH  [LOW CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,408.9    GLD   $398.77\n  DXY      99.12    VIX     15.84\n  Real Yield   2.55%  Breakeven  2.36%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -358  (\u0394 +25,737)\n  Shanghai Prem  $  -261.6/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 61 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (4d)\n  Market: HIKE PRICED\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (99.12) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.55%) \u2014 significant headwind\n  \u00b7 COT spec longs thin (-358) \u2014 room to run\n  \u00b7 Shanghai discount ($-262/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21924.08%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [marketwatch] Fed rate hikes won\u2019t bring down gas prices. Why the bond market is pus\n  [marketwatch] The price of almost everything on your dinner table is climbing at onc\n  [cnbc_world] Here are the 2 big things we're watching in this week's stock market\n  [cnbc_world] Up 3,600%, this freight fund has posted the biggest gains of all on Ir\n  [bbc_business] Dramatic insider warnings over AI fall flat with some in Silicon Valle\n  [cnbc_world] China's Xi urges BRICS nations to work towards peace in the Middle Eas\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $218.3  (-0.0%)       TSM     $433.2  (+1.2%)\n  MU      $975.3  (-0.2%)       ASML  $1,698.3  (+0.6%)\n  AMD     $516.1  (+2.5%)       SOXX    $527.1  (+1.9%)\n  note: prices at market close or latest available\n\n  Tagged headlines (19):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [ars] Grok exfiltrates user data when malicious instructions are encrypted\n              tags: grok\n  \u00b7 [verge] OpenAI\u2019s rogue AI tried to hack another company in May\n              tags: openai\n  \u00b7 [verge] Sam Altman says OpenAI going public in 2026 would be \u2018ill-advised\u2019\n              tags: openai\n  \u00b7 [reuters] Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock - Reuters\n              tags: chip\n  \u00b7 [reuters] Analog Devices to buy Alif Semiconductor for $1.35 billion - Reuters\n              tags: semiconductor\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-14                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe0 MIXED  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,313.9    GLD   $398.77\n  DXY      99.63    VIX     17.73\n  Real Yield   2.55%  Breakeven  0.00%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -358  (\u0394 +25,737)\n  Shanghai Prem  $  -243.6/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 57 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.5-3.75%   Next FOMC: 2026-09-17 (3d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u26a0\ufe0f  Real yield headwind vs geopolitical war premium\n       Real yield at 2.55% \u2014 historically bearish for gold \u2014 but 12\n        risk-tagged headlines (Iran war, Hormuz) sustaining a war p\n       remium. Resolution of war = sharp gold correction. Escalatio\n       n = yield headwind overwhelmed.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (99.628) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.55%) \u2014 significant headwind\n  \u00b7 COT spec longs thin (-358) \u2014 room to run\n  \u00b7 Shanghai discount ($-244/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21924.09%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 12 risk-tagged items \u2014 heavy geopolitical bid likely\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [bbc_business] Carney gambles on the world's biggest investors betting on Canada\n  [bbc_business] Amazon pauses work with cargo firm after fatal crash\n  [cnbc_economy] Counting the votes: Warsh faces a tough battle as the Fed girds for ex\n  [cnbc_world] Counting the votes: Warsh faces a tough battle as the Fed girds for ex\n  [ft_markets] Ten-year Treasury yield hits 5% for first time since 2023\n  [bbc_business] Trump downplays warnings of AI risks, citing rivalry with China\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $211.0  (-3.3%)       TSM     $418.6  (-3.4%)\n  MU      $924.1  (-5.2%)       ASML  $1,574.6  (-7.3%)\n  AMD     $493.4  (-4.4%)       SOXX    $497.1  (-5.7%)\n  note: prices at market close or latest available\n\n  Tagged headlines (15):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [ars] Grok exfiltrates user data when malicious instructions are encrypted\n              tags: grok\n  \u00b7 [reuters] Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock - Reuters\n              tags: chip\n  \u00b7 [reuters] Analog Devices to buy Alif Semiconductor for $1.35 billion - Reuters\n              tags: semiconductor\n  \u00b7 [techcrunch] Fashion app Daydream uses Apple Intelligence to help you shop the outfits in your camera roll\n              tags: apple intelligence\n  \u00b7 [techcrunch] Only at TechCrunch Disrupt 2026: What happens when OpenAI ships your roadmap?\n              tags: openai\n"
 }
