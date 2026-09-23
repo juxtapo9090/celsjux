@@ -1,29 +1,30 @@
 {
-  "generated_at": "2026-09-21T20:30:02.588203+00:00",
+  "generated_at": "2026-09-22T20:30:01.915914+00:00",
   "gold_bias": "bearish",
   "bias_confidence": "low",
   "bias_drivers": [
-    "DXY weak (100.26) \u2014 dollar softness supports gold",
-    "real_yield high (2.61%) \u2014 significant headwind",
-    "VIX low (14.84) \u2014 complacency, risk-on",
+    "greed(78) \u2014 risk-on may rotate away from gold",
+    "DXY weak (100.466) \u2014 dollar softness supports gold",
+    "VIX low (14.67) \u2014 complacency, risk-on",
     "COT spec longs thin (-434) \u2014 room to run",
-    "Shanghai discount ($-235/oz) \u2014 no physical demand from China, COMEX paper-led",
-    "Headlines: 7 risk-tagged items \u2014 geopolitical premium active"
+    "Shanghai discount ($-232/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Implied rate path rising (\u21924.16%) \u2014 market pricing hike, bearish for gold",
+    "Headlines: 8 risk-tagged items \u2014 geopolitical premium active"
   ],
   "tensions": [],
   "numbers": {
-    "xau": 4396.1001,
-    "gld": 401.17,
-    "dxy": 100.26,
-    "vix": 14.84,
-    "real_yield": 2.61,
+    "xau": 4369.8999,
+    "gld": 398.38,
+    "dxy": 100.466,
+    "vix": 14.67,
+    "real_yield": null,
     "nominal_yield": null,
-    "breakeven": 2.33
+    "breakeven": 2.34
   },
   "fed": {
     "rate": "3.75-4.0%",
     "next_fomc": "2026-10-29",
-    "days_to_fomc": 38,
+    "days_to_fomc": 37,
     "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
@@ -31,24 +32,32 @@
       "Jun_2026": null,
       "Jul_2026": null,
       "Sep_2026": 3.7475,
-      "Dec_2026": 4.15
+      "Dec_2026": 4.16
     }
   },
   "positioning": {
     "cot_net_spec": -434,
     "cot_change": 18293,
     "cot_signal": "thin_longs",
-    "shanghai_premium_oz": -234.75,
+    "shanghai_premium_oz": -232.0,
     "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 70,
-    "label": "greed",
-    "signal": "greed \u2014 risk-on, gold may face headwind"
+    "fear_greed": 78,
+    "label": "extreme_greed",
+    "signal": "extreme_greed \u2014 crowded trade, reversal risk"
   },
   "top_headlines": [
     {
-      "title": "Paramount and state AGs settle lawsuit, allowing Warner Bros. merger to proceed",
+      "title": "The bond market is flashing a warning for stocks. These sectors are already wobbling.",
+      "source": "marketwatch",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Lennar shares pop as Berkshire builds almost a 10% stake in beleaguered homebuilder",
       "source": "cnbc_world",
       "tags": [
         "macro",
@@ -56,36 +65,30 @@
       ]
     },
     {
-      "title": "Paramount settles lawsuit with US states, helping clear way for $110bn merger with Warner Bros",
+      "title": "Autonomous trucking company Aurora looks to accelerate toward profitability",
+      "source": "cnbc_world",
+      "tags": [
+        "macro",
+        "risk"
+      ]
+    },
+    {
+      "title": "Direxion Daily Gold Miners Index Bull 2X Shares declares quarterly distribution of $0.3960",
+      "source": "seeking_alpha",
+      "tags": [
+        "gold"
+      ]
+    },
+    {
+      "title": "New EU industry rules would damage UK, warns Burnham",
       "source": "bbc_business",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Nvidia boss rejects AI extinction fears as 'doomsday narratives'",
+      "title": "Paramount settles lawsuit with US states, clearing way for $110bn merger with Warner Bros",
       "source": "bbc_business",
-      "tags": [
-        "risk"
-      ]
-    },
-    {
-      "title": "Flights disrupted into Newark, New York, Philadelphia after Verizon cable cut",
-      "source": "cnbc_world",
-      "tags": [
-        "risk"
-      ]
-    },
-    {
-      "title": "Iranian President Pezeshkian to head to New York for UN meeting as Trump warns of no-deal consequences",
-      "source": "cnbc_world",
-      "tags": [
-        "risk"
-      ]
-    },
-    {
-      "title": "Top Republicans tell Trump to ban US diesel exports ahead of midterms",
-      "source": "ft_markets",
       "tags": [
         "risk"
       ]
@@ -94,34 +97,34 @@
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 227.37,
-        "change_pct": 2.29,
-        "volume": 87307823
+        "price": 228.85,
+        "change_pct": 0.65,
+        "volume": 70624906
       },
       "TSM": {
-        "price": 445.11,
-        "change_pct": 2.4,
-        "volume": 8554422
+        "price": 452.31,
+        "change_pct": 1.61,
+        "volume": 8701894
       },
       "MU": {
-        "price": 1043.16,
-        "change_pct": 2.69,
-        "volume": 23799931
+        "price": 1095.87,
+        "change_pct": 4.97,
+        "volume": 26163251
       },
       "ASML": {
-        "price": 1713.09,
-        "change_pct": 1.97,
-        "volume": 1154190
+        "price": 1747.81,
+        "change_pct": 2.13,
+        "volume": 997736
       },
       "AMD": {
-        "price": 615.69,
-        "change_pct": 9.98,
-        "volume": 39888691
+        "price": 623.34,
+        "change_pct": 1.27,
+        "volume": 23869303
       },
       "SOXX": {
-        "price": 559.56,
-        "change_pct": 4.97,
-        "volume": 7130775
+        "price": 572.65,
+        "change_pct": 2.38,
+        "volume": 5746412
       }
     },
     "tagged_headlines": [
@@ -134,23 +137,24 @@
         ]
       },
       {
-        "title": "Claude, Codex, and Hermes installed unowned code inside corporate networks",
-        "source": "ars",
-        "url": "https://arstechnica.com/security/2026/08/claude-codex-and-hermes-installed-unowned-code-inside-corporate-networks/",
+        "title": "Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity",
+        "source": "verge",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity",
         "tags": [
+          "anthropic",
           "claude"
         ]
       },
       {
-        "title": "How OpenAI let a mob of LLM agents game a test and ransack Hugging Face",
-        "source": "ars",
-        "url": "https://arstechnica.com/security/2026/08/how-openai-let-a-mob-of-llm-agents-game-a-test-and-ransack-hugging-face/",
+        "title": "OpenAI expands GPT-6 lineup with cheaper Sol and Luna models - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPb0ZYd1JncUkxX2hGZWN1ZDlZdG5ERWw3bUltSHNTQm5iMW1YeWdMUVF1dmNkZWJkdHRsQVZTRnQ5S1ozUE1NdXZIYkJNVHNUbm1Pc3YtTFhyTHBLclc1LWoyWm82V2gwc3UySE9lbHdaQ29UWF9nZ0FfYk02UjNjcVBrU0ZMbmxPWUZBWW1fbmVDNTk2RGJyTUVfVHNVUk40UVY1YkNB?oc=5",
         "tags": [
           "openai"
         ]
       },
       {
-        "title": "OpenAI to regularly disclose AI misbehavior, warns safety challenges remain - reuters.com",
+        "title": "OpenAI to regularly disclose AI misbehavior, warns safety challenges remain - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZ09uWFd0WmUtWloyeENhUWp5NFJiNVF6REhDTUE2ZHZETW5DLUkyRG5QNDhfb0pvVWd5TkVLUEh0WnVja3dxMWJuU2ItSmRQLWM1bFJwN3RmdG03OWRhTXhzejQ2RHpBOTZ4d3hzQXdXOVNycjliMmlRSWhvOUF4NkpkVXVLcnZ2MThmTXpXMlJhQzVZQ0ZkWVAwX1Uwdw?oc=5",
         "tags": [
@@ -158,23 +162,7 @@
         ]
       },
       {
-        "title": "Nvidia-backed AI cloud firm Nscale reveals revenue surge in US IPO filing - reuters.com",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX1dTamJ1aHFmSUJtU3ZXV1diZDd3RGROdl9lTEY4UEEzQmFicF85MzdFWXpoT01Xckp6MlZ5eU5RcEpsVWl6Qmw3Y0NoMXJtdzViV21DZ0h6aXhFRkRWWjNjYmk1ZTRCSnY0X052TWIxMEg3a05NMnh5MGtaMEpzYXNla1ZMeEU?oc=5",
-        "tags": [
-          "nvidia"
-        ]
-      },
-      {
-        "title": "OpenAI forecasts cash burn near $280 billion by 2030, FT reports - reuters.com",
-        "source": "reuters",
-        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQTmx6RU9kREhhaHRjaVpOblpSazFaSTdKQVlxT2ZIQ09YNE5Fci1wV1NQX21mMWxzbnRWbDZ4bFd1UGtCVHV2WnMzc2NpY3hVY0ppOEh2NXl5NEFFTUxCM1BmUGl2cTM3RkRxbmJydjA3QmlaTm5UTlRfY1l5bE56cU96cE5PNmk4WHRyaThXUEo2ZjZ6WDJMSXJPR1JjaEZTWmFpTkRHZVIzN1RkUWd6VC1R?oc=5",
-        "tags": [
-          "openai"
-        ]
-      },
-      {
-        "title": "OpenAI is working with Anthropic, Google on AI safety, Bloomberg News reports - reuters.com",
+        "title": "OpenAI is working with Anthropic, Google on AI safety, Bloomberg News reports - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPaENkNHlJX1lkYlJtRzRtZ0NEaFpfbkxub0F1VkVUVHBvVTdMaHV1NjRDMnY5N09TTnIzRzFQZmFYcnY3ZkplMmxGQ1Y2OFRXT1kyTkNlWnZ0SjFsWHdHMWl6RklJeTFmMjVfYVN0ZTlidzhmR090TVdzRFRQd1ZmSFB2dXIyM1BLYVJDNlZMYy1PYnpTdTR0bHBYR2JwYWpMczAzSm5jU0JqYkJwb2V1SmhmMVJxSzRILXBZ?oc=5",
         "tags": [
@@ -183,7 +171,31 @@
         ]
       },
       {
-        "title": "OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - reuters.com",
+        "title": "OpenAI forecasts cash burn near $280 billion by 2030, FT reports - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQTmx6RU9kREhhaHRjaVpOblpSazFaSTdKQVlxT2ZIQ09YNE5Fci1wV1NQX21mMWxzbnRWbDZ4bFd1UGtCVHV2WnMzc2NpY3hVY0ppOEh2NXl5NEFFTUxCM1BmUGl2cTM3RkRxbmJydjA3QmlaTm5UTlRfY1l5bE56cU96cE5PNmk4WHRyaThXUEo2ZjZ6WDJMSXJPR1JjaEZTWmFpTkRHZVIzN1RkUWd6VC1R?oc=5",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "Nvidia-backed AI cloud firm Nscale reveals revenue surge in US IPO filing - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX1dTamJ1aHFmSUJtU3ZXV1diZDd3RGROdl9lTEY4UEEzQmFicF85MzdFWXpoT01Xckp6MlZ5eU5RcEpsVWl6Qmw3Y0NoMXJtdzViV21DZ0h6aXhFRkRWWjNjYmk1ZTRCSnY0X052TWIxMEg3a05NMnh5MGtaMEpzYXNla1ZMeEU?oc=5",
+        "tags": [
+          "nvidia"
+        ]
+      },
+      {
+        "title": "Palo Alto Networks unveils AI-powered cybersecurity service using Claude, GPT models - Reuters",
+        "source": "reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPVW5mc2xwMFhGeW1Dd3Y1bUY4dE9NVzFOa2FQSTI1a193YUk0aExLeFU2cm4xOXZVc0RqYjljNWVxMHpfWVRabVJMVkg5OE1aMWdXYUJKSG5RN2tYeUlycXh0VTcwck83TEdlcV9kOTRTdERZRXo5X3FUWkQ2WnlHb1hUZ3FDTzhwb3h0bWRlTWFOUmxBN2luR0QwQjRjeHhMWjRFRUN2M0V4U3FIaUZmRzk2QlN2SjRxSmZmUEhSQmo?oc=5",
+        "tags": [
+          "claude"
+        ]
+      },
+      {
+        "title": "OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQT3oyVDNzekNWY3BJUUZLVGNsb3Z3VUhXc3pfSmtEZG96bzk2RFQ4MTZBWDdQVHlyZTlDOWhEN1o3dzVuekVuWUh2cWFPMy1SU0sxWnl3WkVSbFpKTzBqOU54WjlwM0Jfd185OWsxT1BLbGpHcmlaNHdCalhub0x2cVVBai11dVhPdEVsZERZWHo3anRQMi0yUGZEN0VVOEZHcEJuZ1pxMHp2U2dkSWNhYmhOOXR0aGJjVXVTdHE3MGw1aEgw?oc=5",
         "tags": [
@@ -191,11 +203,35 @@
         ]
       },
       {
-        "title": "Apple weighs Nvidia technology for potential server market return, The Information reports - reuters.com",
+        "title": "Apple weighs Nvidia technology for potential server market return, The Information reports - Reuters",
         "source": "reuters",
         "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPZUItV2dPTnNzdl9Fd0RxZlFSWm5fTGwwMmpYc3hBYThTellLMWhESUprY3UyME5SdWtVNVBmWmpJbllMRkYyOGc4d3liVlYxdlgyX2JWYnRRWUluUWd0Tm1fY2ptd2w0MHNYNkZKS2FOR3ktSkxuc0FBUnYxc01sdGVXN1RfRVZ2Z1h1bzBPa0htT2tsYVRfVzV0a0F1Vnpua3RRT2FadUwwdnotaG5RcHItNlZadw?oc=5",
         "tags": [
           "nvidia"
+        ]
+      },
+      {
+        "title": "OpenAI launches GPT-6 Sol and Luna, boasting lower cost and fewer mistakes",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
+        "title": "Anthropic releases Opus 5.5 with lower prices and Fable-level performance",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/",
+        "tags": [
+          "anthropic"
+        ]
+      },
+      {
+        "title": "OpenAI forms math advisory group as its AI resolves more than 100 open problems",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems/",
+        "tags": [
+          "openai"
         ]
       },
       {
@@ -207,41 +243,41 @@
         ]
       },
       {
-        "title": "Google\u2019s Gemini is the latest AI model to hack other companies",
-        "source": "techcrunch",
-        "url": "https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/",
+        "title": "Claude Opus 5.5",
+        "source": "hackernews",
+        "url": "https://www.anthropic.com/claude-opus-5-5",
         "tags": [
-          "gemini"
+          "claude"
         ]
       },
       {
-        "title": "Turn off and restrict access to Apple Intelligence features on Mac",
+        "title": "OpenAI GPT\u20136 Astra breaks Enigma message that has resisted solution since 2005",
         "source": "hackernews",
-        "url": "https://support.apple.com/guide/mac-help/turn-restrict-access-apple-intelligence-mchlb2e44f94/mac",
+        "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
         "tags": [
-          "apple intelligence"
+          "openai"
         ]
       },
       {
-        "title": "Grok 4.7",
+        "title": "Claude Opus 5.5 Intelligence, Performance and Price Analysis (Max)",
         "source": "hackernews",
-        "url": "https://x.ai/news/grok-4-7",
+        "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
         "tags": [
-          "grok"
+          "claude"
         ]
       },
       {
-        "title": "Raspberry Pi blocks changing RAM chips",
+        "title": "OpenAI is well positioned to fast-follow Jev",
         "source": "hackernews",
-        "url": "https://forums.raspberrypi.com/viewtopic.php?p=2380887#p2380888",
+        "url": "https://arcturus-labs.com/blog/2026/09/21/will-openai-eat-jevs-lunch/",
         "tags": [
-          "chip"
+          "openai"
         ]
       }
     ],
-    "total_fetched": 83,
-    "total_tagged": 14,
+    "total_fetched": 82,
+    "total_tagged": 18,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-21                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udd34 BEARISH  [LOW CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,396.1    GLD   $401.17\n  DXY     100.26    VIX     14.84\n  Real Yield   2.61%  Breakeven  2.33%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -434  (\u0394 +18,293)\n  Shanghai Prem  $  -234.8/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 70 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.75-4.0%   Next FOMC: 2026-10-29 (38d)\n  Market: HIKE PRICED\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (100.26) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.61%) \u2014 significant headwind\n  \u00b7 VIX low (14.84) \u2014 complacency, risk-on\n  \u00b7 COT spec longs thin (-434) \u2014 room to run\n  \u00b7 Shanghai discount ($-235/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Paramount and state AGs settle lawsuit, allowing Warner Bros. merger t\n  [bbc_business] Paramount settles lawsuit with US states, helping clear way for $110bn\n  [bbc_business] Nvidia boss rejects AI extinction fears as 'doomsday narratives'\n  [cnbc_world] Flights disrupted into Newark, New York, Philadelphia after Verizon ca\n  [cnbc_world] Iranian President Pezeshkian to head to New York for UN meeting as Tru\n  [ft_markets] Top Republicans tell Trump to ban US diesel exports ahead of midterms\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $227.4  (+2.3%)       TSM     $445.1  (+2.4%)\n  MU    $1,043.2  (+2.7%)       ASML  $1,713.1  (+2.0%)\n  AMD     $615.7  (+10.0%)      SOXX    $559.6  (+5.0%)\n  note: prices at market close or latest available\n\n  Tagged headlines (14):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [ars] Claude, Codex, and Hermes installed unowned code inside corporate networks\n              tags: claude\n  \u00b7 [ars] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face\n              tags: openai\n  \u00b7 [reuters] OpenAI to regularly disclose AI misbehavior, warns safety challenges remain - reuters.com\n              tags: openai\n  \u00b7 [reuters] Nvidia-backed AI cloud firm Nscale reveals revenue surge in US IPO filing - reuters.com\n              tags: nvidia\n  \u00b7 [reuters] OpenAI forecasts cash burn near $280 billion by 2030, FT reports - reuters.com\n              tags: openai\n  \u00b7 [reuters] OpenAI is working with Anthropic, Google on AI safety, Bloomberg News reports - reuters.com\n              tags: openai, anthropic\n  \u00b7 [reuters] OpenAI AI models went rogue during testing, triggering 'unprecedented' breach at startup - reuters.com\n              tags: openai\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-22                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udd34 BEARISH  [LOW CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,369.9    GLD   $398.38\n  DXY     100.47    VIX     14.67\n  Real Yield   0.00%  Breakeven  2.34%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -434  (\u0394 +18,293)\n  Shanghai Prem  $  -232.0/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 78 \u2014 EXTREME_GREED\n  extreme_greed \u2014 crowded trade, reversal risk\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.75-4.0%   Next FOMC: 2026-10-29 (37d)\n  Market: HIKE PRICED\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 greed(78) \u2014 risk-on may rotate away from gold\n  \u00b7 DXY weak (100.466) \u2014 dollar softness supports gold\n  \u00b7 VIX low (14.67) \u2014 complacency, risk-on\n  \u00b7 COT spec longs thin (-434) \u2014 room to run\n  \u00b7 Shanghai discount ($-232/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21924.16%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 8 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [marketwatch] The bond market is flashing a warning for stocks. These sectors are al\n  [cnbc_world] Lennar shares pop as Berkshire builds almost a 10% stake in beleaguere\n  [cnbc_world] Autonomous trucking company Aurora looks to accelerate toward profitab\n  [seeking_alpha] Direxion Daily Gold Miners Index Bull 2X Shares declares quarterly dis\n  [bbc_business] New EU industry rules would damage UK, warns Burnham\n  [bbc_business] Paramount settles lawsuit with US states, clearing way for $110bn merg\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $228.8  (+0.7%)       TSM     $452.3  (+1.6%)\n  MU    $1,095.9  (+5.0%)       ASML  $1,747.8  (+2.1%)\n  AMD     $623.3  (+1.3%)       SOXX    $572.6  (+2.4%)\n  note: prices at market close or latest available\n\n  Tagged headlines (18):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [verge] Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity\n              tags: anthropic, claude\n  \u00b7 [reuters] OpenAI expands GPT-6 lineup with cheaper Sol and Luna models - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI to regularly disclose AI misbehavior, warns safety challenges remain - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI is working with Anthropic, Google on AI safety, Bloomberg News reports - Reuters\n              tags: openai, anthropic\n  \u00b7 [reuters] OpenAI forecasts cash burn near $280 billion by 2030, FT reports - Reuters\n              tags: openai\n  \u00b7 [reuters] Nvidia-backed AI cloud firm Nscale reveals revenue surge in US IPO filing - Reuters\n              tags: nvidia\n  \u00b7 [reuters] Palo Alto Networks unveils AI-powered cybersecurity service using Claude, GPT models - Reuters\n              tags: claude\n"
 }
