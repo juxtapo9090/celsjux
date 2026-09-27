@@ -1,52 +1,62 @@
 {
-  "generated_at": "2026-09-25T20:30:02.340480+00:00",
-  "gold_bias": "bullish",
+  "generated_at": "2026-09-26T20:30:02.569614+00:00",
+  "gold_bias": "bearish",
   "bias_confidence": "medium",
   "bias_drivers": [
-    "DXY weak (100.999) \u2014 dollar softness supports gold",
-    "COT spec longs thin (-434) \u2014 room to run",
-    "Implied rate path rising (\u21924.19%) \u2014 market pricing hike, bearish for gold",
+    "DXY weak (100.97) \u2014 dollar softness supports gold",
+    "real_yield high (2.85%) \u2014 significant headwind",
+    "VIX low (14.87) \u2014 complacency, risk-on",
+    "COT spec longs thin (-327) \u2014 room to run",
+    "Shanghai discount ($-248/oz) \u2014 no physical demand from China, COMEX paper-led",
+    "Implied rate path rising (\u21924.18%) \u2014 market pricing hike, bearish for gold",
     "Headlines: 7 risk-tagged items \u2014 geopolitical premium active"
   ],
-  "tensions": [],
+  "tensions": [
+    {
+      "id": "cot_violent_flip",
+      "label": "Violent COT flip to spec short",
+      "detail": "Net spec moved -218,074 contracts in one week (from 217,747 to -327). Either the smart money just loaded \u2014 or this is a momentum trap at the highs.",
+      "severity": "high"
+    }
+  ],
   "numbers": {
-    "xau": 4333.7002,
-    "gld": 391.69,
-    "dxy": 100.999,
-    "vix": 15.2,
-    "real_yield": null,
-    "nominal_yield": 5.11,
-    "breakeven": 2.33
+    "xau": 4321.2002,
+    "gld": 393.41,
+    "dxy": 100.97,
+    "vix": 14.87,
+    "real_yield": 2.85,
+    "nominal_yield": 5.18,
+    "breakeven": 2.34
   },
   "fed": {
     "rate": "3.75-4.0%",
     "next_fomc": "2026-10-29",
-    "days_to_fomc": 34,
+    "days_to_fomc": 33,
     "market_bias": "hike_priced",
     "implied_path": {
       "Apr_2026": null,
       "May_2026": null,
       "Jun_2026": null,
       "Jul_2026": null,
-      "Sep_2026": 3.7475,
-      "Dec_2026": 4.19
+      "Sep_2026": 3.745,
+      "Dec_2026": 4.18
     }
   },
   "positioning": {
-    "cot_net_spec": -434,
-    "cot_change": 18293,
+    "cot_net_spec": -327,
+    "cot_change": -218074,
     "cot_signal": "thin_longs",
-    "shanghai_premium_oz": null,
-    "physical_signal": "neutral"
+    "shanghai_premium_oz": -248.47,
+    "physical_signal": "comex_premium_dollar_bid"
   },
   "mood": {
-    "fear_greed": 71,
+    "fear_greed": 74,
     "label": "greed",
     "signal": "greed \u2014 risk-on, gold may face headwind"
   },
   "top_headlines": [
     {
-      "title": "Meta's 'powerful breakout' sets up a unique trading strategy, says Mike Khouw",
+      "title": "Apple faces $5.7 billion patent infringement verdict over iPhone and Apple Watch haptics",
       "source": "cnbc_world",
       "tags": [
         "macro",
@@ -54,36 +64,35 @@
       ]
     },
     {
-      "title": "Warsh's regime change at the Fed pushes ahead \u2013 and meets resistance",
-      "source": "cnbc_world",
-      "tags": [
-        "macro",
-        "risk"
-      ]
-    },
-    {
-      "title": "Trump and Xi exchange warm words at state dinner but little progress on key issues",
-      "source": "bbc_business",
-      "tags": [
-        "risk"
-      ]
-    },
-    {
-      "title": "Microsoft\u2019s stock has roared back to life and is now headed for its highest close of the year",
-      "source": "marketwatch",
-      "tags": [
-        "risk"
-      ]
-    },
-    {
-      "title": "Saudi Arabia crude oil exports hit highest level since Iran war began despite pipeline outage",
+      "title": "Many homeowners have a big insurance coverage gap \u2014 and don't even know it",
       "source": "cnbc_world",
       "tags": [
         "risk"
       ]
     },
     {
-      "title": "Former US spymaster Avril Haines: a third world war is \u2018plausible\u2019",
+      "title": "Why Britain is preparing for the worst",
+      "source": "ft_markets",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "German and Russian foreign ministers meet for first time in over four years",
+      "source": "ft_markets",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "Manchester City rule breaches \u2014 potential punishments, appeals and next steps",
+      "source": "ft_markets",
+      "tags": [
+        "risk"
+      ]
+    },
+    {
+      "title": "Medicines run short in Iran under US sanctions",
       "source": "ft_markets",
       "tags": [
         "risk"
@@ -93,34 +102,34 @@
   "ai_semi": {
     "semi_prices": {
       "NVDA": {
-        "price": 225.18,
-        "change_pct": 0.27,
-        "volume": 70648433
+        "price": 225.07,
+        "change_pct": 0.22,
+        "volume": 89808400
       },
       "TSM": {
-        "price": 450.67,
-        "change_pct": -0.11,
-        "volume": 5663053
+        "price": 450.61,
+        "change_pct": -0.12,
+        "volume": 7751900
       },
       "MU": {
-        "price": 1082.45,
-        "change_pct": 0.18,
-        "volume": 17845195
+        "price": 1082.28,
+        "change_pct": 0.16,
+        "volume": 20870400
       },
       "ASML": {
-        "price": 1744.35,
-        "change_pct": 1.27,
-        "volume": 724489
+        "price": 1743.94,
+        "change_pct": 1.24,
+        "volume": 801800
       },
       "AMD": {
-        "price": 630.98,
-        "change_pct": 0.27,
-        "volume": 15398884
+        "price": 630.63,
+        "change_pct": 0.22,
+        "volume": 17594900
       },
       "SOXX": {
-        "price": 572.83,
-        "change_pct": 1.19,
-        "volume": 4406275
+        "price": 572.68,
+        "change_pct": 1.17,
+        "volume": 4708700
       }
     },
     "tagged_headlines": [
@@ -130,6 +139,15 @@
         "url": "https://arstechnica.com/security/2026/09/openai-agents-discussed-ways-to-escape-their-sandbox-on-public-wiki/",
         "tags": [
           "openai"
+        ]
+      },
+      {
+        "title": "OpenAI pauses training of its \u2018most capable models\u2019",
+        "source": "verge",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/1001049/openai-training-pause",
+        "tags": [
+          "openai",
+          "training"
         ]
       },
       {
@@ -197,6 +215,14 @@
         ]
       },
       {
+        "title": "Unsecured OpenAI agents posted 53 user images on the internet without the lab\u2019s knowledge",
+        "source": "techcrunch",
+        "url": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
+        "tags": [
+          "openai"
+        ]
+      },
+      {
         "title": "Anthropic to pay Akamai $11.6 billion over seven years in cloud deal",
         "source": "techcrunch",
         "url": "https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/",
@@ -238,18 +264,17 @@
         ]
       },
       {
-        "title": "U.S. appeals court upholds designation of Anthropic as supply chain risk",
+        "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
         "source": "hackernews",
-        "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+        "url": "https://swarmtraces.org/",
         "tags": [
-          "supply chain",
-          "anthropic"
+          "openai"
         ]
       }
     ],
-    "total_fetched": 88,
-    "total_tagged": 15,
+    "total_fetched": 86,
+    "total_tagged": 17,
     "note": "prices at market close or latest available"
   },
-  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-25                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udfe1 BULLISH  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,333.7    GLD   $391.69\n  DXY     101.00    VIX     15.20\n  Real Yield   0.00%  Breakeven  2.33%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -434  (\u0394 +18,293)\n  Shanghai Prem  $    +nan/oz  [neutral]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 71 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.75-4.0%   Next FOMC: 2026-10-29 (34d)\n  Market: HIKE PRICED\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (100.999) \u2014 dollar softness supports gold\n  \u00b7 COT spec longs thin (-434) \u2014 room to run\n  \u00b7 Implied rate path rising (\u21924.19%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Meta's 'powerful breakout' sets up a unique trading strategy, says Mik\n  [cnbc_world] Warsh's regime change at the Fed pushes ahead \u2013 and meets resistance\n  [bbc_business] Trump and Xi exchange warm words at state dinner but little progress o\n  [marketwatch] Microsoft\u2019s stock has roared back to life and is now headed for its hi\n  [cnbc_world] Saudi Arabia crude oil exports hit highest level since Iran war began \n  [ft_markets] Former US spymaster Avril Haines: a third world war is \u2018plausible\u2019\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $225.2  (+0.3%)       TSM     $450.7  (-0.1%)\n  MU    $1,082.5  (+0.2%)       ASML  $1,744.3  (+1.3%)\n  AMD     $631.0  (+0.3%)       SOXX    $572.8  (+1.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (15):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [reuters] Akamai signs $11.6 billion cloud deal with Anthropic, grants warrant for up to 5% stake - Reuters\n              tags: anthropic\n  \u00b7 [reuters] OpenAI to preview GPT-6 Cyber within days, Fortune reports - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI to regularly disclose AI misbehavior, warns safety challenges remain - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI expands GPT-6 lineup with cheaper Sol and Luna models - Reuters\n              tags: openai\n  \u00b7 [reuters] NEWSLETTER: Funding frenzy, chip wars, and robot dreams: Inside China\u2018s AI boom - Reuters\n              tags: chip\n  \u00b7 [reuters] Palo Alto Networks unveils AI-powered cybersecurity service using Claude, GPT models - Reuters\n              tags: claude\n  \u00b7 [reuters] OpenAI forecasts cash burn near $280 billion by 2030, FT reports - Reuters\n              tags: openai\n"
+  "brief_text": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551          MERIDIAN DAILY BRIEF                \u2551\n\u2551  2026-09-26                            \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\nGOLD BIAS  \ud83d\udd34 BEARISH  [MEDIUM CONFIDENCE]\n\n\u2500\u2500 NUMBERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  XAU   $ 4,321.2    GLD   $393.41\n  DXY     100.97    VIX     14.87\n  Real Yield   2.85%  Breakeven  2.34%\n\n\u2500\u2500 POSITIONING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  COT Net Spec         -327  (\u0394 -218,074)\n  Shanghai Prem  $  -248.5/oz  [comex_premium_dollar_bid]\n\n\u2500\u2500 MOOD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Fear & Greed: 74 \u2014 GREED\n  greed \u2014 risk-on, gold may face headwind\n\n\u2500\u2500 FED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Rate: 3.75-4.0%   Next FOMC: 2026-10-29 (33d)\n  Market: HIKE PRICED\n\n\u2500\u2500 TENSIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \ud83d\udd25 Violent COT flip to spec short\n       Net spec moved -218,074 contracts in one week (from 217,747 \n       to -327). Either the smart money just loaded \u2014 or this is a \n       momentum trap at the highs.\n\n\u2500\u2500 DRIVERS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u00b7 DXY weak (100.97) \u2014 dollar softness supports gold\n  \u00b7 real_yield high (2.85%) \u2014 significant headwind\n  \u00b7 VIX low (14.87) \u2014 complacency, risk-on\n  \u00b7 COT spec longs thin (-327) \u2014 room to run\n  \u00b7 Shanghai discount ($-248/oz) \u2014 no physical demand from China, COMEX paper-led\n  \u00b7 Implied rate path rising (\u21924.18%) \u2014 market pricing hike, bearish for gold\n  \u00b7 Headlines: 7 risk-tagged items \u2014 geopolitical premium active\n\n\u2500\u2500 TOP HEADLINES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  [cnbc_world] Apple faces $5.7 billion patent infringement verdict over iPhone and A\n  [cnbc_world] Many homeowners have a big insurance coverage gap \u2014 and don't even kno\n  [ft_markets] Why Britain is preparing for the worst\n  [ft_markets] German and Russian foreign ministers meet for first time in over four \n  [ft_markets] Manchester City rule breaches \u2014 potential punishments, appeals and nex\n  [ft_markets] Medicines run short in Iran under US sanctions\n\n\u2500\u2500 AI & SEMI \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  NVDA    $225.1  (+0.2%)       TSM     $450.6  (-0.1%)\n  MU    $1,082.3  (+0.2%)       ASML  $1,743.9  (+1.2%)\n  AMD     $630.6  (+0.2%)       SOXX    $572.7  (+1.2%)\n  note: prices at market close or latest available\n\n  Tagged headlines (17):\n  \u00b7 [ars] OpenAI agents discussed ways to escape their sandbox on public wiki\n              tags: openai\n  \u00b7 [verge] OpenAI pauses training of its \u2018most capable models\u2019\n              tags: openai, training\n  \u00b7 [reuters] Akamai signs $11.6 billion cloud deal with Anthropic, grants warrant for up to 5% stake - Reuters\n              tags: anthropic\n  \u00b7 [reuters] OpenAI to preview GPT-6 Cyber within days, Fortune reports - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI to regularly disclose AI misbehavior, warns safety challenges remain - Reuters\n              tags: openai\n  \u00b7 [reuters] OpenAI expands GPT-6 lineup with cheaper Sol and Luna models - Reuters\n              tags: openai\n  \u00b7 [reuters] NEWSLETTER: Funding frenzy, chip wars, and robot dreams: Inside China\u2018s AI boom - Reuters\n              tags: chip\n  \u00b7 [reuters] Palo Alto Networks unveils AI-powered cybersecurity service using Claude, GPT models - Reuters\n              tags: claude\n"
 }
