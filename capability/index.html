@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capability Proposal — Muhammad Aizat bin Abu Samah</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #0c0e18;
+            --surface: #13162280;
+            --card: #181b2e;
+            --card2: #1e2138;
+            --accent: #7c6cf0;
+            --accent2: #a78bfa;
+            --gold: #f5c544;
+            --green: #4ade80;
+            --text: #e8eaf0;
+            --muted: #7a809a;
+            --border: rgba(124, 108, 240, 0.18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            background-image:
+                radial-gradient(ellipse 80% 60% at 10% 0%, rgba(124, 108, 240, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 90% 100%, rgba(167, 139, 250, 0.08) 0%, transparent 60%);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            padding: 48px 20px;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px var(--border),
+                0 40px 100px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ════════════════════════════════
+       HEADER
+    ════════════════════════════════ */
+        .header {
+            background: linear-gradient(135deg, #12093a 0%, #0f1035 50%, #15173d 100%);
+            padding: 44px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124, 108, 240, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -120px;
+            left: -80px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .kicker {
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent2);
+            opacity: 0.85;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.1rem;
+            line-height: 1.2;
+            background: linear-gradient(130deg, #fff 0%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .name {
+            margin-top: 14px;
+            font-size: 0.92rem;
+            color: #c4c9e0;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .contact-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: #c4c9e0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+
+        .contact-chip:hover {
+            background: rgba(124, 108, 240, 0.12);
+            border-color: rgba(124, 108, 240, 0.3);
+        }
+
+        .contact-chip .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ════════════════════════════════
+       BODY
+    ════════════════════════════════ */
+        .body {
+            padding: 40px 48px 48px;
+        }
+
+        .section {
+            margin-bottom: 38px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .s-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .s-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 14px;
+            max-width: 65ch;
+        }
+
+        .prose {
+            font-size: 0.92rem;
+            color: #d4d8ea;
+            max-width: 68ch;
+        }
+
+        .prose p {
+            margin-bottom: 12px;
+        }
+
+        /* Pillar cards */
+        .pillars {
+            display: grid;
+            gap: 16px;
+        }
+
+        .pillar {
+            background: var(--card2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--accent2));
+        }
+
+        .pillar-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.78rem;
+            color: var(--accent2);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .pillar h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .pillar p {
+            font-size: 0.88rem;
+            color: #c4c9e0;
+            line-height: 1.7;
+        }
+
+        /* Timeline (90-day) */
+        .timeline {
+            display: grid;
+            gap: 14px;
+        }
+
+        .phase {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 18px;
+            align-items: start;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .phase:last-child {
+            border-bottom: none;
+        }
+
+        .phase-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .phase-body h4 {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .phase-body p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Honest bit */
+        .honest {
+            background: linear-gradient(135deg, rgba(124, 108, 240, 0.08), rgba(167, 139, 250, 0.04));
+            border: 1px solid rgba(124, 108, 240, 0.22);
+            border-radius: 14px;
+            padding: 24px 28px;
+        }
+
+        .honest p {
+            font-size: 0.9rem;
+            color: #d4d8ea;
+            margin-bottom: 12px;
+        }
+
+        .honest p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Supporting docs */
+        .docs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid rgba(124, 108, 240, 0.3);
+            background: rgba(124, 108, 240, 0.1);
+            color: var(--accent2);
+            transition: all 0.2s ease;
+        }
+
+        .doc-link:hover {
+            background: rgba(124, 108, 240, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .doc-link.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .doc-link.primary:hover {
+            box-shadow: 0 8px 24px rgba(124, 108, 240, 0.35);
+        }
+
+        .doc-icon {
+            font-size: 1rem;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-decoration: none;
+            margin-bottom: 28px;
+        }
+
+        .back-link:hover {
+            color: var(--accent2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px 48px;
+            border-top: 1px solid var(--border);
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .header,
+            .body {
+                padding: 28px 22px;
+            }
+
+            .phase {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-inner">
+                <div class="kicker">Capability Proposal</div>
+                <h1>What the Resume<br />Doesn't Show</h1>
+                <div class="name">Muhammad Aizat bin Abu Samah</div>
+                <div class="contact-row">
+                    <span class="contact-chip"><span class="dot"></span>Pulau Gadong, Melaka</span>
+                    <a class="contact-chip" href="tel:+60134272686"><span class="dot"></span>+6013-427 2686</a>
+                    <a class="contact-chip" href="mailto:idterbaru2023@gmail.com"><span class="dot"></span>idterbaru2023@gmail.com</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- BODY -->
+        <div class="body">
+            <a class="back-link" href="../resume/">← Back to Resume</a>
+
+            <!-- Why this -->
+            <section class="section">
+                <div class="s-label">Why This, Instead of a Standard Resume</div>
+                <div class="lead">
+                    My formal resume shows scaffolding and O&amp;G site work. That's real — I spent years in the
+                    field. But for the past several years, my nights have looked different.
+                </div>
+                <div class="prose">
+                    <p>
+                        I build AI systems. Not as an employee, not under instruction — for myself, to solve real
+                        problems. I've built autonomous agents that monitor signals, analyse behavioural patterns,
+                        orchestrate multi-model pipelines, and manage tasks across local and cloud environments. I do
+                        this because I'm genuinely wired to understand how systems work — and how to make them work
+                        better.
+                    </p>
+                    <p>
+                        That kind of thinking doesn't fit neatly on a resume. This document exists to show it directly.
+                    </p>
+                </div>
+            </section>
+
+            <!-- What I Bring -->
+            <section class="section">
+                <div class="s-label">What I Bring</div>
+                <div class="pillars">
+                    <div class="pillar">
+                        <div class="pillar-num">01</div>
+                        <h3>Systems Thinking Under Real Constraints</h3>
+                        <p>
+                            I've built production-grade automation with zero budget, no team, and no IT support. Every
+                            decision had to account for failure modes, edge cases, and real-world usage patterns.
+                            That's not theory — that's the same instinct any technical or analytical role demands:
+                            understand the whole system before touching any part of it.
+                        </p>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-num">02</div>
+                        <h3>AI-Augmented Work Capability</h3>
+                        <p>
+                            I work with AI agents as tools, not shortcuts. When I encounter a problem, I can build an
+                            automated analysis pipeline to map it systematically — faster than traditional manual
+                            methods. I use this for gap analysis, pattern detection, documentation workflows, and
+                            requirement tracing. The same capability applies to any domain where structured thinking
+                            and rapid iteration matter.
+                        </p>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-num">03</div>
+                        <h3>The Bridge Role — Naturally</h3>
+                        <p>
+                            My entire self-taught technical journey required me to constantly translate between what I
+                            wanted to achieve and what the technology could actually do. That translation skill —
+                            between business intent and technical reality — is one of the hardest things to teach. I've
+                            been doing it for years. I can do it for a team.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 90 days -->
+            <section class="section">
+                <div class="s-label">How I'd Approach the First 90 Days</div>
+                <div class="timeline">
+                    <div class="phase">
+                        <div class="phase-tag">Month 1</div>
+                        <div class="phase-body">
+                            <h4>Learn before touching</h4>
+                            <p>Understand the product, the team, the existing processes. Map where friction lives. No
+                                assumptions. Just observation, questions, and documentation.</p>
+                        </div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase-tag">Month 2</div>
+                        <div class="phase-body">
+                            <h4>Contribute on one real task</h4>
+                            <p>Own something end-to-end, however small. Prove the process before improving it. Earn
+                                trust through delivery, not promises.</p>
+                        </div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase-tag">Month 3</div>
+                        <div class="phase-body">
+                            <h4>Propose one improvement</h4>
+                            <p>Based on what I've observed, surface one repeatable problem and present a structured
+                                proposal with clear rationale and measurable outcomes. Iterate from there.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Honest bit -->
+            <section class="section">
+                <div class="s-label">The Honest Bit</div>
+                <div class="honest">
+                    <p>
+                        I don't have a formal degree in software engineering or years of the exact job title you're
+                        hiring for. What I have is genuine capability, a problem-first mindset, and skin in the game —
+                        I've invested years building things that actually work, without anyone telling me to.
+                    </p>
+                    <p>
+                        If you're willing to evaluate on demonstrated thinking rather than credentials, I'm willing to
+                        prove it with real work, not just words on a proposal.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Supporting docs -->
+            <section class="section">
+                <div class="s-label">Supporting Documents</div>
+                <div class="docs">
+                    <a class="doc-link primary" href="../resume/">
+                        <span class="doc-icon">🔗</span>View Resume (HTML)
+                    </a>
+                    <a class="doc-link" href="Aizat_Resume_V3.pdf" download>
+                        <span class="doc-icon">📄</span>Download Resume (PDF)
+                    </a>
+                    <a class="doc-link" href="Aizat_Capability_Proposal.pdf" download>
+                        <span class="doc-icon">📄</span>Download Proposal (PDF)
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            Muhammad Aizat bin Abu Samah · +6013-427 2686
+        </footer>
+    </div>
+</body>
+
+</html>
