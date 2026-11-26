@@ -421,7 +421,7 @@
     ],
 
     contact: () => [
-      { t: 'response',  text: '  📧  mohdgary9917@gmail.com' },
+      { t: 'response',  text: '  📧  idterbaru2023@gmail.com' },
       { t: 'response',  text: '  💬  wa.me/60134272686' },
       { t: 'response',  text: '  🐙  github.com/juxtapo9090' },
     ],
@@ -437,7 +437,7 @@
       { t: 'response',  text: '  → FAFO energy + careful execution' },
       { t: 'response',  text: '' },
       { t: 'response',  text: '  Reach out:' },
-      { t: 'response',  text: '  📧  mohdgary9917@gmail.com' },
+      { t: 'response',  text: '  📧  idterbaru2023@gmail.com' },
       { t: 'response',  text: '  💬  wa.me/60134272686' },
       { t: 'response',  text: '  🐙  github.com/juxtapo9090' },
       { t: 'response',  text: '' },

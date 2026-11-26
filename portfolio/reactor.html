@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>reactor — Aizat</title>
+  <meta name="description" content="One call answers “what is actually true on this box right now” — and refuses to invent a green light." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/reactor$</span>
+      <span class="header-title">REACTOR</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / reactor</div>
+    <section class="pf-projects" style="margin-top:18px">
+      <article class="proj-card" id="reactor">
+        <div class="proj-head">
+          <span class="proj-icon">📡</span>
+          <span class="proj-name">reactor</span>
+          <span class="proj-plain">One place to ask “is everything really working right now?” — and it says “I couldn't check” instead of pretending.</span>
+          <span class="proj-oneline"><b>for developers:</b> A ground-truth orientation service — one call answers "what is actually true on this box right now," and it refuses to manufacture a green light.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Julia</span>
+          <span class="stack-pill">unix socket + CLI + HTTP</span>
+          <span class="stack-pill">SQLite code graph</span>
+          <span class="stack-pill">SRE</span>
+        </div>
+
+        <div class="mini"><div class="mini-k">// in plain words</div><div class="flow"><span class="step">❓ “is it really up?”<small>one question</small></span><span class="arrow">→</span><span class="step">📡 reactor<small>checks live: services, ports, code</small></span><span class="arrow">→</span><span class="step">🟢 🟠 🔴 honest answer<small>or “I couldn't check”, never a fake green</small></span></div></div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Every fresh session on a 40-service box started the same way: guessing. Is the
+          daemon up? What owns port 8787? Which files break if I touch this one? The answers
+          existed — in <code>systemctl</code>, <code>/proc</code>, a code graph, a memory DB —
+          but reaching them meant a dozen shell calls, and a wrong guess reads exactly like a
+          right one. Worse, a dead unit, a unit stuck in auto-restart, and a unit systemd
+          calls "active" whose socket never answers are three different bugs — calling all of
+          them "down" hides the useful part.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A resident Julia daemon holding one warm, JIT-compiled module, reachable through
+          three cheap doors: a unix socket, a CLI, and an HTTP endpoint. Read-only by design.
+          The verb set (<code>service · port · health · impact · resolve · why · …</code>) is
+          generated from the routing table itself, so the help can't drift from behaviour, and
+          verbs compose — <code>resolve cli.rs | impact</code> — because each returns a typed
+          result, not prose.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li><strong>Honest zeros.</strong> Every result carries a value, a provenance chain, and an explicit "unanswered" slot — five named zero-causes distinguish "isn't there" from "I couldn't reach that source." Partial answers are first-class.</li>
+          <li><strong>Live, not cached.</strong> Health probes shell out to <code>systemctl</code> on both buses, then probe the socket only if systemd already claims active, and read the machine's <em>own</em> service roster rather than a private copy that could disagree.</li>
+          <li><strong>Blast radius.</strong> The "who depends on this file" verb reads a SQLite code graph ranked by the depender's centrality; a <code>0 rdeps</code> verdict — the only one that invites deletion — is cross-examined against disk, which once caught the graph certifying a file as safe to delete that the parser had never actually entered.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            First session using reactor as a live dashboard, its health sweep immediately
+            flagged <strong>a service flapping with 500+ restarts and climbing</strong> — a
+            state that had been failing silently. Traced it: a browser was being launched
+            without its remote-debugging port, so the controller had no endpoint to attach to
+            and died on every start. The catch was <em>only</em> possible because "flapping" is
+            a distinct verdict (auto-restart substate, or dead with &gt;5 restarts) — a plain
+            up/down check shows green between restarts and misses it entirely.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          Orientation becomes a single call instead of a guessing game — and the tool refuses
+          to lie: an empty roster returns a gap, not a clean bill of health. Two of its guards
+          exist <strong>because the tool lied once, was caught, and the fix was written into
+          the code with the receipt beside it.</strong>
+        </p>
+      </article>
+    </section>
+  <nav class="pager"><a href="mag.html">← mag</a><a href="ariadne.html">ariadne →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>

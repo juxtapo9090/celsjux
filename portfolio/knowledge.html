@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>knowledge — Aizat</title>
+  <meta name="description" content="Sub-second search over ~900k files, plus a hook that makes the slow grep path unreachable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/knowledge$</span>
+      <span class="header-title">KNOWLEDGE</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / knowledge</div>
+    <section class="pf-projects" style="margin-top:18px">
+      <article class="proj-card" id="knowledge">
+        <div class="proj-head">
+          <span class="proj-icon">🔎</span>
+          <span class="proj-name">knowledge</span>
+          <span class="proj-plain">Search for my whole PC. Finds any word in ~900,000 files in under a second.</span>
+          <span class="proj-oneline"><b>for developers:</b> Indexed full-text search over a ~900k-file tree — sub-second where a recursive grep never returns — with an enforcement layer that makes the slow path unreachable.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Rust / Tantivy</span>
+          <span class="stack-pill">Bash</span>
+          <span class="stack-pill">BM25</span>
+          <span class="stack-pill">pre-execution hook</span>
+        </div>
+
+        <div class="mini"><div class="mini-k">// in plain words</div><div class="flow"><span class="step">🔎 looking for a word<small>across the whole PC</small></span><span class="arrow">→</span><span class="step">📚 knowledge<small>an index of ~900k files</small></span><span class="arrow">→</span><span class="step">⚡ answer<small>in under a second</small></span><span class="arrow">→</span><span class="step">🚫 slow search<small>redirected automatically</small></span></div></div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          <code>grep -r</code> across a ~900k-file tree doesn't just run slow — it hangs the
+          session that launched it. But everyone reaches for grep by reflex. The fix had to be
+          both a faster tool <em>and</em> a mechanism that made the slow path unreachable —
+          because a tool nobody remembers to use isn't a fix.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          <code>knowledge</code> — a CLI front-end over a Rust/Tantivy full-text daemon. One
+          entrypoint, two modes: an indexed BM25 content search, and a <code>knowledge grep</code>
+          bridge that forwards verbatim to a fast live scanner. <strong>Live: 912,520 documents,
+          388&nbsp;ms query latency</strong> — versus a full-tree grep that never returns.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li>The grep bridge is the real work: grep's flags don't map cleanly onto the modern scanner (some silently misfire, some are meaningless), so they're translated or dropped explicitly — and hidden/ignored files are <strong>always forced on</strong>, because a tool claiming to be an honest grep replacement can't silently skip exactly the dotfiles debugging hunts for.</li>
+          <li>Enforcement lives in a <strong>pre-execution hook</strong>: simple grep invocations are rewritten in place to the indexed search (the span only, leaving pipes and redirects intact); anything else is denied with an escalating message keyed to a per-session counter — by the third attempt it stops suggesting flags and challenges the <em>approach</em>.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ real bugs I fixed</span>
+          <p>
+            <strong>Silent query narrowing.</strong> A multi-word query kept only the last word
+            — each bare term clobbered the previous. Now joined. <em>Silent wrong answers are
+            worse than loud failures.</em>
+          </p>
+          <p>
+            <strong>Flag-unbundling corruption.</strong> Stripping one letter from a bundled
+            flag group also corrupted an adjacent argument-taking flag, which then ate the next
+            token as its value. Fixed by stopping the unbundle at the first argument-taking
+            letter and copying the tail through untouched.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          Search went from session-hanging to sub-second at ~900k documents, and the
+          enforcement layer means <strong>the fast path is the only path</strong> — no
+          discipline required. The honest tradeoff (the index can be import-stale) is surfaced
+          in the tool itself, and the live-scan escape hatch is a first-class mode, not a
+          fallback.
+        </p>
+      </article>
+    </section>
+  <nav class="pager"><a href="ariadne.html">← ariadne</a><a href="spine.html">The Spine →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>

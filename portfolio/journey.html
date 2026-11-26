@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The journey — Aizat</title>
+  <meta name="description" content="The walls I hit from July to November 2026, what I noticed, and what changed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/journey$</span>
+      <span class="header-title">THE JOURNEY</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / The journey</div>
+    <section class="pf-projects" style="margin-top:18px">
+
+      <article class="proj-card">
+        <div class="proj-head">
+          <span class="proj-icon">🧗</span>
+          <span class="proj-name">The journey</span>
+          <span class="proj-oneline">I learn by hitting the wall. The wall doesn't lie — it answers, and that answer is the only real data.</span>
+        </div>
+        <p>Most of what I build is a “what if” at 2&nbsp;AM. The stories below are the moments that taught me something. Almost all of them share one shape: <strong>something reported success while it was broken</strong>, and the AI agreed with it — until I looked at what I actually saw.</p>
+        <h3>Eras</h3>
+        <ul class="timeline">
+          <li><b>Jul 2026</b>The foundation — Rust broker, agent seats, Dropzone, the phone lane, the jaga proxy.</li>
+          <li><b>Aug 2026</b>The honesty audits — silent failures, instruments that never checked, <code>sms</code> on kitty.</li>
+          <li><b>Sep 2026</b>Real users — an online store for a friend, the move to Fedora, audio.</li>
+          <li><b>Oct 2026</b>Apps — KD Pager on Android, a TV remote in Flutter, game tools.</li>
+          <li><b>Nov 2026</b>Looking back — a read-only audit of the whole household.</li>
+        </ul>
+      </article>
+
+      <article class="proj-card">
+        <div class="story-meta">Aug 10, 2026</div>
+        <div class="proj-head"><span class="proj-name" style="font-size:18px">The token counter that said 96.5%</span></div>
+        <h3>The wall</h3><p>A token-saving CLI I use (RTK) reported <strong>587.9M tokens saved — 96.5%</strong>. It looked too good.</p>
+        <h3>What I noticed</h3><p>I asked to study it properly instead of trusting the scoreboard. One command type made up 69.4% of the total.</p>
+        <div class="bug-callout"><span class="bug-tag">◆ what changed</span><p>The honest, capped figure was <strong>3.2M saved — 43.8%</strong>. I built <code>rtk-honest</code>, filed upstream issues #3506–#3508 and opened PR #3511.</p></div>
+      </article>
+      <article class="proj-card">
+        <div class="story-meta">Aug 7, 2026</div>
+        <div class="proj-head"><span class="proj-name" style="font-size:18px">The proxy that logged success on dead requests</span></div>
+        <h3>The wall</h3><p>My proxy stripped a block until it was empty. Every subagent call then failed with a 400 — while the log said <em>“Stripped 8 system-reminder(s)”</em> as a clean success, for 27 minutes.</p>
+        <h3>What I noticed</h3><p>The AI kept designing fixes for problems that hadn't happened. I pushed: <strong>face the problem first, fix second</strong> — turn it on, back up the old config, install the right one. About 4 minutes.</p>
+        <div class="bug-callout"><span class="bug-tag">◆ what changed</span><p>A guard keeps the original block if stripping would empty it, plus a regression test (88/88 passing).</p></div>
+      </article>
+      <article class="proj-card">
+        <div class="story-meta">Aug 4, 2026</div>
+        <div class="proj-head"><span class="proj-name" style="font-size:18px">Six silent failures, one disease</span></div>
+        <h3>The wall</h3><p>Six faults in six subsystems, live for weeks or months, none of them raising an error. A regex that never compiled. Memory ingest frozen since April. A counter at 1166 because its reset script never existed.</p>
+        <h3>What I noticed</h3><p>I found the frozen memory by chance and backfilled 63 entries by hand. The pattern was the same everywhere: a quiet default instead of an error.</p>
+        <div class="bug-callout"><span class="bug-tag">◆ what changed</span><p>My house rule since: <strong>no silent fallbacks — error loud</strong>. Defaults that guess were removed; failures now alert my phone.</p></div>
+      </article>
+      <article class="proj-card">
+        <div class="story-meta">Aug 12, 2026</div>
+        <div class="proj-head"><span class="proj-name" style="font-size:18px">Every phone message said “PC”</span></div>
+        <h3>The wall</h3><p>Messages I sent from my phone were labelled as coming from the PC — since the day that seat existed.</p>
+        <h3>What I noticed</h3><p>I kept poking at the leftover oddity. The seat map was missing one entry. A stale running binary also dropped a new argument, which nearly got a working fix blamed.</p>
+        <div class="bug-callout"><span class="bug-tag">◆ what changed</span><p>Map fixed, and a build-stamp check added: <strong>measure the running thing, not the source</strong>.</p></div>
+      </article>
+      <article class="proj-card">
+        <div class="story-meta">Aug 17, 2026</div>
+        <div class="proj-head"><span class="proj-name" style="font-size:18px">One % sign stopped a sync for ten days</span></div>
+        <h3>The wall</h3><p>Local briefs stopped on Aug 7 while the server kept producing them. The log file was 0 bytes.</p>
+        <h3>What I noticed</h3><p>A monitoring idea I was exploring — flag anything stale — is what surfaced it.</p>
+        <div class="bug-callout"><span class="bug-tag">◆ what changed</span><p>Cron reads an unescaped <code>%</code> as a newline, so the line never ran. Fix: <code>\%</code>.</p></div>
+      </article>
+      <article class="proj-card">
+        <div class="story-meta">Nov 24, 2026</div>
+        <div class="proj-head"><span class="proj-name" style="font-size:18px">My own description was wrong</span></div>
+        <h3>The wall</h3><p>I told the agents my workflow was MAIN → PLAYGROUND → promote. I asked them to audit it read-only, with evidence.</p>
+        <h3>What I noticed</h3><p>The audit showed something else: versioned zip snapshots (<code>x-V1.zip</code>, <code>V2</code>…) and the playground copy <em>is</em> what runs.</p>
+        <div class="bug-callout"><span class="bug-tag">◆ what changed</span><p>I kept the finding, not my story. A documented gap is a result, not a failure.</p></div>
+      </article>
+
+    </section>
+  <nav class="pager"><a href="spine.html">← The Spine</a><a href="index.html">Portfolio →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>

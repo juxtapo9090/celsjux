@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jaga — Aizat</title>
+  <meta name="description" content="A Rust reverse proxy that sees, rewrites and accounts for every model request on the box." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/jaga$</span>
+      <span class="header-title">JAGA</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / jaga</div>
+    <section class="pf-projects" style="margin-top:18px">
+      <article class="proj-card" id="jaga">
+        <div class="proj-head">
+          <span class="proj-icon">🐺</span>
+          <span class="proj-name">jaga</span>
+          <span class="proj-plain">A gatekeeper between my AI agents and the AI companies. It sees every question they send, how long the answer took, and what it cost.</span>
+          <span class="proj-oneline"><b>for developers:</b> A multi-channel LLM reverse proxy that observes, rewrites, and accounts for every model request on the box.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Rust</span>
+          <span class="stack-pill">tokio / hyper</span>
+          <span class="stack-pill">SSE streaming</span>
+          <span class="stack-pill">systemd</span>
+          <span class="stack-pill">observability</span>
+        </div>
+
+        <div class="mini"><div class="mini-k">// in plain words</div><div class="flow"><span class="step">🤖 an agent asks<small>sends a request</small></span><span class="arrow">→</span><span class="step">🐺 jaga<small>checks it, cleans it, writes it down</small></span><span class="arrow">→</span><span class="step">🌐 the AI provider<small>answers, streaming back</small></span><span class="arrow">→</span><span class="step">📊 dashboard<small>who asked, how long, how much</small></span></div></div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          Several AI coding agents run on one machine, each against a different upstream
+          (Anthropic, OpenAI, a self-hosted lane). There was no single place to answer
+          <em>what did they actually send, what came back, how long did it take, what did it
+          cost</em> — and no way to rewrite a request in flight without editing every client.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A Rust proxy (tokio/hyper, ~4,400 lines across 7 modules) that sits between each
+          agent and its upstream. One binary, seven listeners defined in config — each with
+          its own upstream and protocol. Per request it forwards faithfully, strips configured
+          prompt fragments, tees a normalized event stream to disk and a companion dashboard
+          via a non-blocking shadow observer, and records per-call latency and token counts.
+          systemd-managed with <code>Restart=always</code>; <code>--version</code> stamps the
+          release, exact git SHA, and a <code>-dirty</code> flag so "what's running" is never
+          a guess. A read-only dashboard tails those feeds and merges them with local usage
+          history — <strong>zero extra instrumentation in the hot path</strong>.
+        </p>
+
+        <h3>Technical depth</h3>
+        <p>
+          The hardest module is a streaming <strong>Anthropic ⇄ OpenAI protocol translator</strong>
+          — it re-emits one wire format's server-sent events as the other's, incrementally,
+          without ever buffering the full response.
+        </p>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            A replay gate was blocking the translator cutover. The upstream model sent
+            <code>finish_reason: ""</code> — an <em>empty-string placeholder</em> — on every
+            mid-stream chunk, and the emitter treated <code>Some("")</code> as a terminal
+            signal, closing and reopening the content block on each delta:
+            <strong>292 <code>content_block_start</code> events for a single tool call</strong>
+            (130 empty vs 1 real), confirmed against captured traffic.
+          </p>
+          <p>
+            The fix was a one-line <code>!finish.is_empty()</code> guard, matching guards
+            already used elsewhere in the same file. In the same pass I made rule compilation
+            <strong>fail loud</strong> (print + exit) instead of silently dropping a regex that
+            won't compile — a previous bug had no-op'd exactly that way.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <ul>
+          <li>Observability without touching clients — the classic proxy pattern, done at protocol level.</li>
+          <li>Streaming correctness under a real, messy wire format.</li>
+          <li>Regression tests built from <strong>captured real traffic</strong>: 73/73 tests green, clippy + fmt clean, 12/12 streaming captures verified.</li>
+          <li>A later shipped fix in the same codebase — a UTF-8 boundary panic surfacing as a client-side connection reset — was root-caused from logs, reproduced in a test that provably panics on the pre-fix code, then fixed.</li>
+        </ul>
+      </article>
+    </section>
+  <nav class="pager"><a href="tv-remote.html">← TV remote</a><a href="mag.html">mag →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>

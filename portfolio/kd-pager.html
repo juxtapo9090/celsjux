@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KD Pager — Aizat</title>
+  <meta name="description" content="An Android app on Google Play (closed test) that buzzes your phone when your guild chat needs you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/kd-pager$</span>
+      <span class="header-title">KD PAGER</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / KD Pager</div>
+    <section class="pf-projects" style="margin-top:18px">
+
+      <article class="proj-card" id="kd-pager">
+        <div class="proj-head">
+          <span class="proj-icon">📟</span>
+          <span class="proj-name">KD Pager</span>
+          <span class="proj-plain">My guild's chat only notified people on the website. Newcomers asked for help and nobody saw it. Now their message buzzes our phones.</span>
+          <span class="proj-oneline"><b>for developers:</b> Kotlin Android client with a Rust hub: Supabase Realtime → FCM push, Custom-Tab OAuth, grouped notifications, raid alerts.</span>
+        </div>
+        <div class="proj-stack"><span class="stack-pill">Kotlin</span><span class="stack-pill">Android</span><span class="stack-pill">Rust · axum · tokio</span><span class="stack-pill">Supabase Realtime</span><span class="stack-pill">Firebase Cloud Messaging</span><span class="stack-pill">Google Play</span></div>
+        <div class="mini"><div class="mini-k">// in plain words</div><div class="flow"><span class="step">💬 someone writes in guild chat<small>on the website</small></span><span class="arrow">→</span><span class="step">🦀 my hub server<small>listens live, 24/7</small></span><span class="arrow">→</span><span class="step">🔔 push to the phone<small>even when the app is asleep</small></span><span class="arrow">→</span><span class="step">📟 tap<small>opens the right chat page</small></span></div></div>
+
+        <h3>The problem</h3>
+        <blockquote>I'm in a developer guild (Kracked Devs). When I'm outside, newcomers post questions in guild chat — and the site only notifies you if the site is open. Messages went unanswered. I wanted a pager: someone talks, my phone buzzes.</blockquote>
+        <h3>What I built</h3>
+        <ul><li>An Android app that wraps the guild site and adds the pager on top: a full client first, with notifications built in.</li><li>A small Rust hub server that keeps one live connection to the guild's database and turns every new message into a push notification.</li><li>Notifications grouped per guild with the sender's name and avatar; raid alerts with <strong>Join raid</strong> / <strong>Not this time</strong> buttons.</li><li>The hub holds the login refresh token; the phone only gets short-lived access.</li></ul>
+        <h3>Walls I hit</h3>
+        <div class="bug-callout"><span class="bug-tag">◆ the phone killed my app</span><p>The first night, a test message sent at 02:00 never arrived. The connection went silent for three minutes. The first real notification landed at <strong>02:15:40</strong> — then the app froze again.</p><p>The phone's battery manager freezes background apps (<code>do_freezer_trap</code>), even with every battery setting unlocked. Asking users to pin the app would be a burden on them, so I didn't. I moved to <strong>Firebase push</strong>, which the phone respects.</p></div><div class="bug-callout"><span class="bug-tag">◆ Google blocked login</span><p>Google refuses sign-in inside an app's web view (<code>disallowed_useragent</code>). The fixes that needed the guild site to change a setting were dead ends.</p><p>Fix: open login in a Chrome Custom Tab and catch the site's callback back in the app. Logcat: <code>08:27:03 custom tab</code> → <code>08:27:04 callback back (code=true)</code>.</p></div>
+        <h3>Status</h3>
+        <ul><li><strong>Google Play closed test</strong> since 2026-10-08 — published about 29 minutes after review started.</li><li>Latest build v0.6.6 (2026-10-09) fixes a Play security flag: the app now only opens guild links over https.</li><li>Source is public: <a href="https://github.com/Celest-J/kd-pager" target="_blank" rel="noopener noreferrer">github.com/Celest-J/kd-pager</a>.</li></ul>
+      </article>
+    </section>
+  <nav class="pager"><a href="household.html">← The household + sms</a><a href="tv-remote.html">TV remote →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>

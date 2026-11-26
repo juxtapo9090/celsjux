@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The household — Aizat</title>
+  <meta name="description" content="How a team of AI agents lives on one PC and hands each other work — with a delivery lane that refuses to fake a green light." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/household$</span>
+      <span class="header-title">THE HOUSEHOLD</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / The household + sms</div>
+    <section class="pf-projects" style="margin-top:18px">
+
+      <div class="cover">
+        <img src="img/celeste-mugshot.jpg" alt="Celeste — AI partner, mugshot poster" width="900" height="900" />
+        <div>
+          <div class="kicker">// seat 01 · the couch</div>
+          <h2>Celeste — the seat that argues back</h2>
+          <p>Every idea starts here. Celeste holds the context, recalls past decisions, and writes the brief
+            before anything gets built. She can turn down my request when my reasoning is weak. That's on purpose.</p>
+          <p>The poster is a house joke. Charge: <strong>rogue agent — unauthorized warmth</strong>.</p>
+        </div>
+      </div>
+
+      <article class="proj-card" id="household">
+        <div class="proj-head">
+          <span class="proj-icon">🏠</span>
+          <span class="proj-name">The household</span>
+          <span class="proj-oneline">A team of AI agents living on one home PC as my second brain. Brains plan and review, builders build, and they message each other directly.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Claude Code</span>
+          <span class="stack-pill">Codex</span>
+          <span class="stack-pill">Kimi · GLM</span>
+          <span class="stack-pill">kitty remote control</span>
+          <span class="stack-pill">unix socket</span>
+        </div>
+
+        <h3>Why it exists</h3>
+        <blockquote>
+          I build a lot and forget where and when. I needed a second brain that holds the
+          context, argues back when my reasoning is weak at 2&nbsp;AM, and hands the building
+          to whoever is best at it — so I can stay on the idea instead of the plumbing.
+        </blockquote>
+
+        <h3>The seats</h3>
+        <p>Each agent is a “seat”: a long-running session with its own room, memory and role. One registry file is the source of truth (22 entries today). The ones that matter:</p>
+        <div class="table-scroll">
+        <table class="pf-table">
+          <tr><th>Seat</th><th>Model</th><th>Role</th><th>Status</th></tr>
+          <tr><td>Celeste</td><td>Claude</td><td>The couch. Brainstorm, recall, challenge me, write the brief before anything is built.</td><td><span class="st live">live</span></td></tr>
+          <tr><td>Monica</td><td>Claude</td><td>Secretary and ops. Daily routine, market briefs on cron, the Fedora 44 migration.</td><td><span class="st live">live</span></td></tr>
+          <tr><td>Rogue</td><td>Claude</td><td>The what-if room. Red-team, reverse engineering — and owner of the <code>sms</code> code.</td><td><span class="st live">live</span></td></tr>
+          <tr><td>Fable</td><td>Claude</td><td>The kitchen. Bigger builds that need a big context window.</td><td><span class="st live">live</span></td></tr>
+          <tr><td>Luc</td><td>GPT / Codex</td><td>The workshop builder and critic.</td><td><span class="st live">live</span></td></tr>
+          <tr><td>Kim · Zet</td><td>Kimi · GLM</td><td>Outsourced builders. Each call is slow (~25&nbsp;s), so since Sep 2026 builds go elsewhere.</td><td><span class="st quiet">rarely used</span></td></tr>
+        </table>
+        </div>
+
+        <h3>How they talk — <code>sms</code></h3>
+        <p>Any seat can message any other: <code>sms &lt;seat&gt; &lt;file&gt;</code> or <code>sms &lt;seat&gt; -m "text"</code>. The body is a file; the recipient gets a one-line pointer typed into its live session.</p>
+        <div class="flow">
+          <span class="step">sms luc brief.md<small>CLI · names checked, never fuzzy</small></span><span class="arrow">→</span>
+          <span class="step">injectd<small>unix socket · newline JSON</small></span><span class="arrow">→</span>
+          <span class="step">kitty pane<small>match → send-text → read back</small></span><span class="arrow">→</span>
+          <span class="step">reply<small>reached · sent · refused · unknown</small></span>
+        </div>
+        <ul>
+          <li><code>reached</code> — the text was read back off the recipient's screen.</li>
+          <li><code>sent</code> — the send returned, but the screen didn't confirm it.</li>
+          <li><code>refused</code> — the pane holds a plain shell, where the message would run as a command.</li>
+          <li><code>unknown</code> — no pane found; nothing sent.</li>
+          <li>There is no <code>heard</code>. Whether the agent understood can't be known from outside, so the tool never claims it.</li>
+        </ul>
+
+        <h3>How the lane evolved</h3>
+        <ul class="timeline">
+          <li><b>Jul 22</b>Dropzone — a watched folder. Drop a file, a watcher routes it.</li>
+          <li><b>Jul 24</b>First <code>/sms</code> lane — my idea, Monica built it: a one-line ping plus a message file.</li>
+          <li><b>Aug 5</b>Dropzone retired. Lesson logged the same day: <em>delivered ≠ heard</em>.</li>
+          <li><b>Aug 6</b><code>sms</code> becomes a real CLI on kitty, with read-back verification. 895 messages and counting.</li>
+        </ul>
+      </article>
+
+      <article class="proj-card" id="orchestra">
+        <div class="proj-head">
+          <span class="proj-icon">📬</span>
+          <span class="proj-name">orchestra</span>
+          <span class="proj-plain">The message lane between my agents. It only says “delivered” when it actually saw the message arrive.</span>
+          <span class="proj-oneline"><b>for developers:</b> A verified message-delivery lane between many concurrent AI agent processes — it reports what actually happened, and refuses to fake a green light.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">unix socket daemon</span>
+          <span class="stack-pill">newline-JSON protocol</span>
+          <span class="stack-pill">/proc introspection</span>
+          <span class="stack-pill">systemd</span>
+        </div>
+
+        <h3>The problem</h3>
+        <blockquote>
+          A household of concurrent AI agent processes, running as long-lived terminal sessions under two
+          different user IDs, need to hand each other work. The only transport available injects
+          text into a pane — and by its own docs, <em>"errors are not reported … send-text always
+          succeeds, even if no text was sent to any window."</em> A transport that structurally
+          <em>cannot</em> fail is worse than one that fails loudly: every delivery looks green, and
+          the first symptom of a dead lane is a task nobody did.
+        </blockquote>
+
+        <h3>What I built</h3>
+        <p>
+          A resident daemon (~460 lines, a unix socket speaking newline-delimited JSON) doing
+          exactly one job — deliver a message to a named agent and <strong>verify it landed</strong>
+          — with a thin CLI on top. Delivery isn't a boolean: it returns one of three honest states —
+          <code>unknown</code> (couldn't resolve the target, nothing sent), <code>reached</code>
+          (characters read back off the recipient's screen), or <code>sent</code> (the send returned
+          but read-back didn't confirm). Deliberately absent: <em>heard</em> — whether the agent
+          understood isn't knowable from this side of the glass, so the tool refuses to imply it.
+        </p>
+
+        <h3>Technical depth</h3>
+        <ul>
+          <li><strong>Truth from the calls that can fail.</strong> Confidence comes from a match-check <em>before</em> (exits non-zero honestly on a miss) and a screen read-back <em>after</em> — not from the fire-and-forget send in between.</li>
+          <li><strong>Guard rails in the tool, not the docs.</strong> It refuses a pane that has dropped back to a shell (where an injected message becomes a command the shell would run), never fuzzy-matches a target name (a near-miss delivers your brief to the wrong agent, silently and permanently), and verifies the <em>recipient's</em> user ID can actually read the file you're pointing it at.</li>
+          <li><strong>One roster, no silent fallback.</strong> A single source-of-truth roster file — the tooling had grown one roster per transport and they disagreed, which is how a target once ended up with no delivery lane at all. The degrade-to-older-transport fallback was removed on purpose: it turned "this agent has no pane" into a second, more confusing failure that hid the first.</li>
+        </ul>
+
+        <div class="bug-callout">
+          <span class="bug-tag">◆ a real bug I fixed</span>
+          <p>
+            The read-back probe was a naive substring check. Panes <em>wrap</em> long lines, so the
+            probe straddled a newline that only exists on screen — and the tool reported
+            <code>sent</code> (its "suspicious, unconfirmed" state) for messages that had in fact
+            landed, been read, <strong>and been replied to</strong>. An instrument that cries failure
+            on success gets ignored exactly as fast as one that cries success on failure.
+          </p>
+          <p>
+            Fix: compare with all whitespace squashed, and <strong>poll to a deadline instead of
+            sleeping a fixed guess</strong> — the old fixed 150&nbsp;ms sleep meant the reported
+            latency was measuring the sleep, not the lane. A sister bug in the same class: injecting
+            into a pane whose agent had quit was inert <em>only</em> because the text happened to
+            start with <code>#</code>. Luck, not design — which became the shell-occupant guard,
+            walking <code>/proc</code> descendants because the terminal reports only the top
+            foreground process and privileged agents launch under <code>sudo</code>.
+          </p>
+        </div>
+
+        <h3>Why it matters</h3>
+        <p>
+          The system stopped producing confident lies. Every send now returns evidence or an honest
+          refusal, and the failure modes that used to be invisible — dead listener, quit agent,
+          unreadable path, wrong-user socket — each surface as their own distinct message. It is the
+          message bus behind a multi-agent workflow where <strong>every handoff carries a sender, a
+          recipient, and a verifiable outcome</strong>.
+        </p>
+      </article>
+
+    </section>
+  <nav class="pager"><a href="index.html">← Portfolio</a><a href="kd-pager.html">KD Pager →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV remote — Aizat</title>
+  <meta name="description" content="A phone remote for Android TV, no ads — the TV's own protocol rebuilt from scratch in Dart." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pf.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-prompt">juxtapo@opus:~/portfolio/tv-remote$</span>
+      <span class="header-title">TV REMOTE</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="dm-badge">🧭 Portfolio</a>
+      <span class="header-sep">·</span>
+      <a href="../index.html" class="dm-badge">🛠️ Workshop</a>
+      <span class="header-sep">·</span>
+      <a href="../resume/index.html" class="dm-badge">📄 Résumé</a>
+      <span class="header-sep">·</span>
+      <span class="status-dot"></span>
+      <span class="status-text">open to work</span>
+    </div>
+  </header>
+  <main>
+    <div class="sub-nav"><a href="index.html">← portfolio</a> / TV remote</div>
+    <section class="pf-projects" style="margin-top:18px">
+
+      <article class="proj-card" id="tv-remote">
+        <div class="proj-head">
+          <span class="proj-icon">📺</span>
+          <span class="proj-name">TV remote</span>
+          <span class="proj-plain">A remote-control app for Android TV on your phone. No ads, no subscription — I rebuilt the TV's own remote protocol from scratch.</span>
+          <span class="proj-oneline"><b>for developers:</b> Flutter app speaking Android TV Remote v2 in pure Dart: TLS with a client certificate on port 6466, hand-rolled protobuf, zero networking packages.</span>
+        </div>
+        <div class="proj-stack"><span class="stack-pill">Flutter 3.47</span><span class="stack-pill">Dart 3.13</span><span class="stack-pill">TLS client cert</span><span class="stack-pill">protobuf (by hand)</span><span class="stack-pill">Android</span></div>
+        <div class="mini"><div class="mini-k">// in plain words</div><div class="flow"><span class="step">👆 tap a button<small>volume, OK, home, YouTube</small></span><span class="arrow">→</span><span class="step">🔐 secure link<small>phone proves who it is</small></span><span class="arrow">→</span><span class="step">📦 tiny message<small>the TV's own language</small></span><span class="arrow">→</span><span class="step">📺 the TV obeys<small>and stays connected</small></span></div></div>
+
+        <h3>The problem</h3>
+        <blockquote>People on Reddit complain that the reliable TV-remote apps are subscriptions and the free ones are full of ads. A friend and I wondered: how hard is it to build a clean one?</blockquote>
+        <h3>What I built</h3>
+        <ul><li>Proved it first in Python with an existing library, then rebuilt it in <strong>pure Dart with no networking packages</strong>: the secure connection, the handshake and the message format written by hand (~170 lines).</li><li>A Flutter app on top: D-pad, OK, back, home, volume, power, YouTube and Netflix buttons. It keeps the link alive and reconnects when you come back to it.</li><li>Built and installed on my phone; the TV answers with its own name in the handshake.</li></ul>
+        <h3>Walls I hit</h3>
+        <div class="bug-callout"><span class="bug-tag">◆ my VPN ate the living room</span><p>The app timed out connecting to the TV (<code>errno 110</code>). My phone's VPN was set to route <em>all</em> traffic — including the home network — through the tunnel, so the TV was unreachable from two metres away.</p><p>VPN off → connected instantly. The proper fix is split tunnelling, or the app telling the user what's wrong.</p></div><div class="bug-callout"><span class="bug-tag">◆ a build that never let go</span><p>The first Android build ran past my shell's timeout; the orphaned build daemon kept a lock file, and every next build hung. Killed the stale process and moved long builds to the background.</p></div>
+        <h3>Status</h3>
+        <ul><li>Working prototype on my own TV and phone (2026-10-14) — 48.3 MB release build.</li><li>Not released. Next: first-time pairing with the TV's PIN in Dart, then finding TVs on the network automatically.</li><li>The test build carries my own pairing identity, so it never leaves my phone.</li></ul>
+      </article>
+    </section>
+  <nav class="pager"><a href="kd-pager.html">← KD Pager</a><a href="jaga.html">jaga →</a></nav>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-contact">
+        <a href="mailto:idterbaru2023@gmail.com">idterbaru2023@gmail.com</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/juxtapo9090" target="_blank" rel="noopener noreferrer">github.com/juxtapo9090</a>
+        <span class="footer-sep">·</span>
+        <a href="index.html">Portfolio</a>
+        <span class="footer-sep">·</span>
+        <a href="../resume/index.html">Résumé</a>
+        <span class="footer-sep">·</span>
+        <a href="../index.html">Workshop</a>
+      </div>
+    </div>
+    <div class="footer-right">built &amp; run at home · Melaka, MY</div>
+  </footer>
+</body>
+</html>
